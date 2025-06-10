@@ -1,11 +1,9 @@
 {
   "name": "frontend",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index",
-    "dev": "node --watch index"
+    "dev": "parcel src/main.jsx"
   },
   "keywords": [],
   "author": "",
@@ -17,5 +15,8 @@
     "parcel": "^2.15.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.15.2"
   }
 }
