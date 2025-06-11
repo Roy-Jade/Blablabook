@@ -1,12 +1,14 @@
 {
   "name": "frontend",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel src/pages/index.html",
+    "dev": "parcel scr/pages/[page].html",
+    "build": "parcel build"
   },
   "keywords": [],
   "author": "",
+  "type": "module",
   "license": "ISC",
   "description": "",
   "dependencies": {
@@ -14,5 +16,8 @@
     "parcel": "^2.15.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.15.2"
   }
 }
