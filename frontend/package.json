@@ -2,8 +2,9 @@
   "name": "frontend",
   "version": "1.0.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel src/main.jsx"
+    "start": "parcel src/pages/index.html",
+    "dev": "parcel scr/pages/[page].html",
+    "build": "parcel build"
   },
   "keywords": [],
   "author": "",
