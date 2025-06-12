@@ -681,6 +681,8 @@ var _client = require("react-dom/client");
 // Pour chaque nouvelle page, créer un nouvel import
 var _homeJsx = require("./pages/Home/Home.jsx");
 var _homeJsxDefault = parcelHelpers.interopDefault(_homeJsx);
+var _mentionsLegalesJsx = require("./pages/MentionsLegales/MentionsLegales.jsx");
+var _mentionsLegalesJsxDefault = parcelHelpers.interopDefault(_mentionsLegalesJsx);
 // Liste des imports de composants
 var _headerJsx = require("./components/Header/Header.jsx");
 var _headerJsxDefault = parcelHelpers.interopDefault(_headerJsx);
@@ -694,9 +696,24 @@ const homeDomNode = document.getElementById('home');
 const homeRoot = (0, _client.createRoot)(homeDomNode);
 homeRoot.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _homeJsxDefault.default), {}, void 0, false, {
     fileName: "src/index.js",
-    lineNumber: 19,
+    lineNumber: 20,
     columnNumber: 17
 }, undefined));
+//Mentions légales :
+/*
+const MentionsLegalesDomNode = document.getElementById('mentionsLegales');
+const MentionsLegalesRoot = createRoot(MentionsLegalesDomNode);
+MentionsLegalesRoot.render(<MentionsLegales/>);
+
+*/ const mentionsLegalesDomNode = document.getElementById('mentionsLegales');
+if (mentionsLegalesDomNode) {
+    const mentionsLegalesRoot = (0, _client.createRoot)(mentionsLegalesDomNode);
+    mentionsLegalesRoot.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _mentionsLegalesJsxDefault.default), {}, void 0, false, {
+        fileName: "src/index.js",
+        lineNumber: 32,
+        columnNumber: 30
+    }, undefined));
+}
 // Fin de la partie à copier
 // Ajouter vos pages ici
 // Pour les composants Header et Footer, la même structure est nécessaire
@@ -704,14 +721,14 @@ const headerDomNode = document.getElementById('header');
 const headerRoot = (0, _client.createRoot)(headerDomNode);
 headerRoot.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _headerJsxDefault.default), {}, void 0, false, {
     fileName: "src/index.js",
-    lineNumber: 29,
+    lineNumber: 44,
     columnNumber: 19
 }, undefined));
 const footerDomNode = document.getElementById('footer');
 const footerRoot = (0, _client.createRoot)(footerDomNode);
 footerRoot.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _footerJsxDefault.default), {}, void 0, false, {
     fileName: "src/index.js",
-    lineNumber: 32,
+    lineNumber: 47,
     columnNumber: 19
 }, undefined));
 
@@ -720,7 +737,7 @@ footerRoot.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _footerJsxDefault
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","react-dom/client":"hrvwu","./pages/Home/Home.jsx":"3Oyh7","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi","./components/Footer/Footer.jsx":"5sfdP","./components/Header/Header.jsx":"adfVe"}],"dVPUn":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"dVPUn","react-dom/client":"hrvwu","./pages/Home/Home.jsx":"3Oyh7","./components/Header/Header.jsx":"adfVe","./components/Footer/Footer.jsx":"5sfdP","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi","./pages/MentionsLegales/MentionsLegales.jsx":"2CmJ6"}],"dVPUn":[function(require,module,exports,__globalThis) {
 'use strict';
 module.exports = require("ee51401569654d91");
 
@@ -18470,117 +18487,7 @@ function $da9882e673ac146b$var$ErrorOverlay() {
     return null;
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"5sfdP":[function(require,module,exports,__globalThis) {
-var $parcel$ReactRefreshHelpers$863b = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-$parcel$ReactRefreshHelpers$863b.init();
-var prevRefreshReg = globalThis.$RefreshReg$;
-var prevRefreshSig = globalThis.$RefreshSig$;
-$parcel$ReactRefreshHelpers$863b.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "default", ()=>Footer);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _footerScss = require("./Footer.scss");
-function Footer() {
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("nav", {
-            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
-                            href: "/legal",
-                            children: "Mentions l\xe9gales"
-                        }, void 0, false, {
-                            fileName: "src/components/Footer/Footer.jsx",
-                            lineNumber: 8,
-                            columnNumber: 25
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "src/components/Footer/Footer.jsx",
-                        lineNumber: 8,
-                        columnNumber: 21
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
-                            href: "/terms",
-                            children: "Politique de confidentialit\xe9"
-                        }, void 0, false, {
-                            fileName: "src/components/Footer/Footer.jsx",
-                            lineNumber: 9,
-                            columnNumber: 25
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "src/components/Footer/Footer.jsx",
-                        lineNumber: 9,
-                        columnNumber: 21
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
-                            href: "/privacy",
-                            children: "CGU"
-                        }, void 0, false, {
-                            fileName: "src/components/Footer/Footer.jsx",
-                            lineNumber: 10,
-                            columnNumber: 25
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "src/components/Footer/Footer.jsx",
-                        lineNumber: 10,
-                        columnNumber: 21
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
-                            href: "/accessibility",
-                            children: "Accessibilit\xe9"
-                        }, void 0, false, {
-                            fileName: "src/components/Footer/Footer.jsx",
-                            lineNumber: 11,
-                            columnNumber: 25
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "src/components/Footer/Footer.jsx",
-                        lineNumber: 11,
-                        columnNumber: 21
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
-                            href: "/contact",
-                            children: "Nous contacter"
-                        }, void 0, false, {
-                            fileName: "src/components/Footer/Footer.jsx",
-                            lineNumber: 12,
-                            columnNumber: 25
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "src/components/Footer/Footer.jsx",
-                        lineNumber: 12,
-                        columnNumber: 21
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/Footer/Footer.jsx",
-                lineNumber: 7,
-                columnNumber: 17
-            }, this)
-        }, void 0, false, {
-            fileName: "src/components/Footer/Footer.jsx",
-            lineNumber: 6,
-            columnNumber: 13
-        }, this)
-    }, void 0, false);
-}
-_c = Footer;
-var _c;
-$RefreshReg$(_c, "Footer");
-
-  $parcel$ReactRefreshHelpers$863b.postlude(module);
-} finally {
-  globalThis.$RefreshReg$ = prevRefreshReg;
-  globalThis.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"dVPUn","./Footer.scss":"7s7cb","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"7s7cb":[function() {},{}],"adfVe":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"adfVe":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$6b75 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 $parcel$ReactRefreshHelpers$6b75.init();
 var prevRefreshReg = globalThis.$RefreshReg$;
@@ -18752,6 +18659,284 @@ $RefreshReg$(_c, "Header");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi","./Header.scss":"1AYao"}],"1AYao":[function() {},{}]},["5j6Kf","a0t4e"], "a0t4e", "parcelRequire10c2", {}, null, null, "http://localhost:1234")
+},{"react/jsx-dev-runtime":"dVPUn","./Header.scss":"1AYao","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"1AYao":[function() {},{}],"5sfdP":[function(require,module,exports,__globalThis) {
+var $parcel$ReactRefreshHelpers$863b = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+$parcel$ReactRefreshHelpers$863b.init();
+var prevRefreshReg = globalThis.$RefreshReg$;
+var prevRefreshSig = globalThis.$RefreshSig$;
+$parcel$ReactRefreshHelpers$863b.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>Footer);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _footerScss = require("./Footer.scss");
+function Footer() {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("nav", {
+            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
+                            href: "/legal",
+                            children: "Mentions l\xe9gales"
+                        }, void 0, false, {
+                            fileName: "src/components/Footer/Footer.jsx",
+                            lineNumber: 8,
+                            columnNumber: 25
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "src/components/Footer/Footer.jsx",
+                        lineNumber: 8,
+                        columnNumber: 21
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
+                            href: "/terms",
+                            children: "Politique de confidentialit\xe9"
+                        }, void 0, false, {
+                            fileName: "src/components/Footer/Footer.jsx",
+                            lineNumber: 9,
+                            columnNumber: 25
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "src/components/Footer/Footer.jsx",
+                        lineNumber: 9,
+                        columnNumber: 21
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
+                            href: "/privacy",
+                            children: "CGU"
+                        }, void 0, false, {
+                            fileName: "src/components/Footer/Footer.jsx",
+                            lineNumber: 10,
+                            columnNumber: 25
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "src/components/Footer/Footer.jsx",
+                        lineNumber: 10,
+                        columnNumber: 21
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
+                            href: "/accessibility",
+                            children: "Accessibilit\xe9"
+                        }, void 0, false, {
+                            fileName: "src/components/Footer/Footer.jsx",
+                            lineNumber: 11,
+                            columnNumber: 25
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "src/components/Footer/Footer.jsx",
+                        lineNumber: 11,
+                        columnNumber: 21
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
+                            href: "/contact",
+                            children: "Nous contacter"
+                        }, void 0, false, {
+                            fileName: "src/components/Footer/Footer.jsx",
+                            lineNumber: 12,
+                            columnNumber: 25
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "src/components/Footer/Footer.jsx",
+                        lineNumber: 12,
+                        columnNumber: 21
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/Footer/Footer.jsx",
+                lineNumber: 7,
+                columnNumber: 17
+            }, this)
+        }, void 0, false, {
+            fileName: "src/components/Footer/Footer.jsx",
+            lineNumber: 6,
+            columnNumber: 13
+        }, this)
+    }, void 0, false);
+}
+_c = Footer;
+var _c;
+$RefreshReg$(_c, "Footer");
+
+  $parcel$ReactRefreshHelpers$863b.postlude(module);
+} finally {
+  globalThis.$RefreshReg$ = prevRefreshReg;
+  globalThis.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"dVPUn","./Footer.scss":"7s7cb","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"7s7cb":[function() {},{}],"2CmJ6":[function(require,module,exports,__globalThis) {
+var $parcel$ReactRefreshHelpers$0a53 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+$parcel$ReactRefreshHelpers$0a53.init();
+var prevRefreshReg = globalThis.$RefreshReg$;
+var prevRefreshSig = globalThis.$RefreshSig$;
+$parcel$ReactRefreshHelpers$0a53.prelude(module);
+
+try {
+// On importe notre [Composant].scss
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>MentionsLegales);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _mentionsLegalesScss = require("./MentionsLegales.scss");
+function MentionsLegales() {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: "mentionsLegales",
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                children: "MentionsL\xe9gales"
+            }, void 0, false, {
+                fileName: "src/pages/MentionsLegales/MentionsLegales.jsx",
+                lineNumber: 12,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                children: "Bienvennue sur notre site BlaBlaBook, Veuillez lire attentivement nos conditions g\xe9n\xe9rales d'utilisation avant d'utiliser notre site"
+            }, void 0, false, {
+                fileName: "src/pages/MentionsLegales/MentionsLegales.jsx",
+                lineNumber: 13,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ol", {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                        children: [
+                            "EDITION DU SITE",
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {}, void 0, false, {
+                                fileName: "src/pages/MentionsLegales/MentionsLegales.jsx",
+                                lineNumber: 17,
+                                columnNumber: 21
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/pages/MentionsLegales/MentionsLegales.jsx",
+                        lineNumber: 15,
+                        columnNumber: 17
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                        children: [
+                            "HEBERGEMENT",
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {}, void 0, false, {
+                                fileName: "src/pages/MentionsLegales/MentionsLegales.jsx",
+                                lineNumber: 22,
+                                columnNumber: 21
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/pages/MentionsLegales/MentionsLegales.jsx",
+                        lineNumber: 20,
+                        columnNumber: 17
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                        children: [
+                            "ACCES AU SITE",
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {}, void 0, false, {
+                                fileName: "src/pages/MentionsLegales/MentionsLegales.jsx",
+                                lineNumber: 27,
+                                columnNumber: 21
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/pages/MentionsLegales/MentionsLegales.jsx",
+                        lineNumber: 25,
+                        columnNumber: 17
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                        children: [
+                            "PROPRI\xc9T\xc9 INTELLECTUELLE",
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {}, void 0, false, {
+                                fileName: "src/pages/MentionsLegales/MentionsLegales.jsx",
+                                lineNumber: 32,
+                                columnNumber: 21
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/pages/MentionsLegales/MentionsLegales.jsx",
+                        lineNumber: 30,
+                        columnNumber: 17
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                        children: [
+                            "RESPONSABILIT\xc9",
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {}, void 0, false, {
+                                fileName: "src/pages/MentionsLegales/MentionsLegales.jsx",
+                                lineNumber: 36,
+                                columnNumber: 21
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/pages/MentionsLegales/MentionsLegales.jsx",
+                        lineNumber: 34,
+                        columnNumber: 17
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                        children: [
+                            "LIENS HYPERTEXTES",
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {}, void 0, false, {
+                                fileName: "src/pages/MentionsLegales/MentionsLegales.jsx",
+                                lineNumber: 40,
+                                columnNumber: 21
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/pages/MentionsLegales/MentionsLegales.jsx",
+                        lineNumber: 38,
+                        columnNumber: 17
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                        children: [
+                            "DROIT APPLICABLE ET JURIDICTION COMP\xc9TENTE",
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {}, void 0, false, {
+                                fileName: "src/pages/MentionsLegales/MentionsLegales.jsx",
+                                lineNumber: 44,
+                                columnNumber: 21
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/pages/MentionsLegales/MentionsLegales.jsx",
+                        lineNumber: 42,
+                        columnNumber: 17
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "src/pages/MentionsLegales/MentionsLegales.jsx",
+                lineNumber: 14,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                children: "Contact"
+            }, void 0, false, {
+                fileName: "src/pages/MentionsLegales/MentionsLegales.jsx",
+                lineNumber: 47,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                children: "Pour toute question relative aux pr\xe9sente CGU, l'utilisateur peut nous contacter via la page Contact"
+            }, void 0, false, {
+                fileName: "src/pages/MentionsLegales/MentionsLegales.jsx",
+                lineNumber: 48,
+                columnNumber: 13
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "src/pages/MentionsLegales/MentionsLegales.jsx",
+        lineNumber: 11,
+        columnNumber: 9
+    }, this);
+}
+_c = MentionsLegales;
+var _c;
+$RefreshReg$(_c, "MentionsLegales");
+
+  $parcel$ReactRefreshHelpers$0a53.postlude(module);
+} finally {
+  globalThis.$RefreshReg$ = prevRefreshReg;
+  globalThis.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"dVPUn","./MentionsLegales.scss":"cfuVI","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"cfuVI":[function() {},{}]},["5j6Kf","a0t4e"], "a0t4e", "parcelRequire10c2", {}, null, null, "http://localhost:1234")
 
 //# sourceMappingURL=pages.31b563d9.js.map

@@ -3,7 +3,8 @@ import { createRoot } from 'react-dom/client';
 // Liste des imports de page
 // Pour chaque nouvelle page, créer un nouvel import
 import Home from './pages/Home/Home.jsx';
-
+//import MentionsLegales from './pages/MentionsLegales/MentionsLegales.jsx';
+import InformationsLegales from './pages/InformationsLegal/InformationsLegales.jsx';
 // Liste des imports de composants
 import Header from './components/Header/Header.jsx';
 import Footer from './components/Footer/Footer.jsx';
@@ -14,9 +15,18 @@ import Footer from './components/Footer/Footer.jsx';
 // Pour chaque page, créer un nouveau root
 
 // Exemple composant home, copier les trois lignes suivantes et changer le nom home (et le composant Home) par le nom de votre page/composant
-const homeDomNode = document.getElementById('home');
+/*const homeDomNode = document.getElementById('home');
 const homeRoot = createRoot(homeDomNode);
 homeRoot.render(<Home/>);
+*/
+//Mentions légales :
+
+const informationLegalesDomNode = document.getElementById('informationsLegales');
+const informationLegalesRoot = createRoot(informationLegalesDomNode);
+informationLegalesRoot.render(<InformationsLegales/>);
+console.log(informationLegalesRoot)
+
+
 // Fin de la partie à copier
 
 // Ajouter vos pages ici

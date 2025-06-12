@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "parcel src/pages/index.html",
-    "dev": "parcel scr/pages/[page].html",
+    "dev": "parcel src/pages/informations.html",
     "build": "parcel build"
   },
   "keywords": [],
