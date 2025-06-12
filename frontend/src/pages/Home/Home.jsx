@@ -22,7 +22,12 @@ export default function Home() {
             <div>
             {/*Ancre dans href en attendant d'avoir le chemin exact de la page /library/bookID lorsqu'elle sera créée et class btn en attendant d'avoir le SCSS relatif*/}
             <a classe="btn" href="#">voir le détail</a>
-              </div> 
+            </div> 
+
+             <div>
+             {/*Ancre dans href en attendant d'avoir le chemin exact de la page de connexion /register  lorsqu'elle sera créée  et class btn en attendant d'avoir le SCSS relatif*/}
+            <a classe="btn" href="#">S'inscrire</a>
+            </div> 
 
             {/* Finir de modifier ici */}
         </>
