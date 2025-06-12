@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 // Liste des imports de page
 // Pour chaque nouvelle page, créer un nouvel import
 import Home from './pages/Home/Home.jsx';
+import Library from './pages/Library/Library.jsx';
 
 // Liste des imports de composants
 import Header from './components/Header/Header.jsx';
@@ -14,13 +15,15 @@ import Footer from './components/Footer/Footer.jsx';
 // Pour chaque page, créer un nouveau root
 
 // Exemple composant home, copier les trois lignes suivantes et changer le nom home (et le composant Home) par le nom de votre page/composant
-const homeDomNode = document.getElementById('home');
-const homeRoot = createRoot(homeDomNode);
-homeRoot.render(<Home/>);
+// const homeDomNode = document.getElementById('home');
+// const homeRoot = createRoot(homeDomNode);
+// homeRoot.render(<Home/>);
 // Fin de la partie à copier
 
 // Ajouter vos pages ici
-
+const libraryDomNode = document.getElementById('library');
+const libraryRoot = createRoot(libraryDomNode);
+libraryRoot.render(<Library/>);
 
 
 // Pour les composants Header et Footer, la même structure est nécessaire
