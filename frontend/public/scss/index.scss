@@ -1,13 +1,49 @@
-/* header, footer */
+/* Je prépare le terrain
+
+Mobile
+
+32 px - Bold - Titre du site BlaBlaBook Header
+24 px - Bold - Titre H1
+20 px - Bold - Titre H2
+16px - Semi-Bold - Navigation Footer
+15 px - Bold - Texte bouton
+20 px - Bold - Texte bouton
+
+Desktop
+
+40 px - Semi-Bold - Titre du site BlaBlaBook
+32 px - Bold - Titre H1
+20 px - Semi-Bold - Titre H2
+16px - Semi-Bold - Navigation Header- navigation Footer
+15 px - Bold - Texte bouton
+24 px - Bold - Texte bouton
+*/
+
+/* Je prépare mes variables */
+
+$brown-color: #653c15;
+$whitecolor: #faf7ee;
+$bluebutton: #336d82;
+
+/* Ensuite, je vais mettre mes variables aux éléments que j'ai besoin pour faire ma mise en page de mon site */
+
+main {
+    background-color: $whitecolor;
+}
 
 .headerfooter {
-    background-color: #653c15;
+    background-color: $brown-color;
+    color: $whitecolor;
 }
+
+/* Logo du site */
 
 .logo {
-    background-color: #faf7ee;
+    background-color: $whitecolor;
 }
 
-.text {
-    color: #653c15;
+/* je vais partir sur le main maintenant */
+
+.title {
+    color: $brown-color;
 }
