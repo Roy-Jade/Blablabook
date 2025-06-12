@@ -18776,6 +18776,10 @@ var _mentionsLegale = require("../../components/PagesStatiques/MentionsLegale");
 var _mentionsLegaleDefault = parcelHelpers.interopDefault(_mentionsLegale);
 var _cgu = require("../../components/PagesStatiques/CGU");
 var _cguDefault = parcelHelpers.interopDefault(_cgu);
+var _accessibite = require("../../components/PagesStatiques/Accessibite");
+var _accessibiteDefault = parcelHelpers.interopDefault(_accessibite);
+var _politiqueConfidentialite = require("../../components/PagesStatiques/PolitiqueConfidentialite");
+var _politiqueConfidentialiteDefault = parcelHelpers.interopDefault(_politiqueConfidentialite);
 function InformationsLegales() {
     const mentionsLegalesSections = [
         {
@@ -18784,7 +18788,7 @@ function InformationsLegales() {
         },
         {
             title: "H\xc9BERGEMENT",
-            content: '.'
+            content: '...'
         },
         {
             title: "ACC\xc8S AU SITE",
@@ -18792,15 +18796,15 @@ function InformationsLegales() {
         },
         {
             title: "PROPRI\xc9T\xc9 INTELLECTUELLE",
-            content: "Tous les contenus pr\xe9sents sur le site sont prot\xe9g\xe9s par le droit de la propri\xe9t\xe9 intellectuelle."
+            content: "Tous les contenus pr\xe9sents sur le site BlaBlaBook (textes, images, graphismes, logo, etc.) sont prot\xe9g\xe9s par les lois en vigueur sur la propri\xe9t\xe9 intellectuelle. Toute reproduction non autoris\xe9e est interdite."
         },
         {
             title: "RESPONSABILIT\xc9",
-            content: "L\u2019\xe9diteur ne peut \xeatre tenu responsable des erreurs ou interruptions du service."
+            content: "L\u2019\xe9diteur ne peut \xeatre tenu responsable d\u2019\xe9ventuelles erreurs, de probl\xe8mes techniques ou d\u2019interruptions de service ind\xe9pendants de sa volont\xe9"
         },
         {
             title: 'LIENS HYPERTEXTES',
-            content: "Le site peut contenir des liens vers d\u2019autres sites, non contr\xf4l\xe9s par BlaBlaBook."
+            content: "Le site peut contenir des liens vers d\u2019autres sites web. BlaBlaBook n\u2019exerce aucun contr\xf4le sur ces sites et ne peut \xeatre tenu responsable de leur contenu."
         },
         {
             title: "DROIT APPLICABLE ET JURIDICTION COMP\xc9TENTE",
@@ -18810,31 +18814,36 @@ function InformationsLegales() {
     const cguTerms = [
         {
             title: "INFORMATIONS L\xc9GALES",
-            content: 'Quodis habentur magnalia inter potentiam et divitias, et non illam quidem haec eo spectant haec quoque vos omnino dissimil illud quo solo.'
+            content: "Le site BlaBlaBook est \xe9dit\xe9 par une \xe9quipe au sein de promo B\xe9hemoth chez O'clock. Pour toute question, veuillez nous contacter via le formulaire de contact."
         },
         {
             title: "ACC\xc8S AU SITE",
-            content: 'Quodis habentur magnalia inter potentiam et divitias, et non illam quidem haec eo spectant haec quoque vos omnino dissimil illud quo solo.'
+            content: "Le site est accessible 24h/24 et 7j/7, sauf en cas de maintenance technique ou de force majeure. L\u2019acc\xe8s peut \xeatre interrompu temporairement pour des raisons de maintenance sans pr\xe9avis."
         },
         {
             title: "COLLECTE DES DONN\xc9ES",
-            content: 'Quodis habentur magnalia inter potentiam et divitias, et non illam quidem haec eo spectant haec quoque vos omnino dissimil illud quo solo.'
+            content: "BlaBlaBook collecte uniquement les donn\xe9es n\xe9cessaires au bon fonctionnement du service (inscription, gestion de biblioth\xe8que, avis, etc.). Les donn\xe9es sont trait\xe9es de mani\xe8re s\xe9curis\xe9e."
         },
         {
             title: "PROPRI\xc9T\xc9 INTELLECTUELLE",
-            content: 'Quodis habentur magnalia inter potentiam et divitias, et non illam quidem haec eo spectant haec quoque vos omnino dissimil illud quo solo.'
+            content: "Tous les contenus du site BlaBlaBook (textes, images, logo, code source, etc.) sont prot\xe9g\xe9s par le droit de la propri\xe9t\xe9 intellectuelle. Toute reproduction sans autorisation est strictement interdite."
         },
         {
             title: "RESPONSABILIT\xc9",
-            content: 'Quodis habentur magnalia inter potentiam et divitias, et non illam quidem haec eo spectant haec quoque vos omnino dissimil illud quo solo.'
+            content: "BlaBlaBook ne peut \xeatre tenu responsable des erreurs ou indisponibilit\xe9s temporaires du site. L\u2019utilisation du site se fait sous la responsabilit\xe9 de l\u2019utilisateur."
         },
         {
             title: 'LIENS HYPERTEXTES',
-            content: 'Quodis habentur magnalia inter potentiam et divitias, et non illam quidem haec eo spectant haec quoque vos omnino dissimil illud quo solo.'
+            content: "Le site peut contenir des liens vers des sites tiers. BlaBlaBook n\u2019exerce aucun contr\xf4le sur leur contenu et d\xe9cline toute responsabilit\xe9 quant \xe0 leur accessibilit\xe9 ou leur s\xe9curit\xe9."
         },
         {
             title: "DROIT APPLICABLE ET JURIDICTION COMP\xc9TENTE",
-            content: 'Quodis habentur magnalia inter potentiam et divitias, et non illam quidem haec eo spectant haec quoque vos omnino dissimil illud quo solo.'
+            content: "Les pr\xe9sentes conditions d\u2019utilisation sont r\xe9gies par le droit fran\xe7ais. En cas de litige, les tribunaux fran\xe7ais seront seuls comp\xe9tents."
+        }
+    ];
+    const accessibiteSections = [
+        {
+            title: "Cette page n'est pas une page d'aide. Elle vise \xe0 pr\xe9senter l'accessibilit\xe9 du site BlaBlaBook et \xe0 d\xe9finir le niveau d'accessibilit\xe9 g\xe9n\xe9ral constat\xe9, conform\xe9ment au r\xe9f\xe9rentiel RGAA et \xe0 la r\xe9glementation en vigueur."
         }
     ];
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -18843,27 +18852,41 @@ function InformationsLegales() {
                 children: "Informations l\xe9gales"
             }, void 0, false, {
                 fileName: "src/pages/InformationsLegal/InformationsLegales.jsx",
-                lineNumber: 70,
+                lineNumber: 80,
                 columnNumber: 14
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _mentionsLegaleDefault.default), {
                 sections: mentionsLegalesSections
             }, void 0, false, {
                 fileName: "src/pages/InformationsLegal/InformationsLegales.jsx",
-                lineNumber: 72,
+                lineNumber: 82,
                 columnNumber: 14
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cguDefault.default), {
                 sections: cguTerms
             }, void 0, false, {
                 fileName: "src/pages/InformationsLegal/InformationsLegales.jsx",
-                lineNumber: 73,
+                lineNumber: 83,
+                columnNumber: 14
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _accessibiteDefault.default), {
+                sections: accessibiteSections
+            }, void 0, false, {
+                fileName: "src/pages/InformationsLegal/InformationsLegales.jsx",
+                lineNumber: 84,
+                columnNumber: 14
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _politiqueConfidentialiteDefault.default), {
+                sections: mentionsLegalesSections
+            }, void 0, false, {
+                fileName: "src/pages/InformationsLegal/InformationsLegales.jsx",
+                lineNumber: 85,
                 columnNumber: 14
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/pages/InformationsLegal/InformationsLegales.jsx",
-        lineNumber: 69,
+        lineNumber: 79,
         columnNumber: 9
     }, this);
 }
@@ -18876,7 +18899,7 @@ $RefreshReg$(_c, "InformationsLegales");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi","../../components/PagesStatiques/MentionsLegale":"3sA3q","../../components/PagesStatiques/CGU":"346ze"}],"3sA3q":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"dVPUn","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi","../../components/PagesStatiques/MentionsLegale":"3sA3q","../../components/PagesStatiques/CGU":"346ze","../../components/PagesStatiques/Accessibite":"gvA1i","../../components/PagesStatiques/PolitiqueConfidentialite":"661iF"}],"3sA3q":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$afaf = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 $parcel$ReactRefreshHelpers$afaf.init();
 var prevRefreshReg = globalThis.$RefreshReg$;
@@ -19018,6 +19041,152 @@ var _c;
 $RefreshReg$(_c, "CGU");
 
   $parcel$ReactRefreshHelpers$1be9.postlude(module);
+} finally {
+  globalThis.$RefreshReg$ = prevRefreshReg;
+  globalThis.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"dVPUn","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"gvA1i":[function(require,module,exports,__globalThis) {
+var $parcel$ReactRefreshHelpers$48fe = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+$parcel$ReactRefreshHelpers$48fe.init();
+var prevRefreshReg = globalThis.$RefreshReg$;
+var prevRefreshSig = globalThis.$RefreshSig$;
+$parcel$ReactRefreshHelpers$48fe.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>Accessibite);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+function Accessibite({ sections }) {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("section", {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                children: " Accessibite"
+            }, void 0, false, {
+                fileName: "src/components/PagesStatiques/Accessibite.jsx",
+                lineNumber: 4,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                children: "Bienvennue sur notre site BlaBlaBook, Veuillez lire attentivement nos conditions g\xe9n\xe9rales d'utilisation avant d'utiliser"
+            }, void 0, false, {
+                fileName: "src/components/PagesStatiques/Accessibite.jsx",
+                lineNumber: 5,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ol", {
+                children: sections.map((item, index)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                children: item.title
+                            }, void 0, false, {
+                                fileName: "src/components/PagesStatiques/Accessibite.jsx",
+                                lineNumber: 9,
+                                columnNumber: 25
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                children: item.content
+                            }, void 0, false, {
+                                fileName: "src/components/PagesStatiques/Accessibite.jsx",
+                                lineNumber: 10,
+                                columnNumber: 25
+                            }, this)
+                        ]
+                    }, index, true, {
+                        fileName: "src/components/PagesStatiques/Accessibite.jsx",
+                        lineNumber: 8,
+                        columnNumber: 21
+                    }, this))
+            }, void 0, false, {
+                fileName: "src/components/PagesStatiques/Accessibite.jsx",
+                lineNumber: 6,
+                columnNumber: 13
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/PagesStatiques/Accessibite.jsx",
+        lineNumber: 3,
+        columnNumber: 9
+    }, this);
+}
+_c = Accessibite;
+var _c;
+$RefreshReg$(_c, "Accessibite");
+
+  $parcel$ReactRefreshHelpers$48fe.postlude(module);
+} finally {
+  globalThis.$RefreshReg$ = prevRefreshReg;
+  globalThis.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"dVPUn","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"661iF":[function(require,module,exports,__globalThis) {
+var $parcel$ReactRefreshHelpers$852a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+$parcel$ReactRefreshHelpers$852a.init();
+var prevRefreshReg = globalThis.$RefreshReg$;
+var prevRefreshSig = globalThis.$RefreshSig$;
+$parcel$ReactRefreshHelpers$852a.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>PolitiqueConfidentialite);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+function PolitiqueConfidentialite({ sections }) {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("section", {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                children: " POLITIQUE DE CONFIDENTIALT\xc9"
+            }, void 0, false, {
+                fileName: "src/components/PagesStatiques/PolitiqueConfidentialite.jsx",
+                lineNumber: 4,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                children: "Bienvennue sur notre site BlaBlaBook, Veuillez lire attentivement nos conditions g\xe9n\xe9rales d'utilisation avant d'utiliser notre site"
+            }, void 0, false, {
+                fileName: "src/components/PagesStatiques/PolitiqueConfidentialite.jsx",
+                lineNumber: 5,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ol", {
+                children: sections.map((item, index)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
+                                children: item.title
+                            }, void 0, false, {
+                                fileName: "src/components/PagesStatiques/PolitiqueConfidentialite.jsx",
+                                lineNumber: 9,
+                                columnNumber: 25
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                children: item.content
+                            }, void 0, false, {
+                                fileName: "src/components/PagesStatiques/PolitiqueConfidentialite.jsx",
+                                lineNumber: 10,
+                                columnNumber: 25
+                            }, this)
+                        ]
+                    }, index, true, {
+                        fileName: "src/components/PagesStatiques/PolitiqueConfidentialite.jsx",
+                        lineNumber: 8,
+                        columnNumber: 21
+                    }, this))
+            }, void 0, false, {
+                fileName: "src/components/PagesStatiques/PolitiqueConfidentialite.jsx",
+                lineNumber: 6,
+                columnNumber: 13
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/PagesStatiques/PolitiqueConfidentialite.jsx",
+        lineNumber: 3,
+        columnNumber: 9
+    }, this);
+}
+_c = PolitiqueConfidentialite;
+var _c;
+$RefreshReg$(_c, "PolitiqueConfidentialite");
+
+  $parcel$ReactRefreshHelpers$852a.postlude(module);
 } finally {
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;

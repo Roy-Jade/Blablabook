@@ -1,15 +1,16 @@
-3754
+3755
 66/home/yanis/projet-blablabook/frontend/src/pages/informations.html1749679996636000237 0
 63/home/yanis/projet-blablabook/frontend/src/pages/Home/Home.scss1749630921092139542 0
 53/home/yanis/projet-blablabook/frontend/src/pages/Home1749630921092139542 1
 48/home/yanis/projet-blablabook/frontend/src/pages1749674602628006240 1
 72/home/yanis/projet-blablabook/frontend/src/components/Footer/Footer.scss1749630921092139542 0
 71/home/yanis/projet-blablabook/frontend/src/components/Footer/Footer.jsx1749630921092139542 0
-84/home/yanis/projet-blablabook/frontend/src/components/PagesStatiques/Accessibite.jsx1749677555824015252 0
-68/home/yanis/projet-blablabook/frontend/src/components/PagesStatiques1749677509696015112 1
+84/home/yanis/projet-blablabook/frontend/src/components/PagesStatiques/Accessibite.jsx1749717904456019224 0
+97/home/yanis/projet-blablabook/frontend/src/components/PagesStatiques/PolitiqueConfidentialite.jsx1749732835516022500 0
+68/home/yanis/projet-blablabook/frontend/src/components/PagesStatiques1749732762636022277 1
 71/home/yanis/projet-blablabook/frontend/src/components/Header/Header.jsx1749630921092139542 0
 72/home/yanis/projet-blablabook/frontend/src/components/Header/Header.scss1749630921092139542 0
-61/home/yanis/projet-blablabook/frontend/dist/informations.html1749679996716000238 0
+61/home/yanis/projet-blablabook/frontend/dist/informations.html1749732913736022738 0
 73/home/yanis/projet-blablabook/frontend/dist/MentionsLégales.ce0a3ed1.css1749643657336009883 0
 76/home/yanis/projet-blablabook/frontend/dist/MentionsLégales.31b563d9.js.map1749643657392009883 0
 76/home/yanis/projet-blablabook/frontend/dist/mentionsLégales.31b563d9.js.map1749649972938030374 0
@@ -19,10 +20,10 @@
 66/home/yanis/projet-blablabook/frontend/dist/pages.f2e5a18c.css.map1749644241696011666 0
 72/home/yanis/projet-blablabook/frontend/dist/mentionsLégales.31b563d9.js1749649972930030374 0
 78/home/yanis/projet-blablabook/frontend/dist/logo_blablabook_clair.54fd4b9f.png1749630921036139542 0
-73/home/yanis/projet-blablabook/frontend/dist/informations.34b23dea.css.map1749677453472014940 0
+73/home/yanis/projet-blablabook/frontend/dist/informations.34b23dea.css.map1749732913740022738 0
 65/home/yanis/projet-blablabook/frontend/dist/pages.0155c232.js.map1749630921056139542 0
-72/home/yanis/projet-blablabook/frontend/dist/informations.31b563d9.js.map1749680050912000403 0
-69/home/yanis/projet-blablabook/frontend/dist/informations.34b23dea.css1749677453472014940 0
+72/home/yanis/projet-blablabook/frontend/dist/informations.31b563d9.js.map1749733637624024947 0
+69/home/yanis/projet-blablabook/frontend/dist/informations.34b23dea.css1749732913740022738 0
 77/home/yanis/projet-blablabook/frontend/dist/mentionsLégales.545c146d.css.map1749649972898030374 0
 54/home/yanis/projet-blablabook/frontend/dist/index.html1749644241684011666 0
 51/home/yanis/projet-blablabook/frontend/package.json1749649972194030372 0
@@ -1581,7 +1582,7 @@
 75/home/yanis/projet-blablabook/frontend/node_modules/to-regex-range/index.js499162500000000000 0
 76/home/yanis/projet-blablabook/frontend/node_modules/@parcel/resolver-default1749634499200150462 1
 84/home/yanis/projet-blablabook/frontend/node_modules/@parcel/fs/src/NodeFS.browser.js499162500000000000 0
-68/home/yanis/projet-blablabook/frontend/dist/informations.31b563d9.js1749680050900000403 0
+68/home/yanis/projet-blablabook/frontend/dist/informations.31b563d9.js1749733637620024947 0
 69/home/yanis/projet-blablabook/frontend/node_modules/@parcel/types/src1749634497100150456 1
 83/home/yanis/projet-blablabook/frontend/node_modules/type-fest/ts41/pascal-case.d.ts499162500000000000 0
 98/home/yanis/projet-blablabook/frontend/node_modules/@swc/helpers/src/_async_generator_delegate.mjs499162500000000000 0
@@ -1789,7 +1790,7 @@
 94/home/yanis/projet-blablabook/frontend/node_modules/@parcel/markdown-ansi/lib/markdown-ansi.js499162500000000000 0
 68/home/yanis/projet-blablabook/frontend/node_modules/@parcel/core/src1749634497784150458 1
 68/home/yanis/projet-blablabook/frontend/node_modules/json5/lib/cli.js499162500000000000 0
-43/home/yanis/projet-blablabook/frontend/dist1749680050912000403 1
+43/home/yanis/projet-blablabook/frontend/dist1749733637628024947 1
 114/home/yanis/projet-blablabook/frontend/node_modules/@parcel/package-manager/test/fixtures/has-foo/node_modules/foo1749634497396150456 1
 85/home/yanis/projet-blablabook/frontend/node_modules/@parcel/core/lib/public/Bundle.js499162500000000000 0
 78/home/yanis/projet-blablabook/frontend/node_modules/@swc/helpers/esm/_throw.js499162500000000000 0
@@ -2468,7 +2469,7 @@
 73/home/yanis/projet-blablabook/frontend/node_modules/caniuse-lite/dist/lib1749634498156150459 1
 87/home/yanis/projet-blablabook/frontend/node_modules/@parcel/workers/src/web/WebChild.js499162500000000000 0
 96/home/yanis/projet-blablabook/frontend/node_modules/@msgpackr-extract/msgpackr-extract-linux-x641749634499156150462 1
-90/home/yanis/projet-blablabook/frontend/src/pages/InformationsLegal/InformationsLegales.jsx1749677453212014939 0
+90/home/yanis/projet-blablabook/frontend/src/pages/InformationsLegal/InformationsLegales.jsx1749733637532024947 0
 80/home/yanis/projet-blablabook/frontend/node_modules/@parcel/transformer-sass/src1749634496992150455 1
 101/home/yanis/projet-blablabook/frontend/node_modules/caniuse-lite/data/features/css-media-scripting.js499162500000000000 0
 93/home/yanis/projet-blablabook/frontend/node_modules/@parcel/reporter-dev-server/src/templates1749634497052150455 1

@@ -5,10 +5,10 @@ export default function Accessibite({ sections }){
             <p>Bienvennue sur notre site BlaBlaBook, Veuillez lire attentivement nos conditions générales d'utilisation avant d'utiliser</p>
             <ol>
                 {sections.map((item, index) =>(
-                    <li key={index}>
-                        <h3>{item.title}</h3>
+                    <div key={index}>
+                        <p>{item.title}</p>
                         <p>{item.content}</p>
-                    </li>
+                    </div>
                 ))}
             </ol>
         </section>
