@@ -1,0 +1,8 @@
+
+/* Je fais un @media pour faire le Responsive Desktop */
+
+@mixin desktop {
+    @media screen and (min-width:62em){
+      @content;
+    }
+  }
