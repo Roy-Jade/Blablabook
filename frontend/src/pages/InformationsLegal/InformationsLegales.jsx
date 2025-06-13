@@ -11,7 +11,7 @@ export default function InformationsLegales(){
         },
         {
             title: 'HÉBERGEMENT',
-            content: '...'
+            content: 'Le site BlaBlaBook est hébergé sur une infrastructure conteneurisée (Docker) '
         },
         {
             title: 'ACCÈS AU SITE',

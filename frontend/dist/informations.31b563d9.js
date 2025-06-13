@@ -18788,7 +18788,7 @@ function InformationsLegales() {
         },
         {
             title: "H\xc9BERGEMENT",
-            content: '...'
+            content: "Le site BlaBlaBook est h\xe9berg\xe9 sur une infrastructure conteneuris\xe9e (Docker) "
         },
         {
             title: "ACC\xc8S AU SITE",
