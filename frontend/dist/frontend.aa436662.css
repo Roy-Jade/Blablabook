@@ -1,0 +1,86 @@
+@import "https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap";
+main {
+  background-color: #faf7ee;
+}
+
+header, footer {
+  color: #faf7ee;
+  background-color: #653c15;
+}
+
+.logo {
+  background-color: #faf7ee;
+}
+
+.titlesite {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+@media screen and (width >= 62em) {
+  .titlesite {
+    font-size: 40px;
+    font-weight: 600;
+  }
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+@media screen and (width >= 62em) {
+  h1 {
+    font-size: 32px;
+    font-weight: bold;
+  }
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+@media screen and (width >= 62em) {
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
+
+.navHeaderFooter {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+@media screen and (width >= 62em) {
+  .navHeaderFooter {
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
+
+.textSmallButton {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+@media screen and (width >= 62em) {
+  .textSmallButton {
+    font-size: 15px;
+    font-weight: bold;
+  }
+}
+
+.textBigButton {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+@media screen and (width >= 62em) {
+  .textBigButton {
+    font-size: 24px;
+    font-weight: bold;
+  }
+}
+/*# sourceMappingURL=frontend.aa436662.css.map */

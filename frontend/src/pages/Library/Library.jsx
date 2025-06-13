@@ -1,5 +1,5 @@
 // On importe notre [Composant].scss
-import BookMini from '../../components/BookMini/BookMini';
+import BookMini from '../../components/BookMinis/BookMini/BookMini';
 import Sort from '../../components/Sort/Sort';
 import './Library.scss';
 

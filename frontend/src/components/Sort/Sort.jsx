@@ -8,7 +8,7 @@ import './Sort.scss';
 // L'écriture ci-dessus permet de faire la fonction et de l'exporter en même temps
 export default function Sort() {
     return(
-        <header className='search-sort'>
+        <div className='search-sort'>
             <section>
                 <h2 className='search-sort__title'>Recherche</h2>
                 <form action="">
@@ -25,7 +25,7 @@ export default function Sort() {
             <section>
                 <h2 className='search-sort__title'>Tri</h2>
                 <form>
-                    <input type="radio" id='a-z-title' name='sort' value='Titre - A à Z' checked/>
+                    <input type="radio" id='a-z-title' name='sort' value='Titre - A à Z'/>
                     <label htmlFor="a-z-title">Titre - A à Z</label>
                     <input type="radio" id='z-a-title' name='sort' value='Titre - Z à A' />
                     <label htmlFor="z-a-title">Titre - Z à A</label>
@@ -39,6 +39,6 @@ export default function Sort() {
                     <label htmlFor="page-down">Nombre de page décroissante</label>
                 </form>
             </section>
-        </header>
+        </div>
     )
 }
