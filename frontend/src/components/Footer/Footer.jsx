@@ -1,3 +1,4 @@
+import {Link} from 'react-router';
 import './Footer.scss';
 
 export default function Footer() {
@@ -5,11 +6,11 @@ export default function Footer() {
         <>
             <nav>
                 <ul>
-                    <li><a href="/legal">Mentions légales</a></li>
-                    <li><a href="/terms">Politique de confidentialité</a></li>
-                    <li><a href="/privacy">CGU</a></li>
-                    <li><a href="/accessibility">Accessibilité</a></li>
-                    <li><a href="/contact">Nous contacter</a></li>
+                    <li><Link to="/legal">Mentions légales</Link></li>
+                    <li><Link to="/terms">Politique de confidentialité</Link></li>
+                    <li><Link to="/privacy">CGU</Link></li>
+                    <li><Link to="/accessibility">Accessibilité</Link></li>
+                    <li><Link to="/contact">Nous contacter</Link></li>
                 </ul>
             </nav>
         </>
