@@ -9,15 +9,17 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 
-app.set('view engine', 'ejs');
+// const path = require("path");
+
 app.set('views', './views');
+app.set('view engine', 'ejs');
 
 app.use(express.static('../frontend/public'));
 
 // Partie qui sera remplacée quand les fichiers des routes seront faits :
 const router = express.Router();
 router.get('/', (req, res) => {
-    res.render('home')
+    res.render('index')
 });
 // Fin de la partie qui sera remplacée
 

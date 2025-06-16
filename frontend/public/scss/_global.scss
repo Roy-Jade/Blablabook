@@ -1,0 +1,109 @@
+@use '_mixin';
+@use '_font';
+
+/* Je prépare le terrain
+
+Mobile
+
+32 px - Bold - Titre du site BlaBlaBook Header
+24 px - Bold - Titre H1
+20 px - Bold - Titre H2
+16px - Semi-Bold (600) - Navigation Footer
+15 px - Bold - Texte petit bouton
+20 px - Bold - Texte gros bouton
+
+Desktop
+
+40 px - Semi-Bold (600) - Titre du site BlaBlaBook
+32 px - Bold - Titre H1
+20 px - Semi-Bold (600) - Titre H2
+16px - Semi-Bold (600) - Navigation Header- navigation Footer
+15 px - Bold - Texte petit bouton
+24 px - Bold - Texte gros bouton
+*/
+
+/* Je prépare mes variables */
+
+$brown-color: #653c15;
+$cream-color: #faf7ee;
+$blue-color: #336d82;
+$red-color: #6e2c36;
+
+/* Ensuite, je vais mettre mes variables aux éléments que j'ai besoin pour faire ma mise en page de mon site */
+
+main {
+    background-color: $cream-color;
+}
+
+header, footer {
+    background-color: $brown-color;
+    color: $cream-color;
+}
+
+/* Logo du site */
+
+.logo {
+    background-color: $cream-color;
+}
+
+.titlesite {
+    font-size: 32px;
+    font-weight: bold;
+
+    @include mixin.desktop {
+        font-size: 40px;
+        font-weight: 600; /* ce code permet d'avoir un semi-bold */
+    }
+}
+
+/* je vais partir sur le main maintenant */
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+
+    @include mixin.desktop{
+        font-size: 32px;
+        font-weight: bold;
+    }
+}
+
+h2 {
+    font-size: 20px;
+    font-weight: bold;
+
+    @include mixin.desktop{
+        font-size: 20px;
+        font-weight: 600; /* ce code permet d'avoir un semi-bold */
+    }
+}
+
+.navHeaderFooter {
+    font-size: 16px;
+    font-weight: 600; /* ce code permet d'avoir un semi-bold */
+
+    @include mixin.desktop{
+        font-size: 16px;
+        font-weight: 600; /* ce code permet d'avoir un semi-bold */
+    }
+}
+
+.textSmallButton {
+    font-size: 15px;
+    font-weight: bold;
+
+    @include mixin.desktop{
+        font-size: 15px;
+        font-weight: bold;
+    }
+}
+
+.textBigButton {
+    font-size: 20px;
+    font-weight: bold;
+
+    @include mixin.desktop{
+        font-size: 24px;
+        font-weight: bold;
+    }
+}
