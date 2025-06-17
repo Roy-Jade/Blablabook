@@ -1,12 +1,12 @@
 export default function MentionsLegale({ sections }){
     return (
         <section>
-            <h2>Mentions Légales</h2>
+            <h1>Mentions Légales</h1>
             <p>Bienvennue sur notre site BlaBlaBook, Veuillez lire attentivement nos conditions générales d'utilisation avant d'utiliser notre site</p>
             <ol>
                 {sections.map((item, index) =>(
                     <li key={index}>
-                        <h3>{item.title}</h3>
+                        <h2>{item.title}</h2>
                         <p>{item.content}</p>
 
                     </li>

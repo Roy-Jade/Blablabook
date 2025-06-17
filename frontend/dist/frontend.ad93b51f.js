@@ -29298,7 +29298,7 @@ $parcel$ReactRefreshHelpers$2d7e.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "default", ()=>InformationsLegales);
+parcelHelpers.export(exports, "default", ()=>StaticPages);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _mentionsLegales = require("../../components/StaticPages/MentionsLegales");
 var _mentionsLegalesDefault = parcelHelpers.interopDefault(_mentionsLegales);
@@ -29310,131 +29310,69 @@ var _politiqueConfidentialite = require("../../components/StaticPages/PolitiqueC
 var _politiqueConfidentialiteDefault = parcelHelpers.interopDefault(_politiqueConfidentialite);
 var _about = require("../../components/StaticPages/About");
 var _aboutDefault = parcelHelpers.interopDefault(_about);
-function InformationsLegales() {
-    const mentionsLegalesSections = [
-        {
-            title: "\xc9DITION DU SITE",
-            content: 'BlaBlaBook'
-        },
-        {
-            title: "H\xc9BERGEMENT",
-            content: '...'
-        },
-        {
-            title: "ACC\xc8S AU SITE",
-            content: 'Le site est accessible 24/24h sauf en cas de maintenance ou de force majeure.'
-        },
-        {
-            title: "PROPRI\xc9T\xc9 INTELLECTUELLE",
-            content: "Tous les contenus pr\xe9sents sur le site BlaBlaBook (textes, images, graphismes, logo, etc.) sont prot\xe9g\xe9s par les lois en vigueur sur la propri\xe9t\xe9 intellectuelle. Toute reproduction non autoris\xe9e est interdite."
-        },
-        {
-            title: "RESPONSABILIT\xc9",
-            content: "L\u2019\xe9diteur ne peut \xeatre tenu responsable d\u2019\xe9ventuelles erreurs, de probl\xe8mes techniques ou d\u2019interruptions de service ind\xe9pendants de sa volont\xe9"
-        },
-        {
-            title: 'LIENS HYPERTEXTES',
-            content: "Le site peut contenir des liens vers d\u2019autres sites web. BlaBlaBook n\u2019exerce aucun contr\xf4le sur ces sites et ne peut \xeatre tenu responsable de leur contenu."
-        },
-        {
-            title: "DROIT APPLICABLE ET JURIDICTION COMP\xc9TENTE",
-            content: "Le pr\xe9sent site est soumis au droit fran\xe7ais. En cas de litige, les tribunaux de France sont comp\xe9tents."
-        }
-    ];
-    const cguTerms = [
-        {
-            title: "INFORMATIONS L\xc9GALES",
-            content: "Le site BlaBlaBook est \xe9dit\xe9 par une \xe9quipe au sein de promo B\xe9hemoth chez O'clock. Pour toute question, veuillez nous contacter via le formulaire de contact."
-        },
-        {
-            title: "ACC\xc8S AU SITE",
-            content: "Le site est accessible 24h/24 et 7j/7, sauf en cas de maintenance technique ou de force majeure. L\u2019acc\xe8s peut \xeatre interrompu temporairement pour des raisons de maintenance sans pr\xe9avis."
-        },
-        {
-            title: "COLLECTE DES DONN\xc9ES",
-            content: "BlaBlaBook collecte uniquement les donn\xe9es n\xe9cessaires au bon fonctionnement du service (inscription, gestion de biblioth\xe8que, avis, etc.). Les donn\xe9es sont trait\xe9es de mani\xe8re s\xe9curis\xe9e."
-        },
-        {
-            title: "PROPRI\xc9T\xc9 INTELLECTUELLE",
-            content: "Tous les contenus du site BlaBlaBook (textes, images, logo, code source, etc.) sont prot\xe9g\xe9s par le droit de la propri\xe9t\xe9 intellectuelle. Toute reproduction sans autorisation est strictement interdite."
-        },
-        {
-            title: "RESPONSABILIT\xc9",
-            content: "BlaBlaBook ne peut \xeatre tenu responsable des erreurs ou indisponibilit\xe9s temporaires du site. L\u2019utilisation du site se fait sous la responsabilit\xe9 de l\u2019utilisateur."
-        },
-        {
-            title: 'LIENS HYPERTEXTES',
-            content: "Le site peut contenir des liens vers des sites tiers. BlaBlaBook n\u2019exerce aucun contr\xf4le sur leur contenu et d\xe9cline toute responsabilit\xe9 quant \xe0 leur accessibilit\xe9 ou leur s\xe9curit\xe9."
-        },
-        {
-            title: "DROIT APPLICABLE ET JURIDICTION COMP\xc9TENTE",
-            content: "Les pr\xe9sentes conditions d\u2019utilisation sont r\xe9gies par le droit fran\xe7ais. En cas de litige, les tribunaux fran\xe7ais seront seuls comp\xe9tents."
-        }
-    ];
-    const accessibiteSections = [
-        {
-            title: "Cette page n'est pas une page d'aide. Elle vise \xe0 pr\xe9senter l'accessibilit\xe9 du site BlaBlaBook et \xe0 d\xe9finir le niveau d'accessibilit\xe9 g\xe9n\xe9ral constat\xe9, conform\xe9ment au r\xe9f\xe9rentiel RGAA et \xe0 la r\xe9glementation en vigueur."
-        }
-    ];
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
-                children: "Informations l\xe9gales"
-            }, void 0, false, {
-                fileName: "src/pages/StaticPages/StaticPages.jsx",
-                lineNumber: 81,
-                columnNumber: 14
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _mentionsLegalesDefault.default), {
-                sections: mentionsLegalesSections
-            }, void 0, false, {
-                fileName: "src/pages/StaticPages/StaticPages.jsx",
-                lineNumber: 83,
-                columnNumber: 14
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cguDefault.default), {
-                sections: cguTerms
-            }, void 0, false, {
-                fileName: "src/pages/StaticPages/StaticPages.jsx",
-                lineNumber: 84,
-                columnNumber: 14
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _accessibiliteDefault.default), {
-                sections: accessibiteSections
-            }, void 0, false, {
-                fileName: "src/pages/StaticPages/StaticPages.jsx",
-                lineNumber: 85,
-                columnNumber: 14
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _politiqueConfidentialiteDefault.default), {
-                sections: mentionsLegalesSections
-            }, void 0, false, {
-                fileName: "src/pages/StaticPages/StaticPages.jsx",
-                lineNumber: 86,
-                columnNumber: 14
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _aboutDefault.default), {}, void 0, false, {
-                fileName: "src/pages/StaticPages/StaticPages.jsx",
-                lineNumber: 87,
-                columnNumber: 14
-            }, this)
-        ]
-    }, void 0, true, {
+var _reactRouter = require("react-router");
+var _dataJson = require("../../../public/Data/data.json");
+var _dataJsonDefault = parcelHelpers.interopDefault(_dataJson);
+var _s = $RefreshSig$();
+function StaticPages() {
+    _s();
+    const location = (0, _reactRouter.useLocation)();
+    if (location.pathname === "/legal") return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _mentionsLegalesDefault.default), {
+        sections: (0, _dataJsonDefault.default).mentionsLegalesSections
+    }, void 0, false, {
         fileName: "src/pages/StaticPages/StaticPages.jsx",
-        lineNumber: 80,
-        columnNumber: 9
+        lineNumber: 12,
+        columnNumber: 16
+    }, this);
+    else if (location.pathname === "/terms") return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _politiqueConfidentialiteDefault.default), {
+        sections: (0, _dataJsonDefault.default).cguTerms
+    }, void 0, false, {
+        fileName: "src/pages/StaticPages/StaticPages.jsx",
+        lineNumber: 14,
+        columnNumber: 17
+    }, this);
+    else if (location.pathname === "/accessibility") return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _accessibiliteDefault.default), {
+        sections: (0, _dataJsonDefault.default).accessibiteSections
+    }, void 0, false, {
+        fileName: "src/pages/StaticPages/StaticPages.jsx",
+        lineNumber: 16,
+        columnNumber: 17
+    }, this);
+    else if (location.pathname === "/privacy") return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cguDefault.default), {
+        sections: (0, _dataJsonDefault.default).cguTerms
+    }, void 0, false, {
+        fileName: "src/pages/StaticPages/StaticPages.jsx",
+        lineNumber: 18,
+        columnNumber: 16
+    }, this);
+    else if (location.pathname === "/about") return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _aboutDefault.default), {}, void 0, false, {
+        fileName: "src/pages/StaticPages/StaticPages.jsx",
+        lineNumber: 20,
+        columnNumber: 16
+    }, this);
+    else return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+        children: "Page non trouv\xe9e"
+    }, void 0, false, {
+        fileName: "src/pages/StaticPages/StaticPages.jsx",
+        lineNumber: 22,
+        columnNumber: 16
     }, this);
 }
-_c = InformationsLegales;
+_s(StaticPages, "pkHmaVRPskBaU4tMJuJJpV42k1I=", false, function() {
+    return [
+        (0, _reactRouter.useLocation)
+    ];
+});
+_c = StaticPages;
 var _c;
-$RefreshReg$(_c, "InformationsLegales");
+$RefreshReg$(_c, "StaticPages");
 
   $parcel$ReactRefreshHelpers$2d7e.postlude(module);
 } finally {
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","../../components/StaticPages/MentionsLegales":"dZ7FC","../../components/StaticPages/CGU":"2vz8o","../../components/StaticPages/Accessibilite":"8UJkZ","../../components/StaticPages/PolitiqueConfidentialite":"3Uy7d","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi","../../components/StaticPages/About":"gUKHm"}],"dZ7FC":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"dVPUn","../../components/StaticPages/MentionsLegales":"dZ7FC","../../components/StaticPages/CGU":"2vz8o","../../components/StaticPages/Accessibilite":"8UJkZ","../../components/StaticPages/PolitiqueConfidentialite":"3Uy7d","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi","../../components/StaticPages/About":"gUKHm","react-router":"2jawN","../../../public/Data/data.json":"41lQ0"}],"dZ7FC":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$f1b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 $parcel$ReactRefreshHelpers$f1b2.init();
 var prevRefreshReg = globalThis.$RefreshReg$;
@@ -29449,7 +29387,7 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 function MentionsLegale({ sections }) {
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("section", {
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
                 children: "Mentions L\xe9gales"
             }, void 0, false, {
                 fileName: "src/components/StaticPages/MentionsLegales.jsx",
@@ -29466,7 +29404,7 @@ function MentionsLegale({ sections }) {
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ol", {
                 children: sections.map((item, index)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
                         children: [
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                                 children: item.title
                             }, void 0, false, {
                                 fileName: "src/components/StaticPages/MentionsLegales.jsx",
@@ -29522,7 +29460,7 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 function CGU({ sections }) {
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("section", {
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
                 children: "Conditions g\xe9n\xe9rales d'utilisation"
             }, void 0, false, {
                 fileName: "src/components/StaticPages/CGU.jsx",
@@ -29537,9 +29475,9 @@ function CGU({ sections }) {
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ol", {
-                children: sections.map((item, index)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: sections.map((item, index)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
                         children: [
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                                 children: item.title
                             }, void 0, false, {
                                 fileName: "src/components/StaticPages/CGU.jsx",
@@ -29595,7 +29533,7 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 function Accessibite({ sections }) {
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("section", {
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
                 children: " Accessibite"
             }, void 0, false, {
                 fileName: "src/components/StaticPages/Accessibilite.jsx",
@@ -29613,7 +29551,13 @@ function Accessibite({ sections }) {
                 children: sections.map((item, index)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                         children: [
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                                children: item.title
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("strong", {
+                                    children: item.title
+                                }, void 0, false, {
+                                    fileName: "src/components/StaticPages/Accessibilite.jsx",
+                                    lineNumber: 9,
+                                    columnNumber: 28
+                                }, this)
                             }, void 0, false, {
                                 fileName: "src/components/StaticPages/Accessibilite.jsx",
                                 lineNumber: 9,
@@ -29625,6 +29569,25 @@ function Accessibite({ sections }) {
                                 fileName: "src/components/StaticPages/Accessibilite.jsx",
                                 lineNumber: 10,
                                 columnNumber: 25
+                            }, this),
+                            item.footer && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                children: [
+                                    item.footer,
+                                    " ",
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
+                                        href: "/contact",
+                                        children: "Contact"
+                                    }, void 0, false, {
+                                        fileName: "src/components/StaticPages/Accessibilite.jsx",
+                                        lineNumber: 13,
+                                        columnNumber: 43
+                                    }, this),
+                                    "."
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/StaticPages/Accessibilite.jsx",
+                                lineNumber: 12,
+                                columnNumber: 29
                             }, this)
                         ]
                     }, index, true, {
@@ -29668,7 +29631,7 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 function PolitiqueConfidentialite({ sections }) {
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("section", {
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
                 children: " POLITIQUE DE CONFIDENTIALT\xc9"
             }, void 0, false, {
                 fileName: "src/components/StaticPages/PolitiqueConfidentialite.jsx",
@@ -29685,7 +29648,7 @@ function PolitiqueConfidentialite({ sections }) {
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ol", {
                 children: sections.map((item, index)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
                         children: [
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                                 children: item.title
                             }, void 0, false, {
                                 fileName: "src/components/StaticPages/PolitiqueConfidentialite.jsx",
@@ -29744,7 +29707,7 @@ var _footerDefault = parcelHelpers.interopDefault(_footer);
 function About() {
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
                 children: "\xc0 propos"
             }, void 0, false, {
                 fileName: "src/components/StaticPages/About.jsx",
@@ -29753,7 +29716,7 @@ function About() {
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("section", {
                 children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                         children: "Notre Mission"
                     }, void 0, false, {
                         fileName: "src/components/StaticPages/About.jsx",
@@ -29782,7 +29745,7 @@ function About() {
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("section", {
                 children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                         children: "Qui sommes-nous ?"
                     }, void 0, false, {
                         fileName: "src/components/StaticPages/About.jsx",
@@ -30016,7 +29979,10 @@ $RefreshReg$(_c, "Footer");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","react-router":"2jawN","./Footer.scss":"7s7cb","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"7s7cb":[function() {},{}],"adfVe":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"dVPUn","react-router":"2jawN","./Footer.scss":"7s7cb","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"7s7cb":[function() {},{}],"41lQ0":[function(require,module,exports,__globalThis) {
+module.exports = JSON.parse('{"mentionsLegalesSections":[{"title":"\xc9DITION DU SITE","content":"BlaBlaBook"},{"title":"H\xc9BERGEMENT","content":"Le site est h\xe9berg\xe9 par un prestataire tiers dont les coordonn\xe9es seront communiqu\xe9es prochainement."},{"title":"ACC\xc8S AU SITE","content":"Le site est accessible 24/24h sauf en cas de maintenance ou de force majeure."},{"title":"PROPRI\xc9T\xc9 INTELLECTUELLE","content":"Tous les contenus pr\xe9sents sur le site BlaBlaBook (textes, images, graphismes, logo, etc.) sont prot\xe9g\xe9s par les lois en vigueur sur la propri\xe9t\xe9 intellectuelle. Toute reproduction non autoris\xe9e est interdite."},{"title":"RESPONSABILIT\xc9","content":"L\u2019\xe9diteur ne peut \xeatre tenu responsable d\u2019\xe9ventuelles erreurs, de probl\xe8mes techniques ou d\u2019interruptions de service ind\xe9pendants de sa volont\xe9"},{"title":"LIENS HYPERTEXTES","content":"Le site peut contenir des liens vers d\u2019autres sites web. BlaBlaBook n\u2019exerce aucun contr\xf4le sur ces sites et ne peut \xeatre tenu responsable de leur contenu."},{"title":"DROIT APPLICABLE ET JURIDICTION COMP\xc9TENTE","content":"Le pr\xe9sent site est soumis au droit fran\xe7ais. En cas de litige, les tribunaux de France sont comp\xe9tents."}],"cguTerms":[{"title":"INFORMATIONS L\xc9GALES","content":"Le site BlaBlaBook est \xe9dit\xe9 par une \xe9quipe au sein de promo B\xe9hemoth chez O\'clock. Pour toute question, veuillez nous contacter via le formulaire de contact."},{"title":"ACC\xc8S AU SITE","content":"Le site est accessible 24h/24 et 7j/7, sauf en cas de maintenance technique ou de force majeure. L\u2019acc\xe8s peut \xeatre interrompu temporairement pour des raisons de maintenance sans pr\xe9avis."},{"title":"COLLECTE DES DONN\xc9ES","content":"BlaBlaBook collecte uniquement les donn\xe9es n\xe9cessaires au bon fonctionnement du service (inscription, gestion de biblioth\xe8que, avis, etc.). Les donn\xe9es sont trait\xe9es de mani\xe8re s\xe9curis\xe9e."},{"title":"PROPRI\xc9T\xc9 INTELLECTUELLE","content":"Tous les contenus du site BlaBlaBook (textes, images, logo, code source, etc.) sont prot\xe9g\xe9s par le droit de la propri\xe9t\xe9 intellectuelle. Toute reproduction sans autorisation est strictement interdite."},{"title":"RESPONSABILIT\xc9","content":"BlaBlaBook ne peut \xeatre tenu responsable des erreurs ou indisponibilit\xe9s temporaires du site. L\u2019utilisation du site se fait sous la responsabilit\xe9 de l\u2019utilisateur."},{"title":"LIENS HYPERTEXTES","content":"Le site peut contenir des liens vers des sites tiers. BlaBlaBook n\u2019exerce aucun contr\xf4le sur leur contenu et d\xe9cline toute responsabilit\xe9 quant \xe0 leur accessibilit\xe9 ou leur s\xe9curit\xe9."},{"title":"DROIT APPLICABLE ET JURIDICTION COMP\xc9TENTE","content":"Les pr\xe9sentes conditions d\u2019utilisation sont r\xe9gies par le droit fran\xe7ais. En cas de litige, les tribunaux fran\xe7ais seront seuls comp\xe9tents."}],"accessibiteSections":[{"title":"ACCESSIBILIT\xc9","content":"Cette page n\u2019est pas une page d\u2019aide. Elle vise \xe0 pr\xe9senter la politique d\u2019accessibilit\xe9 du site elysee.fr et \xe0 d\xe9finir le niveau d\u2019accessibilit\xe9 g\xe9n\xe9ral constat\xe9 sur le site conform\xe9ment aux r\xe9f\xe9rentiels et \xe0 la r\xe9glementation.","linkText":"https://www.elysee.fr/accessibilite"},{"title":"Qu\u2019est-ce que l\u2019accessibilit\xe9 num\xe9rique ?","content":"Un site web accessible est un site qui permet \xe0 tous les internautes d\u2019acc\xe9der \xe0 ses contenus sans difficult\xe9, y compris aux personnes qui pr\xe9sentent un handicap et utilisent des logiciels ou mat\xe9riels sp\xe9cialis\xe9s.\\n\\nUn site accessible permet par exemple de :\\n- Naviguer avec des synth\xe8ses vocales ou des plages braille (notamment utilis\xe9es par les internautes aveugles ou malvoyants)."},{"footer":"Pour toute question relative aux pr\xe9sentes CGU, l\u2019utilisateur peut nous contacter via la page Contact."}]}');
+
+},{}],"adfVe":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$6b75 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 $parcel$ReactRefreshHelpers$6b75.init();
 var prevRefreshReg = globalThis.$RefreshReg$;
