@@ -29308,6 +29308,8 @@ var _accessibilite = require("../../components/StaticPages/Accessibilite");
 var _accessibiliteDefault = parcelHelpers.interopDefault(_accessibilite);
 var _politiqueConfidentialite = require("../../components/StaticPages/PolitiqueConfidentialite");
 var _politiqueConfidentialiteDefault = parcelHelpers.interopDefault(_politiqueConfidentialite);
+var _about = require("../../components/StaticPages/About");
+var _aboutDefault = parcelHelpers.interopDefault(_about);
 function InformationsLegales() {
     const mentionsLegalesSections = [
         {
@@ -29380,41 +29382,46 @@ function InformationsLegales() {
                 children: "Informations l\xe9gales"
             }, void 0, false, {
                 fileName: "src/pages/StaticPages/StaticPages.jsx",
-                lineNumber: 80,
+                lineNumber: 81,
                 columnNumber: 14
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _mentionsLegalesDefault.default), {
                 sections: mentionsLegalesSections
             }, void 0, false, {
                 fileName: "src/pages/StaticPages/StaticPages.jsx",
-                lineNumber: 82,
+                lineNumber: 83,
                 columnNumber: 14
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cguDefault.default), {
                 sections: cguTerms
             }, void 0, false, {
                 fileName: "src/pages/StaticPages/StaticPages.jsx",
-                lineNumber: 83,
+                lineNumber: 84,
                 columnNumber: 14
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _accessibiliteDefault.default), {
                 sections: accessibiteSections
             }, void 0, false, {
                 fileName: "src/pages/StaticPages/StaticPages.jsx",
-                lineNumber: 84,
+                lineNumber: 85,
                 columnNumber: 14
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _politiqueConfidentialiteDefault.default), {
                 sections: mentionsLegalesSections
             }, void 0, false, {
                 fileName: "src/pages/StaticPages/StaticPages.jsx",
-                lineNumber: 85,
+                lineNumber: 86,
+                columnNumber: 14
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _aboutDefault.default), {}, void 0, false, {
+                fileName: "src/pages/StaticPages/StaticPages.jsx",
+                lineNumber: 87,
                 columnNumber: 14
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/pages/StaticPages/StaticPages.jsx",
-        lineNumber: 79,
+        lineNumber: 80,
         columnNumber: 9
     }, this);
 }
@@ -29427,7 +29434,7 @@ $RefreshReg$(_c, "InformationsLegales");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","../../components/StaticPages/MentionsLegales":"dZ7FC","../../components/StaticPages/CGU":"2vz8o","../../components/StaticPages/Accessibilite":"8UJkZ","../../components/StaticPages/PolitiqueConfidentialite":"3Uy7d","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"dZ7FC":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"dVPUn","../../components/StaticPages/MentionsLegales":"dZ7FC","../../components/StaticPages/CGU":"2vz8o","../../components/StaticPages/Accessibilite":"8UJkZ","../../components/StaticPages/PolitiqueConfidentialite":"3Uy7d","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi","../../components/StaticPages/About":"gUKHm"}],"dZ7FC":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$f1b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 $parcel$ReactRefreshHelpers$f1b2.init();
 var prevRefreshReg = globalThis.$RefreshReg$;
@@ -29719,7 +29726,302 @@ $RefreshReg$(_c, "PolitiqueConfidentialite");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"adfVe":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"dVPUn","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"gUKHm":[function(require,module,exports,__globalThis) {
+var $parcel$ReactRefreshHelpers$1e40 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+$parcel$ReactRefreshHelpers$1e40.init();
+var prevRefreshReg = globalThis.$RefreshReg$;
+var prevRefreshSig = globalThis.$RefreshSig$;
+$parcel$ReactRefreshHelpers$1e40.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>About);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _reactRouter = require("react-router");
+var _footer = require("../Footer/Footer");
+var _footerDefault = parcelHelpers.interopDefault(_footer);
+function About() {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                children: "\xc0 propos"
+            }, void 0, false, {
+                fileName: "src/components/StaticPages/About.jsx",
+                lineNumber: 6,
+                columnNumber: 9
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("section", {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                        children: "Notre Mission"
+                    }, void 0, false, {
+                        fileName: "src/components/StaticPages/About.jsx",
+                        lineNumber: 8,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                        children: "BlaBlaBook est une plateforme qui vise \xe0 r\xe9unir tous les amoureux de la lecture autour d\u2019un espace personnel et communautaire. Notre mission est de faciliter la gestion de sa biblioth\xe8que personnelle tout en d\xe9couvrant et partageant de nouveaux livres."
+                    }, void 0, false, {
+                        fileName: "src/components/StaticPages/About.jsx",
+                        lineNumber: 9,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                        children: "Gr\xe2ce \xe0 une interface intuitive, les utilisateurs peuvent suivre leurs lectures, chercher de nouveaux ouvrages, donner leur avis et dialoguer avec d'autres passionn\xe9s."
+                    }, void 0, false, {
+                        fileName: "src/components/StaticPages/About.jsx",
+                        lineNumber: 13,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/StaticPages/About.jsx",
+                lineNumber: 7,
+                columnNumber: 9
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("section", {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                        children: "Qui sommes-nous ?"
+                    }, void 0, false, {
+                        fileName: "src/components/StaticPages/About.jsx",
+                        lineNumber: 18,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                        children: "Nous sommes une \xe9quipe de cinq passionn\xe9s de d\xe9veloppement web , r\xe9unis autour d\u2019un projet commun : BlablaBook, une plateforme collaborative d\xe9di\xe9e aux amoureux des livres."
+                    }, void 0, false, {
+                        fileName: "src/components/StaticPages/About.jsx",
+                        lineNumber: 19,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("strong", {
+                            children: "L'equipe: "
+                        }, void 0, false, {
+                            fileName: "src/components/StaticPages/About.jsx",
+                            lineNumber: 22,
+                            columnNumber: 12
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "src/components/StaticPages/About.jsx",
+                        lineNumber: 22,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("strong", {
+                                        children: "Product Owner :"
+                                    }, void 0, false, {
+                                        fileName: "src/components/StaticPages/About.jsx",
+                                        lineNumber: 24,
+                                        columnNumber: 17
+                                    }, this),
+                                    " Marizia"
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/StaticPages/About.jsx",
+                                lineNumber: 24,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("strong", {
+                                        children: "Scrum Master :"
+                                    }, void 0, false, {
+                                        fileName: "src/components/StaticPages/About.jsx",
+                                        lineNumber: 25,
+                                        columnNumber: 17
+                                    }, this),
+                                    " Gr\xe9goire"
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/StaticPages/About.jsx",
+                                lineNumber: 25,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("strong", {
+                                        children: "Lead Devs :"
+                                    }, void 0, false, {
+                                        fileName: "src/components/StaticPages/About.jsx",
+                                        lineNumber: 26,
+                                        columnNumber: 17
+                                    }, this),
+                                    " Genevi\xe8ve, Nouhayla, Nicolas"
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/StaticPages/About.jsx",
+                                lineNumber: 26,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/StaticPages/About.jsx",
+                        lineNumber: 23,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/StaticPages/About.jsx",
+                lineNumber: 17,
+                columnNumber: 9
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("section", {
+                children: [
+                    "Pour en savoir plus sur nos services, consultez la page",
+                    " ",
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouter.Link), {
+                        to: "/contact",
+                        children: "Contact"
+                    }, void 0, false, {
+                        fileName: "src/components/StaticPages/About.jsx",
+                        lineNumber: 31,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/StaticPages/About.jsx",
+                lineNumber: 29,
+                columnNumber: 9
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _footerDefault.default), {}, void 0, false, {
+                fileName: "src/components/StaticPages/About.jsx",
+                lineNumber: 35,
+                columnNumber: 9
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/StaticPages/About.jsx",
+        lineNumber: 5,
+        columnNumber: 5
+    }, this);
+}
+_c = About;
+var _c;
+$RefreshReg$(_c, "About");
+
+  $parcel$ReactRefreshHelpers$1e40.postlude(module);
+} finally {
+  globalThis.$RefreshReg$ = prevRefreshReg;
+  globalThis.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"dVPUn","react-router":"2jawN","../Footer/Footer":"5sfdP","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"5sfdP":[function(require,module,exports,__globalThis) {
+var $parcel$ReactRefreshHelpers$863b = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+$parcel$ReactRefreshHelpers$863b.init();
+var prevRefreshReg = globalThis.$RefreshReg$;
+var prevRefreshSig = globalThis.$RefreshSig$;
+$parcel$ReactRefreshHelpers$863b.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>Footer);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _reactRouter = require("react-router");
+var _footerScss = require("./Footer.scss");
+function Footer() {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("nav", {
+            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouter.Link), {
+                            to: "/legal",
+                            children: "Mentions l\xe9gales"
+                        }, void 0, false, {
+                            fileName: "src/components/Footer/Footer.jsx",
+                            lineNumber: 9,
+                            columnNumber: 25
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "src/components/Footer/Footer.jsx",
+                        lineNumber: 9,
+                        columnNumber: 21
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouter.Link), {
+                            to: "/terms",
+                            children: "Politique de confidentialit\xe9"
+                        }, void 0, false, {
+                            fileName: "src/components/Footer/Footer.jsx",
+                            lineNumber: 10,
+                            columnNumber: 25
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "src/components/Footer/Footer.jsx",
+                        lineNumber: 10,
+                        columnNumber: 21
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouter.Link), {
+                            to: "/privacy",
+                            children: "CGU"
+                        }, void 0, false, {
+                            fileName: "src/components/Footer/Footer.jsx",
+                            lineNumber: 11,
+                            columnNumber: 25
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "src/components/Footer/Footer.jsx",
+                        lineNumber: 11,
+                        columnNumber: 21
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouter.Link), {
+                            to: "/accessibility",
+                            children: "Accessibilit\xe9"
+                        }, void 0, false, {
+                            fileName: "src/components/Footer/Footer.jsx",
+                            lineNumber: 12,
+                            columnNumber: 25
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "src/components/Footer/Footer.jsx",
+                        lineNumber: 12,
+                        columnNumber: 21
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouter.Link), {
+                            to: "/contact",
+                            children: "Nous contacter"
+                        }, void 0, false, {
+                            fileName: "src/components/Footer/Footer.jsx",
+                            lineNumber: 13,
+                            columnNumber: 25
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "src/components/Footer/Footer.jsx",
+                        lineNumber: 13,
+                        columnNumber: 21
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/Footer/Footer.jsx",
+                lineNumber: 8,
+                columnNumber: 17
+            }, this)
+        }, void 0, false, {
+            fileName: "src/components/Footer/Footer.jsx",
+            lineNumber: 7,
+            columnNumber: 13
+        }, this)
+    }, void 0, false);
+}
+_c = Footer;
+var _c;
+$RefreshReg$(_c, "Footer");
+
+  $parcel$ReactRefreshHelpers$863b.postlude(module);
+} finally {
+  globalThis.$RefreshReg$ = prevRefreshReg;
+  globalThis.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"dVPUn","react-router":"2jawN","./Footer.scss":"7s7cb","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"7s7cb":[function() {},{}],"adfVe":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$6b75 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 $parcel$ReactRefreshHelpers$6b75.init();
 var prevRefreshReg = globalThis.$RefreshReg$;
@@ -29892,117 +30194,6 @@ $RefreshReg$(_c, "Header");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","react-router":"2jawN","./Header.scss":"1AYao","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"1AYao":[function() {},{}],"5sfdP":[function(require,module,exports,__globalThis) {
-var $parcel$ReactRefreshHelpers$863b = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-$parcel$ReactRefreshHelpers$863b.init();
-var prevRefreshReg = globalThis.$RefreshReg$;
-var prevRefreshSig = globalThis.$RefreshSig$;
-$parcel$ReactRefreshHelpers$863b.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "default", ()=>Footer);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _reactRouter = require("react-router");
-var _footerScss = require("./Footer.scss");
-function Footer() {
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("nav", {
-            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouter.Link), {
-                            to: "/legal",
-                            children: "Mentions l\xe9gales"
-                        }, void 0, false, {
-                            fileName: "src/components/Footer/Footer.jsx",
-                            lineNumber: 9,
-                            columnNumber: 25
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "src/components/Footer/Footer.jsx",
-                        lineNumber: 9,
-                        columnNumber: 21
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouter.Link), {
-                            to: "/terms",
-                            children: "Politique de confidentialit\xe9"
-                        }, void 0, false, {
-                            fileName: "src/components/Footer/Footer.jsx",
-                            lineNumber: 10,
-                            columnNumber: 25
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "src/components/Footer/Footer.jsx",
-                        lineNumber: 10,
-                        columnNumber: 21
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouter.Link), {
-                            to: "/privacy",
-                            children: "CGU"
-                        }, void 0, false, {
-                            fileName: "src/components/Footer/Footer.jsx",
-                            lineNumber: 11,
-                            columnNumber: 25
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "src/components/Footer/Footer.jsx",
-                        lineNumber: 11,
-                        columnNumber: 21
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouter.Link), {
-                            to: "/accessibility",
-                            children: "Accessibilit\xe9"
-                        }, void 0, false, {
-                            fileName: "src/components/Footer/Footer.jsx",
-                            lineNumber: 12,
-                            columnNumber: 25
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "src/components/Footer/Footer.jsx",
-                        lineNumber: 12,
-                        columnNumber: 21
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouter.Link), {
-                            to: "/contact",
-                            children: "Nous contacter"
-                        }, void 0, false, {
-                            fileName: "src/components/Footer/Footer.jsx",
-                            lineNumber: 13,
-                            columnNumber: 25
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "src/components/Footer/Footer.jsx",
-                        lineNumber: 13,
-                        columnNumber: 21
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/Footer/Footer.jsx",
-                lineNumber: 8,
-                columnNumber: 17
-            }, this)
-        }, void 0, false, {
-            fileName: "src/components/Footer/Footer.jsx",
-            lineNumber: 7,
-            columnNumber: 13
-        }, this)
-    }, void 0, false);
-}
-_c = Footer;
-var _c;
-$RefreshReg$(_c, "Footer");
-
-  $parcel$ReactRefreshHelpers$863b.postlude(module);
-} finally {
-  globalThis.$RefreshReg$ = prevRefreshReg;
-  globalThis.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"dVPUn","react-router":"2jawN","./Footer.scss":"7s7cb","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"7s7cb":[function() {},{}],"10F1U":[function() {},{}]},["hiyDA","gYcKb"], "gYcKb", "parcelRequire10c2", {}, null, null, "http://localhost:1234")
+},{"react/jsx-dev-runtime":"dVPUn","react-router":"2jawN","./Header.scss":"1AYao","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"1AYao":[function() {},{}],"10F1U":[function() {},{}]},["hiyDA","gYcKb"], "gYcKb", "parcelRequire10c2", {}, null, null, "http://localhost:1234")
 
 //# sourceMappingURL=frontend.ad93b51f.js.map
