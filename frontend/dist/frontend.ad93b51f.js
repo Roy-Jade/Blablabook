@@ -29517,13 +29517,13 @@ $parcel$ReactRefreshHelpers$69f5.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "default", ()=>Accessibite);
+parcelHelpers.export(exports, "default", ()=>CGU);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
-function Accessibite({ sections }) {
+function CGU({ sections }) {
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("section", {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                children: " Accessibite"
+                children: "Conditions g\xe9n\xe9rales d'utilisation"
             }, void 0, false, {
                 fileName: "src/components/StaticPages/CGU.jsx",
                 lineNumber: 4,
@@ -29571,9 +29571,9 @@ function Accessibite({ sections }) {
         columnNumber: 9
     }, this);
 }
-_c = Accessibite;
+_c = CGU;
 var _c;
-$RefreshReg$(_c, "Accessibite");
+$RefreshReg$(_c, "CGU");
 
   $parcel$ReactRefreshHelpers$69f5.postlude(module);
 } finally {
@@ -29744,7 +29744,7 @@ var _footerDefault = parcelHelpers.interopDefault(_footer);
 function About() {
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                 children: "\xc0 propos"
             }, void 0, false, {
                 fileName: "src/components/StaticPages/About.jsx",
@@ -29753,7 +29753,7 @@ function About() {
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("section", {
                 children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
                         children: "Notre Mission"
                     }, void 0, false, {
                         fileName: "src/components/StaticPages/About.jsx",
@@ -29782,7 +29782,7 @@ function About() {
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("section", {
                 children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
                         children: "Qui sommes-nous ?"
                     }, void 0, false, {
                         fileName: "src/components/StaticPages/About.jsx",
@@ -29887,11 +29887,6 @@ function About() {
             }, void 0, true, {
                 fileName: "src/components/StaticPages/About.jsx",
                 lineNumber: 29,
-                columnNumber: 9
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _footerDefault.default), {}, void 0, false, {
-                fileName: "src/components/StaticPages/About.jsx",
-                lineNumber: 35,
                 columnNumber: 9
             }, this)
         ]
