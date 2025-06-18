@@ -688,9 +688,12 @@ var _questions = require("./pages/Questions/Questions");
 var _questionsDefault = parcelHelpers.interopDefault(_questions);
 // import Dashboard from './pages/Dashboard/Dashboard';
 // import Options from './pages/Options/Options';
-// import Register from './pages/Register/Register';
-// import Login from './pages/Login/Login';
-// import Logout from './pages/Logout/Logout';
+var _register = require("./pages/Register/Register");
+var _registerDefault = parcelHelpers.interopDefault(_register);
+var _login = require("./pages/Login/Login");
+var _loginDefault = parcelHelpers.interopDefault(_login);
+var _logout = require("./pages/Logout/Logout");
+var _logoutDefault = parcelHelpers.interopDefault(_logout);
 var _contact = require("./pages/Contact/Contact");
 var _contactDefault = parcelHelpers.interopDefault(_contact);
 var _staticPages = require("./pages/StaticPages/StaticPages");
@@ -767,6 +770,42 @@ var _indexScss = require("../public/scss/index.scss");
                 }, void 0, false, {
                     fileName: "src/index.jsx",
                     lineNumber: 31,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouter.Route), {
+                    path: "/register",
+                    element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _registerDefault.default), {}, void 0, false, {
+                        fileName: "src/index.jsx",
+                        lineNumber: 34,
+                        columnNumber: 42
+                    }, void 0)
+                }, void 0, false, {
+                    fileName: "src/index.jsx",
+                    lineNumber: 34,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouter.Route), {
+                    path: "/login",
+                    element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginDefault.default), {}, void 0, false, {
+                        fileName: "src/index.jsx",
+                        lineNumber: 35,
+                        columnNumber: 39
+                    }, void 0)
+                }, void 0, false, {
+                    fileName: "src/index.jsx",
+                    lineNumber: 35,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouter.Route), {
+                    path: "/logout",
+                    element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _logoutDefault.default), {}, void 0, false, {
+                        fileName: "src/index.jsx",
+                        lineNumber: 36,
+                        columnNumber: 40
+                    }, void 0)
+                }, void 0, false, {
+                    fileName: "src/index.jsx",
+                    lineNumber: 36,
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouter.Route), {
@@ -852,7 +891,7 @@ var _indexScss = require("../public/scss/index.scss");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","react-dom/client":"hrvwu","react-router":"2jawN","./pages/Home/Home":"3Oyh7","./pages/Library/Library":"1jHn8","./pages/Questions/Questions":"GQfhY","./pages/Contact/Contact":"4a4k3","./pages/StaticPages/StaticPages":"l5ZDC","./components/Header/Header":"adfVe","./components/Footer/Footer":"5sfdP","../public/scss/index.scss":"10F1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"dVPUn":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"dVPUn","react-dom/client":"hrvwu","react-router":"2jawN","./pages/Home/Home":"3Oyh7","./pages/Library/Library":"1jHn8","./pages/Questions/Questions":"GQfhY","./pages/Contact/Contact":"4a4k3","./pages/StaticPages/StaticPages":"l5ZDC","./components/Header/Header":"adfVe","./components/Footer/Footer":"5sfdP","../public/scss/index.scss":"10F1U","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi","./pages/Register/Register":"f3rzy","./pages/Login/Login":"6gjZa","./pages/Logout/Logout":"9Hd9q"}],"dVPUn":[function(require,module,exports,__globalThis) {
 'use strict';
 module.exports = require("ee51401569654d91");
 
@@ -30003,6 +30042,397 @@ $RefreshReg$(_c, "Footer");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","react-router":"2jawN","./Footer.scss":"7s7cb","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"7s7cb":[function() {},{}],"10F1U":[function() {},{}]},["hiyDA","gYcKb"], "gYcKb", "parcelRequire10c2", {}, null, null, "http://localhost:1234")
+},{"react/jsx-dev-runtime":"dVPUn","react-router":"2jawN","./Footer.scss":"7s7cb","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"7s7cb":[function() {},{}],"10F1U":[function() {},{}],"f3rzy":[function(require,module,exports,__globalThis) {
+var $parcel$ReactRefreshHelpers$ad15 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+$parcel$ReactRefreshHelpers$ad15.init();
+var prevRefreshReg = globalThis.$RefreshReg$;
+var prevRefreshSig = globalThis.$RefreshSig$;
+$parcel$ReactRefreshHelpers$ad15.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>Register);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+function Register() {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                children: "Cr\xe9er un compte"
+            }, void 0, false, {
+                fileName: "src/pages/Register/Register.jsx",
+                lineNumber: 4,
+                columnNumber: 9
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                                htmlFor: "pseudo",
+                                children: "Pseudo"
+                            }, void 0, false, {
+                                fileName: "src/pages/Register/Register.jsx",
+                                lineNumber: 7,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                                type: "text",
+                                id: "pseudo",
+                                name: "pseudo"
+                            }, void 0, false, {
+                                fileName: "src/pages/Register/Register.jsx",
+                                lineNumber: 8,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/pages/Register/Register.jsx",
+                        lineNumber: 6,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                                htmlFor: "email",
+                                children: "Adresse e-mail"
+                            }, void 0, false, {
+                                fileName: "src/pages/Register/Register.jsx",
+                                lineNumber: 12,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                                type: "email",
+                                id: "email",
+                                name: "email"
+                            }, void 0, false, {
+                                fileName: "src/pages/Register/Register.jsx",
+                                lineNumber: 13,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/pages/Register/Register.jsx",
+                        lineNumber: 11,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                                htmlFor: "password",
+                                children: "Mot de passe"
+                            }, void 0, false, {
+                                fileName: "src/pages/Register/Register.jsx",
+                                lineNumber: 17,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                                type: "password",
+                                id: "password",
+                                name: "password"
+                            }, void 0, false, {
+                                fileName: "src/pages/Register/Register.jsx",
+                                lineNumber: 18,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/pages/Register/Register.jsx",
+                        lineNumber: 16,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                                htmlFor: "confirmPassword",
+                                children: "Confirmer le mot de passe"
+                            }, void 0, false, {
+                                fileName: "src/pages/Register/Register.jsx",
+                                lineNumber: 22,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                                type: "password",
+                                id: "confirmPassword",
+                                name: "confirmPassword"
+                            }, void 0, false, {
+                                fileName: "src/pages/Register/Register.jsx",
+                                lineNumber: 23,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/pages/Register/Register.jsx",
+                        lineNumber: 21,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                            htmlFor: "terms",
+                            children: [
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                                    type: "checkbox",
+                                    id: "terms",
+                                    name: "terms"
+                                }, void 0, false, {
+                                    fileName: "src/pages/Register/Register.jsx",
+                                    lineNumber: 28,
+                                    columnNumber: 15
+                                }, this),
+                                "J'accepte les termes et les conditions"
+                            ]
+                        }, void 0, true, {
+                            fileName: "src/pages/Register/Register.jsx",
+                            lineNumber: 27,
+                            columnNumber: 13
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "src/pages/Register/Register.jsx",
+                        lineNumber: 26,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                        type: "submit",
+                        children: "S'inscrire"
+                    }, void 0, false, {
+                        fileName: "src/pages/Register/Register.jsx",
+                        lineNumber: 33,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                        children: [
+                            "D\xe9j\xe0 un compte ?",
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                                type: "submit",
+                                children: "Se connecter"
+                            }, void 0, false, {
+                                fileName: "src/pages/Register/Register.jsx",
+                                lineNumber: 37,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/pages/Register/Register.jsx",
+                        lineNumber: 35,
+                        columnNumber: 11
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "src/pages/Register/Register.jsx",
+                lineNumber: 5,
+                columnNumber: 9
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "src/pages/Register/Register.jsx",
+        lineNumber: 3,
+        columnNumber: 7
+    }, this);
+}
+_c = Register;
+var _c;
+$RefreshReg$(_c, "Register");
+
+  $parcel$ReactRefreshHelpers$ad15.postlude(module);
+} finally {
+  globalThis.$RefreshReg$ = prevRefreshReg;
+  globalThis.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"dVPUn","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"6gjZa":[function(require,module,exports,__globalThis) {
+var $parcel$ReactRefreshHelpers$0c1c = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+$parcel$ReactRefreshHelpers$0c1c.init();
+var prevRefreshReg = globalThis.$RefreshReg$;
+var prevRefreshSig = globalThis.$RefreshSig$;
+$parcel$ReactRefreshHelpers$0c1c.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>Login);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+function Login() {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                children: "Connexion"
+            }, void 0, false, {
+                fileName: "src/pages/Login/Login.jsx",
+                lineNumber: 4,
+                columnNumber: 9
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                                htmlFor: "email",
+                                children: "Adresse e-mail"
+                            }, void 0, false, {
+                                fileName: "src/pages/Login/Login.jsx",
+                                lineNumber: 8,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                                type: "email",
+                                id: "email",
+                                name: "email"
+                            }, void 0, false, {
+                                fileName: "src/pages/Login/Login.jsx",
+                                lineNumber: 9,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/pages/Login/Login.jsx",
+                        lineNumber: 7,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                                htmlFor: "password",
+                                children: "Mot de passe"
+                            }, void 0, false, {
+                                fileName: "src/pages/Login/Login.jsx",
+                                lineNumber: 13,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                                type: "password",
+                                id: "password",
+                                name: "password"
+                            }, void 0, false, {
+                                fileName: "src/pages/Login/Login.jsx",
+                                lineNumber: 14,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/pages/Login/Login.jsx",
+                        lineNumber: 12,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
+                            href: "#",
+                            onClick: (e)=>{
+                                e.preventDefault();
+                                window.alert("Lien de r\xe9initialisation du mot de passe envoy\xe9 \xe0 votre adresse e-mail.");
+                            },
+                            children: "Mot de passe oubli\xe9 ?"
+                        }, void 0, false, {
+                            fileName: "src/pages/Login/Login.jsx",
+                            lineNumber: 17,
+                            columnNumber: 13
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "src/pages/Login/Login.jsx",
+                        lineNumber: 16,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                            htmlFor: "terms",
+                            children: [
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                                    type: "checkbox",
+                                    id: "terms",
+                                    name: "terms"
+                                }, void 0, false, {
+                                    fileName: "src/pages/Login/Login.jsx",
+                                    lineNumber: 30,
+                                    columnNumber: 15
+                                }, this),
+                                "Se souvenir de moi"
+                            ]
+                        }, void 0, true, {
+                            fileName: "src/pages/Login/Login.jsx",
+                            lineNumber: 29,
+                            columnNumber: 13
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "src/pages/Login/Login.jsx",
+                        lineNumber: 28,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                        type: "submit",
+                        children: "Se connecter"
+                    }, void 0, false, {
+                        fileName: "src/pages/Login/Login.jsx",
+                        lineNumber: 35,
+                        columnNumber: 11
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "src/pages/Login/Login.jsx",
+                lineNumber: 5,
+                columnNumber: 9
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "src/pages/Login/Login.jsx",
+        lineNumber: 3,
+        columnNumber: 7
+    }, this);
+}
+_c = Login;
+var _c;
+$RefreshReg$(_c, "Login");
+
+  $parcel$ReactRefreshHelpers$0c1c.postlude(module);
+} finally {
+  globalThis.$RefreshReg$ = prevRefreshReg;
+  globalThis.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"dVPUn","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"9Hd9q":[function(require,module,exports,__globalThis) {
+var $parcel$ReactRefreshHelpers$8221 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+$parcel$ReactRefreshHelpers$8221.init();
+var prevRefreshReg = globalThis.$RefreshReg$;
+var prevRefreshSig = globalThis.$RefreshSig$;
+$parcel$ReactRefreshHelpers$8221.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>Logout);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+function Logout() {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                children: "Vous avez \xe9t\xe9 d\xe9connect\xe9 avec succ\xe8s"
+            }, void 0, false, {
+                fileName: "src/pages/Logout/Logout.jsx",
+                lineNumber: 4,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                    type: "submit",
+                    children: "Se reconnecter"
+                }, void 0, false, {
+                    fileName: "src/pages/Logout/Logout.jsx",
+                    lineNumber: 8,
+                    columnNumber: 17
+                }, this)
+            }, void 0, false, {
+                fileName: "src/pages/Logout/Logout.jsx",
+                lineNumber: 7,
+                columnNumber: 13
+            }, this)
+        ]
+    }, void 0, true);
+}
+_c = Logout;
+var _c;
+$RefreshReg$(_c, "Logout");
+
+  $parcel$ReactRefreshHelpers$8221.postlude(module);
+} finally {
+  globalThis.$RefreshReg$ = prevRefreshReg;
+  globalThis.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"dVPUn","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}]},["hiyDA","gYcKb"], "gYcKb", "parcelRequire10c2", {}, null, null, "http://localhost:1234")
 
 //# sourceMappingURL=frontend.ad93b51f.js.map
