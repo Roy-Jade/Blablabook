@@ -4,7 +4,7 @@ import './Footer.scss';
 export default function Footer() {
     return(
         <>
-            <nav>
+                <nav>
                 <ul>
                     <li><Link to="/legal">Mentions légales</Link></li>
                     <li><Link to="/terms">Politique de confidentialité</Link></li>

@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router';
 // Liste des imports de page
 import Home from './pages/Home/Home';
 import Library from './pages/Library/Library';
-// import Book from './pages/Book/Book';
+import Book from './pages/Book/Book';
 import Questions from './pages/Questions/Questions';
 // import Dashboard from './pages/Dashboard/Dashboard';
 // import Options from './pages/Options/Options';
@@ -17,7 +17,7 @@ import StaticPages from './pages/StaticPages/StaticPages';
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 
-import '../public/scss/index.scss';
+import './scss/index.scss';
 
 createRoot(document.getElementById('root')).render(
     <BrowserRouter>
@@ -26,7 +26,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<Home />} />
         <Route path="/library" element={<Library />} />
         <Route path="/personnalLibrary" element={<Library />} />
-        {/* <Route path="/library/:bookID" element={<Book />} /> */}
+        <Route path="/library/:bookID" element={<Book />} />
         <Route path="/about" element={<StaticPages />} />
         <Route path="/questions" element={<Questions />} />
         {/* <Route path="/dashboard" element={<Dashboard />} /> */}
