@@ -865,7 +865,7 @@ var _indexScss = require("./scss/index.scss");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","react-dom/client":"hrvwu","react-router":"2jawN","./pages/Home/Home":"3Oyh7","./pages/Library/Library":"1jHn8","./pages/Questions/Questions":"GQfhY","./pages/Contact/Contact":"4a4k3","./pages/StaticPages/StaticPages":"l5ZDC","./components/Header/Header":"adfVe","./components/Footer/Footer":"5sfdP","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi","./scss/index.scss":"kVb0b","./pages/Book/Book":"bOWnM"}],"dVPUn":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"dVPUn","react-dom/client":"hrvwu","react-router":"2jawN","./pages/Home/Home":"3Oyh7","./pages/Library/Library":"1jHn8","./pages/Book/Book":"bOWnM","./pages/Questions/Questions":"GQfhY","./pages/Contact/Contact":"4a4k3","./pages/StaticPages/StaticPages":"l5ZDC","./components/Header/Header":"adfVe","./components/Footer/Footer":"5sfdP","./scss/index.scss":"kVb0b","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"dVPUn":[function(require,module,exports,__globalThis) {
 'use strict';
 module.exports = require("ee51401569654d91");
 
@@ -28892,7 +28892,166 @@ $RefreshReg$(_c, "Sort");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","./Sort.scss":"7NMT0","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"7NMT0":[function() {},{}],"6CONp":[function() {},{}],"GQfhY":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"dVPUn","./Sort.scss":"7NMT0","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"7NMT0":[function() {},{}],"6CONp":[function() {},{}],"bOWnM":[function(require,module,exports,__globalThis) {
+var $parcel$ReactRefreshHelpers$12ac = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+$parcel$ReactRefreshHelpers$12ac.init();
+var prevRefreshReg = globalThis.$RefreshReg$;
+var prevRefreshSig = globalThis.$RefreshSig$;
+$parcel$ReactRefreshHelpers$12ac.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>Book);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _reactRouter = require("react-router");
+// Import du [Composant].scss
+var _bookScss = require("./Book.scss");
+//Fonction permettant de convertir et efficher le HTML des étoiles sera reprsi los de la mise en place du scss
+function convertHTMLStar(text) {
+    const textarea = document.createElement("textarea");
+    textarea.innerHTML = text;
+    return textarea.value;
+}
+function Book() {
+    const comments = [
+        {
+            pseudonyme: "RatBiblio",
+            date: "01/06/2025",
+            note: "&#11088; &#11088; &#11088; &#11088; &#11088",
+            commentaire: "J'ai ador\xe9 l'ambiance de ce roman, ce monde dytopique ou le h\xe9ros met fin \xe0 cette soci\xe9t\xe9 deshumanis\xe9e. "
+        },
+        {
+            pseudonyme: "BookAddict",
+            date: "15/05/2025",
+            note: "&#11088; &#11088; &#11088; &#11088; &#11088",
+            commentaire: "Th\xe8me d'une soci\xe9t\xe9 o\xf9 l'on decide absolument de tout pour vous : choix entre 4 prenoms, boulot attribu\xe9 d'office , relations sexuelles control\xe9es. Ici, le monde est gouvern\xe9 par un super-ordinateur, et les \xeatres humains subissent une uniformisation gr\xe2ce \xe0 un traitement hormonal qui supprime toute violence, mais aussi toute volont\xe9. Le fun quoi !!!  "
+        },
+        {
+            pseudonyme: "JMlire",
+            date: "25/02/2025",
+            note: "&#11088; &#11088; &#11088; &#11088; &#10025",
+            commentaire: "Ce roman, bien qu'ayant vieilli, d\xe9crit une soci\xe9t\xe9 o\xf9 les ordinateurs ont pris le pouvoir sur l'humanit\xe9, on s'y croirait."
+        },
+        {
+            pseudonyme: "ToutLire",
+            date: "01/04/2025",
+            note: "&#11088; &#11088; &#11088; &#11088; &#11088",
+            commentaire: "On a pas du tout envie de quitter Copeau, et le suspense est maintenu jusqu'au bout.  "
+        }
+    ];
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                children: "D\xe9tail du livre"
+            }, void 0, false, {
+                fileName: "src/pages/Book/Book.jsx",
+                lineNumber: 43,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                src: "../../..public/img/cover_Ira_Levin",
+                alt: "Book's cover : Un bonheur insoutenable"
+            }, void 0, false, {
+                fileName: "src/pages/Book/Book.jsx",
+                lineNumber: 46,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                children: "Moyenne des notes \u2B50 \u2B50 \u2B50 \u2B50 \u2729"
+            }, void 0, false, {
+                fileName: "src/pages/Book/Book.jsx",
+                lineNumber: 59,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouter.Link), {
+                    to: "/personnalLibrary",
+                    children: "Ajouter \xe0 mes livres"
+                }, void 0, false, {
+                    fileName: "src/pages/Book/Book.jsx",
+                    lineNumber: 61,
+                    columnNumber: 21
+                }, this)
+            }, void 0, false, {
+                fileName: "src/pages/Book/Book.jsx",
+                lineNumber: 61,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                children: "Commentaires"
+            }, void 0, false, {
+                fileName: "src/pages/Book/Book.jsx",
+                lineNumber: 63,
+                columnNumber: 13
+            }, this),
+            comments.map((comment, index)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("strong", {
+                                    children: comment.pseudonyme
+                                }, void 0, false, {
+                                    fileName: "src/pages/Book/Book.jsx",
+                                    lineNumber: 68,
+                                    columnNumber: 30
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "src/pages/Book/Book.jsx",
+                                lineNumber: 68,
+                                columnNumber: 25
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("strong", {
+                                    children: comment.date
+                                }, void 0, false, {
+                                    fileName: "src/pages/Book/Book.jsx",
+                                    lineNumber: 69,
+                                    columnNumber: 30
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "src/pages/Book/Book.jsx",
+                                lineNumber: 69,
+                                columnNumber: 25
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                children: convertHTMLStar(comment.note)
+                            }, void 0, false, {
+                                fileName: "src/pages/Book/Book.jsx",
+                                lineNumber: 70,
+                                columnNumber: 25
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                children: comment.commentaire
+                            }, void 0, false, {
+                                fileName: "src/pages/Book/Book.jsx",
+                                lineNumber: 71,
+                                columnNumber: 25
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/pages/Book/Book.jsx",
+                        lineNumber: 67,
+                        columnNumber: 21
+                    }, this)
+                }, index, false, {
+                    fileName: "src/pages/Book/Book.jsx",
+                    lineNumber: 66,
+                    columnNumber: 17
+                }, this))
+        ]
+    }, void 0, true);
+}
+_c = Book;
+var _c;
+$RefreshReg$(_c, "Book");
+
+  $parcel$ReactRefreshHelpers$12ac.postlude(module);
+} finally {
+  globalThis.$RefreshReg$ = prevRefreshReg;
+  globalThis.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"dVPUn","react-router":"2jawN","./Book.scss":"7Ep2n","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"7Ep2n":[function() {},{}],"GQfhY":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$8985 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 $parcel$ReactRefreshHelpers$8985.init();
 var prevRefreshReg = globalThis.$RefreshReg$;
@@ -30016,126 +30175,6 @@ $RefreshReg$(_c, "Footer");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","react-router":"2jawN","./Footer.scss":"7s7cb","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"7s7cb":[function() {},{}],"kVb0b":[function() {},{}],"bOWnM":[function(require,module,exports,__globalThis) {
-var $parcel$ReactRefreshHelpers$12ac = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-$parcel$ReactRefreshHelpers$12ac.init();
-var prevRefreshReg = globalThis.$RefreshReg$;
-var prevRefreshSig = globalThis.$RefreshSig$;
-$parcel$ReactRefreshHelpers$12ac.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "default", ()=>Book);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _reactRouter = require("react-router");
-// Import du [Composant].scss
-var _bookScss = require("./Book.scss");
-function Book({ ISBN }, { title }, { author }, { publication_date }, { resume }, { pseudonyme }, { date }, { note }, { comment }) {
-    const comments = [
-        {
-            pseudonyme: "RatBiblio",
-            date: "01/06/2025",
-            note: "&#9733, &#9733, &#9733, &#9733; &#9733",
-            comment: "J'ai ador\xe9 l'ambiance de ce roman, ce monde dytopique ou le h\xe9ros met fin \xe0 cette soci\xe9t\xe9 deshumanis\xe9e "
-        },
-        {
-            pseudonyme: "BookAddict",
-            date: "15/05/2025",
-            note: "&#9733, &#9733, &#9733, &#9733; &#9733",
-            comment: "Th\xe8me d'une soci\xe9t\xe9 o\xf9 l'on decide absolument de tout pour vous : choix entre 4 prenoms, boulot attribu\xe9 d'office , relations sexuelles control\xe9es. Ici, le monde est gouvern\xe9 par un super-ordinateur, et les \xeatres humains subissent une uniformisation gr\xe2ce \xe0 un traitement hormonal qui supprime toute violence, mais aussi toute volont\xe9. Le fun quoi !!!  "
-        },
-        {
-            pseudonyme: "JMlire",
-            date: "25/02/2025",
-            note: "&#9733, &#9733, &#9733, &#9733; &#9733",
-            comment: "Ce roman, bien qu'ayant vieilli, d\xe9crit une soci\xe9t\xe9 o\xf9 les ordinateurs ont pris le pouvoir sur l'humanit\xe9, on s'y croirait"
-        },
-        {
-            pseudonyme: "ToutLire",
-            date: "01/04/2025",
-            note: "&#9733, &#9733, &#9733, &#9733; &#9734",
-            comment: "On a pas du tout envie de quitter Copeau, et le suspense est maintenu jusqu'au bout  "
-        }
-    ];
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
-                children: "D\xe9tail du livre"
-            }, void 0, false, {
-                fileName: "src/pages/Book/Book.jsx",
-                lineNumber: 36,
-                columnNumber: 13
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                src: "",
-                alt: "Book's cover"
-            }, void 0, false, {
-                fileName: "src/pages/Book/Book.jsx",
-                lineNumber: 39,
-                columnNumber: 13
-            }, this),
-            ISBN,
-            title,
-            author,
-            publication_date,
-            resume,
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(BookMini, {}, void 0, false, {
-                fileName: "src/pages/Book/Book.jsx",
-                lineNumber: 49,
-                columnNumber: 13
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                children: "Moyenne des notes \u2B50 \u2B50 \u2B50 \u2B50| \u2729"
-            }, void 0, false, {
-                fileName: "src/pages/Book/Book.jsx",
-                lineNumber: 52,
-                columnNumber: 13
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouter.Link), {
-                    to: "/personnalLibrary",
-                    children: "Ajouter \xe0 mes livres"
-                }, void 0, false, {
-                    fileName: "src/pages/Book/Book.jsx",
-                    lineNumber: 53,
-                    columnNumber: 21
-                }, this)
-            }, void 0, false, {
-                fileName: "src/pages/Book/Book.jsx",
-                lineNumber: 53,
-                columnNumber: 13
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                children: "Commentaires"
-            }, void 0, false, {
-                fileName: "src/pages/Book/Book.jsx",
-                lineNumber: 55,
-                columnNumber: 13
-            }, this),
-            comments.map((item, index)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
-                        fileName: "src/pages/Book/Book.jsx",
-                        lineNumber: 59,
-                        columnNumber: 21
-                    }, this)
-                }, index, false, {
-                    fileName: "src/pages/Book/Book.jsx",
-                    lineNumber: 58,
-                    columnNumber: 17
-                }, this))
-        ]
-    }, void 0, true);
-}
-_c = Book;
-var _c;
-$RefreshReg$(_c, "Book");
-
-  $parcel$ReactRefreshHelpers$12ac.postlude(module);
-} finally {
-  globalThis.$RefreshReg$ = prevRefreshReg;
-  globalThis.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"dVPUn","react-router":"2jawN","./Book.scss":"7Ep2n","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"7Ep2n":[function() {},{}]},["hiyDA","gYcKb"], "gYcKb", "parcelRequire10c2", {}, null, null, "http://localhost:1234")
+},{"react/jsx-dev-runtime":"dVPUn","react-router":"2jawN","./Footer.scss":"7s7cb","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"7s7cb":[function() {},{}],"kVb0b":[function() {},{}]},["hiyDA","gYcKb"], "gYcKb", "parcelRequire10c2", {}, null, null, "http://localhost:1234")
 
 //# sourceMappingURL=frontend.ad93b51f.js.map
