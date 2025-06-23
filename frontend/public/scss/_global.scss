@@ -1,5 +1,6 @@
 @use './mixin';
 @use './font';
+@use './vars';
 
 /* Je prépare le terrain
 
@@ -22,38 +23,25 @@ Desktop
 24 px - Bold - Texte gros bouton
 */
 
-/* Je prépare mes variables */
-
-$brown-color: #653c15;
-$cream-color: #faf7ee;
-$blue-color: #336d82;
-$red-color: #6e2c36;
-
-/* Ensuite, je vais mettre mes variables aux éléments que j'ai besoin pour faire ma mise en page de mon site */
+/* Je met mes variables aux éléments que j'ai besoin pour faire ma mise en page de mon site */
 
 body {
-    background-color: $cream-color;
+    font-family: font.$font-text;
+    font-size: 15px;
+    background-color: vars.$cream-color;
 }
 
-header, footer {
-    background-color: $brown-color;
-    color: $cream-color;
+main {
+    margin: 2%;
+    line-height: 1.2;
+    color: vars.$red-color;
+    max-width: 1200px;
 }
 
 /* Logo du site */
 
 .logo {
-    background-color: $cream-color;
-}
-
-.titlesite {
-    font-size: 32px;
-    font-weight: bold;
-
-    @include mixin.desktop {
-        font-size: 40px;
-        font-weight: 600; /* ce code permet d'avoir un semi-bold */
-    }
+    background-color: vars.$cream-color;
 }
 
 /* je vais partir sur le main maintenant */
@@ -61,49 +49,54 @@ header, footer {
 h1 {
     font-size: 24px;
     font-weight: bold;
+    color: vars.$brown-color;
+    text-align: center;
+    margin: 2%;
 
     @include mixin.desktop{
         font-size: 32px;
-        font-weight: bold;
     }
 }
 
 h2 {
     font-size: 20px;
     font-weight: bold;
-
-    @include mixin.desktop{
-        font-size: 20px;
-        font-weight: 600; /* ce code permet d'avoir un semi-bold */
-    }
-}
-
-.navHeaderFooter {
-    font-size: 16px;
-    font-weight: 600; /* ce code permet d'avoir un semi-bold */
-
-    @include mixin.desktop{
-        font-size: 16px;
-        font-weight: 600; /* ce code permet d'avoir un semi-bold */
-    }
-}
-
-.textSmallButton {
-    font-size: 15px;
-    font-weight: bold;
-
-    @include mixin.desktop{
-        font-size: 15px;
-        font-weight: bold;
-    }
-}
-
-.textBigButton {
-    font-size: 20px;
-    font-weight: bold;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    color: vars.$brown-color;
 
     @include mixin.desktop{
         font-size: 24px;
+    }
+}
+
+button {
+    color: vars.$cream-color;
+    background-color: vars.$blue-color;
+    padding: 0.7%;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 5px 5px 20px -5px black;
+    &:hover {
+        text-shadow: 0px 0px 20px black;
+    }
+}
+
+.button {
+    &_small {
         font-weight: bold;
     }
+
+    &_big {
+        font-size: 20px;
+        font-weight: bold;
+    
+        @include mixin.desktop{
+            font-size: 24px;
+        }
+    }
+}
+
+.hidden {
+    display: none;
 }

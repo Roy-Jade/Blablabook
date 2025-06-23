@@ -20,7 +20,7 @@ export default function BookMini() {
                 <input type="checkbox" id='isShared' name='isShared'/>
                 <label htmlFor="isShared">Partagé</label>
             </div>
-            <button className='connected not_owned'>Ajouter</button>
+            <button className='button_small connected not_owned'>Ajouter</button>
         </article>
     )
 }

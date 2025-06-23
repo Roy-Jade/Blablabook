@@ -1,0 +1,16 @@
+@use '../../../public/scss/vars';
+@use '../../../public/scss/mixin';
+
+.footer {
+    background-color: vars.$brown-color;
+    color: vars.$cream-color;
+    display: flex;
+    justify-content: space-around;
+    padding: 2%;
+
+    * {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+    }
+}

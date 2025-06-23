@@ -1,0 +1,39 @@
+@use '../../../public/scss/vars';
+@use '../../../public/scss/mixin';
+
+.header {
+    background-color: vars.$brown-color;
+    color: vars.$cream-color;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+
+    &__title {
+        font-size: 32px;
+        font-weight: bold;
+    
+        @include mixin.desktop {
+            font-size: 40px;
+            font-weight: 600; /* ce code permet d'avoir un semi-bold */
+        }
+    }
+
+    &__navigation {
+        width: 100%;
+        margin: 2%;
+        padding: 2%;
+        border: 3px solid vars.$cream-color;
+
+        font-weight: 600;
+        font-size: 16px;
+        color: vars.$cream-color;
+
+        * {
+            gap: 5%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+        }
+    }
+}
