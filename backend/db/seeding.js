@@ -15,7 +15,8 @@ import sequelize from '../config/db.js';  // Connexion à la base de données
 import { DataTypes } from 'sequelize';
 
 // ===== Modèle Livre =====
-const Livre = sequelize.define('Livre', {
+const Livre = sequelize.define('Livre', 
+{
   id_livre: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -47,6 +48,8 @@ const Livre = sequelize.define('Livre', {
     allowNull: false
   }
 });
+
+
 
 // ===== Modèle Utilisateur =====
 const Utilisateur = sequelize.define('Utilisateur', {
