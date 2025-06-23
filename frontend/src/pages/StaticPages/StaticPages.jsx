@@ -2,6 +2,7 @@ import MentionsLegale from "../../components/StaticPages/MentionsLegales";
 import CGU from "../../components/StaticPages/CGU";
 import Accessibite from "../../components/StaticPages/Accessibilite";
 import PolitiqueConfidentialite from "../../components/StaticPages/PolitiqueConfidentialite";
+import About from "../../components/StaticPages/About";
 
 export default function InformationsLegales(){
     const mentionsLegalesSections = [
@@ -83,6 +84,7 @@ export default function InformationsLegales(){
              <CGU sections={cguTerms}/>
              <Accessibite sections={accessibiteSections}/>
              <PolitiqueConfidentialite sections={mentionsLegalesSections}/>
+             <About/>
         </div>
     )
 
