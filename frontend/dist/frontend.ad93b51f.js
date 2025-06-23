@@ -26217,11 +26217,29 @@ function BookMini() {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
                 className: "bookmini__img",
-                src: "//:0",
-                alt: "Couverture du livre"
+                src: "https://covers.openlibrary.org/b/isbn/9782843440984.jpg",
+                alt: "Couverture du livre : La maison qui glissait"
             }, void 0, false, {
                 fileName: "src/components/BookMinis/BookMini/BookMini.jsx",
-                lineNumber: 12,
+                lineNumber: 18,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                className: "bookmini__img",
+                src: "https://covers.openlibrary.org/b/isbn/9782277124344.jpg",
+                alt: "Couverture du livre : bonheur insoutenable"
+            }, void 0, false, {
+                fileName: "src/components/BookMinis/BookMini/BookMini.jsx",
+                lineNumber: 19,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                className: "bookmini__img",
+                src: "https://covers.openlibrary.org/b/isbn/9782266114042.jpg",
+                alt: "Couverture du livre : Le cycle de Dune"
+            }, void 0, false, {
+                fileName: "src/components/BookMinis/BookMini/BookMini.jsx",
+                lineNumber: 20,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
@@ -26229,7 +26247,7 @@ function BookMini() {
                 children: "Le titre"
             }, void 0, false, {
                 fileName: "src/components/BookMinis/BookMini/BookMini.jsx",
-                lineNumber: 13,
+                lineNumber: 22,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("address", {
@@ -26237,7 +26255,7 @@ function BookMini() {
                 children: " L'auteur"
             }, void 0, false, {
                 fileName: "src/components/BookMinis/BookMini/BookMini.jsx",
-                lineNumber: 14,
+                lineNumber: 23,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -26245,7 +26263,7 @@ function BookMini() {
                 children: "\u2605 \u2605 \u2605 \u2605 \u2606"
             }, void 0, false, {
                 fileName: "src/components/BookMinis/BookMini/BookMini.jsx",
-                lineNumber: 15,
+                lineNumber: 24,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -26253,7 +26271,7 @@ function BookMini() {
                 children: "Voir le d\xe9tail"
             }, void 0, false, {
                 fileName: "src/components/BookMinis/BookMini/BookMini.jsx",
-                lineNumber: 16,
+                lineNumber: 25,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -26265,7 +26283,7 @@ function BookMini() {
                         name: "isRead"
                     }, void 0, false, {
                         fileName: "src/components/BookMinis/BookMini/BookMini.jsx",
-                        lineNumber: 18,
+                        lineNumber: 27,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
@@ -26273,7 +26291,7 @@ function BookMini() {
                         children: "Lu"
                     }, void 0, false, {
                         fileName: "src/components/BookMinis/BookMini/BookMini.jsx",
-                        lineNumber: 19,
+                        lineNumber: 28,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -26282,7 +26300,7 @@ function BookMini() {
                         name: "isShared"
                     }, void 0, false, {
                         fileName: "src/components/BookMinis/BookMini/BookMini.jsx",
-                        lineNumber: 20,
+                        lineNumber: 29,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
@@ -26290,13 +26308,13 @@ function BookMini() {
                         children: "Partag\xe9"
                     }, void 0, false, {
                         fileName: "src/components/BookMinis/BookMini/BookMini.jsx",
-                        lineNumber: 21,
+                        lineNumber: 30,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/BookMinis/BookMini/BookMini.jsx",
-                lineNumber: 17,
+                lineNumber: 26,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -26304,7 +26322,7 @@ function BookMini() {
                 children: "Ajouter"
             }, void 0, false, {
                 fileName: "src/components/BookMinis/BookMini/BookMini.jsx",
-                lineNumber: 23,
+                lineNumber: 32,
                 columnNumber: 13
             }, this)
         ]
@@ -30031,7 +30049,10 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _reactRouter = require("react-router");
 // Import du [Composant].scss
 var _bookScss = require("./Book.scss");
-//Fonction permettant de convertir et efficher le HTML des étoiles sera reprsi los de la mise en place du scss
+// Import du carrousel bookmini
+var _bookMini = require("../../components/BookMinis/BookMini/BookMini");
+var _bookMiniDefault = parcelHelpers.interopDefault(_bookMini);
+//Fonction permettant de convertir et d'afficher le HTML des étoiles. Sera annulée lors de la mise en place du scss
 function convertHTMLStar(text) {
     const textarea = document.createElement("textarea");
     textarea.innerHTML = text;
@@ -30070,99 +30091,142 @@ function Book() {
                 children: "D\xe9tail du livre"
             }, void 0, false, {
                 fileName: "src/pages/Book/Book.jsx",
-                lineNumber: 43,
+                lineNumber: 45,
                 columnNumber: 13
             }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                src: "../../..public/img/cover_Ira_Levin",
-                alt: "Book's cover : Un bonheur insoutenable"
-            }, void 0, false, {
-                fileName: "src/pages/Book/Book.jsx",
-                lineNumber: 46,
-                columnNumber: 13
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                children: "Moyenne des notes \u2B50 \u2B50 \u2B50 \u2B50 \u2729"
-            }, void 0, false, {
-                fileName: "src/pages/Book/Book.jsx",
-                lineNumber: 59,
-                columnNumber: 13
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouter.Link), {
-                    to: "/personnalLibrary",
-                    children: "Ajouter \xe0 mes livres"
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("section", {
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                    className: "book__img",
+                    src: "https://covers.openlibrary.org/b/isbn/9782277124344.jpg",
+                    alt: "Book's cover : Un bonheur insoutenable"
                 }, void 0, false, {
                     fileName: "src/pages/Book/Book.jsx",
-                    lineNumber: 61,
-                    columnNumber: 21
+                    lineNumber: 50,
+                    columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "src/pages/Book/Book.jsx",
-                lineNumber: 61,
+                lineNumber: 47,
                 columnNumber: 13
             }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                children: "Commentaires"
-            }, void 0, false, {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("section", {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                        children: "Notre suggestion de livres"
+                    }, void 0, false, {
+                        fileName: "src/pages/Book/Book.jsx",
+                        lineNumber: 64,
+                        columnNumber: 17
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _bookMiniDefault.default), {}, void 0, false, {
+                        fileName: "src/pages/Book/Book.jsx",
+                        lineNumber: 67,
+                        columnNumber: 17
+                    }, this)
+                ]
+            }, void 0, true, {
                 fileName: "src/pages/Book/Book.jsx",
                 lineNumber: 63,
                 columnNumber: 13
             }, this),
-            comments.map((comment, index)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        children: [
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("strong", {
-                                    children: comment.pseudonyme
-                                }, void 0, false, {
-                                    fileName: "src/pages/Book/Book.jsx",
-                                    lineNumber: 68,
-                                    columnNumber: 30
-                                }, this)
-                            }, void 0, false, {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("section", {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                        children: "Moyenne des notes \u2B50 \u2B50 \u2B50 \u2B50 \u2729"
+                    }, void 0, false, {
+                        fileName: "src/pages/Book/Book.jsx",
+                        lineNumber: 72,
+                        columnNumber: 17
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouter.Link), {
+                            to: "/personnalLibrary",
+                            children: "Ajouter \xe0 mes livres"
+                        }, void 0, false, {
+                            fileName: "src/pages/Book/Book.jsx",
+                            lineNumber: 74,
+                            columnNumber: 25
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "src/pages/Book/Book.jsx",
+                        lineNumber: 74,
+                        columnNumber: 17
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "src/pages/Book/Book.jsx",
+                lineNumber: 70,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("article", {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                        children: "Commentaires"
+                    }, void 0, false, {
+                        fileName: "src/pages/Book/Book.jsx",
+                        lineNumber: 78,
+                        columnNumber: 17
+                    }, this),
+                    comments.map((comment, index)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("strong", {
+                                            children: comment.pseudonyme
+                                        }, void 0, false, {
+                                            fileName: "src/pages/Book/Book.jsx",
+                                            lineNumber: 83,
+                                            columnNumber: 34
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "src/pages/Book/Book.jsx",
+                                        lineNumber: 83,
+                                        columnNumber: 29
+                                    }, this),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("strong", {
+                                            children: comment.date
+                                        }, void 0, false, {
+                                            fileName: "src/pages/Book/Book.jsx",
+                                            lineNumber: 84,
+                                            columnNumber: 34
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "src/pages/Book/Book.jsx",
+                                        lineNumber: 84,
+                                        columnNumber: 29
+                                    }, this),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        children: convertHTMLStar(comment.note)
+                                    }, void 0, false, {
+                                        fileName: "src/pages/Book/Book.jsx",
+                                        lineNumber: 85,
+                                        columnNumber: 29
+                                    }, this),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        children: comment.commentaire
+                                    }, void 0, false, {
+                                        fileName: "src/pages/Book/Book.jsx",
+                                        lineNumber: 86,
+                                        columnNumber: 29
+                                    }, this)
+                                ]
+                            }, void 0, true, {
                                 fileName: "src/pages/Book/Book.jsx",
-                                lineNumber: 68,
-                                columnNumber: 25
-                            }, this),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("strong", {
-                                    children: comment.date
-                                }, void 0, false, {
-                                    fileName: "src/pages/Book/Book.jsx",
-                                    lineNumber: 69,
-                                    columnNumber: 30
-                                }, this)
-                            }, void 0, false, {
-                                fileName: "src/pages/Book/Book.jsx",
-                                lineNumber: 69,
-                                columnNumber: 25
-                            }, this),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                children: convertHTMLStar(comment.note)
-                            }, void 0, false, {
-                                fileName: "src/pages/Book/Book.jsx",
-                                lineNumber: 70,
-                                columnNumber: 25
-                            }, this),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                children: comment.commentaire
-                            }, void 0, false, {
-                                fileName: "src/pages/Book/Book.jsx",
-                                lineNumber: 71,
+                                lineNumber: 82,
                                 columnNumber: 25
                             }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "src/pages/Book/Book.jsx",
-                        lineNumber: 67,
-                        columnNumber: 21
-                    }, this)
-                }, index, false, {
-                    fileName: "src/pages/Book/Book.jsx",
-                    lineNumber: 66,
-                    columnNumber: 17
-                }, this))
+                        }, index, false, {
+                            fileName: "src/pages/Book/Book.jsx",
+                            lineNumber: 81,
+                            columnNumber: 21
+                        }, this))
+                ]
+            }, void 0, true, {
+                fileName: "src/pages/Book/Book.jsx",
+                lineNumber: 77,
+                columnNumber: 13
+            }, this)
         ]
     }, void 0, true);
 }
@@ -30175,6 +30239,6 @@ $RefreshReg$(_c, "Book");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","react-router":"2jawN","./Book.scss":"7Ep2n","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi"}],"7Ep2n":[function() {},{}]},["hiyDA","gYcKb"], "gYcKb", "parcelRequire10c2", {}, null, null, "http://localhost:1234")
+},{"react/jsx-dev-runtime":"dVPUn","react-router":"2jawN","./Book.scss":"7Ep2n","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7h6Pi","../../components/BookMinis/BookMini/BookMini":"fmWF2"}],"7Ep2n":[function() {},{}]},["hiyDA","gYcKb"], "gYcKb", "parcelRequire10c2", {}, null, null, "http://localhost:1234")
 
 //# sourceMappingURL=frontend.ad93b51f.js.map
