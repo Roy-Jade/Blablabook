@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 export default function Register() {
     return (
       <div>
@@ -5,27 +6,27 @@ export default function Register() {
         <form>
           <div>
             <label htmlFor="pseudo">Pseudo</label>
-            <input type="text" id="pseudo" name="pseudo" />
+            <input type="text" id="pseudo" name="pseudo"  placeholder="exemple: MariziaBook" required/>
           </div>
   
           <div>
             <label htmlFor="email">Adresse e-mail</label>
-            <input type="email" id="email" name="email" />
+            <input type="email" id="email" name="email"  placeholder="exemple: Marizia99@gmail.com" required/>
           </div>
   
           <div>
             <label htmlFor="password">Mot de passe</label>
-            <input type="password" id="password" name="password" />
+            <input type="password" id="password" name="password" placeholder="nouha@2021" required />
           </div>
   
           <div>
             <label htmlFor="confirmPassword">Confirmer le mot de passe</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" />
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="nouha@2021" required />
           </div>
   
           <div>
             <label htmlFor="terms">
-              <input type="checkbox" id="terms" name="terms" />
+              <input type="checkbox" id="terms" name="terms" required/>
               J'accepte les termes et les conditions
             </label>
           </div>
@@ -34,9 +35,9 @@ export default function Register() {
   
           <p>
             Déjà un compte ?
-            <button type="submit" >
+            <Link to="/login" >
               Se connecter
-            </button>
+            </Link>
           </p>
         </form>
       </div>

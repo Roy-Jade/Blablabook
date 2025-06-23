@@ -6,12 +6,12 @@ export default function Login() {
   
           <div>
             <label htmlFor="email">Adresse e-mail</label>
-            <input type="email" id="email" name="email" />
+            <input type="email" id="email" name="email" placeholder="exemple: Marizia99@gmail.com" required/>
           </div>
   
           <div>
             <label htmlFor="password">Mot de passe</label>
-            <input type="password" id="password" name="password" />
+            <input type="password" id="password" name="password" placeholder="nouha@2021" required/>
           </div>
           <div>
             <a

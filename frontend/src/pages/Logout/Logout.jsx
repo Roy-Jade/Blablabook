@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 export default function Logout(){
     return(
         <>
@@ -5,9 +6,10 @@ export default function Logout(){
 
 
             <div>
-                <button type="submit" >
-                Se reconnecter
-                </button>
+            <Link to="/login" >
+              Se reconnecter
+            </Link> 
+        
             </div>
         </>
     );
