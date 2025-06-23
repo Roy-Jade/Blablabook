@@ -1,25 +1,25 @@
-// ===== Chargement du fichier .env situé à la racine du projet =====
+// j'importe le Pool depuis le module 'pg' => ça me sert à gérer les connexions à ma base PostgreSQL
+import { Pool } from 'pg';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { Sequelize } from 'sequelize';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Chargement du .env
+// Charge les variables d'environnement depuis le .env
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
-// ===== Connexion Sequelize à la bdd PostgreSQL (en utilisant les vleurs définies ds mon .env) =====
-const sequelize = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USER,
-  process.env.DB_PASSWORD,
-  {
-    host: process.env.DB_HOST,
-    dialect: 'postgres',
-    port: process.env.DB_PORT
-  }
-);
+// Sert à gérer les connexions PSQL (optimisation et requêtes)
+const pool = new Pool({
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.DB_NAME,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+});
 
-export default sequelize;
+// Export de la méthode query()
+export default {
+  query: (text, params) => pool.query(text, params),
+};
