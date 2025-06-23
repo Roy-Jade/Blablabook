@@ -1,5 +1,5 @@
-@use '_mixin';
-@use '_font';
+@use './mixin';
+@use './font';
 
 /* Je prépare le terrain
 
@@ -31,7 +31,7 @@ $red-color: #6e2c36;
 
 /* Ensuite, je vais mettre mes variables aux éléments que j'ai besoin pour faire ma mise en page de mon site */
 
-main {
+body {
     background-color: $cream-color;
 }
 
