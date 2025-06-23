@@ -9,16 +9,7 @@ import './BookMini.scss';
 export default function BookMini() {
     return(
         <article className='bookmini'>
-            {/*test import des covers via l'api open library 
-             <img className='bookmini__img' src="//:0" alt="Couverture du livre" />
-             Exemple : La maison qui glissait  -> ISBN 9782843440984
-                       Un bonheur insoutenable -> ISBN 9782277124344
-                       Le cycle de Dune        -> ISBN 9782266114042 
-             */}
-            <img className='bookmini__img' src="https://covers.openlibrary.org/b/isbn/9782843440984.jpg" alt="Couverture du livre : La maison qui glissait" />
-            <img className='bookmini__img' src="https://covers.openlibrary.org/b/isbn/9782277124344.jpg" alt="Couverture du livre : bonheur insoutenable" />
-            <img className='bookmini__img' src="https://covers.openlibrary.org/b/isbn/9782266114042.jpg" alt="Couverture du livre : Le cycle de Dune" />
-
+            <img className='bookmini__img' src="//:0" alt="Couverture du livre" />
             <h2 className='bookmini__title'>Le titre</h2>
             <address className='bookmini__author'> L'auteur</address>
             <div className='bookmini__note'>&#9733; &#9733; &#9733; &#9733; &#9734;</div>

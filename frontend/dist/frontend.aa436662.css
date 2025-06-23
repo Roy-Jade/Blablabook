@@ -1,8 +1,4 @@
 @import "https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap";
-.bookmini__img {
-  max-width: 10%;
-}
-
 main {
   background-color: #faf7ee;
 }
@@ -86,9 +82,5 @@ h2 {
     font-size: 24px;
     font-weight: bold;
   }
-}
-
-.book__img {
-  max-width: 20%;
 }
 /*# sourceMappingURL=frontend.aa436662.css.map */
