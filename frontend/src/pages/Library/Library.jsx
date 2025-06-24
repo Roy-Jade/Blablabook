@@ -1,5 +1,5 @@
 // On importe notre [Composant].scss
-import BookMini from '../../components/BookMinis/BookMini/BookMini';
+import BookMinis from '../../components/BookMinis/BookMinis';
 import Sort from '../../components/Sort/Sort';
 import './Library.scss';
 
@@ -13,8 +13,14 @@ export default function Library() {
         <>
             {/* Commencer à modifier ici */}
             <h1>Bibliothèque</h1>
-            <Sort/>
-            <BookMini/>
+            <div className='library'>
+                <Sort/>
+                <div>
+                    <BookMinis/>
+                    <BookMinis/>
+                    <BookMinis/>
+                </div>
+            </div>
             {/* Finir de modifier ici */}
         </>
     )

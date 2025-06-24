@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "1.0.0",
   "scripts": {
-    "start": "parcel index.html",
+    "start": "parcel src/index.html",
     "build": "parcel build"
   },
   "keywords": [],

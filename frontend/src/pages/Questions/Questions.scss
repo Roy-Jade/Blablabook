@@ -1,0 +1,16 @@
+@use '../../../static/scss/vars';
+
+.question {
+    margin: 1%;
+    p:first-child {
+        padding: 1%;
+        font-weight: 600;
+        border: 1px solid vars.$brown-color;
+    }
+    p:nth-child(2) {
+        padding: 1%;
+        border-right: 1px solid vars.$brown-color;
+        border-left: 1px solid vars.$brown-color;
+        border-bottom: 1px solid vars.$brown-color;
+    }
+}

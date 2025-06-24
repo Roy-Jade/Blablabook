@@ -6,21 +6,29 @@ import './BookMini.scss';
 // On, doit enfin exporter la fonction en default sous le nom de notre composant
 
 // L'écriture ci-dessus permet de faire la fonction et de l'exporter en même temps
-export default function BookMini() {
+export default function BookMini({ISBN}) {
     return(
         <article className='bookmini'>
-            <img className='bookmini__img' src="//:0" alt="Couverture du livre" />
-            <h2 className='bookmini__title'>Le titre</h2>
-            <address className='bookmini__author'> L'auteur</address>
-            <div className='bookmini__note'>&#9733; &#9733; &#9733; &#9733; &#9734;</div>
-            <button className='button_small'>Voir le détail</button>
-            <div className='connected owned'>
-                <input type="checkbox" id='isRead' name='isRead'/>
-                <label htmlFor="isRead">Lu</label>
-                <input type="checkbox" id='isShared' name='isShared'/>
-                <label htmlFor="isShared">Partagé</label>
+            <img className='bookmini__img' src={"https://covers.openlibrary.org/b/isbn/"+ISBN+"-M.jpg"} alt="Couverture" />
+            <div>
+                <div className='bookmini__infos'>
+                    <cite className='bookmini__title'>Dune</cite>
+                    <address className='bookmini__author'>de Franck Herbert</address>
+                </div>
+                <div className='bookmini__note'>&#9733; &#9733; &#9733; &#9733; &#9734;</div>
+                <button className='button button_small'>Voir le détail</button>
+                <div className='bookmini__booleans connected owned'>
+                    <div>
+                        <input type="checkbox" id='isRead' name='isRead'/>
+                        <label htmlFor="isRead">Lu</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id='isShared' name='isShared'/>
+                        <label htmlFor="isShared">Partagé</label>
+                    </div>
+                </div>
+                <button className='button button_small connected not_owned'>Ajouter</button>
             </div>
-            <button className='button_small connected not_owned'>Ajouter</button>
         </article>
     )
 }

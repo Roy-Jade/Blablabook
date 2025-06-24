@@ -1,15 +1,15 @@
 import {Link} from 'react-router';
 import './Header.scss';
-import logo_clair from '../../../public/img/logo_blablabook_clair.png';
-
 
 export default function Header() {
     return(
         <header className='header'>
-            <Link to="/">
-            <img src={logo_clair} alt="logo Blablabook - retour à l'accueil"/>
-            <p className='header__title'>BlablaBook</p>
-            </Link>
+            <div className='header_logo'>
+                <Link to="/">
+                <img src='/img/logo_blablabook_clair.png' alt="logo Blablabook - retour à l'accueil"></img>
+                <p className='header__title'>BlablaBook</p>
+                </Link>
+            </div>
                 <nav className='header__navigation'>
                     <ul>
                         <li><Link to="/">Accueil</Link></li>

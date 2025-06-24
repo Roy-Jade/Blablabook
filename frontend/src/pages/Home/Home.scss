@@ -1,2 +1,7 @@
-@use '../../../public/scss/vars';
-@use '../../../public/scss/mixin';
+@use '../../../static/scss/vars';
+@use '../../../static/scss/mixin';
+
+.carousel  {
+    display: flex;
+    justify-content: space-around;
+}
