@@ -132,6 +132,12 @@ img {
     max-width: 100%; // empêche les images de sortir de leur cadre
 }
 
+.label_title {
+    font-weight: bold;
+    font-family: font.$font-title;
+    margin-bottom: 1%;
+}
+
 .hidden {
     display: none;
 }
