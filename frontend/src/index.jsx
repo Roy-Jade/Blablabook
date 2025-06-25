@@ -17,7 +17,7 @@ import StaticPages from './pages/StaticPages/StaticPages';
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 
-import './scss/index.scss';
+import '../public/scss/index.scss';
 
 createRoot(document.getElementById('root')).render(
     <BrowserRouter>
