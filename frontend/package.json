@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "1.0.0",
   "scripts": {
-    "start": "parcel index.html",
+    "start": "parcel src/index.html",
     "build": "parcel build"
   },
   "keywords": [],
@@ -19,6 +19,7 @@
     "react-router-dom": "^7.6.2"
   },
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.15.2"
+    "@parcel/transformer-sass": "^2.15.2",
+    "parcel-reporter-static-files-copy": "^1.5.3"
   }
 }

@@ -9,7 +9,7 @@ import './Sort.scss';
 export default function Sort() {
     return(
         <div className='search-sort'>
-            <section>
+            <section className='search'>
                 <h2 className='search-sort__title'>Recherche</h2>
                 <form action="">
                     <div>
@@ -22,21 +22,33 @@ export default function Sort() {
                     </div>
                 </form>
             </section>
-            <section>
+            <section className='sort'>
                 <h2 className='search-sort__title'>Tri</h2>
                 <form>
-                    <input type="radio" id='a-z-title' name='sort' value='Titre - A à Z'/>
-                    <label htmlFor="a-z-title">Titre - A à Z</label>
-                    <input type="radio" id='z-a-title' name='sort' value='Titre - Z à A' />
-                    <label htmlFor="z-a-title">Titre - Z à A</label>
-                    <input type="radio" id='a-z-author' name='sort' value='Auteur - A à Z' />
-                    <label htmlFor="a-z-author">Auteur - A à Z</label>
-                    <input type="radio" id='z-a-author' name='sort' value='Auteur - Z à A' />
-                    <label htmlFor="z-a-author">Auteur - Z à A</label>
-                    <input type="radio" id='page-up' name='sort' value='Nombre de page croissante' />
-                    <label htmlFor="page-up">Nombre de page croissante</label>
-                    <input type="radio" id='page-down' name='sort' value='Nombre de page décroissante' />
-                    <label htmlFor="page-down">Nombre de page décroissante</label>
+                    <div>
+                        <input type="radio" id='a-z-title' name='sort' value='Titre - A à Z'/>
+                        <label htmlFor="a-z-title">Titre - A à Z</label>
+                    </div>
+                    <div>
+                        <input type="radio" id='z-a-title' name='sort' value='Titre - Z à A' />
+                        <label htmlFor="z-a-title">Titre - Z à A</label>
+                    </div>
+                    <div>
+                        <input type="radio" id='a-z-author' name='sort' value='Auteur - A à Z' />
+                        <label htmlFor="a-z-author">Auteur - A à Z</label>
+                    </div>
+                    <div>
+                        <input type="radio" id='z-a-author' name='sort' value='Auteur - Z à A' />
+                        <label htmlFor="z-a-author">Auteur - Z à A</label>
+                    </div>
+                    <div>
+                        <input type="radio" id='page-up' name='sort' value='Pages croissante' />
+                        <label htmlFor="page-up">Pages croissante</label>
+                    </div>
+                    <div>
+                        <input type="radio" id='page-down' name='sort' value='Pages décroissante' />
+                        <label htmlFor="page-down">Pages décroissante</label>
+                    </div>
                 </form>
             </section>
         </div>

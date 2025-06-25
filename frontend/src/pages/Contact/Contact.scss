@@ -1,0 +1,32 @@
+@use '../../../static/scss/font';
+
+
+.contact {
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+
+        &>* {
+            margin-top: 2%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        &__checkbox {
+            flex-direction: row;
+        }
+
+        // &__label_text {
+        //     font-weight: bold;
+        //     font-family: font.$font-title;
+        //     margin-bottom: 1%;
+        // }
+
+        &>button {
+            margin-left: 0%;
+            width: 100%;
+            align-content: center;
+        }
+    }
+}

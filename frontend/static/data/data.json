@@ -61,16 +61,15 @@
     ],
     "accessibiteSections": [
         {
-            "title": "ACCESSIBILITÉ",
-            "content": "Cette page n’est pas une page d’aide. Elle vise à présenter la politique d’accessibilité du site elysee.fr et à définir le niveau d’accessibilité général constaté sur le site conformément aux référentiels et à la réglementation.",
-            "linkText": "https://www.elysee.fr/accessibilite"
+            "title": "Présentation",
+            "content": "Cette page n’est pas une page d’aide. Elle vise à présenter la politique d’accessibilité du site blablabook.fr et à définir le niveau d’accessibilité général constaté sur le site conformément aux référentiels et à la réglementation."
           },
           {
             "title": "Qu’est-ce que l’accessibilité numérique ?",
-            "content": "Un site web accessible est un site qui permet à tous les internautes d’accéder à ses contenus sans difficulté, y compris aux personnes qui présentent un handicap et utilisent des logiciels ou matériels spécialisés.\n\nUn site accessible permet par exemple de :\n- Naviguer avec des synthèses vocales ou des plages braille (notamment utilisées par les internautes aveugles ou malvoyants)."
+            "content": "Un site web accessible est un site qui permet à tous les internautes d’accéder à ses contenus sans difficulté, y compris aux personnes qui présentent un handicap et utilisent des logiciels ou matériels spécialisés.\n\nUn site accessible permet par exemple de naviguer avec des synthèses vocales ou des plages braille (notamment utilisées par les internautes aveugles ou malvoyants)."
           },
           {
-            "footer": "Pour toute question relative aux présentes CGU, l’utilisateur peut nous contacter via la page Contact."
+            "footer": "Pour toute question relative aux présentes CGU, l’utilisateur peut nous contacter via la page"
           }
       ]
       
