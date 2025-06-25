@@ -6,6 +6,7 @@ export default function BookMini({book}) {
             <BookMini ISBN={book}/>
             <BookMini ISBN={book}/>
             <BookMini ISBN={book}/>
+            <BookMini ISBN={book}/>
         </>
     )
 }

@@ -1,5 +1,12 @@
 .library {
     display: flex;
 
-    max-width: 100%;
+    &__book-list {
+        display: flex;
+        flex-wrap: wrap;
+
+        &>* {
+            margin: 2%;
+        }
+    }
 }
