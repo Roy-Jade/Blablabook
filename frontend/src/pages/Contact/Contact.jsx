@@ -3,48 +3,43 @@ import {Link} from 'react-router';
 import './Contact.scss';
 
 export default function Contact() {
-    return(
-        <>
-            <h1>Nous contacter</h1>
+  return(
+    <>
+      <h1>Nous contacter</h1>
 
-            <form method="get" action="gestionDesEmail.html" >
+      <p className='contact_alert'>Votre message a bien été envoyé</p>
 
-            <div>
-                <label htmlFor="prenom">Prénom</label>
-                <input type="text" name="" id="prenom" placeholder="exemple : Marie" required/>
-            </div>
+      <form className='contact__form' method="get" action="gestionDesEmail.html" >
 
-            <div>
-                <label htmlFor="name">Nom *</label>
-                <input type="text" name="" id="name" placeholder="exemple : Dupont" required/>
-            </div>
+        <div>
+            <label className='contact__form__label_text' htmlFor="prenom">Prénom *</label>
+            <input type="text" name="" id="prenom" placeholder="exemple : Marie" required/>
+        </div>
 
-            <div>
-                <label htmlFor="email">Adresse E-mail *</label>
-                <input type="email" name="email" id="email" placeholder="Exemple : marie@dupont.com" required/>
-            </div>
+        <div>
+            <label className='contact__form__label_text' htmlFor="name">Nom *</label>
+            <input type="text" name="" id="name" placeholder="exemple : Dupont" required/>
+        </div>
 
-            <div>
-                <label htmlFor="notes">Message *</label>
-                <textarea name="notes" id="notes" rows="20" cols="20"></textarea>
-            </div>
+        <div>
+            <label className='contact__form__label_text' htmlFor="email">Adresse E-mail *</label>
+            <input type="email" name="email" id="email" placeholder="Exemple : marie@dupont.com" required/>
+        </div>
 
-            <div>
-                <input type="checkbox" name="valid" id="valid"/>
-                <label htmlFor="valid">J'accepte que mes données soient traitées conformément à la <Link to="/terms">politique de confidentialité</Link></label>
-            </div>
+        <div>
+            <label className='contact__form__label_text' htmlFor="notes">Message *</label>
+            <textarea name="notes" id="notes" rows="20" cols="20" required />
+        </div>
 
+        <div className='contact__form__checkbox'>
+            <input type="checkbox" name="valid" id="valid"/>
+            <label htmlFor="valid">J'accepte que mes données soient traitées conformément à la <Link className='text_link' to="/terms">politique de confidentialité</Link></label>
+        </div>
+        
+        {/*La soumission du formulaire renvoie vers un serveur distant, en charge de la gestion des emails, qui n'est pas prévu dans le projet actuel*/}
+        <button className='button button_big' classe="btn"  type="submit">Envoyer</button>
 
-             <div>
-            {/*La soumission du formulaire renvoie vers un serveur distant, en charge de la gestion des emails, qui n'est pas prévu dans le projet actuel*/}
-            <button classe="btn"  type="submit">Envoyer</button>
-              </div> 
-              <div>
-                <input type="checkbox" name="valid" id="valid"/>
-                <label htmlFor="valid">Votre message a bien été envoyé</label>
-            </div>
-
-         </form>
-        </>
-    )
+      </form>
+    </>
+  )
 }
