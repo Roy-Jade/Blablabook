@@ -1,0 +1,27 @@
+@use '../../../../static/scss/vars';
+
+.bookmini {
+    text-align: center;
+    line-height: 1.4;
+
+        &__img {
+            max-width: 90%;
+            max-height: 60%;
+            box-shadow: 5px 5px 20px black;
+        }
+
+        &__note {
+            font-size: 25px;
+            color: vars.$red-color;
+        }
+
+        &__booleans {
+            display: flex;
+            justify-content: space-around;
+        }
+}
+
+
+
+
+

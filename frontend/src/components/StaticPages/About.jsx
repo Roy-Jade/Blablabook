@@ -28,7 +28,7 @@ export default function About(){
         </section>
         <section>
         Pour en savoir plus sur nos services, consultez la page{" "}
-        <Link to="/contact">
+        <Link className="text_link" to="/contact">
           Contact
         </Link>
         </section>

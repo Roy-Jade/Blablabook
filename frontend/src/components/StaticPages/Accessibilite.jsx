@@ -1,16 +1,18 @@
+import {Link} from 'react-router';
+
 export default function Accessibite({ sections }){
     return (
         <section>
-            <h1> Accessibite</h1>
-            <p>Bienvennue sur notre site BlaBlaBook, Veuillez lire attentivement nos conditions générales d'utilisation avant d'utiliser</p>
+            <h1> Accessibité</h1>
+            <p>Bienvenue sur notre site BlaBlaBook, Veuillez lire attentivement nos <Link className='text_link' to='/privacy'>conditions générales d'utilisation</Link> avant d'utiliser le site.</p>
             <ol>
                 {sections.map((item, index) =>(
                     <div key={index}>
-                        <p><strong>{item.title}</strong></p>
+                        <h2>{item.title}</h2>
                         <p>{item.content}</p>
                         {item.footer && (
                             <p>
-                            {item.footer} <a href="/contact">Contact</a>.
+                            {item.footer} <Link className='text_link' to="/contact">Contact</Link>.
                             </p>
                         )}
                     </div>
