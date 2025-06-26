@@ -3,8 +3,13 @@ import './Footer.scss';
 
 export default function Footer() {
     return(
+<<<<<<< HEAD
         <>
                 <nav>
+=======
+        <footer className='footer'>
+            <nav className='footer__navigation'>
+>>>>>>> dev
                 <ul>
                     <li><Link to="/legal">Mentions légales</Link></li>
                     <li><Link to="/terms">Politique de confidentialité</Link></li>
@@ -13,6 +18,6 @@ export default function Footer() {
                     <li><Link to="/contact">Nous contacter</Link></li>
                 </ul>
             </nav>
-        </>
+        </footer>
     )
 }

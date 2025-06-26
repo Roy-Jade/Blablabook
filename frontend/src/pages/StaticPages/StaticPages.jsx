@@ -4,7 +4,7 @@ import Accessibite from "../../components/StaticPages/Accessibilite";
 import PolitiqueConfidentialite from "../../components/StaticPages/PolitiqueConfidentialite";
 import About from "../../components/StaticPages/About";
 import { useLocation } from "react-router";
-import data from '../../../public/Data/data.json'
+import data from '../../../static/data/data.json'
 
 export default function StaticPages(){
     const location = useLocation();

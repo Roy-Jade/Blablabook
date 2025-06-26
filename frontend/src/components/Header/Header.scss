@@ -1,0 +1,124 @@
+@use '../../../static/scss/vars';
+@use '../../../static/scss/mixin';
+@use '../../../static/scss/font';
+
+.header {
+    background-color: vars.$brown-color;
+    color: vars.$cream-color;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    font-family: font.$font-title;
+    padding: 2%;
+    position: relative;
+
+    &_logo {
+        margin: 1%;
+        &>* {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            img {
+                width: 60px;
+                border-radius: 40px;
+            }
+        }
+    }
+    
+        
+
+    &__title {
+        font-size: 32px;
+        font-weight: bold;
+    
+        @include mixin.desktop {
+            font-size: 40px;
+            font-weight: 600; /* ce code permet d'avoir un semi-bold */
+        }
+    }
+
+    &__navigation {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        font-weight: 600;
+        font-size: 16px;
+        color: vars.$cream-color;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: vars.$brown-color;
+
+        @include mixin.desktop {
+            flex-direction: row;
+            margin: 2%;
+            padding: 2%;
+            width: 70%;
+            border: 3px solid vars.$cream-color;
+            position: relative;
+            top: 0%;
+        }
+
+        &>* {
+            width: 100%;
+            padding: 1%;
+            border-top: 1px solid vars.$cream-color;
+            @include mixin.desktop {
+                padding: 0%;
+                border-top: none;
+            }
+        }
+
+        &__account-icon {
+            display: none;
+            @include mixin.desktop {
+                display: block;
+                background-color: vars.$brown-color;
+                border: none;
+            }
+            &>img{
+                width: 30px;
+            }
+        }
+
+        &__account-link {
+            display: flex;
+            flex-direction: column;
+            padding: 0%;
+            border: none;
+            @include mixin.desktop {
+                position: absolute;
+                top: 80%;
+                left: 83%;
+                width: auto;
+                padding: 1%;
+                background-color: vars.$brown-color;
+                border: 1px solid vars.$cream-color;
+            }
+
+            &>* {
+                padding: 1%;
+                border-top: 1px solid vars.$cream-color;
+                @include mixin.desktop {
+                    border-top: none;
+                    &:first-child {
+                        padding-bottom: 15%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.burger {
+    background-color: vars.$brown-color;
+    margin-right: 2%;
+    width: 40px;
+
+    @include mixin.desktop {
+        display: none;
+    }
+}
