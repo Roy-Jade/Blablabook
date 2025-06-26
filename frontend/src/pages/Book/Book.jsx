@@ -2,7 +2,7 @@ import { Link } from 'react-router';
 // Import du [Composant].scss
 import './Book.scss';
 // Import du carrousel bookmini
-import BookMini from '../../components/BookMinis/BookMini/BookMini';
+import BookMinis from '../../components/BookMinis/BookMinis';
 
 
 //Fonction permettant de convertir et d'afficher le HTML des étoiles. Sera annulée lors de la mise en place du scss
@@ -64,7 +64,7 @@ export default function Book() {
                 <h2>Notre suggestion de livres</h2>
 
                 {/* Composant permettant l'affichage du carrousel identique à la page d'accueil */}
-                <BookMini />
+                <BookMinis />
             </section>
 
             <section>

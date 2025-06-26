@@ -9,27 +9,6 @@ import './BookMini.scss';
 export default function BookMini({ISBN}) {
     return(
         <article className='bookmini'>
-<<<<<<< HEAD
-            {/*test import des covers via l'api open library 
-             <img className='bookmini__img' src="//:0" alt="Couverture du livre" />
-             Exemple : La maison qui glissait  -> ISBN 9782843440984
-                       Un bonheur insoutenable -> ISBN 9782277124344
-                       Le cycle de Dune        -> ISBN 9782266114042 
-             */}
-            <img className='bookmini__img' src="https://covers.openlibrary.org/b/isbn/9782843440984.jpg" alt="Couverture du livre : La maison qui glissait" />
-            <img className='bookmini__img' src="https://covers.openlibrary.org/b/isbn/9782277124344.jpg" alt="Couverture du livre : bonheur insoutenable" />
-            <img className='bookmini__img' src="https://covers.openlibrary.org/b/isbn/9782266114042.jpg" alt="Couverture du livre : Le cycle de Dune" />
-
-            <h2 className='bookmini__title'>Le titre</h2>
-            <address className='bookmini__author'> L'auteur</address>
-            <div className='bookmini__note'>&#9733; &#9733; &#9733; &#9733; &#9734;</div>
-            <button className='button_small'>Voir le détail</button>
-            <div className='connected owned'>
-                <input type="checkbox" id='isRead' name='isRead'/>
-                <label htmlFor="isRead">Lu</label>
-                <input type="checkbox" id='isShared' name='isShared'/>
-                <label htmlFor="isShared">Partagé</label>
-=======
             <img className='bookmini__img' src={"https://covers.openlibrary.org/b/isbn/"+ISBN+"-M.jpg"} alt="Couverture" />
             <div>
                 <div className='bookmini__infos'>
@@ -49,7 +28,6 @@ export default function BookMini({ISBN}) {
                     </div>
                 </div>
                 <button className='button button_small connected not_owned'>Ajouter</button>
->>>>>>> dev
             </div>
         </article>
     )
