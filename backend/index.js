@@ -1,6 +1,7 @@
 import express from 'express';
 import * as dotenv from 'dotenv';
-// import router from './backend/routers/router.js';
+import session from 'express-session';
+import router from './app/router.js';
 
 dotenv.config();
 
@@ -9,22 +10,24 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 
-// const path = require("path");
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'unMotDePasseUltraSecret123',
+  resave: true,
+  saveUninitialized: true
+}));
+
+app.use((req, res, next) => {
+  res.locals.session = req.session;
+  next();
+});
 
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
 app.use(express.static('../frontend/public'));
 
-// Partie qui sera remplacée quand les fichiers des routes seront faits :
-const router = express.Router();
-router.get('/', (req, res) => {
-    res.render('index')
-});
-// Fin de la partie qui sera remplacée
-
 app.use(router);
 
 app.listen(port, () => {
-    console.log(`Serveur sur http://localhost:${port}/`);
-  });
+  console.log(`✅ Serveur lancé sur http://localhost:${port}`);
+});

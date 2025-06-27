@@ -1,3 +1,4 @@
+
 // j'importe le Pool depuis le module 'pg' => ça me sert à gérer les connexions à ma base PostgreSQL
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
@@ -19,7 +20,7 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
 });
 
-// Export de la méthode query()
+// Export de la méthode query() pour faire des requêtes 
 export default {
   query: (text, params) => pool.query(text, params),
 };
