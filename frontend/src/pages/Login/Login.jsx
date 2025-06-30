@@ -1,66 +1,67 @@
 import { useEffect, useState } from "react";
 import api from "../../../api";
 
-export default function Login({email, password}) {
+export default function Login() {
 
   if(typeof token !== 'undefined') {
     console.log("Token JWT : "+token)
   } else {console.log("Pas de token")}
 
-  // function login() {
-  //   const login = async () => {
-  //     try {
-  //       const response = await api.post('/login', { email, password });
-  //       localStorage.setItem('token', response.data.token);
-  //       setUser(response.data.user);
-  //     } catch (error) {
-  //       console.error(error.response.data);
-  //     }
-  //   };
-  // }
-  useEffect(() => {
-    const login = async () => {
-      try {
-        const response = await api.post('/login', { email, password });
-        localStorage.setItem('token', response.data.token);
-        setUser(response.data.user);
-      } catch (error) {
-        console.error(error.response.data);
-      }
-    };
-
-    login();
-  },[email, password]);
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   // ici on appelle la fonction login du store avec les valeurs du form
-  //   login(username, password)
-  //   // notez ici la redirection vers la page d'accueil
-  //   return navigate('/')
-  // }
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  
+    
+  const login = async () => {
+    console.log("Fonction login initialisée")
+    try {
+      console.log("Test de réponse...")
+      const response = await api.post('/login', { email, password });
+      localStorage.setItem('token', response.data.token);
+      setUser(response.data.user);
+      console.log("Réponse envoyée : "+response)
+    } catch (error) {
+      console.error(error.response.data);
+    }
+  };
+
+  // useEffect(() => {
+    // const login = async () => {
+    //   try {
+    //     const response = await api.post('/login', { email, password });
+    //     localStorage.setItem('token', response.data.token);
+    //     setUser(response.data.user);
+    //   } catch (error) {
+    //     console.error(error.response.data);
+    //   }
+    // };
+
+  //   login();
+  // },[email, password]);
+
+  const handleSubmit = (e) => {
+    console.log("Formulaire envoyé")
+    e.preventDefault()
+    login()
+    console.log(`Mail : ${email} et MDP : ${password}`)
+  }
   
   return (
     <div>
       <h1>Connexion</h1>
-      <form method="post" 
-      // onSubmit={(e) => login(e)}
-      >
+      <form method="post" onSubmit={(e) => handleSubmit(e)}>
 
-        <div>
+        <fieldset>
           <label htmlFor="email">Adresse e-mail</label>
           <input type="email" id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="exemple: Marizia99@gmail.com" required/>
-        </div>
+        </fieldset>
 
-        <div>
+        <fieldset>
           <label htmlFor="password">Mot de passe</label>
           <input type="password" id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="nouha@2021" required/>
-        </div>
+        </fieldset>
 
-        <div>
+        <fieldset>
           <a
           href="#"
           onClick={(e) =>{
@@ -70,14 +71,14 @@ export default function Login({email, password}) {
           >
           Mot de passe oublié ?
           </a>
-        </div>
+        </fieldset>
 
-        <div>
+        <fieldset>
           <label htmlFor="terms">
             <input type="checkbox" id="terms" name="terms" />
             Se souvenir de moi
           </label>
-        </div>
+        </fieldset>
 
         <button type="submit">Se connecter</button>
 

@@ -8,7 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Charge les variables d'environnement depuis le .env
-dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 // Sert à gérer les connexions PSQL (optimisation et requêtes)
 const pool = new Pool({
@@ -16,6 +16,7 @@ const pool = new Pool({
   port: process.env.DB_PORT,
   database: process.env.DB_NAME,
   user: process.env.DB_USER,
+  // user_password: process.env.DB_USER_PASSWORD,
   password: process.env.DB_PASSWORD,
 });
 
