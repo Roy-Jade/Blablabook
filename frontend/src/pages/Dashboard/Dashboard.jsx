@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import './Dashboard.scss'
 
 export default function Dashboard(){
 
@@ -90,18 +91,19 @@ export default function Dashboard(){
                 {message}
             </div>
          )}
-        <div>
-            Pseudonyme utilisateur
+        <div className="Pseudo-user">
+            <p>Pseudonyme utilisateur</p>
             <p>xXx_SuperLecteur_xXx</p>
         </div>
 
-        <div>
-            Email utilisateur
+        <div className="Email-user">
+            <p>Email utilisateur</p>
             <p>{email}</p>
-            <button type="button" onClick={()=> setShowEmailSection(!showEmailSection)}>Changer l'email</button>
+        </div>
+            <button className="button button_medium" type="button" onClick={()=> setShowEmailSection(!showEmailSection)}>Changer l'email</button>
 
             {showEmailSection && (
-                <section>
+                <section className="email-section">
                     <div>
                     <input type="email" name="currentEmail" placeholder="Ancien mail" onChange={(e) => setCurrentEmail(e.target.value)}/>
                     </div>
@@ -111,14 +113,17 @@ export default function Dashboard(){
                     <div>
                     <input type="email" name="confirmEmail" placeholder="Confirmer le mail" onChange={(e) =>setConfirmEmail(e.target.value)}/>
                     </div>
-                    <button type="submit" onClick={handleEmailChange}>Confirmer le changement</button>
+                    <div>
+                    <button className="button button_medium" type="submit" onClick={handleEmailChange}>Confirmer</button>
+
+                    </div>
                 </section>
             )}
-        </div>
+
         <div>
-            <button type="button" onClick={()=>setShowPasswordSection(!showPasswordSection)}>Changer le mot de passe</button>
+            <button  className="button button_medium" type="button" onClick={()=>setShowPasswordSection(!showPasswordSection)}>Changer le mot de passe</button>
             {showPasswordSection && (
-                <section>
+                <section className="Password-section">
                     <p>*Règles de rédaction de mot de passe</p>
                     <div>
                     <input type="password" name="currentPassword" placeholder="Ancien mot de passe" onChange={(e) => setCurrentPassword(e.target.value)}/>
@@ -129,7 +134,7 @@ export default function Dashboard(){
                     <div>
                     <input type="password" name="confirmPassword" placeholder="Confirmer le mot de passe" onChange={(e) =>setConfirmPassword(e.target.value)}/>
                     </div>
-                    <button type="submit" onClick={handlePasswordChange}>Confirmer le changement</button>
+                    <button className="button button_medium" type="submit" onClick={handlePasswordChange}>Confirmer</button>
                 </section>
             )}
         </div>
@@ -141,7 +146,7 @@ export default function Dashboard(){
             <input type="password" value={deletePassword} placeholder="Entrez votre mot de passe pour confirmer" onChange={(e)=> setDeletePassword(e.target.value)}/>
             )}
             {!isAccountDeleted &&(
-            <button type="submit" style={{ backgroundColor: "red" }} onClick={handleDeleteCompte}>Supprimer le compte</button>
+            <button className="button button_medium"type="submit" style={{ backgroundColor: "red" }} onClick={handleDeleteCompte}>Supprimer le compte</button>
             )}
             </div>
         </>
