@@ -7,7 +7,7 @@ function toggleDisplay(e, id) {
 // Affiche le menu si la fenêtre fait plus de 992px.
 window.addEventListener('load', () => {
     if(window.innerWidth>=992) {
-        document.getElementById("header_navbar").classList.remove("hidden")
+        document.getElementById("header_navbar").classList.remove("hidden");
         document.getElementById("header_navbar_account").classList.add("hidden");
     } else {
         document.getElementById("header_navbar").classList.add("hidden");
@@ -17,7 +17,7 @@ window.addEventListener('load', () => {
 
 window.addEventListener('resize', () => {
     if(window.innerWidth>=992) {
-        document.getElementById("header_navbar").classList.remove("hidden")
+        document.getElementById("header_navbar").classList.remove("hidden");
         document.getElementById("header_navbar_account").classList.add("hidden");
     } else {
         document.getElementById("header_navbar").classList.add("hidden");
@@ -25,4 +25,4 @@ window.addEventListener('resize', () => {
     }
 })
 
-export {toggleDisplay}
+export {toggleDisplay};
