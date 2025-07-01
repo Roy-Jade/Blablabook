@@ -1,47 +1,45 @@
 import { Link } from "react-router";
+import "./Register.scss";
 
 export default function Register() {
     return (
-      <div>
+      <>
         <h1>Créer un compte</h1>
-        <form>
-          <div>
-            <label htmlFor="pseudo">Pseudo</label>
+        <form className="register__form">
+          <fieldset>
+            <label className='label_title' htmlFor="pseudo">Pseudo</label>
             <input type="text" id="pseudo" name="pseudo"  placeholder="exemple: MariziaBook" required/>
-          </div>
+          </fieldset>
   
-          <div>
-            <label htmlFor="email">Adresse e-mail</label>
+          <fieldset>
+            <label className='label_title' htmlFor="email">Adresse e-mail</label>
             <input type="email" id="email" name="email"  placeholder="exemple: Marizia99@gmail.com" required/>
-          </div>
+          </fieldset>
   
-          <div>
-            <label htmlFor="password">Mot de passe</label>
-            <input type="password" id="password" name="password" placeholder="nouha@2021" required />
-          </div>
+          <fieldset>
+            <label className='label_title' htmlFor="password">Mot de passe</label>
+            <input type="password" id="password" name="password" placeholder="Minimum : 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial" required />
+          </fieldset>
   
-          <div>
-            <label htmlFor="confirmPassword">Confirmer le mot de passe</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="nouha@2021" required />
-          </div>
+          <fieldset>
+            <label className='label_title' htmlFor="confirmPassword">Confirmer le mot de passe</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required />
+          </fieldset>
   
-          <div>
+          <fieldset>
             <label htmlFor="terms">
               <input type="checkbox" id="terms" name="terms" required/>
               J'accepte les termes et les conditions
             </label>
-          </div>
+          </fieldset>
   
-          <button type="submit">S'inscrire</button>
+          <button className="button button_big" type="submit">S'inscrire</button>
   
-          <p>
+          <Link className="text_link" to="/login" >
             Déjà un compte ?
-            <Link to="/login" >
-              Se connecter
             </Link>
-          </p>
         </form>
-      </div>
+      </>
     );
   }
   

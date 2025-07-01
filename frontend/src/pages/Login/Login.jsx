@@ -1,68 +1,48 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import api from "../../../api";
+import "./Login.scss";
+import { Link } from "react-router";
 
 export default function Login() {
 
-  if(typeof token !== 'undefined') {
-    console.log("Token JWT : "+token)
-  } else {console.log("Pas de token")}
+  // à déplacer en amont !
+  const [user, setUser] = useState("");
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  
     
   const login = async () => {
-    console.log("Fonction login initialisée")
     try {
-      console.log("Test de réponse...")
       const response = await api.post('/login', { email, password });
       localStorage.setItem('token', response.data.token);
       setUser(response.data.user);
-      console.log("Réponse envoyée : "+response)
     } catch (error) {
-      console.error(error.response.data);
+      console.error("Erreur de login");
     }
   };
 
-  // useEffect(() => {
-    // const login = async () => {
-    //   try {
-    //     const response = await api.post('/login', { email, password });
-    //     localStorage.setItem('token', response.data.token);
-    //     setUser(response.data.user);
-    //   } catch (error) {
-    //     console.error(error.response.data);
-    //   }
-    // };
-
-  //   login();
-  // },[email, password]);
-
   const handleSubmit = (e) => {
-    console.log("Formulaire envoyé")
     e.preventDefault()
     login()
-    console.log(`Mail : ${email} et MDP : ${password}`)
   }
   
   return (
-    <div>
+    <>
       <h1>Connexion</h1>
-      <form method="post" onSubmit={(e) => handleSubmit(e)}>
+      <form className="login__form" method="post" onSubmit={(e) => handleSubmit(e)}>
 
         <fieldset>
-          <label htmlFor="email">Adresse e-mail</label>
+          <label className='label_title' htmlFor="email">Adresse e-mail</label>
           <input type="email" id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="exemple: Marizia99@gmail.com" required/>
         </fieldset>
 
         <fieldset>
-          <label htmlFor="password">Mot de passe</label>
+          <label className='label_title' htmlFor="password">Mot de passe</label>
           <input type="password" id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="nouha@2021" required/>
         </fieldset>
 
         <fieldset>
-          <a
+          <a className="text_link"
           href="#"
           onClick={(e) =>{
               e.preventDefault();
@@ -80,9 +60,10 @@ export default function Login() {
           </label>
         </fieldset>
 
-        <button type="submit">Se connecter</button>
+        <button className="button button_big" type="submit">Se connecter</button>
 
       </form>
-    </div>
+      <Link className="text_link" to="/register">Pas encore inscrit ?</Link>
+    </>
   );
 }
