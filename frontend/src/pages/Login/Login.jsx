@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import api from "../../../api";
 import "./Login.scss";
 import { Link } from "react-router";
+import { CurrentUserContext } from "../../Contexts";
 
 export default function Login() {
 
-  // à déplacer en amont !
-  const [user, setUser] = useState("");
+  const {currentUser, setCurrentUser} = useContext(CurrentUserContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,7 +15,7 @@ export default function Login() {
     try {
       const response = await api.post('/login', { email, password });
       localStorage.setItem('token', response.data.token);
-      setUser(response.data.user);
+      setCurrentUser(response.data.user);
     } catch (error) {
       console.error("Erreur de login");
     }
@@ -29,7 +29,14 @@ export default function Login() {
   return (
     <>
       <h1>Connexion</h1>
-      <form className="login__form" method="post" onSubmit={(e) => handleSubmit(e)}>
+
+      {currentUser && (<>
+      <p>Vous êtes connecté en tant que {currentUser.pseudonyme}.</p>
+      <Link className="text_link" to="/logout">Se déconnecter</Link>
+      </>)}
+
+      {!currentUser && (<>
+        <form className="login__form" method="post" onSubmit={(e) => handleSubmit(e)}>
 
         <fieldset>
           <label className='label_title' htmlFor="email">Adresse e-mail</label>
@@ -64,6 +71,7 @@ export default function Login() {
 
       </form>
       <Link className="text_link" to="/register">Pas encore inscrit ?</Link>
+      </>)}
     </>
   );
 }
