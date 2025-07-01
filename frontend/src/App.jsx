@@ -7,8 +7,8 @@ import Home from './pages/Home/Home';
 import Library from './pages/Library/Library';
 // import Book from './pages/Book/Book';
 import Questions from './pages/Questions/Questions';
-// import Dashboard from './pages/Dashboard/Dashboard';
-// import Options from './pages/Options/Options';
+import Dashboard from './pages/Dashboard/Dashboard';
+import Options from './pages/Options/Options';
 import Register from './pages/Register/Register';
 import Login from './pages/Login/Login';
 import Logout from './pages/Logout/Logout';
@@ -34,8 +34,8 @@ export default function App() {
                     {/* <Route path="/library/:bookID" element={<Book />} /> */}
                     <Route path="/about" element={<StaticPages />} />
                     <Route path="/questions" element={<Questions />} />
-                    {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-                    {/* <Route path="/dashboard/options" element={<Options />} /> */}
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/dashboard/options" element={<Options />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/logout" element={<Logout />} />
