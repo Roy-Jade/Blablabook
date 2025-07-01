@@ -21,9 +21,9 @@ CREATE TABLE livre (
   ISBN VARCHAR(13) UNIQUE NOT NULL,
   titre VARCHAR(130) NOT NULL,
   auteur VARCHAR(100) NOT NULL,
-  date_publication DATE NOT NULL,
+  date_publication VARCHAR NOT NULL,
   nombre_page SMALLINT NOT NULL,
-  resume VARCHAR(1000) NOT NULL
+  summary VARCHAR(1000) NOT NULL
 );
 
 CREATE TABLE utilisateur_interagit_livre (
