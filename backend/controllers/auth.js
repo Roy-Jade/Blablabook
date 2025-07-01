@@ -19,7 +19,6 @@ const authController = {
   // },
 
   login : async (req, res) => {
-    console.log("Connexion en cours...")
     const { email, password } = req.body;
     const result = await db.query(
       'SELECT * FROM utilisateur WHERE email = $1',
@@ -33,8 +32,6 @@ const authController = {
       });
     }
     
-    console.log(user)
-    console.log("Mot de passe : "+user.mot_de_passe)
     const isPasswordValid = await bcrypt.compare(password, user.mot_de_passe);
   
     if (!isPasswordValid) {
