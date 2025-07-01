@@ -29,7 +29,14 @@ export default function Login() {
   return (
     <>
       <h1>Connexion</h1>
-      <form className="login__form" method="post" onSubmit={(e) => handleSubmit(e)}>
+
+      {currentUser && (<>
+      <p>Vous êtes connecté en tant que {currentUser.pseudonyme}.</p>
+      <Link className="text_link" to="/logout">Se déconnecter</Link>
+      </>)}
+
+      {!currentUser && (<>
+        <form className="login__form" method="post" onSubmit={(e) => handleSubmit(e)}>
 
         <fieldset>
           <label className='label_title' htmlFor="email">Adresse e-mail</label>
@@ -64,6 +71,7 @@ export default function Login() {
 
       </form>
       <Link className="text_link" to="/register">Pas encore inscrit ?</Link>
+      </>)}
     </>
   );
 }
