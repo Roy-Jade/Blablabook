@@ -9,9 +9,7 @@ const api = axios.create({
 // Il faut que ce token ait été stocké dans le localstorage au moment du login
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
-  console.log("Recherche de token")
   if (token) {
-    console.log("Token intercepté)")
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;

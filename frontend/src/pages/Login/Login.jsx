@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import api from "../../../api";
 import "./Login.scss";
 import { Link } from "react-router";
+import { CurrentUserContext } from "../../Contexts";
 
 export default function Login() {
 
-  // à déplacer en amont !
-  const [user, setUser] = useState("");
+  const {currentUser, setCurrentUser} = useContext(CurrentUserContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,7 +15,7 @@ export default function Login() {
     try {
       const response = await api.post('/login', { email, password });
       localStorage.setItem('token', response.data.token);
-      setUser(response.data.user);
+      setCurrentUser(response.data.user);
     } catch (error) {
       console.error("Erreur de login");
     }
