@@ -1,14 +1,8 @@
 import { Link } from "react-router";
 import Footer from "../Footer/Footer";
-import { Helmet } from 'react-helmet';
-
 export default function About(){
     return(
     <div>
-        <Helmet>
-            <title>À propos - BlablaBook</title>
-            <meta name='description' content='Découvrez qui nous sommes et notre mission chez BlablaBook.'></meta>
-        </Helmet>
         <h1>À propos</h1>
         <section>
         <h2>Notre Mission</h2>
