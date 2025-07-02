@@ -1,5 +1,5 @@
 import {Link} from 'react-router';
-// On importe notre [Composant].scss
+import { Helmet } from 'react-helmet';
 import BookMinis from '../../components/BookMinis/BookMinis';
 import './Home.scss';
 
@@ -29,6 +29,10 @@ let carouselArray = [
 export default function Home() {
     return(
         <>
+            <Helmet>
+                <title>Accueil - BlablaBook</title>
+                <meta name='description' content='Trouvez votre livre préféré'></meta>
+            </Helmet>
             {/* Commencer à modifier ici */}
             <h1>Votre prochaine lecture vous attend</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto eveniet labore exercitationem ab aliquid dicta laborum autem maxime aperiam, accusamus quos ducimus, minus consequuntur! Temporibus in perspiciatis recusandae. Laborum, veritatis.

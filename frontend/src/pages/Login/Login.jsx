@@ -2,6 +2,8 @@ import { useState } from "react";
 import api from "../../../api";
 import "./Login.scss";
 import { Link } from "react-router";
+import { Helmet } from 'react-helmet';
+
 
 export default function Login() {
 
@@ -28,6 +30,10 @@ export default function Login() {
   
   return (
     <>
+      <Helmet>
+        <title>Connexion - BlablaBook</title>
+        <meta name="description" content="Connectez-vous à votre compte BlablaBook pour accéder à vos livres, vos préférences de lecture et votre tableau de bord personnalisé."/>
+      </Helmet>
       <h1>Connexion</h1>
       <form className="login__form" method="post" onSubmit={(e) => handleSubmit(e)}>
 

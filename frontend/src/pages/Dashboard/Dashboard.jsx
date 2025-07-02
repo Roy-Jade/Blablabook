@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import { Helmet } from 'react-helmet';
 import './Dashboard.scss'
 
 export default function Dashboard(){
@@ -85,6 +86,10 @@ export default function Dashboard(){
       
     return(
         <>
+        <Helmet>
+            <title>Tableau de bord - BlablaBook</title>
+            <meta name='description' content="Gérez votre compte BlablaBook : modifiez votre email, mot de passe ou supprimez votre compte facilement depuis votre tableau de bord."></meta>
+        </Helmet>
         <h1>Paramètre utilisateur</h1>
          {message && (
             <div style={{backgroundColor: "#f0f0f0", padding: "10px"}}>
