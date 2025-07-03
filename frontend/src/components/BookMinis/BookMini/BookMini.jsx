@@ -6,29 +6,29 @@ import './BookMini.scss';
 // On, doit enfin exporter la fonction en default sous le nom de notre composant
 
 // L'écriture ci-dessus permet de faire la fonction et de l'exporter en même temps
-export default function BookMini({book}) {
-    return(
-        <article className='bookmini'>
-            <img className='bookmini__img' src={"https://covers.openlibrary.org/b/isbn/"+book.isbn+"-M.jpg"} alt="Couverture" />
-            <div>
-                <div className='bookmini__infos'>
-                    <cite className='bookmini__title'>{book.title}</cite>
-                    <address className='bookmini__author'>de {book.author}</address>
-                </div>
-                <div className='bookmini__note'>&#9733; &#9733; &#9733; &#9733; &#9734;</div>
-                <button className='button button_small'>Voir le détail</button>
-                <div className='bookmini__booleans connected owned'>
-                    <div>
-                        <input type="checkbox" id='isRead' name='isRead'/>
-                        <label htmlFor="isRead">Lu</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id='isShared' name='isShared'/>
-                        <label htmlFor="isShared">Partagé</label>
-                    </div>
-                </div>
-                <button className='button button_small connected not_owned'>Ajouter</button>
-            </div>
-        </article>
-    )
+export default function BookMini({book, newClass}) {
+  return(
+    <article className={`bookmini ${newClass}`}>
+      <img className='bookmini__img' src={"https://covers.openlibrary.org/b/isbn/"+book.isbn+"-M.jpg"} alt="Couverture" />
+      <div>
+        <div className='bookmini__infos'>
+          <cite className='bookmini__title'>{book.titre}</cite>
+          <address className='bookmini__author'>{book.auteur}</address>
+        </div>
+        <div className='bookmini__note'>&#9733; &#9733; &#9733; &#9733; &#9734;</div>
+        <button className='button button_small'>Voir le détail</button>
+        <div className='bookmini__booleans connected owned'>
+          <div>
+            <input type="checkbox" id='isRead' name='isRead'/>
+            <label htmlFor="isRead">Lu</label>
+          </div>
+          <div>
+            <input type="checkbox" id='isShared' name='isShared'/>
+            <label htmlFor="isShared">Partagé</label>
+          </div>
+        </div>
+        <button className='button button_small connected not_owned'>Ajouter</button>
+      </div>
+    </article>
+  )
 }

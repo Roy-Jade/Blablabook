@@ -3,10 +3,10 @@
 .bookmini {
     text-align: center;
     line-height: 1.4;
-    width: 200px;
+    height: 500px;
 
         &__img {
-            max-height: 50%;
+            height: 60%;
             object-fit: contain;
             box-shadow: 5px 5px 20px black;
         }
@@ -29,6 +29,10 @@
         &__booleans {
             display: flex;
             justify-content: space-around;
+        }
+
+        & div {
+            width: 100%;
         }
 }
 

@@ -2,9 +2,6 @@
 import db from "../config/db.js";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-// import express from 'express';
-
-// app.use(express.json())
 
 const authController = {
   // register : async (req, res) => {

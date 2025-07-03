@@ -5,7 +5,6 @@ import { CurrentUserContext } from "../../Contexts";
 export default function Logout(){
 
   const {currentUser, setCurrentUser} = useContext(CurrentUserContext);
-  // setCurrentUser('')
 
   const logout = async () => {
     setCurrentUser('')
