@@ -3,11 +3,22 @@
 .bookmini {
     text-align: center;
     line-height: 1.4;
+    height: 500px;
 
         &__img {
-            max-width: 90%;
-            max-height: 60%;
+            height: 60%;
+            object-fit: contain;
             box-shadow: 5px 5px 20px black;
+        }
+
+        &__title {
+            font-weight: 500;
+        }
+
+        &__infos {
+            display: flex;
+            flex: wrap;
+            flex-direction: column;
         }
 
         &__note {
@@ -18,6 +29,10 @@
         &__booleans {
             display: flex;
             justify-content: space-around;
+        }
+
+        & div {
+            width: 100%;
         }
 }
 

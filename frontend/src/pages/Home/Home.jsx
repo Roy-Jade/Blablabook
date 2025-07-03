@@ -1,25 +1,8 @@
 import {Link} from 'react-router';
 import { Helmet } from 'react-helmet';
 import BookMinis from '../../components/BookMinis/BookMinis';
+import Carousel from '../../components/Carousel/Carousel';
 import './Home.scss';
-
-let carouselArray = [
-    {
-        isbn: "9782266008556",
-        title: "Dune",
-        author: "Frank Herbert",
-    },
-    {
-        isbn: "9782070584628",
-        title: "Harry Potter à l'école des sorciers",
-        author: "J. K. Rowling",
-    },
-    {
-        isbn: "9782747014403",
-        title: "Eragon",
-        author: "Christopher Paolini",
-    },
-]
 
 // On créée une fonction qui contient un return 
 // Le return doit comprendre une balise englobant tout le reste. Utiliser une balise vide <> fonctionne.
@@ -27,6 +10,7 @@ let carouselArray = [
 
 // L'écriture ci-dessus permet de faire la fonction et de l'exporter en même temps
 export default function Home() {
+
     return(
         <>
             <Helmet>
@@ -39,9 +23,7 @@ export default function Home() {
             Sunt, possimus. </p>
             <h2>Notre sélection</h2>
 
-            <section className='carousel'>
-                <BookMinis books={carouselArray} />
-            </section>
+            <Carousel />
 
             <Link className='button button_big' to="/register">S'inscrire</Link>
 

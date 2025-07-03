@@ -1,13 +1,10 @@
 import BookMini from './BookMini/BookMini';
 
-export default function BookMini({books}) {
+export default function BookMinis({books, numberOfBooks}) {
+
     return(
         <>
-            {books.map((books) => <BookMini key={books.isbn} book={books}/>)}
-            {/* <BookMini ISBN={book}/>
-            <BookMini ISBN={book}/>
-            <BookMini ISBN={book}/>
-            <BookMini ISBN={book}/> */}
+            {books.map((book) => <BookMini key={book.isbn} book={book}/>).slice(0, numberOfBooks)}
         </>
     )
 }
