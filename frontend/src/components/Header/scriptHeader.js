@@ -1,5 +1,5 @@
 // Fonction permettant l'affichage ou le masquage d'un élément quand son icône est cliqué
-function toggleDisplay(e, id) {
+function toggleDisplayBurger(e, id) {
     document.getElementById(id).classList.toggle("hidden");
 }
 
@@ -24,4 +24,4 @@ function toggleDisplay(e, id) {
     })
 })
 
-export {toggleDisplay};
+export {toggleDisplayBurger};
