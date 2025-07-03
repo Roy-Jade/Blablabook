@@ -1,3 +1,4 @@
+
 export default function CGU({ sections }){
     return (
         <section>

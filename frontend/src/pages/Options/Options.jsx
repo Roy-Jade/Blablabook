@@ -1,5 +1,7 @@
 import { useState } from "react";
 import './Options.scss';
+import { Helmet } from 'react-helmet';
+
 
 export default function Options() {
   const [autoShare, setAutoShare] = useState("no");
@@ -7,7 +9,11 @@ export default function Options() {
 
   return (
     <div>
-    <h1>Options de partage</h1>
+      <Helmet>
+          <title>Options de partage - BlablaBook</title>
+          <meta name='description' content="Définissez vos préférences de partage sur BlablaBook : activez ou désactivez le partage automatique de vos livres et choisissez votre audience."></meta>
+      </Helmet>
+      <h1>Options de partage</h1>
       <p><strong>Partage automatique des livres</strong></p>
       <div className="autoshare">
         <label>

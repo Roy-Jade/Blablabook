@@ -1,9 +1,15 @@
 import { Link } from "react-router";
 import "./Register.scss";
+import { Helmet } from 'react-helmet';
+
 
 export default function Register() {
     return (
       <>
+        <Helmet>
+          <title>Inscription - BlablaBook</title>
+          <meta name="description" content="Créez votre compte sur BlablaBook pour découvrir, partager et enregistrer vos livres préférés."/>
+        </Helmet>
         <h1>Créer un compte</h1>
         <form className="register__form">
           <fieldset>

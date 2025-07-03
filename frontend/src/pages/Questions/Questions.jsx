@@ -1,5 +1,6 @@
 // On importe notre [Composant].scss
 import './Questions.scss';
+import { Helmet } from 'react-helmet';
 
 // On créée une fonction qui contient un return 
 // Le return doit comprendre une balise englobant tout le reste. Utiliser une balise vide <> fonctionne.
@@ -71,7 +72,11 @@ export default function Questions() {
       ];
       
     return(  
-      <> 
+      <>
+        <Helmet>
+          <title>FAQ - BlablaBook</title>
+          <meta name='description' content="Trouvez les réponses aux questions les plus fréquentes sur l'utilisation de BlablaBook."></meta>
+        </Helmet> 
         <h1>Foire Aux Questions</h1>
           {faqData.map((item, index) =>(
               <article className='question' key={index}>

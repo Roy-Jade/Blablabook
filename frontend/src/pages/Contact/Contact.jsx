@@ -1,10 +1,16 @@
 import {Link} from 'react-router';
 // Import du [Composant].scss
 import './Contact.scss';
+import { Helmet } from 'react-helmet';
+
 
 export default function Contact() {
   return(
     <>
+       <Helmet>
+          <title>Contact - BlablaBook</title>
+          <meta name='description' content='Contactez-nous pour tout renseignement'></meta>
+      </Helmet>
       <h1>Nous contacter</h1>
 
       <p className='contact_alert hidden'>Votre message a bien été envoyé</p>
