@@ -14,6 +14,7 @@ import Login from './pages/Login/Login';
 import Logout from './pages/Logout/Logout';
 import Contact from './pages/Contact/Contact';
 import StaticPages from './pages/StaticPages/StaticPages';
+import NotFound from './pages/NotFound/NotFound';
 
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
@@ -44,6 +45,7 @@ export default function App() {
                     <Route path="/legal" element={<StaticPages />} />
                     <Route path="/terms" element={<StaticPages />} />
                     <Route path="/accessibility" element={<StaticPages />} />
+                    <Route path="*" element={<NotFound />}/>
                 </Routes>
                 </main>
                 <Footer />
