@@ -1,12 +1,25 @@
+@use '../../../static/scss/mixin';
+
 .library {
     display: flex;
+    flex-direction: column;
+
+    @include mixin.desktop {
+        flex-direction: row;
+    }
 
     &__book-list {
         display: flex;
         flex-wrap: wrap;
+        justify-content: space-around;
 
         &>* {
             margin: 2%;
+            width: auto;
+
+            @include mixin.desktop {
+                width: 25%;
+            }
         }
     }
 }
