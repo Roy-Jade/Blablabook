@@ -1,6 +1,10 @@
-.search-sort>section {
-    padding-bottom: 10%;
-}
+.search-sort{
+    
+
+    &>section {
+        padding-bottom: 10%;
+    }   
+} 
 
 .search>form>* {
     display: flex;
