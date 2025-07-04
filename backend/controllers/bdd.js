@@ -37,7 +37,6 @@ const bddController = {
       [userEmail]
     );
     const userBooks = results.rows;
-    console.log(userBooks)
 
     res.status(200).json({userBooks});
   }

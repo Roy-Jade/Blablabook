@@ -14,7 +14,6 @@ export default function Sort() {
 
     const handleWindowResize = useCallback(event => {
         setWindowSize(window.innerWidth);
-        console.log(windowSize)
     }, []);
     
     useEffect(() => {
@@ -32,8 +31,8 @@ export default function Sort() {
 
     return(
         <div className='search-sort'>
-            <button className='button button_big search-sort_button' onClick={toggleSortOptions}>Afficher les options de tri et recherche</button>
-            {showSortOptions ?? (<>
+            {windowSize<992 && <button className='button button_big' onClick={toggleSortOptions}>Afficher les options de tri et recherche</button>}
+            {(windowSize>=992 || showSortOptions) && <>
                 <section className='search'>
                     <h2 className='search-sort__title'>Recherche :</h2>
                     <form action="">
@@ -76,7 +75,7 @@ export default function Sort() {
                         </fieldset> */}
                     </form>
                 </section>
-            </>)}
+            </>}
         </div>
     )
 }
