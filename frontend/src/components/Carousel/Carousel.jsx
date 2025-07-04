@@ -39,14 +39,14 @@ export default function Carousel() {
 
 
     useEffect(() => {
-        async function startFetchingBook() {
+        async function startFetchingBooks() {
             setBooks(null);
             const response = await api.get('/books');
             const randomizedBooks = shuffle(response.data.books) 
             setBooks(randomizedBooks);
         }
         if(!books) {
-            startFetchingBook();
+            startFetchingBooks();
         }
     }, [])
 

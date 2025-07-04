@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router';
-import { useState  } from "react";
+import { useState } from "react";
 import { CurrentUserContext } from './Contexts';
 
 // Liste des imports de page
 import Home from './pages/Home/Home';
 import Library from './pages/Library/Library';
-// import Book from './pages/Book/Book';
+import BookID from './pages/BookID/BookID';
 import Questions from './pages/Questions/Questions';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Options from './pages/Options/Options';
@@ -22,29 +22,29 @@ export default function App() {
 
     const [currentUser, setCurrentUser] = useState(null);
 
-    return(
-        <CurrentUserContext value={{currentUser, setCurrentUser}}>
+    return (
+        <CurrentUserContext value={{ currentUser, setCurrentUser }}>
             <BrowserRouter>
                 <Header />
                 <main>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/library" element={<Library />} />
-                    <Route path="/personnalLibrary" element={<Library />} />
-                    {/* <Route path="/library/:bookID" element={<Book />} /> */}
-                    <Route path="/about" element={<StaticPages />} />
-                    <Route path="/questions" element={<Questions />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/dashboard/options" element={<Options />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/logout" element={<Logout />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/privacy" element={<StaticPages />} />
-                    <Route path="/legal" element={<StaticPages />} />
-                    <Route path="/terms" element={<StaticPages />} />
-                    <Route path="/accessibility" element={<StaticPages />} />
-                </Routes>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/library" element={<Library />} />
+                        <Route path="/personnalLibrary" element={<Library />} />
+                        <Route path="/library/:bookID" element={<BookID />} />
+                        <Route path="/about" element={<StaticPages />} />
+                        <Route path="/questions" element={<Questions />} />
+                        <Route path="/dashboard" element={<Dashboard />} />
+                        <Route path="/dashboard/options" element={<Options />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/logout" element={<Logout />} />
+                        <Route path="/contact" element={<Contact />} />
+                        <Route path="/privacy" element={<StaticPages />} />
+                        <Route path="/legal" element={<StaticPages />} />
+                        <Route path="/terms" element={<StaticPages />} />
+                        <Route path="/accessibility" element={<StaticPages />} />
+                    </Routes>
                 </main>
                 <Footer />
             </BrowserRouter>
