@@ -1,5 +1,6 @@
 // On importe notre [Composant].scss
 import './Sort.scss';
+import { useState, useEffect, useCallback } from 'react';
 
 // On créée une fonction qui contient un return 
 // Le return doit comprendre une balise englobant tout le reste. Utiliser une balise vide <> fonctionne.
@@ -7,50 +8,74 @@ import './Sort.scss';
 
 // L'écriture ci-dessus permet de faire la fonction et de l'exporter en même temps
 export default function Sort() {
+
+    const [showSortOptions, setShowSortOptions] = useState(false)
+    const [windowSize, setWindowSize] = useState(window.innerWidth);
+
+    const handleWindowResize = useCallback(event => {
+        setWindowSize(window.innerWidth);
+    }, []);
+    
+    useEffect(() => {
+        window.addEventListener('resize', handleWindowResize);
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+        };
+    }, [handleWindowResize]);
+
+    const toggleSortOptions = () => {
+        if (showSortOptions == true) {
+            setShowSortOptions(false)
+        } else {setShowSortOptions(true)}
+    }
+
     return(
         <div className='search-sort'>
-            <section className='search'>
-                <h2 className='search-sort__title'>Recherche</h2>
-                <form action="">
-                    <div>
-                        <label htmlFor="title">Titre : </label>
-                        <input type="text" id='title' name='title' />
-                    </div>
-                    <div>
-                        <label htmlFor="author">Auteur : </label>
-                        <input type="text" id='author' name='author' />
-                    </div>
-                </form>
-            </section>
-            <section className='sort'>
-                <h2 className='search-sort__title'>Tri</h2>
-                <form>
-                    <div>
-                        <input type="radio" id='a-z-title' name='sort' value='Titre - A à Z'/>
-                        <label htmlFor="a-z-title">Titre - A à Z</label>
-                    </div>
-                    <div>
-                        <input type="radio" id='z-a-title' name='sort' value='Titre - Z à A' />
-                        <label htmlFor="z-a-title">Titre - Z à A</label>
-                    </div>
-                    <div>
-                        <input type="radio" id='a-z-author' name='sort' value='Auteur - A à Z' />
-                        <label htmlFor="a-z-author">Auteur - A à Z</label>
-                    </div>
-                    <div>
-                        <input type="radio" id='z-a-author' name='sort' value='Auteur - Z à A' />
-                        <label htmlFor="z-a-author">Auteur - Z à A</label>
-                    </div>
-                    <div>
-                        <input type="radio" id='page-up' name='sort' value='Pages croissante' />
-                        <label htmlFor="page-up">Pages croissante</label>
-                    </div>
-                    <div>
-                        <input type="radio" id='page-down' name='sort' value='Pages décroissante' />
-                        <label htmlFor="page-down">Pages décroissante</label>
-                    </div>
-                </form>
-            </section>
+            {windowSize<992 && <button className='button button_big' onClick={toggleSortOptions}>Afficher les options de tri et recherche</button>}
+            {(windowSize>=992 || showSortOptions) && <>
+                <section className='search'>
+                    <h2 className='search-sort__title'>Recherche :</h2>
+                    <form action="">
+                        <fieldset>
+                            <label htmlFor="title">Titre : </label>
+                            <input type="text" id='title' name='title' />
+                        </fieldset>
+                        <fieldset>
+                            <label htmlFor="author">Auteur : </label>
+                            <input type="text" id='author' name='author' />
+                        </fieldset>
+                    </form>
+                </section>
+                <section className='sort'>
+                    <h2 className='search-sort__title'>Trier par :</h2>
+                    <form>
+                        <fieldset>
+                            <input type="radio" id='a-z-title' name='sort' value='Titre - A à Z'/>
+                            <label htmlFor="a-z-title">Titre - A à Z</label>
+                        </fieldset>
+                        <fieldset>
+                            <input type="radio" id='z-a-title' name='sort' value='Titre - Z à A' />
+                            <label htmlFor="z-a-title">Titre - Z à A</label>
+                        </fieldset>
+                        <fieldset>
+                            <input type="radio" id='a-z-author' name='sort' value='Auteur - A à Z' />
+                            <label htmlFor="a-z-author">Auteur - A à Z</label>
+                        </fieldset>
+                        <fieldset>
+                            <input type="radio" id='z-a-author' name='sort' value='Auteur - Z à A' />
+                            <label htmlFor="z-a-author">Auteur - Z à A</label>
+                        </fieldset>
+                        <fieldset>
+                            <input type="radio" id='page-up' name='sort' value='Nombre de pages' />
+                            <label htmlFor="page-up">Nombre de pages</label>
+                        </fieldset>
+                        {/* <fieldset>
+                            <input type="radio" id='page-down' name='sort' value='Pages décroissante' />
+                            <label htmlFor="page-down">Pages décroissante</label>
+                        </fieldset> */}
+                    </form>
+                </section>
+            </>}
         </div>
     )
 }

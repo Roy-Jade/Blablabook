@@ -1,5 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router';
+<<<<<<< HEAD
 import { useState } from "react";
+=======
+import { useState, useEffect, useCallback  } from "react";
+>>>>>>> dev
 import { CurrentUserContext } from './Contexts';
 
 // Liste des imports de page

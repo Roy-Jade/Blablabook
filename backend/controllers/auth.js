@@ -2,6 +2,15 @@
 import db from "../config/db.js";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+import path from 'path';
+import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Charge les variables d'environnement depuis le .env
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const authController = {
   // register : async (req, res) => {
@@ -37,7 +46,7 @@ const authController = {
       });
     }
     
-    const token = jwt.sign({ email: user.email, id: user._id }, 'secret', { expiresIn: '1h' });
+    const token = jwt.sign({ email: user.email, id: user._id }, process.env.SECRET, { expiresIn: '1h' });
   
     res.status(200).json({
       token,

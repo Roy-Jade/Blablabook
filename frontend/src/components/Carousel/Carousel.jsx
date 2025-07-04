@@ -13,6 +13,25 @@ export default function Carousel() {
     const handleWindowResize = useCallback(event => {
         setWindowSize(window.innerWidth);
     }, []);
+    
+    useEffect(() => {
+        window.addEventListener('resize', handleWindowResize);
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+        };
+    }, [handleWindowResize]);
+
+    useEffect(() => {
+        async function startFetchingBook() {
+            setBooks(null);
+            const response = await api.get('/books');
+            const randomizedBooks = shuffle(response.data.books) 
+            setBooks(randomizedBooks);
+        }
+        if(!books) {
+            startFetchingBook();
+        }
+    }, [])
 
     function previousSlide() {
         if(currentSlide >0) {
@@ -29,6 +48,7 @@ export default function Carousel() {
             setCurrentSlide(0)
         }
     }
+<<<<<<< HEAD
     
     useEffect(() => {
         window.addEventListener('resize', handleWindowResize);
@@ -49,6 +69,8 @@ export default function Carousel() {
             startFetchingBooks();
         }
     }, [])
+=======
+>>>>>>> dev
 
     if (books) {
         return(

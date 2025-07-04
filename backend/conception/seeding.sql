@@ -1,3 +1,4 @@
+-- SQLBook: Code
 BEGIN;
 
 SET CLIENT_ENCODING TO 'UTF-8';
@@ -20,7 +21,7 @@ INSERT INTO livre (ISBN, titre, auteur, date_publication, nombre_page, summary) 
 ('9782352941989', 'La terre sauvage', 'Julia Verlanger', '26-06-2008', 496, 'Dans une France en proie au chaos d''une guerre bactériologique, Gérald tente de survivre en gagnant le sud quand il tombe sur Annie, une fille qui a pour idée fixe d''aller à Paris. Pour y arriver, il leur faudra remonter l''Autoroute sauvage. Entre les mares de bactéries, les poches de gaz hallucinogènes et les bandes de pillards, le voyage promet d''être chaud ! Et puis il y a la Mort en billes, ces globes gélatineux qui se collent aux squelettes pour les animer'),
 ('9782290208878', 'Le Trône de fer', 'George R.R. Martin ', '10-04-2019', 802, 'Le royaume des Sept Couronnes est sur le point de connaître son plus terrible hiver : par-delà le Mur qui garde sa frontière nord, une armée de ténèbres se lève, menaçant de tout détruire sur son passage. Mais il en faut plus pour refroidir les ardeurs des rois, des reines, des chevaliers et des renégats qui se disputent le trône de fer. Tous les coups sont permis, et seuls les plus forts, ou les plus retors, s en sortiront indemnes...'),
 ('9782013212113', 'Twilight', 'Stephenie Meyer', '12-01-2011', 576, 'Bella, dix-sept ans, décide de quitter l''Arizona ensoleillé où elle vivait avec sa mère, pour s''installer chez son père. Elle croit renoncer à tout ce qu''elle aime, certaine qu''elle ne s''habituera jamais ni à la pluie ni à Forks où l''anonymat est interdit. Mais elle rencontre Edward, lycéen de son âge, d''une beauté inquiétante. Quels mystères et quels dangers cache cet être insaisissable, aux humeurs si changeantes ? A la fois attirant et hors d''atteinte, Edward Cullen n''est pas humain. Il est plus que ça, Bella en est certaine.'),
-('9782267054859', 'Le Seigneur des Anneaux', 'J. R. R. Tolkien', '05-06-2025', 544, 'Dans un paisible village du Comté, le jeune Frodo est sur le point de recevoir un cadeau qui changera sa vie à jamais : l''Anneau de Pouvoir. Forgé par Sauron au coeur de la Montagne du Feu, on le croyait perdu depuis qu''un homme le lui avait arraché avant de le chasser hors du monde. À présent, de noirs présages s''étendent à nouveau sur la Terre du Milieu, les créatures maléfiques se multiplient et, dans les Montagnes de Brume, les Orques traquent les Nains. L''ennemi veut récupérer son bien afin de dominer le monde ; l''OEil de Sauron est désormais pointé sur le Comté. Heureusement Gandalf les a devancés. S''ils font vite, Frodo et lui parviendront peut-être à détruire l''Anneau à temps.');
+('9782267011258', 'Le Seigneur des Anneaux', 'J. R. R. Tolkien', '05-06-2025', 544, 'Dans un paisible village du Comté, le jeune Frodo est sur le point de recevoir un cadeau qui changera sa vie à jamais : l''Anneau de Pouvoir. Forgé par Sauron au coeur de la Montagne du Feu, on le croyait perdu depuis qu''un homme le lui avait arraché avant de le chasser hors du monde. À présent, de noirs présages s''étendent à nouveau sur la Terre du Milieu, les créatures maléfiques se multiplient et, dans les Montagnes de Brume, les Orques traquent les Nains. L''ennemi veut récupérer son bien afin de dominer le monde ; l''OEil de Sauron est désormais pointé sur le Comté. Heureusement Gandalf les a devancés. S''ils font vite, Frodo et lui parviendront peut-être à détruire l''Anneau à temps.');
 
 -- Insertion utilisateurs
 INSERT INTO utilisateur (pseudonyme, email, mot_de_passe) VALUES
@@ -29,7 +30,12 @@ INSERT INTO utilisateur (pseudonyme, email, mot_de_passe) VALUES
 ('admin', 'admin@example.com', '$2b$10$EzkYZKhVm2d7z6wsGyFkV.XA7e4NT.kwKaK0/ycKD/7lWj7VwWUkO');
 
 -- Insertion interaction
-INSERT INTO utilisateur_interagit_livre (id_utilisateur, ISBN, est_lu, est_partage, note, commentaire)
-VALUES (1, '9782267054859', TRUE, FALSE, 4, 'Super livre !');
+INSERT INTO utilisateur_interagit_livre (id_utilisateur, ISBN, est_lu, est_partage, note, commentaire) VALUES 
+(3, '9782267011258', TRUE, FALSE, 5, 'Super livre !'),
+(3, '9782013212113', TRUE, TRUE, 3, 'Super livre !'),
+(3, '9782290208878', TRUE, FALSE, 4, 'Super livre !'),
+(3, '9782843440984', TRUE, TRUE, 4, 'Super livre !'),
+(3, '9782747014403', FALSE, TRUE, 2, 'Pas encore lu'),
+(3, '9782266320481', TRUE, TRUE, 5, 'Super livre !');
 
 COMMIT;

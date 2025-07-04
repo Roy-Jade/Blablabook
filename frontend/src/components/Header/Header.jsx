@@ -1,14 +1,12 @@
 import {Link} from 'react-router';
 import './Header.scss';
 import {toggleDisplayBurger} from './scriptHeader';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { CurrentUserContext } from '../../Contexts';
 
 export default function Header() {
 
     const currentUser = useContext(CurrentUserContext);
-
-    const [email, setEmail] = useState(false);
 
     let hideBurgerOnPageChange = () => {
         if (window.innerWidth>=992) {
