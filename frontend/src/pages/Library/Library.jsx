@@ -11,6 +11,12 @@ import { Link } from 'react-router';
 export default function Library() {
 
     const user = useContext(CurrentUserContext);
+    let userName = ''
+    if(user.currentUser !== null) {
+        if (user.currentUser.pseudonyme !== null) {
+            userName = user.currentUser.pseudonyme;
+        }
+    }
     const [books, setBooks] = useState("");
 
     useEffect(() => {
@@ -30,7 +36,7 @@ export default function Library() {
                 <title>Bibliothèque - BlablaBook</title>
                 <meta name='description' content='Découvrez tous les livres disponibles sur BlablaBook.'></meta>
             </Helmet>
-            {user ? <h1>Bibliothèque de {user.currentUser.pseudonyme}</h1> : <h1>Rechercher un livre</h1>}
+            {userName ? <h1>Bibliothèque de {userName}</h1> : <h1>Rechercher un livre</h1>}
             <div className='library'>
                 <Sort/>
                 <div className='library__book-list'>
