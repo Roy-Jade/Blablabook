@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router';
+import { Link, useParams, useLocation } from 'react-router';
 import { useEffect, useState } from 'react';
 import './BookID.scss';
 import { Helmet } from 'react-helmet';
@@ -8,28 +8,33 @@ import api from '../../../api';
 
 export default function BookID() {
 
-
-    let params = useParams();
-    useEffect(() => {
-        function changeParams() {
-            params = useParams();
-        }
-        changeParams()
-        console.log(params)
-    }, [params])
-
     const [bookInfos, setBookInfos] = useState("");
     const [bookCommentaries, setBookCommentaries] = useState("");
+
+    let location = useLocation()+'';
+    let params = useParams();
+    let bookID = location.split("/");
+    console.log("BookID = ", bookID)
+    // useEffect(() => {
+    //     function changeParams() {
+    //         params = useParams();
+    //     }
+    //     changeParams()
+    //     console.log(params)
+    // }, [params])
+
+    useEffect(() => {
+        console.log(location)
+        }, [location]);
 
     useEffect(() => {
         async function startFetchingBookInfos() {
             setBookInfos(null);
             setBookCommentaries(null);
             const response = await api.get(`/book/${params.bookID}`);
+            
             setBookInfos(response.data.bookInfos);
-            console.log(bookInfos)
-            setBookCommentaries(response.data.bookCommentaries)
-            console.log(bookCommentaries)
+            setBookCommentaries(response.data.bookCommentaries);
         }
         if(!bookInfos) {
             startFetchingBookInfos();
@@ -47,13 +52,15 @@ export default function BookID() {
             <section>
                 {/* Connexion à l'api cover de open library afin de récupérer la couverture du livre*/}
 
-                {/* <img className='bookID__img' src={"https://covers.openlibrary.org/b/isbn/"+bookInfos.isbn+"-M.jpg"} alt={"Book's cover : "+bookInfos.titre} />
-                <p>{bookInfos.ISBN}</p>
-                <p>{bookInfos.titre}</p>
-                <p>{bookInfos.auteur}</p>
-                <p>{bookInfos.date_publication}</p>
-                <p>{bookInfos.nombre_page}</p>
-                <p>{bookInfos.summary}</p> */}
+                {bookInfos && <>
+                    <img className='bookID__img' src={"https://covers.openlibrary.org/b/isbn/"+bookInfos.isbn+"-M.jpg"} alt={"Book's cover : "+bookInfos.titre} />
+                    <p>{bookInfos.ISBN}</p>
+                    <p>{bookInfos.titre}</p>
+                    <p>{bookInfos.auteur}</p>
+                    <p>{bookInfos.date_publication}</p>
+                    <p>{bookInfos.nombre_page}</p>
+                    <p>{bookInfos.summary}</p>
+                </>}
 
 
 
@@ -75,7 +82,7 @@ export default function BookID() {
             <article>
                 <h2>Commentaires</h2>
 
-                {/* {bookCommentaries.map((bookCommentary, index) => (
+                {bookCommentaries && bookCommentaries.map((bookCommentary, index) => (
                     <div key={index}>
                         <div className='bookID__commentaires' >
                             <p>{bookCommentary.pseudonyme}</p>
@@ -85,7 +92,7 @@ export default function BookID() {
                         </div>
                     </div>
                 ))
-                } */}
+                }
             </article>
         </>
     );

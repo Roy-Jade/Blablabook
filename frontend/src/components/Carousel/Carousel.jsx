@@ -48,7 +48,6 @@ export default function Carousel() {
             setCurrentSlide(0)
         }
     }
-<<<<<<< HEAD
     
     useEffect(() => {
         window.addEventListener('resize', handleWindowResize);
@@ -69,8 +68,6 @@ export default function Carousel() {
             startFetchingBooks();
         }
     }, [])
-=======
->>>>>>> dev
 
     if (books) {
         return(
