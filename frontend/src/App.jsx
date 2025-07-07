@@ -14,6 +14,7 @@ import Login from './pages/Login/Login';
 import Logout from './pages/Logout/Logout';
 import Contact from './pages/Contact/Contact';
 import StaticPages from './pages/StaticPages/StaticPages';
+import NotFound from './pages/NotFound/NotFound';
 
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
@@ -27,24 +28,25 @@ export default function App() {
             <BrowserRouter>
                 <Header />
                 <main>
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/library" element={<Library />} />
-                        <Route path="/personnalLibrary" element={<Library />} />
-                        <Route path="/library/:bookID" element={<BookID />} />
-                        <Route path="/about" element={<StaticPages />} />
-                        <Route path="/questions" element={<Questions />} />
-                        <Route path="/dashboard" element={<Dashboard />} />
-                        <Route path="/dashboard/options" element={<Options />} />
-                        <Route path="/register" element={<Register />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/logout" element={<Logout />} />
-                        <Route path="/contact" element={<Contact />} />
-                        <Route path="/privacy" element={<StaticPages />} />
-                        <Route path="/legal" element={<StaticPages />} />
-                        <Route path="/terms" element={<StaticPages />} />
-                        <Route path="/accessibility" element={<StaticPages />} />
-                    </Routes>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/library" element={<Library />} />
+                    <Route path="/personnalLibrary" element={<Library />} />
+                    <Route path="/library/:bookID" element={<BookID />} />
+                    <Route path="/about" element={<StaticPages />} />
+                    <Route path="/questions" element={<Questions />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/dashboard/options" element={<Options />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/logout" element={<Logout />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/privacy" element={<StaticPages />} />
+                    <Route path="/legal" element={<StaticPages />} />
+                    <Route path="/terms" element={<StaticPages />} />
+                    <Route path="/accessibility" element={<StaticPages />} />
+                    <Route path="*" element={<NotFound />}/>
+                </Routes>
                 </main>
                 <Footer />
             </BrowserRouter>
