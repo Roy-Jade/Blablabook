@@ -11,21 +11,7 @@ export default function BookID() {
     const [bookInfos, setBookInfos] = useState("");
     const [bookCommentaries, setBookCommentaries] = useState("");
 
-    let location = useLocation()+'';
     let params = useParams();
-    let bookID = location.split("/");
-    console.log("BookID = ", bookID)
-    // useEffect(() => {
-    //     function changeParams() {
-    //         params = useParams();
-    //     }
-    //     changeParams()
-    //     console.log(params)
-    // }, [params])
-
-    useEffect(() => {
-        console.log(location)
-        }, [location]);
 
     useEffect(() => {
         async function startFetchingBookInfos() {
@@ -36,25 +22,25 @@ export default function BookID() {
             setBookInfos(response.data.bookInfos);
             setBookCommentaries(response.data.bookCommentaries);
         }
-        if(!bookInfos) {
+        if(!bookInfos || bookInfos != params.bookID) {
             startFetchingBookInfos();
         }
-    }, [])
+    }, [params])
 
     return (
         <>
-          <Helmet>
+            <Helmet>
                 <title>BookID - BlablaBook</title>
                 <meta name='description' content='Le détail de votre livre'></meta>
             </Helmet>
             <h1>Détail du livre</h1>
 
-            <section>
+            <section className='bookInfo__data_primary'>
                 {/* Connexion à l'api cover de open library afin de récupérer la couverture du livre*/}
 
                 {bookInfos && <>
                     <img className='bookID__img' src={"https://covers.openlibrary.org/b/isbn/"+bookInfos.isbn+"-M.jpg"} alt={"Book's cover : "+bookInfos.titre} />
-                    <p>{bookInfos.ISBN}</p>
+                    <p>{bookInfos.isbn}</p>
                     <p>{bookInfos.titre}</p>
                     <p>{bookInfos.auteur}</p>
                     <p>{bookInfos.date_publication}</p>
@@ -65,28 +51,28 @@ export default function BookID() {
 
 
             </section>
-            <section>
+            <section className='bookInfo__carousel'>
                 <h2>Notre suggestion de livres</h2>
 
                 <Carousel />
 
             </section>
 
-            <section>
+            <section className='bookInfo__data_secondary'>
                 {/* notes correspondant à 4.5/5 dont une étoile diamant pleine gauche (a faire en SCSS)*/}
                 <p>Moyenne des notes <span className='bookID__note'>&#9733; &#9733; &#9733; &#9733; &#9734;</span></p>
 
                 <button className='button button_small'><Link to="/personnalLibrary">Ajouter à mes livres</Link></button>
             </section>
 
-            <article>
+            <article className='bookInfo__commentaries'>
                 <h2>Commentaires</h2>
 
                 {bookCommentaries && bookCommentaries.map((bookCommentary, index) => (
                     <div key={index}>
                         <div className='bookID__commentaires' >
                             <p>{bookCommentary.pseudonyme}</p>
-                            <p>{bookCommentary.date}</p>
+                            <p>{bookCommentary.date_creation_commentaire}</p>
                             <p>{bookCommentary.note}</p>
                             <p>{bookCommentary.commentaire}</p>
                         </div>

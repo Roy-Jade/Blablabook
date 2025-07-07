@@ -43,14 +43,16 @@ const bddController = {
     }
 
     const resultCommentaries = await db.query(`SELECT 
-      id, note, commentaire, date_creation_commentaire 
+      utilisateur.pseudonyme, 
+      utilisateur_interagit_livre.note, 
+      utilisateur_interagit_livre.commentaire, utilisateur_interagit_livre.date_creation_commentaire 
       FROM utilisateur_interagit_livre
+      JOIN utilisateur ON utilisateur_interagit_livre.id_utilisateur = utilisateur.id_utilisateur
       WHERE ISBN = $1`, 
       [ISBN]);
 
     const bookCommentaries = resultCommentaries.rows;
 
-    console.log(bookInfos, bookCommentaries)
     bookInfos
     res.status(200).json({bookInfos, bookCommentaries});
   },
