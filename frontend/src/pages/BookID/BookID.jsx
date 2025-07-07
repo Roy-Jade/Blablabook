@@ -40,12 +40,14 @@ export default function BookID() {
 
                 {bookInfos && <>
                     <img className='bookID__img' src={"https://covers.openlibrary.org/b/isbn/"+bookInfos.isbn+"-M.jpg"} alt={"Book's cover : "+bookInfos.titre} />
-                    <p>{bookInfos.isbn}</p>
-                    <p>{bookInfos.titre}</p>
-                    <p>{bookInfos.auteur}</p>
-                    <p>{bookInfos.date_publication}</p>
-                    <p>{bookInfos.nombre_page}</p>
-                    <p>{bookInfos.summary}</p>
+                    <div>
+                        <p>{bookInfos.isbn}</p>
+                        <p>{bookInfos.titre}</p>
+                        <p>{bookInfos.auteur}</p>
+                        <p>{bookInfos.date_publication}</p>
+                        <p>{bookInfos.nombre_page}</p>
+                        <p>{bookInfos.summary}</p>
+                    </div>
                 </>}
 
 
