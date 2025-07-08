@@ -18,22 +18,22 @@ export default function Contact() {
       <form className='contact__form' method="get" action="gestionDesEmail.html" >
 
         <div>
-            <label className='label_title' htmlFor="prenom">Prénom *</label>
+            <label className='text_bold' htmlFor="prenom">Prénom *</label>
             <input type="text" name="" id="prenom" placeholder="exemple : Marie" required/>
         </div>
 
         <div>
-            <label className='label_title' htmlFor="name">Nom *</label>
+            <label className='text_bold' htmlFor="name">Nom *</label>
             <input type="text" name="" id="name" placeholder="exemple : Dupont" required/>
         </div>
 
         <div>
-            <label className='label_title' htmlFor="email">Adresse E-mail *</label>
+            <label className='text_bold' htmlFor="email">Adresse E-mail *</label>
             <input type="email" name="email" id="email" placeholder="Exemple : marie@dupont.com" required/>
         </div>
 
         <div>
-            <label className='label_title' htmlFor="notes">Message *</label>
+            <label className='text_bold' htmlFor="notes">Message *</label>
             <textarea name="notes" id="notes" rows="20" cols="20" required />
         </div>
 

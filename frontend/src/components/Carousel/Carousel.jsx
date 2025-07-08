@@ -8,6 +8,8 @@ export default function Carousel() {
 
     const [currentSlide, setCurrentSlide] = useState(0);
     const [books, setBooks] = useState("");
+
+    
     const [windowSize, setWindowSize] = useState(window.innerWidth);
 
     const handleWindowResize = useCallback(event => {

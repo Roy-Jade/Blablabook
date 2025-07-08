@@ -9,6 +9,7 @@ export default function Logout(){
 
   const logout = async () => {
     setCurrentUser('')
+    localStorage.clear()
   }
 
   return(

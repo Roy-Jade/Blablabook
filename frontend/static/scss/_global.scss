@@ -120,21 +120,27 @@ h2 {
     }
 }
 
-.text_link {
-    text-decoration: underline;
-    &:hover {
-        color: vars.$blue-color;
+.text {
+    &_link {
+        text-decoration: underline;
+        &:hover {
+            color: vars.$blue-color;
+        }
+    }
+
+    &_bold {
+        font-weight: bold;
+        font-family: font.$font-title;
+        margin-bottom: 1%;
+    }
+
+    &_semi-bold {
+        font-weight: 600;
     }
 }
 
 img {
     max-width: 100%; // empêche les images de sortir de leur cadre
-}
-
-.label_title {
-    font-weight: bold;
-    font-family: font.$font-title;
-    margin-bottom: 1%;
 }
 
 .hidden {

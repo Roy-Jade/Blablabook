@@ -3,54 +3,119 @@
 @use '../../../static/scss/global';
 @use '../../../static/scss/mixin';
 
+.bookInfo {
 
-.bookID {
-  // &__book-detail {}
-
-  &__img {
-    max-width: 20%;
-    max-height: 60%;
-    box-shadow: 5px 5px 20px black;
-  }
-
-  &__note {
-    font-size: 25px;
-    color: vars.$red-color;
-  }
-
-  // &__book-carousel {}
-
-
-  &__commentaires {
-    margin: 1%;
+  &__data_primary {
+    grid-area: primary;
+    border: 2px solid vars.$blue-color;
+    border-radius: 20px;
     display: grid;
-    grid-template-columns: 5% 5% 5% 75%;
-    justify-content: space-around;
-    border: 1px solid vars.$brown-color;
+    grid-template-areas: 
+      "img desc"
+      "summary summary";
+      grid-template-columns: 1fr 2.5fr;
+    gap: 2%;
 
-    p:first-child {
-      padding: 0.1%;
-      font-weight: 600;
+    @include mixin.desktop {
+      grid-template-areas: 
+      "img desc"
+      "img summary";
     }
 
-    p:nth-child(2) {
-      padding: 0.1%;
+    &> * {
+      margin: 10px;
     }
 
-    p:nth-child(3) {
-      padding: 0.1%;
-      font-size: 15px;
-      color: vars.$red-color;
+    &__img {
+      grid-area: img;
+      border-radius: 10px;
     }
 
-    p:nth-child(4) {
-      padding: 0.1%;
-      font-size: 15px;
-      color: vars.$red-color;
+    &__desc {
+      grid-area: desc;
+      border-radius: 10px;
+      display: grid;
+      gap: 3%;
+
+      &>* {
+        grid-template-columns: 1fr 1fr;
+        display: grid;
+        align-items: center;
+      }
+
+      &>*>dd {
+        border: 1px solid vars.$blue-color;
+        padding: 1%;
+        padding-left: 5%;
+        border-radius: 8px;
+        font-weight: 600;
+      }
     }
 
+    &__summary {
+      grid-area: summary;
+      padding: 5px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      border: 2px solid vars.$blue-color;
+    }
+
+    &__nameplate {
+      color: vars.$brown-color;
+    }
+  }
+
+  &__data_secondary {
+    grid-area: secondary;
+    text-align: center;
+    margin: 2%;
+  }
+
+  &__carousel {
+    grid-area: carousel;
+    display: none;
+
+    @include mixin.desktop {
+      display: block;
+    }
+  }
+
+  &__commentaries {
+    grid-area: commentaries;
+
+    &>:nth-child(n+2){
+      border: 1px solid vars.$blue-color;
+      margin-bottom: 1%;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-areas: 
+      "pseudo date note" "comm comm comm";
+      padding-top: 1%;
+
+      @include mixin.desktop {
+        margin-bottom: 1%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 5fr;
+        grid-template-areas: 
+        "pseudo date note comm";
+        padding: 0%;
+      }
+
+      &>:first-child {
+        grid-area: pseudo;
+
+      }
+      &>:nth-child(2) {
+        grid-area: date;
+      }
+      &>:nth-child(3) {
+        grid-area: note;
+      }
+      &>:nth-child(4) {
+        grid-area: comm;
+        margin: 2%;
+      }
+    }
   }
 
 }
-
-;
