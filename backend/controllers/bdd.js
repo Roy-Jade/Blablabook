@@ -28,10 +28,10 @@ const bddController = {
 
   // fontion pemettant la récupération d'un livre et de son détail
   fetchBookID : async (req, res) => {
-    console.log("Récupération des informations du livre")
     const ISBN = req.params.bookID;
     const resultInfos = await db.query(
-      'SELECT * FROM livre WHERE ISBN = $1', [ISBN]);
+      `SELECT * FROM livre
+      WHERE ISBN = $1`, [ISBN]);
 
     // Récupération de l'enregistrement d'un livre depuis result.rows 
     const bookInfos = resultInfos.rows[0];
@@ -48,8 +48,8 @@ const bddController = {
       utilisateur_interagit_livre.commentaire, utilisateur_interagit_livre.date_creation_commentaire 
       FROM utilisateur_interagit_livre
       JOIN utilisateur ON utilisateur_interagit_livre.id_utilisateur = utilisateur.id_utilisateur
-      WHERE ISBN = $1`, 
-      [ISBN]);
+      WHERE utilisateur_interagit_livre.id_livre = $1`, 
+      [bookInfos.id_livre]);
 
     const bookCommentaries = resultCommentaries.rows;
 
@@ -62,12 +62,22 @@ const bddController = {
     decoded = jwt.verify(authorization, process.env.SECRET);
     let userEmail = decoded.email
     const results =  await db.query(
-      'SELECT utilisateur.email, livre.ISBN, livre.titre, livre.auteur FROM utilisateur JOIN utilisateur_interagit_livre ON utilisateur.id_utilisateur = utilisateur_interagit_livre.id_utilisateur JOIN livre ON utilisateur_interagit_livre.ISBN = livre.ISBN WHERE email = $1',
+      `SELECT 
+      utilisateur.email, 
+      livre.ISBN, 
+      livre.titre, 
+      livre.auteur 
+      FROM utilisateur 
+      JOIN utilisateur_interagit_livre 
+      ON utilisateur.id_utilisateur = utilisateur_interagit_livre.id_utilisateur 
+      JOIN livre 
+      ON utilisateur_interagit_livre.id_livre = livre.id_livre 
+      WHERE email = $1`,
       [userEmail]
     );
-    const userBooks = results.rows;
+    const books = results.rows;
 
-    res.status(200).json({userBooks});
+    res.status(200).json({books});
   }
 }
 

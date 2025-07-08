@@ -26,11 +26,15 @@ const authController = {
 
   login : async (req, res) => {
     const { email, password } = req.body;
-    const result = await db.query(
+    const userData = await db.query(
       'SELECT * FROM utilisateur WHERE email = $1',
       [email]);
+
+    const userBooks = await db.query(
+        'SELECT id_livre, est_lu, est_partage, note FROM utilisateur_interagit_livre WHERE id_utilisateur = $1',
+        [userData.rows[0].id_utilisateur]);
     
-    const user = result.rows[0];
+    const user = [userData.rows[0].pseudonyme, userBooks.rows];
   
     if (!user) {
       return res.status(401).json({
@@ -38,7 +42,7 @@ const authController = {
       });
     }
     
-    const isPasswordValid = await bcrypt.compare(password, user.mot_de_passe);
+    const isPasswordValid = await bcrypt.compare(password, userData.rows[0].mot_de_passe);
   
     if (!isPasswordValid) {
       return res.status(401).json({
@@ -46,7 +50,7 @@ const authController = {
       });
     }
     
-    const token = jwt.sign({ email: user.email, id: user._id }, process.env.SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ email: userData.rows[0].email, id: userData.rows[0]._id }, process.env.SECRET, { expiresIn: '1h' });
   
     res.status(200).json({
       token,
