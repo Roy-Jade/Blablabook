@@ -17,7 +17,7 @@ export default function BookMini({book}) {
           <address className='bookmini__author'>{book.auteur}</address>
         </div>
         <div className='bookmini__note'>&#9733; &#9733; &#9733; &#9733; &#9734;</div>
-        <Link to={`/library/${book.isbn}`} book={book} className='button button_small'>Voir le détail</Link>
+        <Link to={`/${book.isbn}`} book={book} className='button button_small'>Voir le détail</Link>
         <div className='bookmini__booleans connected owned'>
           <div>
             <input type="checkbox" id='isRead' name='isRead'/>

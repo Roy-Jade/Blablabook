@@ -73,7 +73,7 @@ export default function BookID() {
                 <section className='bookInfo__data_secondary'>
                     {/* notes correspondant à 4.5/5 dont une étoile diamant pleine gauche (a faire en SCSS)*/}
                     <p>Moyenne des notes <span className='bookID__note'>&#9733; &#9733; &#9733; &#9733; &#9734;</span></p>
-                    <button className='button button_small'><Link to="/personnalLibrary">Ajouter à mes livres</Link></button>
+                    <button className='button button_small'>Ajouter à mes livres</button>
                 </section>
 
                 <article className='bookInfo__commentaries'>
