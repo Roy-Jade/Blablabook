@@ -7,6 +7,7 @@ import checkJWT from '../middelware/checkJWT.js';
 const router = express.Router()
 
 router.get('/books', bddController.fetchBooks);
+router.get('/book/:bookID', bddController.fetchBookID);
 
 // router.post('/register', authController.register);
 router.post('/login', authController.login);

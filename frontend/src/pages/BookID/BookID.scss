@@ -1,0 +1,56 @@
+@use '../../../static/scss/vars';
+@use '../../../static/scss/font';
+@use '../../../static/scss/global';
+@use '../../../static/scss/mixin';
+
+
+.bookID {
+  // &__book-detail {}
+
+  &__img {
+    max-width: 20%;
+    max-height: 60%;
+    box-shadow: 5px 5px 20px black;
+  }
+
+  &__note {
+    font-size: 25px;
+    color: vars.$red-color;
+  }
+
+  // &__book-carousel {}
+
+
+  &__commentaires {
+    margin: 1%;
+    display: grid;
+    grid-template-columns: 5% 5% 5% 75%;
+    justify-content: space-around;
+    border: 1px solid vars.$brown-color;
+
+    p:first-child {
+      padding: 0.1%;
+      font-weight: 600;
+    }
+
+    p:nth-child(2) {
+      padding: 0.1%;
+    }
+
+    p:nth-child(3) {
+      padding: 0.1%;
+      font-size: 15px;
+      color: vars.$red-color;
+    }
+
+    p:nth-child(4) {
+      padding: 0.1%;
+      font-size: 15px;
+      color: vars.$red-color;
+    }
+
+  }
+
+}
+
+;
