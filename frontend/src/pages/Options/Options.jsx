@@ -11,7 +11,7 @@ export default function Options() {
     <div>
       <Helmet>
           <title>Options de partage - BlablaBook</title>
-          <meta name='description' content="Définissez vos préférences de partage sur BlablaBook : activez ou désactivez le partage automatique de vos livres et choisissez votre audience."></meta>
+          <meta name='description' content="Définissez vos préférences de partage sur BlablaBook : activez ou désactivez le partage automatique de vos livres et choisissez votre lectorat."></meta>
       </Helmet>
       <h1>Options de partage</h1>
       <p><strong>Partage automatique des livres</strong></p>
