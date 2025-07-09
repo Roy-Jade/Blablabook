@@ -64,15 +64,21 @@ const authController = {
         [userData.rows[0].id_utilisateur]);
     
     const user = [userData.rows[0].pseudonyme, userBooks.rows];
+  
+    if (!user) {
+      return res.status(401).json({
+        message: "Erreur 401 : l'utilisateur et le mot de passe ne correspondent pas",
+      });
+    }
     
     const isPasswordValid = await bcrypt.compare(password, userData.rows[0].mot_de_passe);
   
     if (!isPasswordValid) {
       return res.status(401).json({
-        message: "Erreur : l'utilisateur et le mot de passe ne correspondent pas",
+        message: "Erreur 401 : l'utilisateur et le mot de passe ne correspondent pas",
       });
     }
-      
+    
     const token = jwt.sign({ email: userData.rows[0].email, id: userData.rows[0]._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
   
     res.status(200).json({

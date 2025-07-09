@@ -8,6 +8,7 @@ export default function Carousel() {
 
     const [currentSlide, setCurrentSlide] = useState(0);
     const [books, setBooks] = useState("");
+    const [error, setError] = useState("");
 
     
     const [windowSize, setWindowSize] = useState(window.innerWidth);
@@ -24,14 +25,21 @@ export default function Carousel() {
     }, [handleWindowResize]);
 
     useEffect(() => {
-        async function startFetchingBook() {
-            setBooks(null);
-            const response = await api.get('/books');
-            const randomizedBooks = shuffle(response.data.books) 
-            setBooks(randomizedBooks);
+        async function startFetchingBooks() {
+            setError("")
+            try {
+                setBooks(null);
+                const response = await api.get('/books');
+                const randomizedBooks = shuffle(response.data.books) 
+                setBooks(randomizedBooks);
+            }
+            catch (error) {
+                setError(error.response.data.message)
+                console.log(error)
+            }
         }
         if(!books) {
-            startFetchingBook();
+            startFetchingBooks();
         }
     }, [])
 
@@ -59,17 +67,17 @@ export default function Carousel() {
     }, [handleWindowResize]);
 
 
-    useEffect(() => {
-        async function startFetchingBooks() {
-            setBooks(null);
-            const response = await api.get('/books');
-            const randomizedBooks = shuffle(response.data.books) 
-            setBooks(randomizedBooks);
-        }
-        if(!books) {
-            startFetchingBooks();
-        }
-    }, [])
+    // useEffect(() => {
+    //     async function startFetchingBooks() {
+    //         setBooks(null);
+    //         const response = await api.get('/books');
+    //         const randomizedBooks = shuffle(response.data.books) 
+    //         setBooks(randomizedBooks);
+    //     }
+    //     if(!books) {
+    //         startFetchingBooks();
+    //     }
+    // }, [])
 
     if (books) {
         return(

@@ -11,10 +11,10 @@ export default function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState('');
-
-
+  const [error, setError] = useState("");
+    
   const login = async () => {
+    setError("")
     try {
       console.log("Tentative de connexion avec :", email, password);
 
@@ -23,8 +23,7 @@ export default function Login() {
       localStorage.setItem('token', response.data.token);
       setCurrentUser(response.data.user);
     } catch (error) {
-      setError(error.response?.data?.error || "Identifiants invalides.");
-
+      setError(error.response.data.message)
     }
   };
 
@@ -42,9 +41,11 @@ export default function Login() {
       <h1>Connexion</h1>
 
       {currentUser && (<>
-      <p>Vous êtes connecté en tant que {currentUser[0].pseudonyme}.</p>
+      <p>Vous êtes connecté en tant que {currentUser[0]}.</p>
       <Link className="text_link" to="/logout">Se déconnecter</Link>
       </>)}
+
+      {error && <p className="text_error">{error}</p>}
 
       {!currentUser && (<>
       {error && <p className="error-message">{error}</p>}
