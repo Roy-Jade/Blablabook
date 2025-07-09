@@ -9,7 +9,9 @@ const router = express.Router()
 router.get('/books', bddController.fetchBooks);
 router.get('/book/:bookID', bddController.fetchBookID);
 
-// router.post('/register', authController.register);
+// auth est une convention d'URL 
+router.post('/auth/register', authController.register);
+
 router.post('/login', authController.login);
 
 router.get('/personalLibrary', checkJWT, bddController.fetchPersonalLibrary);

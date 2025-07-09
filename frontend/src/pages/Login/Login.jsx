@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import api from "../../../api";
 import "./Login.scss";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { Helmet } from 'react-helmet';
 import { CurrentUserContext } from "../../Contexts";
 
@@ -11,14 +11,20 @@ export default function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-    
+  const [error, setError] = useState('');
+
+
   const login = async () => {
     try {
+      console.log("Tentative de connexion avec :", email, password);
+
       const response = await api.post('/login', { email, password });
+
       localStorage.setItem('token', response.data.token);
       setCurrentUser(response.data.user);
     } catch (error) {
-      console.error("Erreur de login");
+      setError(error.response?.data?.error || "Identifiants invalides.");
+
     }
   };
 
@@ -26,7 +32,7 @@ export default function Login() {
     e.preventDefault()
     login()
   }
-  
+
   return (
     <>
       <Helmet>
@@ -41,6 +47,8 @@ export default function Login() {
       </>)}
 
       {!currentUser && (<>
+      {error && <p className="error-message">{error}</p>}
+
         <form className="login__form" method="post" onSubmit={(e) => handleSubmit(e)}>
 
         <fieldset>
