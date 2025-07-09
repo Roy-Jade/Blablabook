@@ -16,10 +16,7 @@ export default function Login() {
   const login = async () => {
     setError("")
     try {
-      console.log("Tentative de connexion avec :", email, password);
-
       const response = await api.post('/login', { email, password });
-
       localStorage.setItem('token', response.data.token);
       setCurrentUser(response.data.user);
     } catch (error) {

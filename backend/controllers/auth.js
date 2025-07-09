@@ -64,18 +64,18 @@ const authController = {
     const userData = await db.query(
       'SELECT * FROM utilisateur WHERE email = $1',
       [email]);
+
+    if(!userData.rows[0]) {
+      return res.status(401).json({
+        message: "Erreur 401 : l'utilisateur et le mot de passe ne correspondent pas",
+      });
+    }
     
     const userBooks = await db.query(
         'SELECT id_livre, est_lu, est_partage, note FROM utilisateur_interagit_livre WHERE id_utilisateur = $1',
         [userData.rows[0].id_utilisateur]);
     
     const user = [userData.rows[0].pseudonyme, userBooks.rows];
-  
-    if (!user) {
-      return res.status(401).json({
-        message: "Erreur 401 : l'utilisateur et le mot de passe ne correspondent pas",
-      });
-    }
     
     const isPasswordValid = await bcrypt.compare(password, userData.rows[0].mot_de_passe);
   
