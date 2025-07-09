@@ -8,6 +8,8 @@ export default function Carousel() {
 
     const [currentSlide, setCurrentSlide] = useState(0);
     const [books, setBooks] = useState("");
+
+    
     const [windowSize, setWindowSize] = useState(window.innerWidth);
 
     const handleWindowResize = useCallback(event => {
@@ -48,6 +50,26 @@ export default function Carousel() {
             setCurrentSlide(0)
         }
     }
+    
+    useEffect(() => {
+        window.addEventListener('resize', handleWindowResize);
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+        };
+    }, [handleWindowResize]);
+
+
+    useEffect(() => {
+        async function startFetchingBooks() {
+            setBooks(null);
+            const response = await api.get('/books');
+            const randomizedBooks = shuffle(response.data.books) 
+            setBooks(randomizedBooks);
+        }
+        if(!books) {
+            startFetchingBooks();
+        }
+    }, [])
 
     if (books) {
         return(

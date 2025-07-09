@@ -45,7 +45,7 @@ INSERT INTO utilisateur_interagit_livre (id_utilisateur, ISBN, est_lu, est_parta
 (10, '9782277124344', TRUE, TRUE, 5, 'On a pas du tout envie de quitter Copeau, et le suspense est maintenu jusqu''au bout.  '),
 (4, '9782747014403', TRUE, TRUE, 5, 'J''ai commencé ce livre un jour sur un coup de tête, c''était mon premier roman de fantasy pure et dure et je l''ai lu d''une traite. Il est tout simplement génial, l''univers créé par l''auteur est complet, magique, intriguant et dangereux parfois. J''ai adoré m''y perdre et voyager en compagnie d''Eragon et Saphira'),
 (3, '9782747014403', TRUE, TRUE, 4, 'Je suis vraiment surprise de la qualité de ce livre ! C''est de la Fantasy jeunesse et pourtant j''ai adoré ! J''ai vécu ces aventures comme si j''y étais'),
-(3, '9782843440984', FALSE, FALSE, NULL, NULL),
+(3, '9782843440984', FALSE, FALSE, 2, 'NULL'),
 (8, '9782843440984', TRUE, FALSE, 2, 'Histoire longue à démarrer, Dans la deuxième moitié du roman, les choses s’accélèrent, la véritable nature des personnages commence à se révéler'),
 (2, '9782070584628', TRUE, FALSE, 4, 'Je le conseille à tout lecteur ! Quelque soit son âge, son niveau de lecture, Harry Potter est une perle ! Il se démarque par sa simplicité, son scénario révolutionnaire certes mais qui s''inscrit dans un monde que Rowling parvient à recréer parfaitement ! En tout cas à ne pas manquer. '),
 (4, '9782070584628', TRUE, TRUE, 5, 'Jamais je n''oublierai cette série qui m''a fait aimer lire. Je l''ai relue au moins trois fois. Rowling mérite son succès, c''est grâce à elle que le fantastique-jeunesse a connu son essor.'),
@@ -58,18 +58,17 @@ INSERT INTO utilisateur_interagit_livre (id_utilisateur, ISBN, est_lu, est_parta
 (1, '9782070408504', TRUE, FALSE, 4, 'Une merveilleuse histoire. On s''y accroche à ce petit bout d''enfant. L''innocence de l''enfant et la nostalgie qu''on en a nous reviennent en pleine face quand on parcourt les pages de ce livre'),
 (5, '9782070408504', TRUE, FALSE, 4, 'C''est un livre à lire et à relire. Etrangement, selon les jours, ce n''est jamais la même impression qui en ressort ni les mêmes ressentiments. Comme si chaque lecture apportait toujours quelque chose de nouveau !'),
 (7, '9782070345830', TRUE, FALSE, 3, 'magnifique livre ! Un dessinteur de génie qui nous recréé paris et un auteur à l''humour quelques peu....compliquer. A lire'),
-(9, '9782070345830', FALSE, FALSE, NULL, NULL),
+(9, '9782070345830', FALSE, FALSE, 4, 'NULL'),
 (10, '9782298027259', TRUE, TRUE, 5, 'Ce livre m''a coupé le souffle. Ca faisait un moment que j''attendais qu''un livre me frappe comme cela. Hé bien là, j''ai été servi.'),
 (2, '9782298027259', TRUE, FALSE, 5, 'Accrochez-vous. Une vision de la télé réalité futuriste. Un livre qui vous prends aux tripes, vous luttez en même temps que l''héroine pour survivre.'),
 (1, '9782253115847', TRUE, TRUE, 4, 'A travers les yeux d''une petite fille, on montre la ségrégation aux Etats-Unis. Le style est léger et drôle, mais derrière se cache une histoire pesante. Je le conseille à tout le monde.'),
 (8, '9782253115847', TRUE, FALSE, 2, 'Au risque de me faire tirer dessus, je dois malheureusement avouer que je n’ai pas accroché du tout à cette lecture… J’en ressors fort déçue. '),
-(2, '9782290208878', TRUE, TRUE, 4, 'Honnêtement, je m’attendais à m’ennuyer ferme en lisant ce livre, parce que j''avais déjà vu la première saison de la série et je connaissaient déjà le dénouement de l''histoire. Et bien c''est tout le contraire. Il n''y a pas une seule chose que je n''ai pas aimé dans ce roman'),
+(2, '9782290208878', TRUE, TRUE, 4, 'Honnêtement, je m’attendais à m’ennuyer ferme en lisant ce livre, parce que j''avais déjà vu la première saison de la série et je connaissaient déjà le dénouement de l''histoire. Et bien c''est tout le contraire. Il n''y a pas une seule chose que je n''ai pas aimé dans ce roma'),
 (9, '9782290208878', TRUE, TRUE, 3, 'Une Fantasy riche qui m''a beaucoup plu où l''on découvre à chaque chapitre le point de vue d''un protagoniste.'),
 (8, '9782013212113', TRUE, FALSE, 1, 'Cette saga est une énigme pour moi!!! Je ne supporte pas les personnages principaux (Bella, Edward et Jacob), je trouve l''histoire d''une niaiserie sans précédent.... '),
-(9, '9782013212113', FALSE, FALSE, NULL, NULL),
-(10, '9782267054859', TRUE, TRUE, 4, 'un classique de chez classique dans le genre héroïc fantasy / SF....c''est plus qu''une histoire que nous peint Tolkien, c''est une fresque avec tout ce que cela attend '),
-(1, '9782267054859', TRUE, FALSE, 3, 'Lu et relu un certain nombre de fois. J''aime entrer dans ce monde de créatures, magique, monstrueuses, où le mal et le bien mène un combat permanent. ');
-
-
+(9, '9782013212113', FALSE, FALSE, 5, 'NULL'),
+(10, '9782253115847', TRUE, TRUE, 4, 'un classique de chez classique dans le genre héroïc fantasy / SF....c''est plus qu''une histoire que nous peint Tolkien, c''est une fresque avec tout ce que cela attend '),
+(1, '9782070408504', TRUE, FALSE, 2, 'Lu et relu un certain nombre de fois. J''aime entrer dans ce monde de créatures, magique, monstrueuses, où le mal et le bien mène un combat permanent. ');
 
 COMMIT;
+

@@ -1,0 +1,121 @@
+@use '../../../static/scss/vars';
+@use '../../../static/scss/font';
+@use '../../../static/scss/global';
+@use '../../../static/scss/mixin';
+
+.bookInfo {
+
+  &__data_primary {
+    grid-area: primary;
+    border: 2px solid vars.$blue-color;
+    border-radius: 20px;
+    display: grid;
+    grid-template-areas: 
+      "img desc"
+      "summary summary";
+      grid-template-columns: 1fr 2.5fr;
+    gap: 2%;
+
+    @include mixin.desktop {
+      grid-template-areas: 
+      "img desc"
+      "img summary";
+    }
+
+    &> * {
+      margin: 10px;
+    }
+
+    &__img {
+      grid-area: img;
+      border-radius: 10px;
+    }
+
+    &__desc {
+      grid-area: desc;
+      border-radius: 10px;
+      display: grid;
+      gap: 3%;
+
+      &>* {
+        grid-template-columns: 1fr 1fr;
+        display: grid;
+        align-items: center;
+      }
+
+      &>*>dd {
+        border: 1px solid vars.$blue-color;
+        padding: 1%;
+        padding-left: 5%;
+        border-radius: 8px;
+        font-weight: 600;
+      }
+    }
+
+    &__summary {
+      grid-area: summary;
+      padding: 5px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      border: 2px solid vars.$blue-color;
+    }
+
+    &__nameplate {
+      color: vars.$brown-color;
+    }
+  }
+
+  &__data_secondary {
+    grid-area: secondary;
+    text-align: center;
+    margin: 2%;
+  }
+
+  &__carousel {
+    grid-area: carousel;
+    display: none;
+
+    @include mixin.desktop {
+      display: block;
+    }
+  }
+
+  &__commentaries {
+    grid-area: commentaries;
+
+    &>:nth-child(n+2){
+      border: 1px solid vars.$blue-color;
+      margin-bottom: 1%;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-areas: 
+      "pseudo date note" "comm comm comm";
+      padding-top: 1%;
+
+      @include mixin.desktop {
+        margin-bottom: 1%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 5fr;
+        grid-template-areas: 
+        "pseudo date note comm";
+        padding: 0%;
+      }
+
+      &>:first-child {
+        grid-area: pseudo;
+
+      }
+      &>:nth-child(2) {
+        grid-area: date;
+      }
+      &>:nth-child(3) {
+        grid-area: note;
+      }
+      &>:nth-child(4) {
+        grid-area: comm;
+        margin: 2%;
+      }
+    }
+  }
+
+}
