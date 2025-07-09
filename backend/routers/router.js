@@ -7,6 +7,7 @@ import checkJWT from '../middelware/checkJWT.js';
 const router = express.Router()
 
 router.get('/books', bddController.fetchBooks);
+router.get('/book/:bookID', bddController.fetchBookID);
 
 // auth est une convention d'URL 
 router.post('/auth/register', authController.register);

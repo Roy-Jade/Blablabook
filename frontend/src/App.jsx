@@ -5,7 +5,7 @@ import { CurrentUserContext } from './Contexts';
 // Liste des imports de page
 import Home from './pages/Home/Home';
 import Library from './pages/Library/Library';
-// import Book from './pages/Book/Book';
+import BookID from './pages/BookID/BookID';
 import Questions from './pages/Questions/Questions';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Options from './pages/Options/Options';
@@ -23,16 +23,16 @@ export default function App() {
 
     const [currentUser, setCurrentUser] = useState(null);
 
-    return(
-        <CurrentUserContext value={{currentUser, setCurrentUser}}>
+    return (
+        <CurrentUserContext value={{ currentUser, setCurrentUser }}>
             <BrowserRouter>
                 <Header />
                 <main>
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/library" element={<Library />} />
-                    <Route path="/personnalLibrary" element={<Library />} />
-                    {/* <Route path="/library/:bookID" element={<Book />} /> */}
+                    <Route path="/library/:user" element={<Library />} />
+                    <Route path="/:bookID" element={<BookID />} />
                     <Route path="/about" element={<StaticPages />} />
                     <Route path="/questions" element={<Questions />} />
                     <Route path="/dashboard" element={<Dashboard />} />

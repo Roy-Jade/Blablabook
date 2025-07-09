@@ -55,53 +55,26 @@ const authController = {
 // CONNEXION UTILISATEUR
   login : async (req, res) => {
     const { email, password } = req.body;
-    const result = await db.query(
+    const userData = await db.query(
       'SELECT * FROM utilisateur WHERE email = $1',
       [email]);
-
-    const user = result.rows[0];
-
-    if (!user) {
-      return res.status(401).json({
-        message: "Erreur : l'utilisateur et le mot de passe ne correspondent pas",
-      });
-    }
-
-   // Console.log à supprimer après avoir fait les tests
-
-  console.log("🔐 Connexion reçue");
-  console.log("📧 Email reçu :", email);
-  console.log("🔑 Mot de passe reçu :", password);
-
-  if (!user) {
-  console.log("❌ Utilisateur introuvable.");
-  } else {
-  console.log("✅ Utilisateur trouvé :", user.email);
-  console.log("🔒 Mot de passe hashé stocké :", user.mot_de_passe);
-  const isPasswordValid = await bcrypt.compare(password, user.mot_de_passe);
-  console.log("🧪 Résultat de bcrypt.compare :", isPasswordValid);
-
-  if (!isPasswordValid) {
-    console.log("❌ Mot de passe invalide");
-  } else {
-    console.log("🎉 Connexion réussie !");
-  }
-}
-
-  const isPasswordValid = await bcrypt.compare(password, user.mot_de_passe);
-
+    
+    const userBooks = await db.query(
+        'SELECT id_livre, est_lu, est_partage, note FROM utilisateur_interagit_livre WHERE id_utilisateur = $1',
+        [userData.rows[0].id_utilisateur]);
+    
+    const user = [userData.rows[0].pseudonyme, userBooks.rows];
+    
+    const isPasswordValid = await bcrypt.compare(password, userData.rows[0].mot_de_passe);
+  
     if (!isPasswordValid) {
       return res.status(401).json({
         message: "Erreur : l'utilisateur et le mot de passe ne correspondent pas",
       });
     }
-
-console.log("SECRET utilisé :", process.env.JWT_SECRET);
-
-const token = jwt.sign({ email: user.email, id: user.id_utilisateur }, process.env.JWT_SECRET, { expiresIn: '1h' });
-console.log("🔐 Token généré :", token);
-
-
+      
+    const token = jwt.sign({ email: userData.rows[0].email, id: userData.rows[0]._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+  
     res.status(200).json({
       token,
       user,

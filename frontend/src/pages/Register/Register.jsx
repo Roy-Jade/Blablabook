@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "./Register.scss";
 import { Helmet } from 'react-helmet';
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import api from "../../../api";
 
 export default function Register() {
@@ -13,7 +13,7 @@ export default function Register() {
   const [motDePasse, setMotDePasse] = useState('');
   const [confirmation, setConfirmation] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate();
+//   const navigate = useNavigate();
 
   // Soumission du formulaire
   const handleSubmit = async (e) => {
@@ -31,10 +31,10 @@ export default function Register() {
         password: motDePasse,
       });
 
-      navigate('/login'); // Redirection après succès
+//       navigate('/login'); // Redirection après succès
     } catch (err) {
       console.error(err);
-      setError(err.response?.data?.error || "Une erreur est survenue. Veuillez réessayer.");
+      setError(err.response.data.message || "Une erreur est survenue. Veuillez réessayer.");
     }
   };
 

@@ -42,7 +42,7 @@ export default function Login() {
       <h1>Connexion</h1>
 
       {currentUser && (<>
-      <p>Vous êtes connecté en tant que {currentUser.pseudonyme}.</p>
+      <p>Vous êtes connecté en tant que {currentUser[0].pseudonyme}.</p>
       <Link className="text_link" to="/logout">Se déconnecter</Link>
       </>)}
 
@@ -52,12 +52,12 @@ export default function Login() {
         <form className="login__form" method="post" onSubmit={(e) => handleSubmit(e)}>
 
         <fieldset>
-          <label className='label_title' htmlFor="email">Adresse e-mail</label>
+          <label className='text_bold' htmlFor="email">Adresse e-mail</label>
           <input type="email" id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="exemple: Marizia99@gmail.com" required/>
         </fieldset>
 
         <fieldset>
-          <label className='label_title' htmlFor="password">Mot de passe</label>
+          <label className='text_bold' htmlFor="password">Mot de passe</label>
           <input type="password" id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="nouha@2021" required/>
         </fieldset>
 

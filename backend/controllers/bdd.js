@@ -26,19 +26,58 @@ const bddController = {
     res.status(200).json({books});
   },
 
+  // fontion pemettant la récupération d'un livre et de son détail
+  fetchBookID : async (req, res) => {
+    const ISBN = req.params.bookID;
+    const resultInfos = await db.query(
+      `SELECT * FROM livre
+      WHERE ISBN = $1`, [ISBN]);
+
+    // Récupération de l'enregistrement d'un livre depuis result.rows 
+    const bookInfos = resultInfos.rows[0];
+
+    if (!bookInfos) {
+      return res.status(401).json({
+        message: "Erreur : aucun livre trouvé",
+      });
+    }
+
+    const resultCommentaries = await db.query(`SELECT 
+      utilisateur.pseudonyme, 
+      utilisateur_interagit_livre.note, 
+      utilisateur_interagit_livre.commentaire, utilisateur_interagit_livre.date_creation_commentaire 
+      FROM utilisateur_interagit_livre
+      JOIN utilisateur ON utilisateur_interagit_livre.id_utilisateur = utilisateur.id_utilisateur
+      WHERE utilisateur_interagit_livre.id_livre = $1`, 
+      [bookInfos.id_livre]);
+
+    const bookCommentaries = resultCommentaries.rows;
+
+    bookInfos
+    res.status(200).json({bookInfos, bookCommentaries});
+  },
+
   fetchPersonalLibrary : async (req, res) => {
-    console.log("Récupération de la bibliothèque personnelle...")
     let authorization = req.headers.authorization.split(" ")[1], decoded;
     decoded = jwt.verify(authorization, process.env.SECRET);
     let userEmail = decoded.email
-    console.log((userEmail))
     const results =  await db.query(
-      'SELECT utilisateur.email, livre.ISBN, livre.titre, livre.auteur FROM utilisateur JOIN utilisateur_interagit_livre ON utilisateur.id_utilisateur = utilisateur_interagit_livre.id_utilisateur JOIN livre ON utilisateur_interagit_livre.ISBN = livre.ISBN WHERE email = $1',
+      `SELECT 
+      utilisateur.email, 
+      livre.ISBN, 
+      livre.titre, 
+      livre.auteur 
+      FROM utilisateur 
+      JOIN utilisateur_interagit_livre 
+      ON utilisateur.id_utilisateur = utilisateur_interagit_livre.id_utilisateur 
+      JOIN livre 
+      ON utilisateur_interagit_livre.id_livre = livre.id_livre 
+      WHERE email = $1`,
       [userEmail]
     );
-    const userBooks = results.rows;
+    const books = results.rows;
 
-    res.status(200).json({userBooks});
+    res.status(200).json({books});
   }
 }
 
