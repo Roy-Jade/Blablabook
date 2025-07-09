@@ -17,9 +17,9 @@ const checkJWT = async (req, res, next) => {
         let authorization = req.headers.authorization.split(" ")[1],
             decoded;
         try {
-            decoded = jwt.verify(authorization, process.env.SECRET);
+            decoded = jwt.verify(authorization, process.env.JWT_SECRET);
         } catch (e) {
-            return res.status(401).send("Erreur : accès non autorisé");
+            return res.status(401).send("Erreur 401 : accès non autorisé");
         }
         let userEmail = decoded.email;
         // Fetch the user by id_utilisateur 

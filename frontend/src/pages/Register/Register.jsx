@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import "./Register.scss";
 import { Helmet } from 'react-helmet';
 import { useState } from "react";
@@ -31,10 +31,8 @@ export default function Register() {
         password: motDePasse,
       });
 
-//       navigate('/login'); // Redirection après succès
-    } catch (err) {
-      console.error(err);
-      setError(err.response.data.message || "Une erreur est survenue. Veuillez réessayer.");
+    } catch (error) {
+      setError(error.response.data.message || "Une erreur est survenue. Veuillez réessayer.");
     }
   };
 
@@ -50,6 +48,8 @@ export default function Register() {
       </Helmet>
 
       <h1>Créer un compte</h1>
+
+      {error && <p className="text_error">{error}</p>}
 
       <form className="register__form" onSubmit={handleSubmit}>
         <fieldset>
@@ -109,8 +109,6 @@ export default function Register() {
             J'accepte les termes et les conditions
           </label>
         </fieldset>
-
-        {error && <p className="error-message">{error}</p>}
 
         <button className="button button_big" type="submit">S'inscrire</button>
 

@@ -13,6 +13,7 @@ export default function Library() {
 
     const user = useContext(CurrentUserContext);
     const [books, setBooks] = useState("");
+    const [error, setError] = useState("");
 
     let params = useParams().user;
     let target = 'books'
@@ -30,8 +31,14 @@ export default function Library() {
     useEffect(() => {
         async function startFetchingPersonalLibrary() {
             setBooks(null);
-            const response = await api.get(`/${target}`);
-            setBooks(response.data.books);
+            setError(null);
+            try {
+                const response = await api.get(`/${target}`);
+                setBooks(response.data.books);
+            } catch (error) {
+                setError(error.response.data.message)
+                console.log(error)
+            }
         }
         startFetchingPersonalLibrary();
     }, [target])

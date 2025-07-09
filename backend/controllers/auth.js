@@ -18,6 +18,13 @@ const authController = {
     console.log("Tentative de création du compte...");
     const { email, password, pseudonyme } = req.body;
 
+    if(pseudonyme.length <3 || pseudonyme.length>15) {
+      return res.status(401).json({
+        message: "Erreur 401 : le nom d'utilisateur doit comprendre de 3 à 15 caractères",
+      });
+    }
+
+    // TO DO : avec validator, vérifier que le MDP fasse 8 caractères min, avec une majuscule, une minuscule, un chiffre et un caractère spécial
 
     try {
       
@@ -37,12 +44,11 @@ const authController = {
       res.status(201).json({ user });
 
     } catch (error) {
-      console.error("Erreur lors de l'inscription :", error);
 
       // Gestion du doublon pseudonyme ou email
       if (error.code === '23505') {
         return res.status(400).json({
-          error: "Email ou pseudonyme déjà utilisé. Veuillez en choisir un autre."
+          message: "Email ou pseudonyme déjà utilisé. Veuillez en choisir un autre."
         });
       }
 
@@ -58,6 +64,12 @@ const authController = {
     const userData = await db.query(
       'SELECT * FROM utilisateur WHERE email = $1',
       [email]);
+
+    if(!userData.rows[0]) {
+      return res.status(401).json({
+        message: "Erreur 401 : l'utilisateur et le mot de passe ne correspondent pas",
+      });
+    }
     
     const userBooks = await db.query(
         'SELECT id_livre, est_lu, est_partage, note FROM utilisateur_interagit_livre WHERE id_utilisateur = $1',
@@ -69,10 +81,10 @@ const authController = {
   
     if (!isPasswordValid) {
       return res.status(401).json({
-        message: "Erreur : l'utilisateur et le mot de passe ne correspondent pas",
+        message: "Erreur 401 : l'utilisateur et le mot de passe ne correspondent pas",
       });
     }
-      
+    
     const token = jwt.sign({ email: userData.rows[0].email, id: userData.rows[0]._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
   
     res.status(200).json({
