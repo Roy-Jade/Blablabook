@@ -1,6 +1,7 @@
 // On importe notre [Composant].scss
 import './BookMini.scss';
 import { Link } from 'react-router';
+import Rating from '../Rating/Rating';
 
 // On créée une fonction qui contient un return 
 // Le return doit comprendre une balise englobant tout le reste. Utiliser une balise vide <> fonctionne.
@@ -8,6 +9,8 @@ import { Link } from 'react-router';
 
 // L'écriture ci-dessus permet de faire la fonction et de l'exporter en même temps
 export default function BookMini({book}) {
+
+  console.log(book)
   return(
     <article className={`bookmini`}>
       <img className='bookmini__img' src={"https://covers.openlibrary.org/b/isbn/"+book.isbn+"-M.jpg"} alt="Couverture" />
@@ -16,7 +19,9 @@ export default function BookMini({book}) {
           <cite className='bookmini__title'>{book.titre}</cite>
           <address className='bookmini__author'>{book.auteur}</address>
         </div>
-        <div className='bookmini__note'>&#9733; &#9733; &#9733; &#9733; &#9734;</div>
+        <div className='bookmini__note'>
+          <Rating rate={book.rate} />
+        </div>
         <Link to={`/${book.isbn}`} book={book} className='button button_small'>Voir le détail</Link>
         <div className='bookmini__booleans connected owned'>
           <div>

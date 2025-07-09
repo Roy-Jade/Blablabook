@@ -4,6 +4,7 @@ import './BookID.scss';
 import { Helmet } from 'react-helmet';
 // Import du carrousel 
 import Carousel from '../../components/Carousel/Carousel';
+import Rating from '../../components/Rating/Rating';
 import api from '../../../api';
 
 export default function BookID() {
@@ -77,8 +78,9 @@ export default function BookID() {
                 </section>
 
                 <section className='bookInfo__data_secondary'>
-                    {/* notes correspondant à 4.5/5 dont une étoile diamant pleine gauche (a faire en SCSS)*/}
-                    <p>Moyenne des notes <span className='bookID__note'>&#9733; &#9733; &#9733; &#9733; &#9734;</span></p>
+                    <p>Moyenne des notes&ensp;
+                        {bookInfos && <Rating rate={bookInfos.rate}/>}
+                    </p>
                     <button className='button button_small'>Ajouter à mes livres</button>
                 </section>
 
@@ -88,7 +90,10 @@ export default function BookID() {
                         <div key={index} className='bookID__commentaires' >
                             <p className='text_semi-bold'>{bookCommentary.pseudonyme}</p>
                             <p className='text_semi-bold'>{bookCommentary.date_creation_commentaire.slice(0, 10)}</p>
-                            <p>{bookCommentary.note}</p>
+                            <p>
+                                <Rating rate={bookCommentary.note}/>
+                            </p>
+                            {/* <p>{bookCommentary.note}</p> */}
                             <p>{bookCommentary.commentaire}</p>
                         </div>
                     ))

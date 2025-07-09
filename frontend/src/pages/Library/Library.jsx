@@ -1,4 +1,4 @@
-import BookMini from '../../components/BookMinis/BookMini/BookMini';
+import BookMini from '../../components/BookMini/BookMini.jsx';
 import Sort from '../../components/Sort/Sort';
 import './Library.scss';
 import api from "../../../api.js";
