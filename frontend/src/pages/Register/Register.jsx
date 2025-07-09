@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import "./Register.scss";
 import { Helmet } from 'react-helmet';
 import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import api from "../../../api";
 
 export default function Register() {
@@ -13,11 +13,12 @@ export default function Register() {
   const [motDePasse, setMotDePasse] = useState('');
   const [confirmation, setConfirmation] = useState('');
   const [error, setError] = useState('');
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // Soumission du formulaire
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null)
 
     if (motDePasse !== confirmation) {
       setError("Les mots de passe ne correspondent pas.");
@@ -34,6 +35,9 @@ export default function Register() {
     } catch (error) {
       setError(error.response.data.message || "Une erreur est survenue. Veuillez réessayer.");
     }
+
+    console.log("Redirection...")
+    navigate('/login')
   };
 
   // Affichage JSX
