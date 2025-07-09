@@ -18,6 +18,13 @@ const authController = {
     console.log("Tentative de création du compte...");
     const { email, password, pseudonyme } = req.body;
 
+    if(pseudonyme.length <3 || pseudonyme.length>15) {
+      return res.status(401).json({
+        message: "Erreur 401 : le nom d'utilisateur doit comprendre de 3 à 15 caractères",
+      });
+    }
+
+    // TO DO : avec validator, vérifier que le MDP fasse 8 caractères min, avec une majuscule, une minuscule, un chiffre et un caractère spécial
 
     try {
       
@@ -37,12 +44,11 @@ const authController = {
       res.status(201).json({ user });
 
     } catch (error) {
-      console.error("Erreur lors de l'inscription :", error);
 
       // Gestion du doublon pseudonyme ou email
       if (error.code === '23505') {
         return res.status(400).json({
-          error: "Email ou pseudonyme déjà utilisé. Veuillez en choisir un autre."
+          message: "Email ou pseudonyme déjà utilisé. Veuillez en choisir un autre."
         });
       }
 

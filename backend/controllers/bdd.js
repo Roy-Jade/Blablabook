@@ -59,7 +59,7 @@ const bddController = {
 
   fetchPersonalLibrary : async (req, res) => {
     let authorization = req.headers.authorization.split(" ")[1], decoded;
-    decoded = jwt.verify(authorization, process.env.SECRET);
+    decoded = jwt.verify(authorization, process.env.JWT_SECRET);
     let userEmail = decoded.email
     const results =  await db.query(
       `SELECT 

@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import api from "../../../api";
 import "./Login.scss";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { Helmet } from 'react-helmet';
 import { CurrentUserContext } from "../../Contexts";
 
@@ -48,7 +48,6 @@ export default function Login() {
       {error && <p className="text_error">{error}</p>}
 
       {!currentUser && (<>
-      {error && <p className="error-message">{error}</p>}
 
         <form className="login__form" method="post" onSubmit={(e) => handleSubmit(e)}>
 
