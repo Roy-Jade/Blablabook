@@ -12,19 +12,19 @@ export default function BookMini({ book }) {
 const [isReaded, setIsReaded] = useState(false);
   const [isShared, setIsShared] = useState(false);
 
-const ReadShare = async () => {
+const ReadedShared = async () => {
     try {
       const response = await api.patch('ReadShare', { isReaded, isShared});
       localStorage.setItem('token', response.data.token);
-      setCurrentUser(response.data.user);
+      setIsReaded(response.data.isReaded);
     } catch (error) {
       console.error("Erreur de login");
     }
-  };
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    login()
+    ReadShare()
   }
 
   }
@@ -37,7 +37,7 @@ const ReadShare = async () => {
           <address className='bookmini__author'>{book.auteur}</address>
         </div>
         <div className='bookmini__note'>&#9733; &#9733; &#9733; &#9733; &#9734;</div>
-        <Link to={`/${book.isbn}`} book={book} className='button button_small'>Voir le détail</Link>
+        <Link to={`/library/${book.isbn}`} book={book} className='button button_small'>Voir le détail</Link>
         <div className='bookmini__booleans connected owned'>
           <div>
             <input

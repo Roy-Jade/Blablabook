@@ -78,7 +78,24 @@ const bddController = {
     const books = results.rows;
 
     res.status(200).json({books});
-  }
+  },
+
+// fonction pemettant la récupération à partir d'un livre de l'information sur le partage et la lecture de ce livre
+  ReadedShared  : async (req, res) => {
+    const ISBN = req.params.books;
+    const resultReadedShared = await db.query(`SELECT 
+      utilisateur.pseudonyme, 
+      utilisateur_interagit_livre.note, 
+      utilisateur_interagit_livre.commentaire, utilisateur_interagit_livre.date_creation_commentaire 
+      FROM utilisateur_interagit_livre
+      JOIN utilisateur ON utilisateur_interagit_livre.id_utilisateur = utilisateur.id_utilisateur
+      WHERE utilisateur_interagit_livre.id_livre = $1`, 
+      [bookInfos.id_livre]);
+      
+    bookInfos
+    res.status(200).json({bookInfos, bookCommentaries});
+
 }
+
 
 export default bddController;
