@@ -10,22 +10,27 @@ export default function BookID() {
 
     const [bookInfos, setBookInfos] = useState("");
     const [bookCommentaries, setBookCommentaries] = useState("");
+    const [error, setError] = useState("");
 
     let params = useParams();
 
     useEffect(() => {
         async function startFetchingBookInfos() {
+            setError(null)
             setBookInfos(null);
             setBookCommentaries(null);
-            const response = await api.get(`/book/${params.bookID}`);
-            
-            setBookInfos(response.data.bookInfos);
-            setBookCommentaries(response.data.bookCommentaries);
+            try {
+                const response = await api.get(`/book/${params.bookID}`);
+                setBookInfos(response.data.bookInfos);
+                setBookCommentaries(response.data.bookCommentaries);
+            } catch (error) {
+                setError(error.response.data.message)
+            }
         }
         if(!bookInfos || bookInfos != params.bookID) {
             startFetchingBookInfos();
         }
-    }, [params])
+    }, [params, error])
 
     return (
         <>
@@ -36,7 +41,8 @@ export default function BookID() {
             <h1>Détail du livre</h1>
 
             <div className='bookInfo'>
-                <section className='bookInfo__data_primary'>
+                {error ? <p className='text_error'>{error}</p> :
+                    <><section className='bookInfo__data_primary'>
                     {/* Connexion à l'api cover de open library afin de récupérer la couverture du livre*/}
                     {bookInfos && <>
                         <img className='bookInfo__data_primary__img' src={"https://covers.openlibrary.org/b/isbn/"+bookInfos.isbn+"-M.jpg"} alt={"Book's cover : "+bookInfos.titre} />
@@ -73,7 +79,7 @@ export default function BookID() {
                 <section className='bookInfo__data_secondary'>
                     {/* notes correspondant à 4.5/5 dont une étoile diamant pleine gauche (a faire en SCSS)*/}
                     <p>Moyenne des notes <span className='bookID__note'>&#9733; &#9733; &#9733; &#9733; &#9734;</span></p>
-                    <button className='button button_small'><Link to="/personnalLibrary">Ajouter à mes livres</Link></button>
+                    <button className='button button_small'>Ajouter à mes livres</button>
                 </section>
 
                 <article className='bookInfo__commentaries'>
@@ -87,7 +93,7 @@ export default function BookID() {
                         </div>
                     ))
                     }
-                </article>
+                </article></>}
                 
                 <section className='bookInfo__carousel'>
                     <h2>Notre suggestion de livres</h2>

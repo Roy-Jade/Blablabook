@@ -31,8 +31,8 @@ export default function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/library" element={<Library />} />
-                    <Route path="/personnalLibrary" element={<Library />} />
-                    <Route path="/library/:bookID" element={<BookID />} />
+                    <Route path="/library/:user" element={<Library />} />
+                    <Route path="/:bookID" element={<BookID />} />
                     <Route path="/about" element={<StaticPages />} />
                     <Route path="/questions" element={<Questions />} />
                     <Route path="/dashboard" element={<Dashboard />} />

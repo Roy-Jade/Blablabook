@@ -18,7 +18,7 @@ export default function Header() {
                 document.getElementById("header_navbar").classList.add("hidden");
             }
         }
-    } 
+    }
 
     return(
         <header className='header'>
@@ -36,7 +36,7 @@ export default function Header() {
                 <Link onClick={hideBurgerOnPageChange} to="/library">Rechercher un livre</Link>
                 {!currentUser.currentUser && <Link onClick={hideBurgerOnPageChange} to="/login">Connexion</Link>}
                 {currentUser.currentUser && (<>
-                    <Link onClick={hideBurgerOnPageChange} to="/personnalLibrary">Ma bibliothèque</Link>
+                    <Link onClick={hideBurgerOnPageChange} to={`/library/${currentUser.currentUser[0]}`}>Ma bibliothèque</Link>
                     <button onClick={(e) => {toggleDisplayBurger(e,  'header_navbar_account');}} className='header__navigation__account-icon'><img src="/img/mon_compte_50px.png" alt="Dérouler les liens pour mon compte" /></button>
                     <div id='header_navbar_account' className='header__navigation__account-link hidden'>
                         <Link onClick={hideBurgerOnPageChange} to="/dashboard">Mon compte</Link>
