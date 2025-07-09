@@ -38,7 +38,7 @@ const authController = {
   
     if (!user) {
       return res.status(401).json({
-        message: "Erreur : l'utilisateur et le mot de passe ne correspondent pas",
+        message: "Erreur 401 : l'utilisateur et le mot de passe ne correspondent pas",
       });
     }
     
@@ -46,11 +46,11 @@ const authController = {
   
     if (!isPasswordValid) {
       return res.status(401).json({
-        message: "Erreur : l'utilisateur et le mot de passe ne correspondent pas",
+        message: "Erreur 401 : l'utilisateur et le mot de passe ne correspondent pas",
       });
     }
     
-    const token = jwt.sign({ email: userData.rows[0].email, id: userData.rows[0]._id }, process.env.SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ email: userData.rows[0].email, id: userData.rows[0]._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
   
     res.status(200).json({
       token,

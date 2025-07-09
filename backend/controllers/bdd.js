@@ -19,7 +19,7 @@ const bddController = {
   
     if (!books) {
       return res.status(401).json({
-        message: "Erreur : aucun livre trouvé",
+        message: "Erreur 401 : aucun livre trouvé",
       });
     }
     
@@ -38,7 +38,7 @@ const bddController = {
 
     if (!bookInfos) {
       return res.status(401).json({
-        message: "Erreur : aucun livre trouvé",
+        message: "Erreur 401 : aucun livre trouvé",
       });
     }
 
