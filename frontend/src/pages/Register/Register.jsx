@@ -32,13 +32,15 @@ export default function Register() {
         password: motDePasse,
       });
 
-    } catch (error) {
-      setError(error.response.data.message || "Une erreur est survenue. Veuillez réessayer.");
-    }
+    console.log("✅ Utilisateur inscrit avec succès !");
+    navigate('/login');
 
-    console.log("Redirection...")
-    navigate('/login')
-  };
+  } catch (error) {
+    // ❌ Erreur (mot de passe trop faible)
+    setError(error.response?.data?.message || "Une erreur est survenue. Veuillez réessayer.");
+  }
+};
+
 
   // Affichage JSX
   return (
@@ -88,7 +90,7 @@ export default function Register() {
             type="password"
             id="password"
             name="password"
-            placeholder="Minimum : 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial"
+            placeholder="Minimum : 12 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial"
             required
             value={motDePasse}
             onChange={(e) => setMotDePasse(e.target.value)}

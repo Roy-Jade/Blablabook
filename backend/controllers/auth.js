@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt';
 import path from 'path';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
+import validator from 'validator';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,9 +26,21 @@ const authController = {
     }
 
     // TO DO : avec validator, vérifier que le MDP fasse 8 caractères min, avec une majuscule, une minuscule, un chiffre et un caractère spécial
+    
+    if (!validator.isStrongPassword(password, {
+      minLength: 12,
+      minLowercase: 1,
+      minUppercase: 1,
+      minNumbers: 1,
+      minSymbols:1
+    })) {
+      return res.status(400).json({
+        message: "Le mot de passe doit contenir au moins 12 caractères, dont une majuscule, une minuscule, un chiffre et un caractère spécial"
+      });
+    }
 
     try {
-      
+
       const hashedPassword = await bcrypt.hash(password, 10);
 
       // Insertion dans la bdd
@@ -70,23 +83,23 @@ const authController = {
         message: "Erreur 401 : l'utilisateur et le mot de passe ne correspondent pas",
       });
     }
-    
+
     const userBooks = await db.query(
         'SELECT id_livre, est_lu, est_partage, note FROM utilisateur_interagit_livre WHERE id_utilisateur = $1',
         [userData.rows[0].id_utilisateur]);
-    
+
     const user = [userData.rows[0].pseudonyme, userBooks.rows];
-    
+
     const isPasswordValid = await bcrypt.compare(password, userData.rows[0].mot_de_passe);
-  
+
     if (!isPasswordValid) {
       return res.status(401).json({
         message: "Erreur 401 : l'utilisateur et le mot de passe ne correspondent pas",
       });
     }
-    
+
     const token = jwt.sign({ email: userData.rows[0].email, id: userData.rows[0]._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-  
+
     res.status(200).json({
       token,
       user,
