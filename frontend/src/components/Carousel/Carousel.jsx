@@ -1,4 +1,4 @@
-import BookMini from '../BookMinis/BookMini/BookMini';
+import BookMini from '../BookMini/BookMini';
 import api from '../../../api';
 import { useState, useEffect, useCallback } from 'react';
 import './Carousel.scss';
