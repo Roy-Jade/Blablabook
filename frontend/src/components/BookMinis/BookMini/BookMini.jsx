@@ -10,24 +10,22 @@ import { Link } from 'react-router';
 // L'écriture ci-dessus permet de faire la fonction et de l'exporter en même temps
 export default function BookMini({ book }) {
 const [isReaded, setIsReaded] = useState(false);
-  const [isShared, setIsShared] = useState(false);
+const [isShared, setIsShared] = useState(false);
 
 const ReadedShared = async () => {
     try {
-      const response = await api.patch('ReadShare', { isReaded, isShared});
-      localStorage.setItem('token', response.data.token);
+      const response = await api.patch('ReadShare', {isReaded, isShared});
       setIsReaded(response.data.isReaded);
+      setIsShared(response.data.isShared);
     } catch (error) {
-      console.error("Erreur de login");
+      console.error("pas de réponse");
     }
   }
-
   const handleSubmit = (e) => {
     e.preventDefault()
-    ReadShare()
+    ReadedShared()
   }
 
-  }
   return (
     <article className={`bookmini`}>
       <img className='bookmini__img' src={"https://covers.openlibrary.org/b/isbn/" + book.isbn + "-M.jpg"} alt="Couverture" />

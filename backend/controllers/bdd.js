@@ -12,22 +12,43 @@ const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const bddController = {
-  fetchBooks : async (req, res) => {
+  fetchBooks: async (req, res) => {
     const result = await db.query('SELECT * FROM livre');
-    
+
     const books = result.rows;
-  
+
     if (!books) {
       return res.status(401).json({
         message: "Erreur 401 : aucun livre trouvé",
       });
     }
-    
-    res.status(200).json({books});
+    //Récupération de l'information du champ lu
+    const {isReaded} = req.params;
+    const resultReaded = await db.query(`SELECT 
+      utilisateur_interagit_livre.est_lu
+      FROM utilisateur_interagit_livre
+      JOIN utilisateur ON utilisateur_interagit_livre.id_utilisateur = utilisateur.id_utilisateur
+      WHERE utilisateur_interagit_livre.id_livre = $1`,
+      [isReaded]);
+
+      const Readed = resultReaded.rows[0];
+
+        //Récupération de l'information du champ partagé
+    const {isShared} = req.params;
+    const resultShared = await db.query(`SELECT 
+      utilisateur_interagit_livre.est_partage 
+      FROM utilisateur_interagit_livre
+      JOIN utilisateur ON utilisateur_interagit_livre.id_utilisateur = utilisateur.id_utilisateur
+      WHERE utilisateur_interagit_livre.id_livre = $1`,
+      [isShared]);
+  
+     const Shared = resultShared.rows[0];
+
+    res.status(200).json({ books,Readed, Shared });
   },
 
   // fontion pemettant la récupération d'un livre et de son détail
-  fetchBookID : async (req, res) => {
+  fetchBookID: async (req, res) => {
     const ISBN = req.params.bookID;
     const resultInfos = await db.query(
       `SELECT * FROM livre
@@ -48,20 +69,20 @@ const bddController = {
       utilisateur_interagit_livre.commentaire, utilisateur_interagit_livre.date_creation_commentaire 
       FROM utilisateur_interagit_livre
       JOIN utilisateur ON utilisateur_interagit_livre.id_utilisateur = utilisateur.id_utilisateur
-      WHERE utilisateur_interagit_livre.id_livre = $1`, 
+      WHERE utilisateur_interagit_livre.id_livre = $1`,
       [bookInfos.id_livre]);
 
     const bookCommentaries = resultCommentaries.rows;
 
     bookInfos
-    res.status(200).json({bookInfos, bookCommentaries});
+    res.status(200).json({ bookInfos, bookCommentaries });
   },
 
-  fetchPersonalLibrary : async (req, res) => {
+  fetchPersonalLibrary: async (req, res) => {
     let authorization = req.headers.authorization.split(" ")[1], decoded;
     decoded = jwt.verify(authorization, process.env.JWT_SECRET);
     let userEmail = decoded.email
-    const results =  await db.query(
+    const results = await db.query(
       `SELECT 
       utilisateur.email, 
       livre.ISBN, 
@@ -77,25 +98,14 @@ const bddController = {
     );
     const books = results.rows;
 
-    res.status(200).json({books});
-  },
+    res.status(200).json({ books });
+  }
 
-// fonction pemettant la récupération à partir d'un livre de l'information sur le partage et la lecture de ce livre
-  ReadedShared  : async (req, res) => {
-    const ISBN = req.params.books;
-    const resultReadedShared = await db.query(`SELECT 
-      utilisateur.pseudonyme, 
-      utilisateur_interagit_livre.note, 
-      utilisateur_interagit_livre.commentaire, utilisateur_interagit_livre.date_creation_commentaire 
-      FROM utilisateur_interagit_livre
-      JOIN utilisateur ON utilisateur_interagit_livre.id_utilisateur = utilisateur.id_utilisateur
-      WHERE utilisateur_interagit_livre.id_livre = $1`, 
-      [bookInfos.id_livre]);
-      
-    bookInfos
-    res.status(200).json({bookInfos, bookCommentaries});
+  // fontion pemettant la récupération 
+
 
 }
+
 
 
 export default bddController;
