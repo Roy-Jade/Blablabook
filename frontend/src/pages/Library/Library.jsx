@@ -30,11 +30,27 @@ export default function Library() {
     useEffect(() => {
         async function startFetchingPersonalLibrary() {
             setBooks(null);
-            const response = await api.get(`/${target}`);
-            setBooks(response.data.books);
+    
+            try {
+                const token = localStorage.getItem("token");
+                const config = {};
+    
+                if (target === 'personalLibrary' && token) {
+                    config.headers = {
+                        Authorization: `Bearer ${token}`
+                    };
+                }
+    
+                const response = await api.get(`/${target}`, config);
+                setBooks(response.data.books);
+            } catch (err) {
+                console.error("Erreur lors du fetch des livres :", err);
+            }
         }
+    
         startFetchingPersonalLibrary();
-    }, [target])
+    }, [target]);
+    
 
     return(
         <>  

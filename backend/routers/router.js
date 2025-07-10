@@ -12,6 +12,11 @@ router.get('/book/:bookID', bddController.fetchBookID);
 // router.post('/register', authController.register);
 router.post('/login', authController.login);
 
+  
+
 router.get('/personalLibrary', checkJWT, bddController.fetchPersonalLibrary);
+
+// route pour ajouter un livre 
+router.post('/personalLibrary', checkJWT, bddController.addBookToPersonalLibrary);
 
 export default router;

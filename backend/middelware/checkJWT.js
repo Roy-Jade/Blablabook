@@ -10,6 +10,8 @@ const __dirname = path.dirname(__filename);
 
 // Charge les variables d'environnement depuis le .env
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
+console.log("SECRET env :", process.env.SECRET);
+
 
 const checkJWT = async (req, res, next) => {
 
@@ -23,7 +25,7 @@ const checkJWT = async (req, res, next) => {
         }
         let userEmail = decoded.email;
         // Fetch the user by id_utilisateur 
-        const userData =  db.query(
+        const userData = await db.query(
             'SELECT * FROM utilisateur WHERE email = $1',
             [userEmail]
         );
