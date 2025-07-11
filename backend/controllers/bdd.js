@@ -12,11 +12,6 @@ const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const bddController = {
-<<<<<<< HEAD
-  fetchBooks: async (req, res) => {
-    const result = await db.query('SELECT * FROM livre');
-
-=======
   fetchBooks : async (req, res) => {
     const result = await db.query(`
       SELECT livre.*, AVG(utilisateur_interagit_livre.note) AS rate
@@ -25,19 +20,19 @@ const bddController = {
       ON livre.id_livre = utilisateur_interagit_livre.id_livre
       GROUP BY livre.id_livre`);
     
->>>>>>> dev
     const books = result.rows;
-
+  
     if (!books) {
       return res.status(401).json({
         message: "Erreur 401 : aucun livre trouvé",
       });
     }
-     res.status(200).json({ books});
+    
+    res.status(200).json({books});
   },
 
   // fontion pemettant la récupération d'un livre et de son détail
-  fetchBookID: async (req, res) => {
+  fetchBookID : async (req, res) => {
     const ISBN = req.params.bookID;
     const resultInfos = await db.query(
       `SELECT livre.*, AVG(utilisateur_interagit_livre.note) AS rate 
@@ -62,20 +57,20 @@ const bddController = {
       utilisateur_interagit_livre.commentaire, utilisateur_interagit_livre.date_creation_commentaire 
       FROM utilisateur_interagit_livre
       JOIN utilisateur ON utilisateur_interagit_livre.id_utilisateur = utilisateur.id_utilisateur
-      WHERE utilisateur_interagit_livre.id_livre = $1`,
+      WHERE utilisateur_interagit_livre.id_livre = $1`, 
       [bookInfos.id_livre]);
 
     const bookCommentaries = resultCommentaries.rows;
 
     bookInfos
-    res.status(200).json({ bookInfos, bookCommentaries });
+    res.status(200).json({bookInfos, bookCommentaries});
   },
 
-  fetchPersonalLibrary: async (req, res) => {
+  fetchPersonalLibrary : async (req, res) => {
     let authorization = req.headers.authorization.split(" ")[1], decoded;
     decoded = jwt.verify(authorization, process.env.JWT_SECRET);
     let userEmail = decoded.email
-    const results = await db.query(
+    const results =  await db.query(
       `SELECT 
       utilisateur.email, 
       livre.ISBN, 
@@ -91,12 +86,8 @@ const bddController = {
     );
     const books = results.rows;
 
-    res.status(200).json({ books });
+    res.status(200).json({books});
   }
-
-  
 }
-
-
 
 export default bddController;
