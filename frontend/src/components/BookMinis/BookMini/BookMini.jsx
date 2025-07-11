@@ -21,7 +21,7 @@ const ReadedShared = async () => {
       console.error("pas de réponse");
     }
   }
-  const handleSubmit = (e) => {
+  const handlechange = (e) => {
     e.preventDefault()
     ReadedShared()
   }

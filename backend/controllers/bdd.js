@@ -22,29 +22,7 @@ const bddController = {
         message: "Erreur 401 : aucun livre trouvé",
       });
     }
-    //Récupération de l'information du champ lu
-    const {isReaded} = req.params;
-    const resultReaded = await db.query(`SELECT 
-      utilisateur_interagit_livre.est_lu
-      FROM utilisateur_interagit_livre
-      JOIN utilisateur ON utilisateur_interagit_livre.id_utilisateur = utilisateur.id_utilisateur
-      WHERE utilisateur_interagit_livre.id_livre = $1`,
-      [isReaded]);
-
-      const Readed = resultReaded.rows[0];
-
-        //Récupération de l'information du champ partagé
-    const {isShared} = req.params;
-    const resultShared = await db.query(`SELECT 
-      utilisateur_interagit_livre.est_partage 
-      FROM utilisateur_interagit_livre
-      JOIN utilisateur ON utilisateur_interagit_livre.id_utilisateur = utilisateur.id_utilisateur
-      WHERE utilisateur_interagit_livre.id_livre = $1`,
-      [isShared]);
-  
-     const Shared = resultShared.rows[0];
-
-    res.status(200).json({ books,Readed, Shared });
+     res.status(200).json({ books});
   },
 
   // fontion pemettant la récupération d'un livre et de son détail
@@ -101,9 +79,7 @@ const bddController = {
     res.status(200).json({ books });
   }
 
-  // fontion pemettant la récupération 
-
-
+  
 }
 
 
