@@ -7,7 +7,7 @@ import { useState, useEffect, useCallback } from 'react';
 // On, doit enfin exporter la fonction en default sous le nom de notre composant
 
 // L'écriture ci-dessus permet de faire la fonction et de l'exporter en même temps
-export default function Sort() {
+export default function Sort({search, setSearch, newResearch}) {
 
     const [showSortOptions, setShowSortOptions] = useState(false)
     const [windowSize, setWindowSize] = useState(window.innerWidth);
@@ -35,15 +35,16 @@ export default function Sort() {
             {(windowSize>=992 || showSortOptions) && <>
                 <section className='search'>
                     <h2 className='search-sort__title'>Recherche :</h2>
-                    <form action="">
+                    <form onSubmit={newResearch}>
                         <fieldset>
                             <label htmlFor="title">Titre : </label>
-                            <input type="text" id='title' name='title' />
+                            <input onChange={e => {setSearch([e.target.value, "titre"])}} type="text" id='title' name='title' />
                         </fieldset>
                         <fieldset>
                             <label htmlFor="author">Auteur : </label>
-                            <input type="text" id='author' name='author' />
+                            <input onChange={e => setSearch([e.target.value, "auteur"])} type="text" id='author' name='author' />
                         </fieldset>
+                        <button className='button button_small'>Rechercher</button>
                     </form>
                 </section>
                 <section className='sort'>

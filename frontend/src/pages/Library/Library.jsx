@@ -14,6 +14,10 @@ export default function Library() {
     const user = useContext(CurrentUserContext);
     const [books, setBooks] = useState("");
     const [error, setError] = useState("");
+    const [search, setSearch] = useState([]);
+
+    console.log(search)
+    console.log(books)
 
     let params = useParams().user;
     let target = 'books'
@@ -29,7 +33,7 @@ export default function Library() {
     }
 
     useEffect(() => {
-        async function startFetchingPersonalLibrary() {
+        async function startFetchingLibrary() {
             setBooks(null);
             setError(null);
             try {
@@ -37,11 +41,22 @@ export default function Library() {
                 setBooks(response.data.books);
             } catch (error) {
                 setError(error.response.data.message)
-                console.log(error)
             }
         }
-        startFetchingPersonalLibrary();
+        startFetchingLibrary();
     }, [target])
+
+    const newResearch = async (event) => {
+        setBooks(null);
+        setError(null);
+        event.preventDefault();
+        try {
+            const response = await api.get(`/${target}?${search[1]}=${search[0]}`);
+            setBooks(response.data.books);
+        } catch (error) {
+            setError(error.response.data.message)
+        }
+    }
 
     return(
         <>  
@@ -51,10 +66,13 @@ export default function Library() {
             </Helmet>
             {(userName && params !== undefined) ? <h1>Bibliothèque de {userName}</h1> : <h1>Rechercher un livre</h1>}
             <div className='library'>
-                <Sort/>
+                <Sort search={search} setSearch={setSearch} newResearch={newResearch}/>
                 <div className='library__book-list'>
                     {books ? 
-                    (books.map((book, index) => <BookMini key={book.isbn} book={book}/>))
+                    (books == "" ? 
+                        <p>Aucun livre ne correspond à votre recherche.</p>
+                        :
+                        books.map((book, index) => <BookMini key={book.isbn} book={book}/>))
                     :
                     <p>Vous n'avez encore aucun livre dans votre bibliothèque. <Link to={"/library"} className='text_link'>Rechercher un livre à ajouter</Link></p>
                     }
