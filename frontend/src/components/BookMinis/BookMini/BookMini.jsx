@@ -11,31 +11,25 @@ import api from '../../../../api';
 export default function BookMini({book}) {
   
   const [added, setAdded] = useState(false);
+
   const handleAddBook = async () => {
     const token = localStorage.getItem('token');
-    console.log(token)
+    //console.log(token)
     if (!token) {
       alert("Vous devez être connecté pour ajouter un livre.");
-      return; // Stoppe la fonction ici si pas de token
+      return; // On s'arrete la si l'utilisateur n'est pas encore connecté
     }
-   
   
     try {
       //Ajouter le livre à la bibliothèque personnelle de l'utilisateur
       const response = await api.post('/personalLibrary', { id_livre: book.id_livre }); // renvoie l'object contient identifiant du livre que l'utilisateur veut ajouter
-      //console.log(response);
+      console.log(response);
       alert("Livre ajouté à votre bibliothèque !");
       setAdded(true);
     } catch (error) {
       console.error("Erreur:", error);
-      //const message = error.response?.data?.message || "Erreur lors de l'ajout.";
-      //alert(message);
     }
-    
-  
-    //console.log(book);  
-
-    
+    //console.log(book);   
    
   };
   

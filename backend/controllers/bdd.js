@@ -86,28 +86,28 @@ const bddController = {
       if (!id_livre) {
         return res.status(400).json({ message: "ID du livre requis." });
       }
-  
+      // récupérer l'email de l'utilisateur connecté
       const authorization = req.headers.authorization.split(" ")[1];
       const decoded = jwt.verify(authorization, process.env.SECRET);
       const userEmail = decoded.email;
-  
+      
+      // chercher son identifiant dans la Base de données
       const result = await db.query(
         `SELECT id_utilisateur FROM utilisateur WHERE email = $1`,
         [userEmail]
       );
-  
+        
       const id_utilisateur = result.rows[0]?.id_utilisateur;
-      if (!id_utilisateur) {
-        return res.status(404).json({ message: "Utilisateur non trouvé." });
-      }
-      // Vérifier si le livre existe déja 
+     
+      // Vérifier si le livre existe déja dans la bibliothèque personnelle de l'utilisateur
       const existingBook = await db.query(
         `SELECT 1 FROM utilisateur_interagit_livre
         WHERE id_utilisateur = $1 AND id_livre = $2`,
         [id_utilisateur, id_livre]
       );
+
       if (existingBook.rows.length > 0){
-        // La requette entre en conflit avec l'état actuel du serveur 
+        // Erreur 409 : La requette entre en conflit avec l'état actuel du serveur
         return res.status(409).json({ message: "Ce livre est déjà dans votre bibliothèque." });
       }
       //Sinon on insere le livre dans la base de données
@@ -120,9 +120,7 @@ const bddController = {
       res.status(201).json({ message: "Livre ajouté avec succès." });
   
     } catch (error) {
-      console.error("Erreur dans addBookToLibrary:", error);
-      res.status(500).json({ message: "Livre ajouté avec succès.",
-      livre: { id_livre, id_utilisateur } });
+      console.error(error);
     }
   }
 }
