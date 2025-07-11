@@ -12,9 +12,20 @@ const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const bddController = {
+<<<<<<< HEAD
   fetchBooks: async (req, res) => {
     const result = await db.query('SELECT * FROM livre');
 
+=======
+  fetchBooks : async (req, res) => {
+    const result = await db.query(`
+      SELECT livre.*, AVG(utilisateur_interagit_livre.note) AS rate
+      FROM livre
+      JOIN utilisateur_interagit_livre 
+      ON livre.id_livre = utilisateur_interagit_livre.id_livre
+      GROUP BY livre.id_livre`);
+    
+>>>>>>> dev
     const books = result.rows;
 
     if (!books) {
@@ -29,8 +40,12 @@ const bddController = {
   fetchBookID: async (req, res) => {
     const ISBN = req.params.bookID;
     const resultInfos = await db.query(
-      `SELECT * FROM livre
-      WHERE ISBN = $1`, [ISBN]);
+      `SELECT livre.*, AVG(utilisateur_interagit_livre.note) AS rate 
+      FROM livre
+      JOIN utilisateur_interagit_livre 
+      ON livre.id_livre = utilisateur_interagit_livre.id_livre
+      WHERE livre.ISBN = $1
+      GROUP BY livre.id_livre`, [ISBN]);
 
     // Récupération de l'enregistrement d'un livre depuis result.rows 
     const bookInfos = resultInfos.rows[0];

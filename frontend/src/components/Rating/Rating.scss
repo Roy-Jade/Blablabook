@@ -1,0 +1,6 @@
+@use '../../../static/scss/vars';
+
+.rating {
+    font-size: 20px;
+    color: vars.$red-color;
+}

@@ -69,6 +69,9 @@
     grid-area: secondary;
     text-align: center;
     margin: 2%;
+    &, p {
+      font-size: 20px;
+    }
   }
 
   &__carousel {
@@ -110,6 +113,7 @@
       }
       &>:nth-child(3) {
         grid-area: note;
+        font-size: 20px;
       }
       &>:nth-child(4) {
         grid-area: comm;

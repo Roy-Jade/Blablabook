@@ -1,7 +1,6 @@
 import {Link} from 'react-router';
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import BookMinis from '../../components/BookMinis/BookMinis';
 import Carousel from '../../components/Carousel/Carousel';
 import './Home.scss';
 
