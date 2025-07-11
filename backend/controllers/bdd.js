@@ -13,14 +13,27 @@ dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const bddController = {
   fetchBooks : async (req, res) => {
-    const result = await db.query(`
+    let search = req.query;
+    let results;
+    if (!Object.keys(search)[0]) {
+      results = await db.query(`
       SELECT livre.*, AVG(utilisateur_interagit_livre.note) AS rate
       FROM livre
       JOIN utilisateur_interagit_livre 
       ON livre.id_livre = utilisateur_interagit_livre.id_livre
       GROUP BY livre.id_livre`);
+    } else {
+      results = await db.query(`
+      SELECT livre.*, AVG(utilisateur_interagit_livre.note) AS rate
+      FROM livre
+      JOIN utilisateur_interagit_livre 
+      ON livre.id_livre = utilisateur_interagit_livre.id_livre
+      WHERE ${Object.keys(search)[0]} iLIKE $1
+      GROUP BY livre.id_livre`, [`%${search[Object.keys(search)[0]]}%`]);
+
+    }
     
-    const books = result.rows;
+    const books = results.rows;
   
     if (!books) {
       return res.status(401).json({

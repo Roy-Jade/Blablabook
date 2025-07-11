@@ -31,18 +31,18 @@ export default function Sort({search, setSearch, newResearch}) {
 
     return(
         <div className='search-sort'>
-            {windowSize<992 && <button className='button button_big' onClick={toggleSortOptions}>Afficher les options de tri et recherche</button>}
+            {windowSize<992 && <button className='button button_big' onClick={toggleSortOptions}>Tri et recherche</button>}
             {(windowSize>=992 || showSortOptions) && <>
                 <section className='search'>
                     <h2 className='search-sort__title'>Recherche :</h2>
                     <form onSubmit={newResearch}>
                         <fieldset>
-                            <label htmlFor="title">Titre : </label>
-                            <input onChange={e => {setSearch([e.target.value, "titre"])}} type="text" id='title' name='title' />
+                            <label className='text_semi-bold' htmlFor="title">Titre : <input onChange={e => {setSearch([e.target.value, "titre"])}} type="text" id='title' name='title' /></label>
                         </fieldset>
+                        <p>ou</p>
                         <fieldset>
-                            <label htmlFor="author">Auteur : </label>
-                            <input onChange={e => setSearch([e.target.value, "auteur"])} type="text" id='author' name='author' />
+                            <label className='text_semi-bold' htmlFor="author">Auteur : <input onChange={e => setSearch([e.target.value, "auteur"])} type="text" id='author' name='author' /></label>
+                            
                         </fieldset>
                         <button className='button button_small'>Rechercher</button>
                     </form>
@@ -51,7 +51,7 @@ export default function Sort({search, setSearch, newResearch}) {
                     <h2 className='search-sort__title'>Trier par :</h2>
                     <form>
                         <fieldset>
-                            <input type="radio" id='a-z-title' name='sort' value='Titre - A à Z'/>
+                            <input type="radio" id='a-z-title' name='sort' value='Titre - A à Z' defaultChecked/>
                             <label htmlFor="a-z-title">Titre - A à Z</label>
                         </fieldset>
                         <fieldset>

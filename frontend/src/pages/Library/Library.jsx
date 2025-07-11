@@ -16,9 +16,6 @@ export default function Library() {
     const [error, setError] = useState("");
     const [search, setSearch] = useState([]);
 
-    console.log(search)
-    console.log(books)
-
     let params = useParams().user;
     let target = 'books'
     if (params) {
@@ -72,7 +69,8 @@ export default function Library() {
                     (books == "" ? 
                         <p>Aucun livre ne correspond à votre recherche.</p>
                         :
-                        books.map((book, index) => <BookMini key={book.isbn} book={book}/>))
+                        books.map((book) => <BookMini key={book.isbn} book={book}/>)
+                    )
                     :
                     <p>Vous n'avez encore aucun livre dans votre bibliothèque. <Link to={"/library"} className='text_link'>Rechercher un livre à ajouter</Link></p>
                     }
