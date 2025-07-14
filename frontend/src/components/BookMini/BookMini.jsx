@@ -2,8 +2,9 @@
 import './BookMini.scss';
 import { Link } from 'react-router';
 import Rating from '../Rating/Rating';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { CurrentUserContext } from '../../Contexts';
+import api from "../../../api.js";
 
 // On créée une fonction qui contient un return 
 // Le return doit comprendre une balise englobant tout le reste. Utiliser une balise vide <> fonctionne.
@@ -13,6 +14,20 @@ import { CurrentUserContext } from '../../Contexts';
 export default function BookMini({book}) {
   
   const currentUser = useContext(CurrentUserContext);
+  const [added, setAdded] = useState(false);
+
+  const handleAddBook = async()=>{
+    //console.log("Bouton Ajouter cliqué");
+    
+    try{
+      const response = await api.post('/personalLibrary', { id_livre: book.id_livre });  
+      console.log(response);
+      alert("Livre ajouté à votre bibliothèque !");
+    } catch(error) {
+        console.error("Erreur:", error);
+    }
+  }
+  
 
   return(
     <article className={`bookmini`}>
@@ -37,7 +52,7 @@ export default function BookMini({book}) {
             <label htmlFor="isShared">Partagé</label>
           </div>
         </div>}
-        {currentUser.currentUser && <button className='button button_small connected not_owned'>Ajouter</button>}
+        {currentUser.currentUser && <button className='button button_small connected not_owned' onClick={handleAddBook}>Ajouter</button>}
       </div>
     </article>
   )
