@@ -16,4 +16,7 @@ router.post('/login', authController.login);
 
 router.get('/personalLibrary', checkJWT, bddController.fetchPersonalLibrary);
 
+// route pour ajouter un livre a la bibliothèque personnelle
+router.post('/personalLibrary', checkJWT, bddController.addBookToPersonalLibrary);
+
 export default router;

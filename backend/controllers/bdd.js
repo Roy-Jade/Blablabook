@@ -118,7 +118,52 @@ const bddController = {
     const books = results.rows;
 
     res.status(200).json({books});
+  },
+  // fonction pour ajouter le livre
+  addBookToPersonalLibrary : async(req, res) => {
+    try{
+      const { id_livre } = req.body;
+      if(!id_livre) {
+        return res.status(400).json({message: "ID du livre requis."})
+      }
+
+      // récupérer l'email de l'utilisateur connecté
+      let authorization = req.headers.authorization.split(" ")[1], decoded;
+      decoded = jwt.verify(authorization, process.env.JWT_SECRET);
+      let userEmail = decoded.email;
+
+      //chercher son identifiant dans la Base de données
+      const result = await db.query(
+        `SELECT id_utilisateur FROM utilisateur WHERE email = $1`,
+        [userEmail]
+      );
+
+      const id_utilisateur = result.rows[0]?.id_utilisateur;
+      // Vérifier si le livre existe déja dans la bibliothèque personnelle de l'utilisateur
+      const existingBook = await db.query(
+        `SELECT 1 FROM utilisateur_interagit_livre
+        WHERE id_utilisateur = $1 AND id_livre = $2`,
+        [id_utilisateur, id_livre]
+      );
+
+      if (existingBook.rows.length > 0){
+        // Erreur 409 : La requette entre en conflit avec l'état actuel du serveur
+        return res.status(409).json({ message: "Ce livre est déjà dans votre bibliothèque." });
+      }
+      //Sinon on insere le livre dans la base de données
+      await db.query(
+        `INSERT INTO utilisateur_interagit_livre (id_utilisateur, id_livre)
+         VALUES ($1, $2)`, 
+        [id_utilisateur, id_livre]
+      );
+  
+      res.status(201).json({ message: "Livre ajouté avec succès." });
+  
+    } catch (error) {
+      console.error(error);
+    }
   }
+
 }
 
 export default bddController;
