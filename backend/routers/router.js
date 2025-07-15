@@ -6,17 +6,16 @@ import checkJWT from '../middelware/checkJWT.js';
 
 const router = express.Router()
 
-router.get('/books', bddController.fetchBooks);
-router.get('/book/:bookID', bddController.fetchBookID);
+router.get('/books', bddController.fetchBooks); // Récupérer la liste des livres
+router.get('/book/:bookID', bddController.fetchBookID); // Récupérer les infos d'un seul livre
 
 // auth est une convention d'URL 
-router.post('/auth/register', authController.register);
+router.post('/auth/register', authController.register); // inscription
 
-router.post('/login', authController.login);
+router.post('/login', authController.login); // connexion
 
-router.get('/personalLibrary', checkJWT, bddController.fetchPersonalLibrary);
+router.get('/personalLibrary', checkJWT, bddController.fetchPersonalLibrary); // Récupérer la bibliothèque d'un utilisateur
 
-// route pour ajouter un livre a la bibliothèque personnelle
-router.post('/personalLibrary', checkJWT, bddController.addBookToPersonalLibrary);
+router.post('/personalLibrary', checkJWT, bddController.addBookToPersonalLibrary); // Ajoute un livre à la bibliothèque de l'utilisateur connecté
 
 export default router;
