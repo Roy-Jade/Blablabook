@@ -8,20 +8,23 @@ import { useParams } from 'react-router';
 import { CurrentUserContext } from '../../Contexts.js';
 import { Link } from 'react-router';
 
-
+// Note : ce composant est utilisé pour la librairie publique et les librairies privées
 export default function Library() {
 
-    const user = useContext(CurrentUserContext);
-    const [books, setBooks] = useState("");
-    const [error, setError] = useState("");
-    const [search, setSearch] = useState([]);
+    const user = useContext(CurrentUserContext); //Infos utilisateur
+    const [books, setBooks] = useState(""); // Liste des livres
+    const [error, setError] = useState(""); // Message d'erreur
+    const [search, setSearch] = useState([]); // Informations recherchées
 
-    let params = useParams().user;
+    let params = useParams().user; // Récupère le paramètre /:user de l'URL
+
+    // Définit l'URL à cibler (target) pour la requête back
     let target = 'books'
     if (params) {
         target = 'personalLibrary'
     }
 
+    // Permet de définir le nom d'utilisateur à afficher sur une bibliothèque personnelle
     let userName = ''
     if(user.currentUser !== null) {
         if (user.currentUser[0] !== null) {
@@ -29,6 +32,7 @@ export default function Library() {
         }
     }
 
+    // Hook qui va chercher à la génération du composant tout les livres à afficher
     useEffect(() => {
         async function startFetchingLibrary() {
             setBooks(null);
@@ -43,6 +47,7 @@ export default function Library() {
         startFetchingLibrary();
     }, [target])
 
+    // Fonction qui va envoyer la recherche à l'API
     const newResearch = async (event) => {
         setBooks(null);
         setError(null);

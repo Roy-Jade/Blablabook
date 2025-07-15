@@ -13,6 +13,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
     
+  // Fonction gérant l'appel au back pour le login, et qui enregistre en cas de succès les infos de connexion
   const login = async () => {
     setError("")
     try {
@@ -24,6 +25,7 @@ export default function Login() {
     }
   };
 
+  // Fonction s'activant lors de la soumission du formulaire
   const handleSubmit = (e) => {
     e.preventDefault()
     login()

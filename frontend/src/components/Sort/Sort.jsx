@@ -1,21 +1,17 @@
-// On importe notre [Composant].scss
 import './Sort.scss';
 import { useState, useEffect, useCallback } from 'react';
 
-// On créée une fonction qui contient un return 
-// Le return doit comprendre une balise englobant tout le reste. Utiliser une balise vide <> fonctionne.
-// On, doit enfin exporter la fonction en default sous le nom de notre composant
+// Note : les fonctions de tris ne sont pas encore opérationnelles
 
-// L'écriture ci-dessus permet de faire la fonction et de l'exporter en même temps
 export default function Sort({search, setSearch, newResearch}) {
 
-    const [showSortOptions, setShowSortOptions] = useState(false)
-    const [windowSize, setWindowSize] = useState(window.innerWidth);
+    const [showSortOptions, setShowSortOptions] = useState(false) // Variable définissant si les options de filtres et recheches doivent être affichés
 
+    // Bloc de gestion de taille de l'écran (voir Carousel) (à transférer en Context en tant qu'évolution future pour respecter les principes Don't Repeat Yourself)
+    const [windowSize, setWindowSize] = useState(window.innerWidth);
     const handleWindowResize = useCallback(event => {
         setWindowSize(window.innerWidth);
     }, []);
-    
     useEffect(() => {
         window.addEventListener('resize', handleWindowResize);
         return () => {
@@ -23,6 +19,7 @@ export default function Sort({search, setSearch, newResearch}) {
         };
     }, [handleWindowResize]);
 
+    // Fonction switchant l'affichage des filtres/recherches
     const toggleSortOptions = () => {
         if (showSortOptions == true) {
             setShowSortOptions(false)

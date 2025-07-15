@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router";
 import { Helmet } from 'react-helmet';
 import './Dashboard.scss'
+import { CurrentUserContext } from "../../Contexts";
 
 export default function Dashboard(){
+
+
+    const {currentUser, setCurrentUser} = useContext(CurrentUserContext);
 
     const [email, setEmail] = useState("ze-super-lecteur@book.com");
     const [showEmailSection, setShowEmailSection] = useState(false);
@@ -38,10 +42,8 @@ export default function Dashboard(){
         setCurrentEmail("");
         setNewEmail("");
         setConfirmEmail("");
-
-        
-
     }
+
     const handlePasswordChange = ()=>{
         if(!currentPassword || !newPassword || !confirmPassword){
             setMessage('Veuillez remplir tous les champs.');
@@ -98,7 +100,7 @@ export default function Dashboard(){
          )}
         <div className="Pseudo-user">
             <p>Pseudonyme utilisateur</p>
-            <p>xXx_SuperLecteur_xXx</p>
+            <p>{currentUser[0]}</p>
         </div>
 
         <div className="Email-user">

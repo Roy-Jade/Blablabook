@@ -50,11 +50,23 @@ const authController = {
         [email, pseudonyme, hashedPassword]
       );
 
-      // const user = result.rows[0];
+      // On enregistre les infos de l'utilisateur dans un tableau. Le second élément est un tableau vide, correspondant aux livres possédés par le nouvel utilisateur
+      const user = [result.rows[0].pseudonyme, []];
 
-      // Succès de l'inscription
-      // res.status(201).json({ user });
-      res.status(201);
+      // On récupère l'id du nouvel utilisateur pour générer le token
+      const newUserId = await db.query(
+        `SELECT id_utilisateur FROM utilisateur WHERE email = $1`,
+        [email]
+      );
+
+      // On créée un token JWT à partir des infos utilisateurs, d'un secret (qui n'est pas 123), et on lui met une validité en back
+      const token = jwt.sign({ email: result.rows[0].email, id: newUserId }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+      // On renvoie le token et le tableau d'informations utilisateurs
+      res.status(201).json({
+        token,
+        user,
+      });
 
     } catch (error) {
 
@@ -100,7 +112,7 @@ const authController = {
         'SELECT id_livre, est_lu, est_partage, note FROM utilisateur_interagit_livre WHERE id_utilisateur = $1',
         [userData.rows[0].id_utilisateur]);
 
-        // On place le pseudo utilisateur et le tableau des livres possédés dans un tableau
+    // On place le pseudo utilisateur et le tableau des livres possédés dans un tableau
     const user = [userData.rows[0].pseudonyme, userBooks.rows];
 
     // On créée le token JWT à partir des infos utilisateurs, d'un secret (qui n'est pas 123), et on lui met une validité en back

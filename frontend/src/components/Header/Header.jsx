@@ -8,6 +8,7 @@ export default function Header() {
 
     const currentUser = useContext(CurrentUserContext);
 
+    // Cette fonction sert à réinitialiser l'affichage du menu quand on change de page, sans quoi le menu burger reste ouvert même en cliquant sur l'un de ses liens
     let hideBurgerOnPageChange = () => {
         if (window.innerWidth>=992) {
                 document.getElementById("header_navbar_account")?.classList.add("hidden");

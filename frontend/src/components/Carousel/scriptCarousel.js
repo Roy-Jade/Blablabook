@@ -1,3 +1,4 @@
+// Fonction mélangeant un tableau.
 function shuffle(array) {
     let currentIndex = array.length;
   
