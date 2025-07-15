@@ -3,6 +3,8 @@ import './BookMini.scss';
 import { useState } from 'react';
 import { Link } from 'react-router';
 import Rating from '../Rating/Rating';
+import { useContext } from 'react';
+import { CurrentUserContext } from '../../Contexts';
 
 // On créée une fonction qui contient un return 
 // Le return doit comprendre une balise englobant tout le reste. Utiliser une balise vide <> fonctionne.
@@ -25,8 +27,9 @@ const ReadedShared = async () => {
   const handlechange = (e) => {
     e.preventDefault()
     ReadedShared()
-  }
- console.log(book)
+  }  
+ const currentUser = useContext(CurrentUserContext);
+
   return (
   <article className={`bookmini`}>
       <img className='bookmini__img' src={"https://covers.openlibrary.org/b/isbn/"+book.isbn+"-M.jpg"} alt="Couverture" />
@@ -39,6 +42,7 @@ const ReadedShared = async () => {
           <Rating rate={book.rate} />
         </div>
         <Link to={`/${book.isbn}`} book={book} className='button button_small'>Voir le détail</Link>
+        {currentUser.currentUser && 
         <div className='bookmini__booleans connected owned'>
           <div>
             <input
@@ -58,8 +62,8 @@ const ReadedShared = async () => {
               onChange={(e) => setIsShared(e.target.checked)}/>
             <label htmlFor="isShared">Partagé</label>
           </div>
-        </div>
-        <button className='button button_small connected not_owned'>Ajouter</button>
+        </div>}
+        {currentUser.currentUser && <button className='button button_small connected not_owned'>Ajouter</button>}
       </div>
     </article>
   )

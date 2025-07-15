@@ -15,9 +15,14 @@
     // Permet l'affichage du footer en bas de page si le contenu fais moins de la taille de la page
     flex-shrink: 0;
 
-    * {
-        display: flex;
+    &__navigation {
         width: 100%;
-        justify-content: space-around;
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 8%;
+            line-height: 1.8;
+        }
     }
 }

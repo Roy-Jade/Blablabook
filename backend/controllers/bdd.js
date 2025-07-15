@@ -13,14 +13,27 @@ dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const bddController = {
   fetchBooks : async (req, res) => {
-    const result = await db.query(`
+    let search = req.query;
+    let results;
+    if (!Object.keys(search)[0]) {
+      results = await db.query(`
       SELECT livre.*, AVG(utilisateur_interagit_livre.note) AS rate
       FROM livre
       JOIN utilisateur_interagit_livre 
       ON livre.id_livre = utilisateur_interagit_livre.id_livre
       GROUP BY livre.id_livre`);
+    } else {
+      results = await db.query(`
+      SELECT livre.*, AVG(utilisateur_interagit_livre.note) AS rate
+      FROM livre
+      JOIN utilisateur_interagit_livre 
+      ON livre.id_livre = utilisateur_interagit_livre.id_livre
+      WHERE ${Object.keys(search)[0]} iLIKE $1
+      GROUP BY livre.id_livre`, [`%${search[Object.keys(search)[0]]}%`]);
+
+    }
     
-    const books = result.rows;
+    const books = results.rows;
   
     if (!books) {
       return res.status(401).json({
@@ -69,10 +82,13 @@ const bddController = {
   fetchPersonalLibrary : async (req, res) => {
     let authorization = req.headers.authorization.split(" ")[1], decoded;
     decoded = jwt.verify(authorization, process.env.JWT_SECRET);
-    let userEmail = decoded.email
-    const results =  await db.query(
+    let userEmail = decoded.email;
+    let search = req.query;
+    let results
+    if (!Object.keys(search)[0]) {
+      results =  await db.query(
       `SELECT 
-      utilisateur.email, 
+      livre.id_livre, 
       livre.ISBN, 
       livre.titre, 
       livre.auteur 
@@ -82,8 +98,23 @@ const bddController = {
       JOIN livre 
       ON utilisateur_interagit_livre.id_livre = livre.id_livre 
       WHERE email = $1`,
-      [userEmail]
+      [userEmail], 
+    );} else {
+      results =  await db.query(
+      `SELECT 
+      livre.id_livre, 
+      livre.ISBN, 
+      livre.titre, 
+      livre.auteur 
+      FROM utilisateur 
+      JOIN utilisateur_interagit_livre 
+      ON utilisateur.id_utilisateur = utilisateur_interagit_livre.id_utilisateur 
+      JOIN livre 
+      ON utilisateur_interagit_livre.id_livre = livre.id_livre 
+      WHERE (email = $1 AND ${Object.keys(search)[0]} iLIKE $2)`,
+      [userEmail, `%${search[Object.keys(search)[0]]}%`], 
     );
+  }
     const books = results.rows;
 
     res.status(200).json({books});
