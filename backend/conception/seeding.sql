@@ -25,8 +25,8 @@ INSERT INTO livre (ISBN, titre, auteur, date_publication, nombre_page, summary) 
 
 -- Insertion utilisateurs
 INSERT INTO utilisateur (pseudonyme, email, mot_de_passe) VALUES
-('nouhayla', 'nouhayla@example.com', '123456'),
-('nicolas', 'nicolas@example.com', 'abcdef'),
+('nouhayla', 'nouhayla@example.com', '$2b$10$J2n895c998N5OtV0RDDCFuCKWNmhEgYeHUOTLc1gZ9V4fHV6s9TGW'),
+('nicolas', 'nicolas@example.com', '$2b$10$9QO5fyDv9REAFSAGW48cneoyXjeslOseF88NIq3whXqs5WP9mTRd2'),
 ('admin', 'admin@example.com', '$2b$10$EzkYZKhVm2d7z6wsGyFkV.XA7e4NT.kwKaK0/ycKD/7lWj7VwWUkO'),
 ('Grégoire', 'gregoire@example.com', '&12345'),
 ('Marizia', 'marizia@example.com', '?12345'),
