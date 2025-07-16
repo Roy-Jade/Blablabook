@@ -16,18 +16,18 @@ const bddController = {
     const result = await db.query(`
       SELECT livre.*, AVG(utilisateur_interagit_livre.note) AS rate
       FROM livre
-      JOIN utilisateur_interagit_livre 
+      JOIN utilisateur_interagit_livre
       ON livre.id_livre = utilisateur_interagit_livre.id_livre
       GROUP BY livre.id_livre`);
-    
+
     const books = result.rows;
-  
+
     if (!books) {
       return res.status(401).json({
         message: "Erreur 401 : aucun livre trouvé",
       });
     }
-    
+
     res.status(200).json({books});
   },
 
@@ -35,14 +35,14 @@ const bddController = {
   fetchBookID : async (req, res) => {
     const ISBN = req.params.bookID;
     const resultInfos = await db.query(
-      `SELECT livre.*, AVG(utilisateur_interagit_livre.note) AS rate 
+      `SELECT livre.*, AVG(utilisateur_interagit_livre.note) AS rate
       FROM livre
-      JOIN utilisateur_interagit_livre 
+      JOIN utilisateur_interagit_livre
       ON livre.id_livre = utilisateur_interagit_livre.id_livre
       WHERE livre.ISBN = $1
       GROUP BY livre.id_livre`, [ISBN]);
 
-    // Récupération de l'enregistrement d'un livre depuis result.rows 
+    // Récupération de l'enregistrement d'un livre depuis result.rows
     const bookInfos = resultInfos.rows[0];
 
     if (!bookInfos) {
@@ -51,13 +51,13 @@ const bddController = {
       });
     }
 
-    const resultCommentaries = await db.query(`SELECT 
-      utilisateur.pseudonyme, 
-      utilisateur_interagit_livre.note, 
-      utilisateur_interagit_livre.commentaire, utilisateur_interagit_livre.date_creation_commentaire 
+    const resultCommentaries = await db.query(`SELECT
+      utilisateur.pseudonyme,
+      utilisateur_interagit_livre.note,
+      utilisateur_interagit_livre.commentaire, utilisateur_interagit_livre.date_creation_commentaire
       FROM utilisateur_interagit_livre
       JOIN utilisateur ON utilisateur_interagit_livre.id_utilisateur = utilisateur.id_utilisateur
-      WHERE utilisateur_interagit_livre.id_livre = $1`, 
+      WHERE utilisateur_interagit_livre.id_livre = $1`,
       [bookInfos.id_livre]);
 
     const bookCommentaries = resultCommentaries.rows;
@@ -71,23 +71,28 @@ const bddController = {
     decoded = jwt.verify(authorization, process.env.JWT_SECRET);
     let userEmail = decoded.email
     const results =  await db.query(
-      `SELECT 
-      utilisateur.email, 
-      livre.ISBN, 
-      livre.titre, 
-      livre.auteur 
-      FROM utilisateur 
-      JOIN utilisateur_interagit_livre 
-      ON utilisateur.id_utilisateur = utilisateur_interagit_livre.id_utilisateur 
-      JOIN livre 
-      ON utilisateur_interagit_livre.id_livre = livre.id_livre 
+      `SELECT
+      utilisateur.email,
+      livre.ISBN,
+      livre.titre,
+      livre.auteur
+      FROM utilisateur
+      JOIN utilisateur_interagit_livre
+      ON utilisateur.id_utilisateur = utilisateur_interagit_livre.id_utilisateur
+      JOIN livre
+      ON utilisateur_interagit_livre.id_livre = livre.id_livre
       WHERE email = $1`,
       [userEmail]
     );
     const books = results.rows;
 
     res.status(200).json({books});
-  }
-}
+  },
+
+
+
+  
+};
+
 
 export default bddController;
