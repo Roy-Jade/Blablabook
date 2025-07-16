@@ -26,7 +26,7 @@ const authController = {
     }
 
     // TO DO : avec validator, vérifier que le MDP fasse 8 caractères min, avec une majuscule, une minuscule, un chiffre et un caractère spécial
-    
+
     if (!validator.isStrongPassword(password, {
       minLength: 12,
       minLowercase: 1,
@@ -105,6 +105,35 @@ const authController = {
       user,
     });
   },
+
+  // DÉCONNEXION UTILISATEUR
+logout: async (req, res) => {
+  try {
+    // Le middleware checkJWT a validé le token.
+    // Le back ne peut pas vraiment "supprimer" un JWT : on répond simplement OK
+    return res.status(200).json({ message: "Déconnexion réussie" });
+  } catch (error) {
+    console.error("Erreur lors de la déconnexion :", error);
+    return res.status(500).json({ message: "Erreur serveur pendant la déconnexion" });
+  }
+},
+
+
+deleteUser: async (req, res) => {
+    try {
+      const token = req.headers.authorization?.split(" ")[1];
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const userEmail = decoded.email;
+
+      await db.query(`DELETE FROM utilisateur WHERE email = $1`, [userEmail]);
+
+      res.status(200).json({ message: "Compte supprimé avec succès" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Erreur serveur lors de la suppression du compte" });
+    }
+  }
 }
+
 
 export default authController;
