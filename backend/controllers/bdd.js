@@ -169,7 +169,7 @@ const bddController = {
         [id_utilisateur, id_livre]
       );
   
-      // On envoie un message de vaidation
+      // On envoie un message de validation
       res.status(201).json({ message: "Livre ajouté avec succès." });
   
     } catch (error) {

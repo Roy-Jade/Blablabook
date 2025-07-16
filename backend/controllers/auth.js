@@ -19,19 +19,19 @@ const authController = {
     const { email, password, pseudonyme } = req.body; // Récupération des informations envoyées en corps de requête
 
     // Vérification de la longueur du pseudo (3 à 15 caractères)
-    if(pseudonyme.length <3 || pseudonyme.length>15) {
+    if (pseudonyme.length < 3 || pseudonyme.length > 15) {
       return res.status(401).json({
         message: "Erreur 401 : le nom d'utilisateur doit comprendre de 3 à 15 caractères",
       });
     }
-    
+
     // Vérification que le mot de passe soit suffisamment sécurisé
     if (!validator.isStrongPassword(password, {
       minLength: 12,
       minLowercase: 1,
       minUppercase: 1,
       minNumbers: 1,
-      minSymbols:1
+      minSymbols: 1
     })) {
       return res.status(400).json({
         message: "Le mot de passe doit contenir au moins 12 caractères, dont une majuscule, une minuscule, un chiffre et un caractère spécial"
@@ -51,7 +51,7 @@ const authController = {
       );
 
       // On enregistre les infos de l'utilisateur dans un tableau. Le second élément est un tableau vide, correspondant aux livres possédés par le nouvel utilisateur
-      const user = [result.rows[0].pseudonyme, []];
+      const user = [[result.rows[0].pseudonyme, result.rows[0].email], []];
 
       // On récupère l'id du nouvel utilisateur pour générer le token
       const newUserId = await db.query(
@@ -82,7 +82,7 @@ const authController = {
     }
   },
 
-  login : async (req, res) => {  // Connexion d'un utilisateur
+  login: async (req, res) => {  // Connexion d'un utilisateur
     const { email, password } = req.body; // Récupération des informations envoyées en corps de requête
 
     // On récupère les informations de l'utilisateur
@@ -90,8 +90,8 @@ const authController = {
       'SELECT * FROM utilisateur WHERE email = $1',
       [email]);
 
-      // Si l'utilisateur n'est pas trouvé, on renvoie une erreur
-    if(!userData.rows[0]) {
+    // Si l'utilisateur n'est pas trouvé, on renvoie une erreur
+    if (!userData.rows[0]) {
       return res.status(401).json({
         message: "Erreur 401 : l'utilisateur et le mot de passe ne correspondent pas",
       });
@@ -109,8 +109,8 @@ const authController = {
 
     // On récupère tout les livres de la bibliothèque perso de l'utilisateur (but : faciliter les affichages des livres possédés/lus/partagés en front)
     const userBooks = await db.query(
-        'SELECT id_livre, est_lu, est_partage, note FROM utilisateur_interagit_livre WHERE id_utilisateur = $1',
-        [userData.rows[0].id_utilisateur]);
+      'SELECT id_livre, est_lu, est_partage, note FROM utilisateur_interagit_livre WHERE id_utilisateur = $1',
+      [userData.rows[0].id_utilisateur]);
 
     // On place le pseudo utilisateur et le tableau des livres possédés dans un tableau
     const user = [userData.rows[0].pseudonyme, userBooks.rows];
