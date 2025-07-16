@@ -2,7 +2,7 @@
 import './BookMini.scss';
 import { Link } from 'react-router';
 import Rating from '../Rating/Rating';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { CurrentUserContext } from '../../Contexts';
 import api from "../../../api.js";
 
@@ -28,19 +28,28 @@ export default function BookMini({ book }) {
       console.error("Erreur:", error);
     }
   }
+  useEffect(() => {
+      fetch('http://localhost:3000//personalLibrary/readShare')
+      .then(res => res.json())
+      .then(data => setIsReaded(data.isReaded))
+      .then(data => setIsShared(data.isShared));
+  }, []);
+
   const ReadedShared = async () => {
     try {
-      const response = await api.patch('ReadShare', {isReaded, isShared});
+      const response = await api.patch('/personalLibrary', {id_utilisateur, isReaded, isShared});
       setIsReaded(response.data.isReaded);
       setIsShared(response.data.isShared);
     } catch (error) {
-      console.error("pas de réponse");
+      console.error("Erreur:", error);
     }
   }
   const handlechange = (e) => {
     e.preventDefault()
-    ReadedShared()
+    ReadedShared(isReaded, isShared)
   }
+
+
   return (
     <article className={`bookmini`}>
       <img className='bookmini__img' src={"https://covers.openlibrary.org/b/isbn/" + book.isbn + "-M.jpg"} alt="Couverture" />

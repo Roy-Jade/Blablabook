@@ -19,8 +19,9 @@ export default function Home() {
             </Helmet>
             {/* Commencer à modifier ici */}
             <h1>Votre prochaine lecture vous attend</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto eveniet labore exercitationem ab aliquid dicta laborum autem maxime aperiam, accusamus quos ducimus, minus consequuntur! Temporibus in perspiciatis recusandae. Laborum, veritatis.
-            Sunt, possimus. </p>
+            <p>Une envie de lire sans savoir que choisir ? des livres papier entassés dans votre bibliothèque, dans des cartons ? 
+            ou encore des livres numériques épars dans votre PC ? Blablabook vous aide à sélectionner le livre qui vous fera rêver, 
+            à recenser et sérier vos livres sous quelque support qu’ils soient. </p>
             <h2>Notre sélection</h2>
 
             <Carousel />

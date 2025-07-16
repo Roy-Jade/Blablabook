@@ -12,7 +12,7 @@ const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const bddController = {
-  fetchBooks : async (req, res) => {
+  fetchBooks: async (req, res) => {
     let search = req.query;
     let results;
     if (!Object.keys(search)[0]) {
@@ -32,20 +32,20 @@ const bddController = {
       GROUP BY livre.id_livre`, [`%${search[Object.keys(search)[0]]}%`]);
 
     }
-    
+
     const books = results.rows;
-  
+
     if (!books) {
       return res.status(401).json({
         message: "Erreur 401 : aucun livre trouvé",
       });
     }
-    
-    res.status(200).json({books});
+
+    res.status(200).json({ books });
   },
 
   // fontion pemettant la récupération d'un livre et de son détail
-  fetchBookID : async (req, res) => {
+  fetchBookID: async (req, res) => {
     const ISBN = req.params.bookID;
     const resultInfos = await db.query(
       `SELECT livre.*, AVG(utilisateur_interagit_livre.note) AS rate 
@@ -70,24 +70,24 @@ const bddController = {
       utilisateur_interagit_livre.commentaire, utilisateur_interagit_livre.date_creation_commentaire 
       FROM utilisateur_interagit_livre
       JOIN utilisateur ON utilisateur_interagit_livre.id_utilisateur = utilisateur.id_utilisateur
-      WHERE utilisateur_interagit_livre.id_livre = $1`, 
+      WHERE utilisateur_interagit_livre.id_livre = $1`,
       [bookInfos.id_livre]);
 
     const bookCommentaries = resultCommentaries.rows;
 
     bookInfos
-    res.status(200).json({bookInfos, bookCommentaries});
+    res.status(200).json({ bookInfos, bookCommentaries });
   },
 
-  fetchPersonalLibrary : async (req, res) => {
+  fetchPersonalLibrary: async (req, res) => {
     let authorization = req.headers.authorization.split(" ")[1], decoded;
     decoded = jwt.verify(authorization, process.env.JWT_SECRET);
     let userEmail = decoded.email;
     let search = req.query;
     let results
     if (!Object.keys(search)[0]) {
-      results =  await db.query(
-      `SELECT 
+      results = await db.query(
+        `SELECT 
       livre.id_livre, 
       livre.ISBN, 
       livre.titre, 
@@ -98,10 +98,11 @@ const bddController = {
       JOIN livre 
       ON utilisateur_interagit_livre.id_livre = livre.id_livre 
       WHERE email = $1`,
-      [userEmail], 
-    );} else {
-      results =  await db.query(
-      `SELECT 
+        [userEmail],
+      );
+    } else {
+      results = await db.query(
+        `SELECT 
       livre.id_livre, 
       livre.ISBN, 
       livre.titre, 
@@ -112,19 +113,19 @@ const bddController = {
       JOIN livre 
       ON utilisateur_interagit_livre.id_livre = livre.id_livre 
       WHERE (email = $1 AND ${Object.keys(search)[0]} iLIKE $2)`,
-      [userEmail, `%${search[Object.keys(search)[0]]}%`], 
-    );
-  }
+        [userEmail, `%${search[Object.keys(search)[0]]}%`],
+      );
+    }
     const books = results.rows;
 
-    res.status(200).json({books});
+    res.status(200).json({ books });
   },
   // fonction pour ajouter le livre
-  addBookToPersonalLibrary : async(req, res) => {
-    try{
+  addBookToPersonalLibrary: async (req, res) => {
+    try {
       const { id_livre } = req.body;
-      if(!id_livre) {
-        return res.status(400).json({message: "ID du livre requis."})
+      if (!id_livre) {
+        return res.status(400).json({ message: "ID du livre requis." })
       }
 
       // récupérer l'email de l'utilisateur connecté
@@ -146,24 +147,75 @@ const bddController = {
         [id_utilisateur, id_livre]
       );
 
-      if (existingBook.rows.length > 0){
+      if (existingBook.rows.length > 0) {
         // Erreur 409 : La requette entre en conflit avec l'état actuel du serveur
         return res.status(409).json({ message: "Ce livre est déjà dans votre bibliothèque." });
       }
       //Sinon on insere le livre dans la base de données
       await db.query(
         `INSERT INTO utilisateur_interagit_livre (id_utilisateur, id_livre)
-         VALUES ($1, $2)`, 
+         VALUES ($1, $2)`,
         [id_utilisateur, id_livre]
       );
-  
+
       res.status(201).json({ message: "Livre ajouté avec succès." });
-  
+
     } catch (error) {
       console.error(error);
     }
-  }
+  },
 
+  //Lecture et Modification du statut lu, partagé dans la BDD
+
+  // Modification du statut lu, partagé dans la BDD
+  readedShared: async (req, res) => {
+    const { id_utilisateur, isReaded, isShared } = req.body;
+    try {
+      // récupérer l'email de l'utilisateur connecté
+      let authorization = req.headers.authorization.split(" ")[1], decoded;
+      decoded = jwt.verify(authorization, process.env.JWT_SECRET);
+      let userEmail = decoded.email;
+
+      //chercher son identifiant dans la Base de données
+      const result = await db.query(
+        `SELECT id_utilisateur FROM utilisateur WHERE email = $1`,
+        [userEmail]
+      );
+
+      const id_utilisateur = result.rows[0]?.id_utilisateur;
+
+      //ajout du statut des checkbox lu, partagé dans la BDD
+      await db.query(
+        `INSERT INTO utilisateur_interagit_livre (id_utilisateur, est_lu, est_partage)
+       VALUES ($1, $2, $3)`,
+        [id_utilisateur, isReaded, isShared]
+      );
+      res.status(200).json({ message: 'Statut lu, partagé, modifié' });
+    } catch (error) {
+      res.status(500).json({ error: 'Erreur enregistrement' });
+    }
+  },
+
+  //lecture du statut lu, partagé dans la BDD
+  readShare: async (req, res) => {
+    const id_utilisateur = (req.params.id_utilisateur);
+    try {
+      const result = await db.query(
+        `SELECT est_lu, est_partage
+      FROM utilisateur_interagit_livre 
+      JOIN  
+      ON utilisateur.id_utilisateur = utilisateur_interagit_livre.id_utilisateur 
+      WHERE id_utilisateur = $1`,
+        [id_utilisateur]
+      );
+
+      if (result.rows.length === 0) {
+        return res.json({ isReaded: false, isShared: false });
+      }
+      res.json({ isReaded: result.rows[0].isReaded, isShared: result.rows[0].isShared});
+    } catch (err) {
+      res.status(500).json({ error: 'Erreur serveur' });
+    }
+  },
 }
-
 export default bddController;

@@ -19,7 +19,7 @@ export default function Contact() {
 
         <div>
             <label className='text_bold' htmlFor="prenom">Prénom *</label>
-            <input type="text" name="" id="prenom" placeholder="exemple : Marie" required/>
+            <input type="text" name="" id="prenom" placeholder ="exemple : Marie" required/>
         </div>
 
         <div>

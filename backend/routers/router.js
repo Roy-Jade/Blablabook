@@ -19,4 +19,8 @@ router.get('/personalLibrary', checkJWT, bddController.fetchPersonalLibrary);
 // route pour ajouter un livre a la bibliothèque personnelle
 router.post('/personalLibrary', checkJWT, bddController.addBookToPersonalLibrary);
 
+// Modification du statut lu, partagé dans la BDD
+router.patch('/personalLibrary', checkJWT, bddController.readedShared);
+router.get('/personalLibrary', checkJWT, bddController.readShare);
+
 export default router;
