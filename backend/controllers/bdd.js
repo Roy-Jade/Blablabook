@@ -19,7 +19,7 @@ const bddController = {
       results = await db.query(`
       SELECT livre.*, AVG(utilisateur_interagit_livre.note) AS rate
       FROM livre
-      JOIN utilisateur_interagit_livre 
+      JOIN utilisateur_interagit_livre
       ON livre.id_livre = utilisateur_interagit_livre.id_livre
       GROUP BY livre.id_livre`);
     } else { // S'il y a une query, on prend les livres qui correspondent à la query
@@ -51,9 +51,9 @@ const bddController = {
 
     // On récupère les infos du livre qui correspond à l'ISBN, ainsi que la moyenne de ses notes
     const resultInfos = await db.query(
-      `SELECT livre.*, AVG(utilisateur_interagit_livre.note) AS rate 
+      `SELECT livre.*, AVG(utilisateur_interagit_livre.note) AS rate
       FROM livre
-      JOIN utilisateur_interagit_livre 
+      JOIN utilisateur_interagit_livre
       ON livre.id_livre = utilisateur_interagit_livre.id_livre
       WHERE livre.ISBN = $1
       GROUP BY livre.id_livre`, [ISBN]);
@@ -74,7 +74,7 @@ const bddController = {
       utilisateur_interagit_livre.commentaire, utilisateur_interagit_livre.date_creation_commentaire 
       FROM utilisateur_interagit_livre
       JOIN utilisateur ON utilisateur_interagit_livre.id_utilisateur = utilisateur.id_utilisateur
-      WHERE utilisateur_interagit_livre.id_livre = $1`, 
+      WHERE utilisateur_interagit_livre.id_livre = $1`,
       [bookInfos.id_livre]);
 
     const bookCommentaries = resultCommentaries.rows; // On met le nouveau tableau de résultat dans une autre constante

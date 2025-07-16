@@ -14,6 +14,8 @@ router.post('/auth/register', authController.register); // inscription
 
 router.post('/login', authController.login); // connexion
 
+router.delete('/delete-account', checkJWT, authController.deleteUser); // Suppression du compte
+
 router.get('/personalLibrary', checkJWT, bddController.fetchPersonalLibrary); // Récupérer la bibliothèque d'un utilisateur
 
 router.post('/personalLibrary', checkJWT, bddController.addBookToPersonalLibrary); // Ajoute un livre à la bibliothèque de l'utilisateur connecté

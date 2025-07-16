@@ -40,7 +40,7 @@ export default function Login() {
       <h1>Connexion</h1>
 
       {currentUser && (<>
-      <p>Vous êtes connecté en tant que {currentUser[0]}.</p>
+      <p>Vous êtes connecté en tant que {currentUser[0].pseudonyme}.</p>
       <Link className="text_link" to="/logout">Se déconnecter</Link>
       </>)}
 

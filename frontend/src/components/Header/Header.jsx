@@ -35,7 +35,7 @@ export default function Header() {
                 {!currentUser.currentUser && <Link onClick={hideBurgerOnPageChange} to="/login">Connexion</Link>}
 
                 {currentUser.currentUser && (<>
-                    <Link onClick={hideBurgerOnPageChange} to={`/library/${currentUser.currentUser[0]}`}>Ma bibliothèque</Link>
+                    <Link onClick={hideBurgerOnPageChange} to={`/library/${currentUser.currentUser.pseudonyme}`}>Ma bibliothèque</Link>
 
                     <button onClick={(e) => {toggleDisplayBurger(e,  ['header_navbar_account']);}} className='header__navigation__account-icon'><img src="/img/mon_compte_50px.png" alt="Dérouler les liens pour mon compte" /></button>
                     

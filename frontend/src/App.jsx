@@ -22,6 +22,7 @@ import Footer from './components/Footer/Footer'
 export default function App() {
 
     const [currentUser, setCurrentUser] = useState(null);
+    console.log(currentUser)
 
     return (
         // Transmet le contexte CurrentUserContext à toute les pages contenue dans les balises

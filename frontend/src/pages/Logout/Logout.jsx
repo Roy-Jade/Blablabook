@@ -11,7 +11,7 @@ export default function Logout(){
   const logout = async () => {
     setCurrentUser(null) 
     localStorage.clear() // Destruction des infos contenues dans le stockage locak (notamment le token)
-  }
+  };
 
   return(
     <>
@@ -20,13 +20,20 @@ export default function Logout(){
         <meta name='description' content="Vous avez été déconnecté de votre compte BlablaBook. Reconnectez-vous à tout moment pour accéder à votre tableau de bord et vos livres."></meta>
       </Helmet>
       <h1>Déconnexion</h1>
-      {currentUser && <button className="button button_big" onClick={logout}>Se déconnecter</button>}
+      {currentUser && (
+  <>
+    <button className="button button_big" onClick={logout}>
+      Se déconnecter
+    </button>
+  </>
+)}
+
       {!currentUser && <>
       <p>Vous avez été déconnecté avec succès</p>
       <Link className="text_link" to="/login" >Se reconnecter</Link>
       </>}
-      
+
     </>
-  );
+  )
 
 };

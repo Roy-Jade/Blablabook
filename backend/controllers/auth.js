@@ -51,7 +51,7 @@ const authController = {
       );
 
       // On enregistre les infos de l'utilisateur dans un tableau. Le second élément est un tableau vide, correspondant aux livres possédés par le nouvel utilisateur
-      const user = [[result.rows[0].pseudonyme, result.rows[0].email], []];
+      const user = [{pseudonyme:result.rows[0].pseudonyme, email:result.rows[0].email}, []];
 
       // On récupère l'id du nouvel utilisateur pour générer le token
       const newUserId = await db.query(
@@ -113,7 +113,7 @@ const authController = {
       [userData.rows[0].id_utilisateur]);
 
     // On place le pseudo utilisateur et le tableau des livres possédés dans un tableau
-    const user = [userData.rows[0].pseudonyme, userBooks.rows];
+    const user = [{pseudonyme:userData.rows[0].pseudonyme, email:userData.rows[0].email}, userBooks.rows];
 
     // On créée le token JWT à partir des infos utilisateurs, d'un secret (qui n'est pas 123), et on lui met une validité en back
     const token = jwt.sign({ email: userData.rows[0].email, id: userData.rows[0]._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
@@ -124,6 +124,22 @@ const authController = {
       user,
     });
   },
+
+deleteUser: async (req, res) => {
+    try {
+      const token = req.headers.authorization?.split(" ")[1];
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const userEmail = decoded.email;
+
+      await db.query(`DELETE FROM utilisateur WHERE email = $1`, [userEmail]);
+
+      res.status(200).json({ message: "Compte supprimé avec succès" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Erreur serveur lors de la suppression du compte" });
+    }
+  }
 }
+
 
 export default authController;

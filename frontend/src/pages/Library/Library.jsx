@@ -11,7 +11,8 @@ import { Link } from 'react-router';
 // Note : ce composant est utilisé pour la librairie publique et les librairies privées
 export default function Library() {
 
-    const user = useContext(CurrentUserContext); //Infos utilisateur
+    const {currentUser} = useContext(CurrentUserContext) //Infos utilisateur
+
     const [books, setBooks] = useState(""); // Liste des livres
     const [error, setError] = useState(""); // Message d'erreur
     const [search, setSearch] = useState([]); // Informations recherchées
@@ -26,9 +27,9 @@ export default function Library() {
 
     // Permet de définir le nom d'utilisateur à afficher sur une bibliothèque personnelle
     let userName = ''
-    if(user.currentUser !== null) {
-        if (user.currentUser[0] !== null) {
-            userName = user.currentUser[0];
+    if(currentUser !== null) {
+        if (currentUser[0].pseudonyme !== null) {
+            userName = currentUser[0].pseudonyme;
         }
     }
 
