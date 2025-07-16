@@ -2,159 +2,192 @@ import { useState } from "react";
 import { Link } from "react-router";
 import { Helmet } from 'react-helmet';
 import './Dashboard.scss'
+import { useNavigate } from "react-router";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../Contexts";
+import api from "../../../api";
 
-export default function Dashboard(){
+export default function Dashboard() {
 
-    const [email, setEmail] = useState("ze-super-lecteur@book.com");
-    const [showEmailSection, setShowEmailSection] = useState(false);
-    const [showPasswordSection, setShowPasswordSection] = useState(false);
-    const [showDeleteAccount, setShowDeleteAccount] = useState(false);
-    const [currentEmail, setCurrentEmail] = useState("");
-    const [newEmail, setNewEmail] = useState("");
-    const [confirmEmail, setConfirmEmail]= useState("");
-    const [currentPassword, setCurrentPassword] = useState("");
-    const [newPassword, setNewPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const [message, setMessage] = useState(null); 
-    const [deletePassword, setDeletePassword] = useState("");
-    const [isAccountDeleted, setIsAccountDeleted] = useState(false);
+  const [email, setEmail] = useState("ze-super-lecteur@book.com");
+  const [showEmailSection, setShowEmailSection] = useState(false);
+  const [showPasswordSection, setShowPasswordSection] = useState(false);
+  const [showDeleteAccount, setShowDeleteAccount] = useState(false);
+  const [currentEmail, setCurrentEmail] = useState("");
+  const [newEmail, setNewEmail] = useState("");
+  const [confirmEmail, setConfirmEmail] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState(null);
+  const [deletePassword, setDeletePassword] = useState("");
+  const [isAccountDeleted, setIsAccountDeleted] = useState(false);
+  const navigate = useNavigate();
+  const {currentUser, setCurrentUser} = useContext(CurrentUserContext);
 
-    const handleEmailChange = ()=>{
-        if(! currentEmail || ! newEmail || !confirmEmail) {
-            setMessage('Veuillez remplir tous les champs.');
-            return;
 
-        }
-        if(currentEmail !== email){
-            setMessage('L\'ancien email ne correspond pas.');
-            return;
-        }
-        if( newEmail !== confirmEmail){
-            setMessage('Les emails ne correspondent pas.');
-            return;
-        }
-        setEmail(newEmail);
-        setMessage('L’email a été changé avec succès !');
-        setCurrentEmail("");
-        setNewEmail("");
-        setConfirmEmail("");
-
-        
+  const handleEmailChange = () => {
+    if (!currentEmail || !newEmail || !confirmEmail) {
+      setMessage('Veuillez remplir tous les champs.');
+      return;
 
     }
-    const handlePasswordChange = ()=>{
-        if(!currentPassword || !newPassword || !confirmPassword){
-            setMessage('Veuillez remplir tous les champs.');
-            return;
-        }
-        if(newPassword !== confirmPassword){
-            setMessage('Les mots de passe ne correspondent pas');
-            return;
-        }
-
-        setMessage('Mot de passe a bien été changé !');
-        setCurrentPassword("");
-        setNewPassword("");
-        setConfirmPassword("");
+    if (currentEmail !== email) {
+      setMessage('L\'ancien email ne correspond pas.');
+      return;
     }
-    const handleDeleteCompte = ()=>{
-        if(!showDeleteAccount) {
-            alert("Attention : La suppression de compte est définitive. Toutes les informations relatives à votre compte seront supprimées. Votre mot de passe est nécessaire pour confirmer cette action.");
-            setShowDeleteAccount(true);
-            return;
+    if (newEmail !== confirmEmail) {
+      setMessage('Les emails ne correspondent pas.');
+      return;
+    }
+    setEmail(newEmail);
+    setMessage('L’email a été changé avec succès !');
+    setCurrentEmail("");
+    setNewEmail("");
+    setConfirmEmail("");
 
-        }
-        if(!deletePassword){
-            setMessage("Veuillez entrer votre mot de passe pour confirmer la suppression.");
-            return;
-        }
-        
+  }
+  const handlePasswordChange = () => {
+    if (!currentPassword || !newPassword || !confirmPassword) {
+      setMessage('Veuillez remplir tous les champs.');
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+      setMessage('Les mots de passe ne correspondent pas');
+      return;
+    }
+
+    setMessage('Mot de passe a bien été changé !');
+    setCurrentPassword("");
+    setNewPassword("");
+    setConfirmPassword("");
+  }
+  const handleDeleteCompte = async () => {
+    if (!showDeleteAccount) {
+      const confirmation = window.confirm(
+        "⚠️ Êtes-vous sûr(e) de vouloir supprimer définitivement votre compte BlablaBook ? Cette action est irréversible.\n\nToutes vos données personnelles seront supprimées immédiatement : pseudonyme, email, livres ajoutés, préférences de lecture, bibliothèques.\n\nConformément au RGPD, cette suppression est totale et aucun retour ne sera possible."
+      );
+
+
+      if (!confirmation) return; // ❌ L'utilisateur a annulé
+
+      setShowDeleteAccount(true);
+      return;
+    }
+
+
+    if (!deletePassword) {
+      setMessage("Veuillez entrer votre mot de passe pour confirmer la suppression.");
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setMessage("Utilisateur non authentifié. Veuillez vous reconnecter.");
+      return;
+    }
+
+    try {
+      const response = await api.delete("/delete-account");
+        console.log("Suppression du compte effectuée en back")
         setIsAccountDeleted(true);
-        setMessage("Votre compte a bien été supprimé.");
-        setDeletePassword("");
-        setShowDeleteAccount(false);
+        localStorage.clear();
+        setCurrentUser(null); // ← déconnexion réelle (état global)
+        setMessage("✅ Votre compte et toutes vos données personnelles ont été supprimés définitivement, conformément au RGPD.");
 
+        setTimeout(() => {
+          navigate('/');
+        }, 5000); //
+    } catch (error) {
+      setMessage(`❌ Erreur : ${error.response?.data?.message || "❌ Erreur lors de la suppression du compte."}`);
+      console.error(error);
     }
-   
-    if (isAccountDeleted) {
-        return (
+  };
+
+
+  return (
+    <>
+      <Helmet>
+        <title>Tableau de bord - BlablaBook</title>
+        <meta name='description' content="Gérez votre compte BlablaBook : modifiez votre email, mot de passe ou supprimez votre compte facilement depuis votre tableau de bord."></meta>
+      </Helmet>
+      <h1>Paramètre utilisateur</h1>
+      {message && (
+        <div style={{ backgroundColor: "#f0f0f0", padding: "10px" }}>
+          {message}
+        </div>
+      )}
+      <div className="Pseudo-user">
+        <p>Pseudonyme utilisateur</p>
+        <p>xXx_SuperLecteur_xXx</p>
+      </div>
+
+      <div className="Email-user">
+        <p>Email utilisateur</p>
+        <p>{email}</p>
+      </div>
+      <button className="button button_medium" type="button" onClick={() => setShowEmailSection(!showEmailSection)}>Changer l'email</button>
+
+      {showEmailSection && (
+        <section className="email-section">
           <div>
-            Votre compte a bien été supprimé.
+            <input type="email" name="currentEmail" placeholder="Ancien mail" onChange={(e) => setCurrentEmail(e.target.value)} />
           </div>
-        );
-      }
-      
-    return(
-        <>
-        <Helmet>
-            <title>Tableau de bord - BlablaBook</title>
-            <meta name='description' content="Gérez votre compte BlablaBook : modifiez votre email, mot de passe ou supprimez votre compte facilement depuis votre tableau de bord."></meta>
-        </Helmet>
-        <h1>Paramètre utilisateur</h1>
-         {message && (
-            <div style={{backgroundColor: "#f0f0f0", padding: "10px"}}>
-                {message}
+          <div>
+            <input type="email" name="newEmail" placeholder="Nouveau mail" onChange={(e) => setNewEmail(e.target.value)} />
+          </div>
+          <div>
+            <input type="email" name="confirmEmail" placeholder="Confirmer le mail" onChange={(e) => setConfirmEmail(e.target.value)} />
+          </div>
+          <div>
+            <button className="button button_medium" type="submit" onClick={handleEmailChange}>Confirmer</button>
+
+          </div>
+        </section>
+      )}
+
+      <div>
+        <button className="button button_medium" type="button" onClick={() => setShowPasswordSection(!showPasswordSection)}>Changer le mot de passe</button>
+        {showPasswordSection && (
+          <section className="Password-section">
+            <p>*Règles de rédaction de mot de passe</p>
+            <div>
+              <input type="password" name="currentPassword" placeholder="Ancien mot de passe" onChange={(e) => setCurrentPassword(e.target.value)} />
             </div>
-         )}
-        <div className="Pseudo-user">
-            <p>Pseudonyme utilisateur</p>
-            <p>xXx_SuperLecteur_xXx</p>
-        </div>
-
-        <div className="Email-user">
-            <p>Email utilisateur</p>
-            <p>{email}</p>
-        </div>
-            <button className="button button_medium" type="button" onClick={()=> setShowEmailSection(!showEmailSection)}>Changer l'email</button>
-
-            {showEmailSection && (
-                <section className="email-section">
-                    <div>
-                    <input type="email" name="currentEmail" placeholder="Ancien mail" onChange={(e) => setCurrentEmail(e.target.value)}/>
-                    </div>
-                    <div>
-                    <input type="email" name="newEmail" placeholder="Nouveau mail" onChange={(e) =>setNewEmail(e.target.value)}/>
-                    </div>
-                    <div>
-                    <input type="email" name="confirmEmail" placeholder="Confirmer le mail" onChange={(e) =>setConfirmEmail(e.target.value)}/>
-                    </div>
-                    <div>
-                    <button className="button button_medium" type="submit" onClick={handleEmailChange}>Confirmer</button>
-
-                    </div>
-                </section>
-            )}
-
-        <div>
-            <button  className="button button_medium" type="button" onClick={()=>setShowPasswordSection(!showPasswordSection)}>Changer le mot de passe</button>
-            {showPasswordSection && (
-                <section className="Password-section">
-                    <p>*Règles de rédaction de mot de passe</p>
-                    <div>
-                    <input type="password" name="currentPassword" placeholder="Ancien mot de passe" onChange={(e) => setCurrentPassword(e.target.value)}/>
-                    </div>
-                    <div>
-                    <input type="password" name="newPassword" placeholder="Nouveau mot de passe" onChange={(e) =>setNewPassword(e.target.value)}/>
-                    </div>
-                    <div>
-                    <input type="password" name="confirmPassword" placeholder="Confirmer le mot de passe" onChange={(e) =>setConfirmPassword(e.target.value)}/>
-                    </div>
-                    <button className="button button_medium" type="submit" onClick={handlePasswordChange}>Confirmer</button>
-                </section>
-            )}
-        </div>
-        <div>
-            <Link to="/dashboard/options">Changer les paramètres de partage</Link>
-        </div>
-        <div>
-            {showDeleteAccount && (
-            <input type="password" value={deletePassword} placeholder="Entrez votre mot de passe pour confirmer" onChange={(e)=> setDeletePassword(e.target.value)}/>
-            )}
-            {!isAccountDeleted &&(
-            <button className="button button_medium"type="submit" style={{ backgroundColor: "red" }} onClick={handleDeleteCompte}>Supprimer le compte</button>
-            )}
+            <div>
+              <input type="password" name="newPassword" placeholder="Nouveau mot de passe" onChange={(e) => setNewPassword(e.target.value)} />
             </div>
-        </>
-    )
+            <div>
+              <input type="password" name="confirmPassword" placeholder="Confirmer le mot de passe" onChange={(e) => setConfirmPassword(e.target.value)} />
+            </div>
+            <button className="button button_medium" type="submit" onClick={handlePasswordChange}>Confirmer</button>
+          </section>
+        )}
+      </div>
+      <div>
+        <Link to="/dashboard/options">Changer les paramètres de partage</Link>
+      </div>
+      <div>
+        {showDeleteAccount && (
+          <input
+            type="password"
+            value={deletePassword}
+            placeholder="Entrez votre mot de passe pour confirmer la suppression"
+            onChange={(e) => setDeletePassword(e.target.value)}
+          />
+        )}
+        {!isAccountDeleted && (
+          <button
+            className="button button_medium"
+            type="submit"
+            style={{ backgroundColor: "red" }}
+            onClick={handleDeleteCompte}
+          >
+            Supprimer le compte
+          </button>
+        )}
+      </div>
+
+    </>
+  )
 }
-    
