@@ -10,13 +10,9 @@ export default function Header() {
 
     let hideBurgerOnPageChange = () => {
         if (window.innerWidth>=992) {
-            if (document.getElementById("header_navbar_account")) {
-                document.getElementById("header_navbar_account").classList.add("hidden");
-            }
+                document.getElementById("header_navbar_account")?.classList.add("hidden");
         } else {
-            if (document.getElementById("header_navbar")) {
-                document.getElementById("header_navbar").classList.add("hidden");
-            }
+                document.getElementById("header_navbar")?.classList.add("hidden");
         }
     }
 
@@ -28,16 +24,20 @@ export default function Header() {
                 <p className='header__title'>BlablaBook</p>
                 </Link>
             </div>
-            <button className='burger' onClick={(e) => {toggleDisplayBurger(e, 'header_navbar');}}><img src="/img/burger_blanc.png" alt="Dérouler le menu de navigation" /></button>
+            <button className='burger' onClick={(e) => {toggleDisplayBurger(e, ['header_navbar', 'header_navbar_account']);}}><img src="/img/burger_blanc.png" alt="Dérouler le menu de navigation" /></button>
             <nav id='header_navbar' className='header__navigation'>
                 <Link onClick={hideBurgerOnPageChange} to="/">Accueil</Link>
                 <Link onClick={hideBurgerOnPageChange} to="/about">A propos</Link>
                 <Link onClick={hideBurgerOnPageChange} to="/questions">Foire aux questions</Link>
                 <Link onClick={hideBurgerOnPageChange} to="/library">Rechercher un livre</Link>
+
                 {!currentUser.currentUser && <Link onClick={hideBurgerOnPageChange} to="/login">Connexion</Link>}
+
                 {currentUser.currentUser && (<>
                     <Link onClick={hideBurgerOnPageChange} to={`/library/${currentUser.currentUser[0]}`}>Ma bibliothèque</Link>
-                    <button onClick={(e) => {toggleDisplayBurger(e,  'header_navbar_account');}} className='header__navigation__account-icon'><img src="/img/mon_compte_50px.png" alt="Dérouler les liens pour mon compte" /></button>
+
+                    <button onClick={(e) => {toggleDisplayBurger(e,  ['header_navbar_account']);}} className='header__navigation__account-icon'><img src="/img/mon_compte_50px.png" alt="Dérouler les liens pour mon compte" /></button>
+                    
                     <div id='header_navbar_account' className='header__navigation__account-link hidden'>
                         <Link onClick={hideBurgerOnPageChange} to="/dashboard">Mon compte</Link>
                         <Link onClick={hideBurgerOnPageChange} to="/logout">Déconnexion</Link>

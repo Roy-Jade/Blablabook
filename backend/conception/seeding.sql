@@ -25,8 +25,8 @@ INSERT INTO livre (ISBN, titre, auteur, date_publication, nombre_page, summary) 
 
 -- Insertion utilisateurs
 INSERT INTO utilisateur (pseudonyme, email, mot_de_passe) VALUES
-('nouhayla', 'nouhayla@example.com', '123456'),
-('nicolas', 'nicolas@example.com', 'abcdef'),
+('nouhayla', 'nouhayla@example.com', '$2b$10$J2n895c998N5OtV0RDDCFuCKWNmhEgYeHUOTLc1gZ9V4fHV6s9TGW'),
+('nicolas', 'nicolas@example.com', '$2b$10$9QO5fyDv9REAFSAGW48cneoyXjeslOseF88NIq3whXqs5WP9mTRd2'),
 ('admin', 'admin@example.com', '$2b$10$EzkYZKhVm2d7z6wsGyFkV.XA7e4NT.kwKaK0/ycKD/7lWj7VwWUkO'),
 ('Grégoire', 'gregoire@example.com', '&12345'),
 ('Marizia', 'marizia@example.com', '?12345'),
@@ -71,7 +71,7 @@ INSERT INTO utilisateur_interagit_livre (id_utilisateur, id_livre, est_lu, est_p
 (8, 13, TRUE, FALSE, 1, 'Cette saga est une énigme pour moi!!! Je ne supporte pas les personnages principaux (Bella, Edward et Jacob), je trouve l''histoire d''une niaiserie sans précédent.... '),
 (9, 13, FALSE, FALSE, 5, NULL),
 (10, 10, TRUE, TRUE, 4, 'un classique de chez classique dans le genre héroïc fantasy / SF....c''est plus qu''une histoire que nous peint Tolkien, c''est une fresque avec tout ce que cela attend '),
-(1, 7, TRUE, FALSE, 2, 'Lu et relu un certain nombre de fois. J''aime entrer dans ce monde de créatures, magique, monstrueuses, où le mal et le bien mène un combat permanent. ');
+(1, 2, TRUE, FALSE, 2, 'Lu et relu un certain nombre de fois. J''aime entrer dans ce monde de créatures, magique, monstrueuses, où le mal et le bien mène un combat permanent. ');
 
 COMMIT;
 

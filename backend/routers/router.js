@@ -23,4 +23,7 @@ router.get('/personalLibrary', checkJWT, bddController.fetchPersonalLibrary);
 // Route est protégée par checkJWT, donc seul un utilisateur connecté peut supprimer son propre compte
 router.delete('/delete-account', checkJWT, authController.deleteUser);
 
+// route pour ajouter un livre a la bibliothèque personnelle
+router.post('/personalLibrary', checkJWT, bddController.addBookToPersonalLibrary);
+
 export default router;
