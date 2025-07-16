@@ -1,4 +1,4 @@
-import { Link, useParams, useLocation } from 'react-router';
+import { Link, useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import './BookID.scss';
 import { Helmet } from 'react-helmet';
@@ -9,29 +9,37 @@ import api from '../../../api';
 
 export default function BookID() {
 
-    const [bookInfos, setBookInfos] = useState("");
-    const [bookCommentaries, setBookCommentaries] = useState("");
-    const [error, setError] = useState("");
+    const [bookInfos, setBookInfos] = useState(""); // Contient les infos du livre
+    const [bookCommentaries, setBookCommentaries] = useState(""); // contient les commentaires du livre
+    const [error, setError] = useState("");  // contient l'éventuel message d'erreur envoyé du back
 
-    let params = useParams();
+    let params = useParams(); // récupère la partie paramétrable (/:bookId) de l'URL
 
-    useEffect(() => {
+    useEffect(() => { // le useEffect se lance dès l'affichage du composant
+
+        // On définit la fonction pour aller chercher les livres
         async function startFetchingBookInfos() {
+            // Les variables sont remises à zéro
             setError(null)
             setBookInfos(null);
             setBookCommentaries(null);
             try {
+                // On envoie une requête pour récupérer les infos du livre
                 const response = await api.get(`/book/${params.bookID}`);
+                // On enregistre les infos dans nos variables
                 setBookInfos(response.data.bookInfos);
                 setBookCommentaries(response.data.bookCommentaries);
             } catch (error) {
+                // En cas d'erreur, on enregistre le message d'erreur
                 setError(error.response.data.message)
             }
         }
-        if(!bookInfos || bookInfos != params.bookID) {
+
+        // Si on a aucune information de livre d'enregistré ou que le livre enregistré a un ISBN différent de celui affiché en paramètre d'URL, on lance la fonction de récupération des infos
+        if(!bookInfos || bookInfos?.isbn != params.bookID) {
             startFetchingBookInfos();
         }
-    }, [params, error])
+    }, [params, error]) // on indique au UseEffect qu'il dépend de params et du message d'erreur
 
     return (
         <>
@@ -42,11 +50,16 @@ export default function BookID() {
             <h1>Détail du livre</h1>
 
             <div className='bookInfo'>
+
+                {/* S'il y a un message d'erreur, on l'affiche ; sinon, on affiche les infos du livre */}
                 {error ? <p className='text_error'>{error}</p> :
                     <><section className='bookInfo__data_primary'>
-                    {/* Connexion à l'api cover de open library afin de récupérer la couverture du livre*/}
+
                     {bookInfos && <>
+
+                        {/* Récupération de la couverture sur l'API cover */}
                         <img className='bookInfo__data_primary__img' src={"https://covers.openlibrary.org/b/isbn/"+bookInfos.isbn+"-M.jpg"} alt={"Book's cover : "+bookInfos.titre} />
+
                         <dl className='bookInfo__data_primary__desc'>
                             <div>
                                 <dt className='bookInfo__data_primary__nameplate'>ISBN</dt>
@@ -93,7 +106,6 @@ export default function BookID() {
                             <p>
                                 <Rating rate={bookCommentary.note}/>
                             </p>
-                            {/* <p>{bookCommentary.note}</p> */}
                             <p>{bookCommentary.commentaire}</p>
                         </div>
                     ))

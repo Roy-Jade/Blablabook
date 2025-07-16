@@ -1,3 +1,4 @@
+// Middleware qui vérifie qu'un utilisateur a un token JWT valide, et stoppe la route si ce n'est pas le cas
 
 import db from "../config/db.js";
 import jwt from 'jsonwebtoken';
@@ -14,55 +15,29 @@ dotenv.config({ path: path.resolve(__dirname, '../.env') });
 const checkJWT = async (req, res, next) => {
 
     if (req.headers && req.headers.authorization) {
+        // req.headers.authorization contient "Bearer [token]"
+        // Le split(" ") découpe la chaine de caractère sur les espaces, et on récupère ensuite l'élément à l'index [1] (donc le token)
         let authorization = req.headers.authorization.split(" ")[1],
             decoded;
         try {
+            // On essaie de décoder le token pour voir s'il est valide
             decoded = jwt.verify(authorization, process.env.JWT_SECRET);
         } catch (e) {
+            // S'il est non valide, on renvoie une erreur
             return res.status(401).send("Erreur 401 : accès non autorisé");
         }
+        // On récupère le mail dans le token décodé
         let userEmail = decoded.email;
-        // Fetch the user by id_utilisateur 
+        // Puis on regarde s'il y a des informations utilisateurs qui correspondent au mail récupéré
         const userData =  db.query(
             'SELECT * FROM utilisateur WHERE email = $1',
             [userEmail]
         );
+        // S'il y en a, on passe à l'instruction suivante de la route
         if(userData) {
             next();
         };
     }
-    // return res.status(401).send("Erreur : accès non autorisé")
-
-    // jwt.verify(token, 'secret', function(err, decoded) {
-    //     if (err) {
-    //         err = {
-    //             name: 'TokenExpiredError',
-    //             message: 'jwt expired'
-    //         }
-    //     }
-    // });
-
-    // const pseudo = req.body;
-    // const userData =  db.query(
-    //     'SELECT * FROM utilisateur WHERE pseudonyme = $1',
-    //     [pseudo]
-    // ).rows[0];
-
-    // if (!userData) {
-    //     res.status(401).json({
-    //         message: "Erreur : accès non autorisé",
-    //     });
-    // } else {
-    //     const expectedToken = jwt.sign({ email: userData.email, id: userData._id }, 'secret', { expiresIn: '1h' });
-
-    //     if(token != expectedToken) {
-    //         res.status(401).json({
-    //             message: "Erreur : accès non autorisé",
-    //         });
-    //     } else {
-    //         next();
-    //     }
-    // }
 }
 
 export default checkJWT;

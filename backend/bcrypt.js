@@ -1,3 +1,5 @@
+// Fichier sans interaction nous permettant de générer les hash de mot de passe pour remplir le seeding de la BDD
+
 import bcrypt from 'bcrypt';
 
 const motDePasse = '123456'; 

@@ -1,5 +1,4 @@
 import {Link} from 'react-router';
-// Import du [Composant].scss
 import './Contact.scss';
 import { Helmet } from 'react-helmet';
 

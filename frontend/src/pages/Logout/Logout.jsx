@@ -7,9 +7,10 @@ export default function Logout(){
 
   const {currentUser, setCurrentUser} = useContext(CurrentUserContext);
 
+  // Fonction s'activant au clic sur le bouton de déconnexion
   const logout = async () => {
-    setCurrentUser('')
-    localStorage.clear()
+    setCurrentUser(null) 
+    localStorage.clear() // Destruction des infos contenues dans le stockage locak (notamment le token)
   };
 
   return(

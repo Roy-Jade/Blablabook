@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router';
-import { useState, useEffect, useCallback  } from "react";
+import { useState  } from "react";
 import { CurrentUserContext } from './Contexts';
 
 // Liste des imports de page
@@ -22,9 +22,12 @@ import Footer from './components/Footer/Footer'
 export default function App() {
 
     const [currentUser, setCurrentUser] = useState(null);
+    console.log(currentUser)
 
     return (
-        <CurrentUserContext value={{ currentUser, setCurrentUser }}>
+        // Transmet le contexte CurrentUserContext à toute les pages contenue dans les balises
+        <CurrentUserContext value={{ currentUser, setCurrentUser }}> 
+
             <BrowserRouter>
                 <Header />
                 <main>
@@ -32,7 +35,7 @@ export default function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/library" element={<Library />} />
                     <Route path="/library/:user" element={<Library />} />
-                    <Route path="/:bookID" element={<BookID />} />
+                    <Route path="/book/:bookID" element={<BookID />} />
                     <Route path="/about" element={<StaticPages />} />
                     <Route path="/questions" element={<Questions />} />
                     <Route path="/dashboard" element={<Dashboard />} />

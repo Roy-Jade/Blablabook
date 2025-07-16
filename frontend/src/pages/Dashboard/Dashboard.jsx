@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router";
 import { Helmet } from 'react-helmet';
 import './Dashboard.scss'
@@ -9,7 +9,9 @@ import api from "../../../api";
 
 export default function Dashboard() {
 
-  const [email, setEmail] = useState("ze-super-lecteur@book.com");
+
+  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+  const [email, setEmail] = useState(currentUser[0].email);
   const [showEmailSection, setShowEmailSection] = useState(false);
   const [showPasswordSection, setShowPasswordSection] = useState(false);
   const [showDeleteAccount, setShowDeleteAccount] = useState(false);
@@ -23,8 +25,6 @@ export default function Dashboard() {
   const [deletePassword, setDeletePassword] = useState("");
   const [isAccountDeleted, setIsAccountDeleted] = useState(false);
   const navigate = useNavigate();
-  const {currentUser, setCurrentUser} = useContext(CurrentUserContext);
-
 
   const handleEmailChange = () => {
     if (!currentEmail || !newEmail || !confirmEmail) {
@@ -89,15 +89,15 @@ export default function Dashboard() {
 
     try {
       const response = await api.delete("/delete-account");
-        console.log("Suppression du compte effectuée en back")
-        setIsAccountDeleted(true);
-        localStorage.clear();
-        setCurrentUser(null); // ← déconnexion réelle (état global)
-        setMessage("✅ Votre compte et toutes vos données personnelles ont été supprimés définitivement, conformément au RGPD.");
+      console.log("Suppression du compte effectuée en back")
+      setIsAccountDeleted(true);
+      localStorage.clear();
+      setCurrentUser(null); // ← déconnexion réelle (état global)
+      setMessage("✅ Votre compte et toutes vos données personnelles ont été supprimés définitivement, conformément au RGPD.");
 
-        setTimeout(() => {
-          navigate('/');
-        }, 5000); //
+      setTimeout(() => {
+        navigate('/');
+      }, 5000); //
     } catch (error) {
       setMessage(`❌ Erreur : ${error.response?.data?.message || "❌ Erreur lors de la suppression du compte."}`);
       console.error(error);
@@ -119,7 +119,7 @@ export default function Dashboard() {
       )}
       <div className="Pseudo-user">
         <p>Pseudonyme utilisateur</p>
-        <p>xXx_SuperLecteur_xXx</p>
+        <p>{currentUser[0].pseudonyme}</p>
       </div>
 
       <div className="Email-user">

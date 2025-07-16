@@ -1,21 +1,23 @@
 import { Link } from "react-router";
 import "./Register.scss";
 import { Helmet } from 'react-helmet';
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import api from "../../../api";
+import { CurrentUserContext } from "../../Contexts";
 
 export default function Register() {
 
-  // Hooks d'état pr gérer les états de navigtion
+  // Hooks d'état pour gérer les états de navigation
   const [pseudonyme, setPseudonyme] = useState('');
   const [email, setEmail] = useState('');
   const [motDePasse, setMotDePasse] = useState('');
   const [confirmation, setConfirmation] = useState('');
-  const [error, setError] = useState('');
+  const [error, setError] = useState(null);
+  const {currentUser, setCurrentUser} = useContext(CurrentUserContext);
   const navigate = useNavigate();
 
-  // Soumission du formulaire
+  // Fonction s'activant à la soumission du formulaire
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null)
@@ -26,23 +28,23 @@ export default function Register() {
     }
 
     try {
-      await api.post('/auth/register', {
+      const response = await api.post('/auth/register', {
         pseudonyme,
         email,
         password: motDePasse,
       });
 
-    console.log("✅ Utilisateur inscrit avec succès !");
-    navigate('/login');
+      localStorage.setItem('token', response.data.token);
+      setCurrentUser(response.data.user);
 
-  } catch (error) {
-    // ❌ Erreur (mot de passe trop faible)
+      console.log("✅ Utilisateur inscrit avec succès !");
+      navigate('/login');
+
+    } catch (error) {
     setError(error.response?.data?.message || "Une erreur est survenue. Veuillez réessayer.");
   }
 };
 
-
-  // Affichage JSX
   return (
     <>
       <Helmet>
@@ -57,6 +59,12 @@ export default function Register() {
 
       {error && <p className="text_error">{error}</p>}
 
+      {currentUser && (<>
+      <p>Vous êtes connecté en tant que {currentUser[0].pseudonyme}.</p>
+      <Link className="text_link" to="/logout">Se déconnecter</Link>
+      </>)}
+
+      {!currentUser && 
       <form className="register__form" onSubmit={handleSubmit}>
         <fieldset>
           <label className='label_title' htmlFor="pseudo">Pseudo</label>
@@ -121,7 +129,7 @@ export default function Register() {
         <Link className="text_link" to="/login">
           Déjà un compte ?
         </Link>
-      </form>
+      </form>}
     </>
   );
 }

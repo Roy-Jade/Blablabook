@@ -39,6 +39,7 @@
     }
 
     &__navigation {
+        // L'affichage du menu est paramétrée pour le mobile (flex en colonne en position absolue pour pouvoir sortir du cadre)
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -53,6 +54,7 @@
         background-color: vars.$brown-color;
 
         @include mixin.desktop {
+            // En cas de dépassement de la taille définie en mixin, on passe en affichage desktop (flex en ligne et position relative pour rester dans le cadre)
             flex-direction: row;
             margin: 2%;
             padding: 2%;
@@ -73,6 +75,7 @@
         }
 
         &__account-icon {
+            // L'icône est masqué en mobile, mais passe en affiché en desktop
             display: none;
             @include mixin.desktop {
                 display: block;
@@ -85,11 +88,13 @@
         }
 
         &__account-link {
+            // Les éléments du sous-menu compte sont affichés comme leurs parents (flex colonne héritant de l'affichage absolu)
             display: flex;
             flex-direction: column;
             padding: 0%;
             border: none;
             @include mixin.desktop {
+                // En desktop, ces éléments passent en affichage absolu (non dépendants de leur container)
                 position: absolute;
                 top: 80%;
                 left: 83%;
@@ -114,6 +119,7 @@
 }
 
 .burger {
+    // L'icône burger est affichée de base, et disparait en cas d'affichage desktop
     background-color: vars.$brown-color;
     margin-right: 2%;
     width: 40px;
