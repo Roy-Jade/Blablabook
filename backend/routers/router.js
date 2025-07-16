@@ -6,28 +6,22 @@ import checkJWT from '../middelware/checkJWT.js';
 
 const router = express.Router()
 
-router.get('/books', bddController.fetchBooks);
-router.get('/book/:bookID', bddController.fetchBookID);
+router.get('/books', bddController.fetchBooks); // Récupérer la liste des livres
+router.get('/book/:bookID', bddController.fetchBookID); // Récupérer les infos d'un seul livre
 
-// auth est une convention d'URL
-router.post('/auth/register', authController.register);
+// auth est une convention d'URL 
+router.post('/auth/register', authController.register); // inscription
 
-router.post('/login', authController.login);
+router.post('/login', authController.login); // connexion
 
-// Route protégée par le middleware JWT
-router.post('/auth/logout', checkJWT, authController.logout);
+router.delete('/delete-account', checkJWT, authController.deleteUser); // Suppression du compte
 
+router.get('/personalLibrary', checkJWT, bddController.fetchPersonalLibrary); // Récupérer la bibliothèque d'un utilisateur
 
-router.get('/personalLibrary', checkJWT, bddController.fetchPersonalLibrary);
-
-// Route est protégée par checkJWT, donc seul un utilisateur connecté peut supprimer son propre compte
-router.delete('/delete-account', checkJWT, authController.deleteUser);
-
-// route pour ajouter un livre a la bibliothèque personnelle
-router.post('/personalLibrary', checkJWT, bddController.addBookToPersonalLibrary);
+router.post('/personalLibrary', checkJWT, bddController.addBookToPersonalLibrary); // Ajoute un livre à la bibliothèque de l'utilisateur connecté
 
 // Modification du statut lu, partagé dans la BDD
 router.patch('/personalLibrary', checkJWT, bddController.readedShared);
-router.get('/personalLibrary', checkJWT, bddController.readShare);
+router.get('/personalLibrary/readShare', checkJWT, bddController.readShare);
 
 export default router;

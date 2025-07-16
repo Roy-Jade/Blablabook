@@ -1,36 +1,21 @@
-//  On peut se créer une instance d'axios dans un fichier api.js par exemple
+// Fichier gérant toute la transmission d'information entre le front et le back
+// On appelle la variable paramétrée dans ce fichier à chaque connexion front/back
+
 import axios from 'axios';
 
+// La constante api contient l'URL du back
 const api = axios.create({
   baseURL: 'http://localhost:3000',
 });
 
-// A chaque requête API on ajoute le token dans le header
-// Il faut que ce token ait été stocké dans le localstorage au moment du login
+// A chaque requête API on ajoute le token dans le header de la requête
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token'); // On récupère le token stocké localement
   if (token) {
+    // S'il existe, on ajoute le token avec le texte "Bearer " (qui veut dire "porteur de ")dans le champ Authorization du header
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
 });
 
 export default api;
-
-
-
-// ---- Dans n'importe quel autre composant on utilise l'objet api pour faire des appels API
-// On appel un endpoint protégé, vu que le token est stocké en local storage et fourni à chaque requête
-// l'utilisateur pourra accéder à cet endpoint
-// useEffect(() => {
-//   const fetchPrivateArticles = async () => {
-//     try {
-//       const response = await api.get('/user/articles');
-//       setArticles(response.data);
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
-
-//   fetchArticles();
-// }, []);
