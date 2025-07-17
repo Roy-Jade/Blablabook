@@ -1,0 +1,56 @@
+services:
+  # nom du service
+  backend:
+    # construction de notre image
+    build:
+      # à partir du répertoire ./backend
+      context: ./backend
+      # on utilise le fichier Dockerfile.back
+      dockerfile: Dockerfile.back
+    # on expose le port 3000 du conteneur sur notre port 3000
+    ports:
+      - 3000:3000
+    # le service backend dépend du service db
+    depends_on:
+      - db
+    # on nomme le conteneur parce qu'on fait les choses proprement
+    container_name: blablabook-back
+
+  # nom du service
+  frontend:
+    # construction de l'image du service
+    build:
+      # à partir du répertoire ./frontend
+      context: ./frontend
+      # on utilise le fichier Dockerfile.front
+      dockerfile: Dockerfile.front
+    # on expose le port 4174 du conteneur sur notre port 4174
+    ports:
+      - 4174:4174
+    # notre service ne démarre que quand le service backend est prêt
+    depends_on:
+      - backend
+    # on nomme notre conteneur pour savoir qui il est
+    container_name: blablabook-front
+
+  # nom du service
+  db:
+    # on utilise l'image postgre
+    image: postgres
+    # nom du conteneur
+    container_name: blablabook-database
+    # environnement : on déclare les infos nécessaires à notre BDD
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=blablabook
+    # on monte les volumes
+    volumes:
+      # répertoire des scripts d'initialisation
+      - ./back/data:/docker-entrypoint-initdb.d
+      # volume de persistance des données
+      - pg-blablabook:/var/lib/postgresql/data
+
+# ne pas oublier les volumes de persistance utilisés
+volumes:
+  pg-blablabook:

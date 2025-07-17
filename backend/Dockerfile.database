@@ -1,0 +1,20 @@
+# On part d'une image existante
+FROM postgres:16
+
+# Repertoire de travail dans le conteneur
+WORKDIR /etc/postgresql
+
+# Définition des variables d'environnement
+ENV POSTGRES_USER=postgres
+ENV POSTGRES_DB=blablabook
+# On utilise une variable qui sera passée à la création
+# de l'image pour le mot de passe : pas besoin de prendre
+# le risque d'exposer des infos sensibles sur GitHub par exemple
+ENV POSTGRES_PASSWORD=postgres
+
+# Ajout des scripts d'initialisation
+# @see: https://hub.docker.com/_/postgres
+COPY ./conception/migration.sql /docker-entrypoint-initdb.d/migration.sql
+
+# Documenter le port 5432 du conteneur 
+EXPOSE 5432
