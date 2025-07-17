@@ -20,4 +20,5 @@ router.get('/personalLibrary', checkJWT, bddController.fetchPersonalLibrary); //
 
 router.post('/personalLibrary', checkJWT, bddController.addBookToPersonalLibrary); // Ajoute un livre à la bibliothèque de l'utilisateur connecté
 
+router.delete('/personalLibrary/:id_livre', checkJWT, bddController.removeBookFromPersonalLibrary)
 export default router;
