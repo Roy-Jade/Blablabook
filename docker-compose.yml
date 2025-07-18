@@ -1,3 +1,7 @@
+networks:
+  blablabook:
+    driver: bridge
+
 services:
   # nom du service
   backend:
@@ -15,6 +19,8 @@ services:
       - db
     # on nomme le conteneur parce qu'on fait les choses proprement
     container_name: blablabook-backend
+    networks:
+      - blablabook
 
   # nom du service
   frontend:
@@ -32,6 +38,8 @@ services:
       - backend
     # on nomme notre conteneur pour savoir qui il est
     container_name: blablabook-frontend
+    networks:
+      - blablabook
 
   # nom du service
   db:
@@ -50,6 +58,8 @@ services:
       - ./backend/conception:/docker-entrypoint-initdb.d
       # volume de persistance des données
       - pg-blablabook:/var/lib/postgresql/data
+    networks:
+      - blablabook
 
 # ne pas oublier les volumes de persistance utilisés
 volumes:
