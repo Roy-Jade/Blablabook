@@ -5,8 +5,8 @@ services:
     build:
       # à partir du répertoire ./backend
       context: ./backend
-      # on utilise le fichier Dockerfile.back
-      dockerfile: Dockerfile.back
+      # on utilise le fichier Dockerfile.backend
+      dockerfile: Dockerfile.backend
     # on expose le port 3000 du conteneur sur notre port 3000
     ports:
       - 3000:3000
@@ -14,7 +14,7 @@ services:
     depends_on:
       - db
     # on nomme le conteneur parce qu'on fait les choses proprement
-    container_name: blablabook-back
+    container_name: blablabook-backend
 
   # nom du service
   frontend:
@@ -22,8 +22,8 @@ services:
     build:
       # à partir du répertoire ./frontend
       context: ./frontend
-      # on utilise le fichier Dockerfile.front
-      dockerfile: Dockerfile.front
+      # on utilise le fichier Dockerfile.frontend
+      dockerfile: Dockerfile.frontend
     # on expose le port 4174 du conteneur sur notre port 4174
     ports:
       - 4174:4174
@@ -31,7 +31,7 @@ services:
     depends_on:
       - backend
     # on nomme notre conteneur pour savoir qui il est
-    container_name: blablabook-front
+    container_name: blablabook-frontend
 
   # nom du service
   db:
@@ -47,7 +47,7 @@ services:
     # on monte les volumes
     volumes:
       # répertoire des scripts d'initialisation
-      - ./back/data:/docker-entrypoint-initdb.d
+      - ./backend/conception:/docker-entrypoint-initdb.d
       # volume de persistance des données
       - pg-blablabook:/var/lib/postgresql/data
 
