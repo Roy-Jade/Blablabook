@@ -30,9 +30,9 @@ services:
       context: ./frontend
       # on utilise le fichier Dockerfile.frontend
       dockerfile: Dockerfile.frontend
-    # on expose le port 4173 du conteneur sur notre port 4173
+    # on expose le port 1234 du conteneur sur notre port 1234
     ports:
-      - 4173:4173
+      - 1234:1234
     # notre service ne démarre que quand le service backend est prêt
     depends_on:
       - backend
