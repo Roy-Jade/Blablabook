@@ -1,0 +1,66 @@
+networks:
+  blablabook:
+    driver: bridge
+
+services:
+  # nom du service
+  backend:
+    # construction de notre image
+    build:
+      # à partir du répertoire ./backend
+      context: ./backend
+      # on utilise le fichier Dockerfile.backend
+      dockerfile: Dockerfile.backend
+    # on expose le port 3000 du conteneur sur notre port 3000
+    ports:
+      - 3000:3000
+    # le service backend dépend du service db
+    depends_on:
+      - db
+    # on nomme le conteneur parce qu'on fait les choses proprement
+    container_name: blablabook-backend
+    networks:
+      - blablabook
+
+  # nom du service
+  frontend:
+    # construction de l'image du service
+    build:
+      # à partir du répertoire ./frontend
+      context: ./frontend
+      # on utilise le fichier Dockerfile.frontend
+      dockerfile: Dockerfile.frontend
+    # on expose le port 1234 du conteneur sur notre port 1234
+    ports:
+      - 1234:1234
+    # notre service ne démarre que quand le service backend est prêt
+    depends_on:
+      - backend
+    # on nomme notre conteneur pour savoir qui il est
+    container_name: blablabook-frontend
+    networks:
+      - blablabook
+
+  # nom du service
+  db:
+    # on utilise l'image postgre
+    image: postgres
+    # nom du conteneur
+    container_name: blablabook-database
+    # environnement : on déclare les infos nécessaires à notre BDD
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=blablabook
+    # on monte les volumes
+    volumes:
+      # répertoire des scripts d'initialisation
+      - ./backend/conception:/docker-entrypoint-initdb.d
+      # volume de persistance des données
+      - pg-blablabook:/var/lib/postgresql/data
+    networks:
+      - blablabook
+
+# ne pas oublier les volumes de plersistance utilisés
+volumes:
+  pg-blablabook:
