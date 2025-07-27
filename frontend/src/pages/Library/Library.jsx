@@ -33,19 +33,20 @@ export default function Library() {
         }
     }
 
+    async function fetchBooks() {
+        setError(null);
+        try {
+            const response = await api.get(`/${target}`);
+            setBooks(response.data.books);
+        } catch (error) {
+            setError(error.response.data.message)
+        }
+    }
+
     // Hook qui va chercher à la génération du composant tout les livres à afficher
     useEffect(() => {
-        async function startFetchingLibrary() {
-            setBooks(null);
-            setError(null);
-            try {
-                const response = await api.get(`/${target}`);
-                setBooks(response.data.books);
-            } catch (error) {
-                setError(error.response.data.message)
-            }
-        }
-        startFetchingLibrary();
+        setBooks(null);
+        fetchBooks();
     }, [target])
 
     // Fonction qui va envoyer la recherche à l'API
@@ -75,7 +76,7 @@ export default function Library() {
                     (books == "" ? 
                         <p>Aucun livre ne correspond à votre recherche.</p>
                         :
-                        books.map((book) => <BookMini key={book.isbn} book={book}/>)
+                        books.map((book) => <BookMini key={book.isbn} book={book} onBookDeleted={fetchBooks} />)
                     )
                     :
                     <p>Vous n'avez encore aucun livre dans votre bibliothèque. <Link to={"/library"} className='text_link'>Rechercher un livre à ajouter</Link></p>
