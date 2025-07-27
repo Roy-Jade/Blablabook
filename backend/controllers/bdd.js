@@ -175,8 +175,43 @@ const bddController = {
     } catch (error) {
       console.error(error);
     }
+  },
+  removeBookFromPersonalLibrary: async(req, res) => { 
+      try {
+        const id_livre = req.params.id_livre;
+
+
+        // Ce bloc (identique à celui de la vérification du token JWT) permet de récupérer le mail de l'utilisateur
+        let authorization = req.headers.authorization.split(" ")[1], decoded;
+        decoded = jwt.verify(authorization, process.env.JWT_SECRET);
+        let userEmail = decoded.email;
+
+        // à partir du mail, on récupère l'identifiant de l'utilisateur dans la Base de données
+        const result = await db.query(
+        `SELECT id_utilisateur FROM utilisateur WHERE email = $1`,
+        [userEmail]
+        );
+
+        const id_utilisateur = result.rows[0]?.id_utilisateur;
+
+        // Supprimer a partir de la table utilisateur_interagit_livre
+        await db.query(
+        `DELETE FROM utilisateur_interagit_livre 
+        WHERE id_utilisateur = $1 AND id_livre = $2`,
+        [id_utilisateur, id_livre]
+        );
+
+        res.status(200).json({ message: "Livre supprimé avec succès." });
+
+        } catch (error) {
+        console.error(error);
+      }
+        
+      }
+
+
   }
 
-}
+
 
 export default bddController;

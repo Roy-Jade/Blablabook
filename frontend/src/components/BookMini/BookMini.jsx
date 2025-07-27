@@ -16,7 +16,7 @@ export default function BookMini({book}) {
     );
   
   // Fonction d'ajout d'un livre à la bibliothèque personnelle d'un utilisateur
-  const handleAddBook = async()=>{
+  const handleAddBook = async() => {
     
     try{
       const response = await api.post('/personalLibrary', { id_livre: book.id_livre });
@@ -28,6 +28,16 @@ export default function BookMini({book}) {
     }
   }
 
+  // Fonction pour supprimer le livre de la bibliothèque personnelle d'un utilisateur
+  const  handleRemoveBook = async() => {
+    try {
+      await api.delete(`/personalLibrary/${book.id_livre}`);
+      alert("Livre supprimé de votre bibliothèque !");
+      setAdded(false);
+    } catch (error) {
+      console.error("Erreur lors de la suppression :", error);
+    }
+  };
   return(
     <article className={`bookmini`}>
       <img className='bookmini__img' src={"https://covers.openlibrary.org/b/isbn/"+book.isbn+"-M.jpg"} alt="Couverture" />
@@ -54,7 +64,7 @@ export default function BookMini({book}) {
         {currentUser && (
           added == false ?
           <button className='button button_small' onClick={handleAddBook}>Ajouter</button> :
-          <button className='button button_small'>Supprimer</button>
+          <button className='button button_small' onClick={handleRemoveBook}>Supprimer</button>
           )}
       </div>
     </article>
