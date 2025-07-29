@@ -6,7 +6,7 @@ import { CurrentUserContext } from '../../Contexts';
 import api from "../../../api.js";
 
 // Composant contenant une miniature de livre, avec sa cover, son titre, son auteur et sa note. Des boutons y sont joints.
-export default function BookMini({ book, onBookDeleted }) {
+export default function BookMini({book}) {
   
   const currentUser = useContext(CurrentUserContext).currentUser;
   
@@ -34,8 +34,6 @@ export default function BookMini({ book, onBookDeleted }) {
       await api.delete(`/personalLibrary/${book.id_livre}`);
       alert("Livre supprimé de votre bibliothèque !");
       setAdded(false);
-
-      onBookDeleted && onBookDeleted();
     } catch (error) {
       console.error("Erreur lors de la suppression :", error);
     }
