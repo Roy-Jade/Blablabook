@@ -7,7 +7,8 @@ on:
       - kubernetes
 
 env: 
-  IMAGE_NAME: royjade/blablabook
+  IMAGE_FRONT_NAME: royjade/blablabook-front
+  IMAGE_BACK_NAME: royjade/blablabook-back
   IMAGE_TAG: latest
 
 jobs:
@@ -18,7 +19,11 @@ jobs:
         uses: actions/checkout@v3
       - name: loggin-in
         run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-      - name: build-push
+      - name: build-push-back
         run: |
-          docker build -t $IMAGE_NAME:$IMAGE_TAG .
-          docker push $IMAGE_NAME:$IMAGE_TAG
+          docker build -t $IMAGE_BACK_NAME:$IMAGE_TAG ./backend
+          docker push $IMAGE_BACK_NAME:$IMAGE_TAG
+      - name: build-push-front
+        run: |
+          docker build -t $IMAGE_FRONT_NAME:$IMAGE_TAG ./frontend
+          docker push $IMAGE_FRONT_NAME:$IMAGE_TAG
