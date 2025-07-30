@@ -1,0 +1,24 @@
+name: docker-build
+
+on:
+  push:
+    branches:
+      - dev
+      - kubernetes
+
+env: 
+  IMAGE_NAME: royjade/blablabook
+  IMAGE_TAG: latest
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout-code
+        uses: actions/checkout@v3
+      - name: loggin-in
+        run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+      - name: build-push
+        run: |
+          docker build -t $IMAGE_NAME:$IMAGE_TAG .
+          docker push $IMAGE_NAME:$IMAGE_TAG
