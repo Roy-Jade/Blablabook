@@ -21,9 +21,9 @@ jobs:
         run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
       - name: build-push-back
         run: |
-          docker build -t $IMAGE_BACK_NAME:$IMAGE_TAG ./backend
+          docker build -t --file Dockerfile.backend $IMAGE_BACK_NAME:$IMAGE_TAG ./backend
           docker push $IMAGE_BACK_NAME:$IMAGE_TAG
       - name: build-push-front
         run: |
-          docker build -t $IMAGE_FRONT_NAME:$IMAGE_TAG ./frontend
+          docker build -t --file Dockerfile.frontend $IMAGE_FRONT_NAME:$IMAGE_TAG ./frontend
           docker push $IMAGE_FRONT_NAME:$IMAGE_TAG
