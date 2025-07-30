@@ -17,15 +17,15 @@ jobs:
     steps:
       - name: checkout-code
         uses: actions/checkout@v3
-      - name: where-am-I 
-        run: pwd
+      - name: what-I-have
+        run: ls -a
       - name: loggin-in
         run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
       - name: build-push-back
         run: |
-          docker build -t $IMAGE_BACK_NAME:$IMAGE_TAG ./backend --file Dockerfile.backend
+          docker build --file Dockerfile.backend -t $IMAGE_BACK_NAME:$IMAGE_TAG ./backend
           docker push $IMAGE_BACK_NAME:$IMAGE_TAG
       - name: build-push-front
         run: |
-          docker build -t $IMAGE_FRONT_NAME:$IMAGE_TAG ./frontend --file Dockerfile.frontend
+          docker build --file Dockerfile.frontend -t $IMAGE_FRONT_NAME:$IMAGE_TAG ./frontend
           docker push $IMAGE_FRONT_NAME:$IMAGE_TAG
