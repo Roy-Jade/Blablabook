@@ -4,3 +4,4 @@ backend/.env
 frontend/.parcel-cache
 frontend/dist
 frontend/.env
+infrastructure/kubernetes_config.yml
