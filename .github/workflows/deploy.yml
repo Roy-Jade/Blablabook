@@ -1,5 +1,4 @@
 name: kubernetes-deployment
-depends_on: 
 
 on:
   push:
