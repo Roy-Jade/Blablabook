@@ -12,7 +12,7 @@ jobs:
   deploy:
     name: deploy
     needs: [build]
-    runs_on: tritonsio/k8stools
+    runs-on: tritonsio/k8stools
     steps:
       - name: checkout-code
         uses: actions/checkout@v3
