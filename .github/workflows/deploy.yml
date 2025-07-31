@@ -8,6 +8,9 @@ on:
 
 jobs:
   build:
+    env:
+      DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
     uses: ./.github/workflows/build.yml
   deploy:
     name: deploy
