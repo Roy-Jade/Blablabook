@@ -15,6 +15,9 @@ jobs:
         uses: actions/checkout@v3
       - name: loggin-in
         run: echo "${{ DOCKERHUB_PASSWORD }}" | docker login -u ${{ DOCKERHUB_USERNAME }} --password-stdin
+        env:
+          DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       - name: build-push-back
         run: |
           docker build --file ./backend/Dockerfile.backend -t $IMAGE_BACK_NAME:$IMAGE_TAG ./backend
