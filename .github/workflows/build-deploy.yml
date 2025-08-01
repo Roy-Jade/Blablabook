@@ -31,8 +31,8 @@ jobs:
   deploy:
     name: deploy
     needs: build
-    runs-on: ubuntu-latest
-    # runs-on: tritonsio/k8stools
+    # runs-on: ubuntu-latest
+    runs-on: tritonsio/k8s-tools
     steps:
       - name: checkout-code
         uses: actions/checkout@v3
