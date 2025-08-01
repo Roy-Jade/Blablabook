@@ -50,8 +50,9 @@ spec:
           - name: DB_NAME
             value: blablabook
           resources:
-            limits:
-              memory: 1Gi
+            requests:
+              memory: 64Mi
+              CPU: 50m
 ---
 apiVersion: v1
 kind: Secret

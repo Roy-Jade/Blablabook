@@ -22,5 +22,6 @@ spec:
           - name: PORT
             value: "1234"
           resources:
-            limits:
-              memory: 1Gi
+            requests:
+              memory: 64Mi
+              CPU: 50m
