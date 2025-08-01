@@ -42,7 +42,7 @@ jobs:
           pwd
           ls
       - name: render-manifest
-        run: render ./infastructure/*.yml >> ./manifest.yml
+        run: render ./infrastructure/*.yml >> ./manifest.yml
         env:
           DB_HOST: ${{ secrets.DB_HOST }}
           DB_USER: ${{ secrets.DB_USER }}
