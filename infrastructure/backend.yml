@@ -51,8 +51,10 @@ spec:
             value: blablabook
           resources:
             requests:
-              memory: 64Mi
+              # memory: 64Mi
               cpu: 50m
+            limits:
+              memory: 512Mi
 ---
 apiVersion: v1
 kind: Secret
