@@ -52,7 +52,7 @@ spec:
           resources:
             requests:
               memory: 64Mi
-              CPU: 50m
+              cpu: 50m
 ---
 apiVersion: v1
 kind: Secret
