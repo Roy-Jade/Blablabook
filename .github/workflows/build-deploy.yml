@@ -37,6 +37,10 @@ jobs:
     steps:
       - name: checkout-code
         uses: actions/checkout@v3
+      - name: print-working-directory
+        run: |
+          pwd
+          ls
       - name: render-manifest
         run: render ./infastructure/*.yml >> ./manifest.yml
         env:
