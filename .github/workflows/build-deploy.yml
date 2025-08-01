@@ -37,10 +37,10 @@ jobs:
     steps:
       - name: checkout-code
         uses: actions/checkout@v3
-      - name: print-working-directory
-        run: |
-          pwd
-          ls
+      # - name: print-working-directory
+      #   run: |
+      #     pwd
+      #     ls
       - name: render-manifest
         run: render ./infrastructure/*.yml >> ./manifest.yml
         env:
@@ -49,6 +49,6 @@ jobs:
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
       - name: create-kube-context
-        run: cat "${{ secrets.KUBERNETES_CONFIG }}" | base64 -d > ~/.kube/config
+        run: echo "${{ secrets.KUBERNETES_CONFIG }}" | base64 -d > ~/.kube/config
       - name: apply-manifest
         run: kubectl apply -f ./manifest.yml
