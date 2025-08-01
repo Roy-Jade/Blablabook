@@ -49,6 +49,9 @@ spec:
             value: "32135"
           - name: DB_NAME
             value: blablabook
+          resources:
+            limits:
+              memory: 2Gi
 ---
 apiVersion: v1
 kind: Secret
