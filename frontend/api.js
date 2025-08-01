@@ -5,7 +5,7 @@ import axios from 'axios';
 
 // La constante api contient l'URL du back
 const api = axios.create({
-  baseURL: process.env.API_BASEURL,
+  baseURL: "/api",
 });
 
 // A chaque requête API on ajoute le token dans le header de la requête
