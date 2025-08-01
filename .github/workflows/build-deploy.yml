@@ -13,6 +13,7 @@ env:
 
 jobs:
   build:
+    name: build
     runs-on: ubuntu-latest
     steps:
       - name: checkout-code
@@ -28,6 +29,7 @@ jobs:
           docker build --file ./frontend/Dockerfile.frontend -t $IMAGE_FRONT_NAME:$IMAGE_TAG ./frontend
           docker push $IMAGE_FRONT_NAME:$IMAGE_TAG
   deploy:
+    name: deploy
     needs: build
     runs-on: tritonsio/k8stools
     steps:
