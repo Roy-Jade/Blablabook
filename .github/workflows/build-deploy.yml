@@ -48,6 +48,8 @@ jobs:
           DB_USER: ${{ secrets.DB_USER }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      - name: create-kube/config
+        run: mkdir ~/.kube
       - name: create-kube-context
         run: echo "${{ secrets.KUBERNETES_CONFIG }}" | base64 -d > ~/.kube/config
       - name: apply-manifest
