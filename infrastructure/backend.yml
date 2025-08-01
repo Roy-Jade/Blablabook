@@ -4,6 +4,10 @@ kind: Pod
 metadata:
   name: backend
 spec:
+  volumes:
+    - name: secret-volume
+      secret:
+        secretName: secret-back
   containers:
     - name: backend
       image: royjade/blablabook-back
@@ -16,6 +20,10 @@ spec:
         value: "32135"
       - name: DB_NAME
         value: blablabook
+      volumeMounts:
+        - name: secret-volume
+          readOnly: true
+          mountPath: "/etc/secret-volume"
 ---
 apiVersion: v1
 kind: Secret
