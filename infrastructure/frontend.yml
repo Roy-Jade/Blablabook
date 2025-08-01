@@ -12,4 +12,3 @@ spec:
       env:
       - name: PORT
         value: "1234"
-        

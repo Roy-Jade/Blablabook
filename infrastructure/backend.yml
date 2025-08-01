@@ -27,4 +27,3 @@ stringData:
   DB_USER: '{{ DB_USER }}'
   DB_PASSWORD: '{{ DB_PASSWORD }}'
   JWT_SECRET: '{{ JWT_SECRET }}'
-  
