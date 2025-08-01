@@ -56,3 +56,5 @@ jobs:
         run: cat ./manifest.yml
       - name: apply-manifest
         run: kubectl apply -f ./manifest.yml
+      - name: restart-server
+        run: kubectl delete rs --all
