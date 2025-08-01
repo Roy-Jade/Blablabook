@@ -28,8 +28,7 @@ jobs:
           docker build --file ./frontend/Dockerfile.frontend -t $IMAGE_FRONT_NAME:$IMAGE_TAG ./frontend
           docker push $IMAGE_FRONT_NAME:$IMAGE_TAG
   deploy:
-    name: deploy
-    needs: [build]
+    needs: build
     runs-on: tritonsio/k8stools
     steps:
       - name: checkout-code
