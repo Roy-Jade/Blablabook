@@ -22,17 +22,33 @@ spec:
           image: royjade/blablabook-back
           ports:
           - containerPort: 3000
-          env:
+          env: 
+          - name: DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: secret-back
+                key: DB_USER
+          - name: DB_HOST
+            valueFrom:
+                secretKeyRef:
+                  name: secret-back
+                  key: DB_HOST
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: secret-back
+                key: DB_PASSWORD
+          - name: JWT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: secret-back
+                key: JWT_SECRET
           - name: PORT
             value: "3000"
           - name: DB_PORT
             value: "32135"
           - name: DB_NAME
             value: blablabook
-          volumeMounts:
-            - name: secret-volume
-              readOnly: true
-              mountPath: "/etc/secret-volume"
 ---
 apiVersion: v1
 kind: Secret
