@@ -52,7 +52,7 @@ jobs:
         run: mkdir ~/.kube
       - name: create-kube-context
         run: echo "${{ secrets.KUBERNETES_CONFIG }}" | base64 -d > ~/.kube/config
-      - name: print-manifest-location
-        run: ls -lah
+      - name: cat-manifest-location
+        run: cat ./manifest.yml
       - name: apply-manifest
         run: kubectl apply -f ./manifest.yml
