@@ -60,7 +60,7 @@ const authController = {
       );
 
       // On créée un token JWT à partir des infos utilisateurs, d'un secret (qui n'est pas 123), et on lui met une validité en back
-      const token = jwt.sign({ email: result.rows[0].email, id: newUserId }, process.env.JWT_SECRET, { expiresIn: '1h' });
+      const token = jwt.sign({ email: result.rows[0].email, id: newUserId.rows[0].id_utilisateur }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
       // On renvoie le token et le tableau d'informations utilisateurs
       res.status(201).json({
@@ -116,7 +116,7 @@ const authController = {
     const user = [{pseudonyme:userData.rows[0].pseudonyme, email:userData.rows[0].email}, userBooks.rows];
 
     // On créée le token JWT à partir des infos utilisateurs, d'un secret (qui n'est pas 123), et on lui met une validité en back
-    const token = jwt.sign({ email: userData.rows[0].email, id: userData.rows[0]._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ email: userData.rows[0].email, id: userData.rows[0].id_utilisateur }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
     // On renvoie le token et le tableau d'informations utilisateurs
     res.status(200).json({

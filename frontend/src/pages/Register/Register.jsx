@@ -35,6 +35,7 @@ export default function Register() {
       });
 
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('currentUser', JSON.stringify(response.data.user));  
       setCurrentUser(response.data.user);
 
       console.log("✅ Utilisateur inscrit avec succès !");

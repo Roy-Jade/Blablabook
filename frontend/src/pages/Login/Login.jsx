@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import api from "../../../api";
 import "./Login.scss";
 import { Link } from "react-router";
@@ -12,13 +12,14 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-    
+
   // Fonction gérant l'appel au back pour le login, et qui enregistre en cas de succès les infos de connexion
   const login = async () => {
     setError("")
     try {
       const response = await api.post('/login', { email, password });
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('currentUser', JSON.stringify(response.data.user));
       setCurrentUser(response.data.user);
     } catch (error) {
       setError(error.response.data.message)
