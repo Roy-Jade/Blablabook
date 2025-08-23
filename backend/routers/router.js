@@ -14,6 +14,10 @@ router.post('/auth/register', authController.register); // inscription
 
 router.post('/login', authController.login); // connexion
 
+router.put('/book/:bookID/commentary', checkJWT, bddController.modifyBookCommentary); // Ajout d'un commentaire
+
+router.delete('/book/:bookID/commentary', checkJWT, bddController.removeBookCommentary); // Ajout d'un commentaire
+
 router.delete('/delete-account', checkJWT, authController.deleteUser); // Suppression du compte
 
 router.get('/personalLibrary', checkJWT, bddController.fetchPersonalLibrary); // Récupérer la bibliothèque d'un utilisateur

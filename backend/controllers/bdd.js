@@ -176,6 +176,46 @@ const bddController = {
       console.error(error);
     }
   },
+
+  modifyBookCommentary: async (req, res) => {
+    try {
+      const bookId = req.params.bookID
+      const note = req.body.note
+      const commentary = req.body.commentary
+
+      const authorization = req.headers.authorization.split(" ")[1];
+      const userId = jwt.verify(authorization, process.env.JWT_SECRET).id
+
+      await db.query(
+        `UPDATE utilisateur_interagit_livre SET note = $1, commentaire = $2 WHERE id_utilisateur = $3 AND id_livre = $4`,
+        [note, commentary, userId, bookId]
+      );
+
+       return res.status(200).json({ message: "Note modifiée avec succès" });
+    } catch (error) {
+      console.error(error);
+    }
+  },
+
+  removeBookCommentary: async (req, res) => {
+    try {
+      const authorization = req.headers.authorization.split(" ")[1];
+      const userId = jwt.verify(authorization, process.env.JWT_SECRET).id
+
+      const bookId = req.params.bookID
+
+      await db.query(
+        `UPDATE utilisateur_interagit_livre SET note = NULL, commentaire = NULL WHERE id_utilisateur = $1 AND id_livre = $2`,
+        [userId, bookId]
+      )
+
+      return res.status(200).json({ message: "Commentaire supprimé" });
+
+    } catch (error) {
+      console.error(error)
+    }
+  },
+
   removeBookFromPersonalLibrary: async(req, res) => { 
       try {
         const id_livre = req.params.id_livre;
