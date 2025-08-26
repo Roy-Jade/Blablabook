@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router';
-import { useState  } from "react";
+import { useEffect, useState  } from "react";
 import { CurrentUserContext } from './Contexts';
 
 // Liste des imports de page
@@ -20,9 +20,14 @@ import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 
 export default function App() {
-
     const [currentUser, setCurrentUser] = useState(null);
-    console.log(currentUser)
+    
+    useEffect(() => {
+        const existingUser = localStorage.getItem('currentUser')
+        if (existingUser) {
+            setCurrentUser(JSON.parse(existingUser))
+        }
+    }, [])
 
     return (
         // Transmet le contexte CurrentUserContext à toute les pages contenue dans les balises
