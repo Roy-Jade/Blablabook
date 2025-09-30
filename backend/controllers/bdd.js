@@ -37,8 +37,8 @@ const bddController = {
   
     // Si le tableau de résultat est vide, on renvoie une erreur
     if (!books) {
-      return res.status(401).json({
-        message: "Erreur 401 : aucun livre trouvé",
+      return res.status(400).json({
+        message: "Erreur 400 : aucun livre trouvé",
       });
     }
     
@@ -62,8 +62,8 @@ const bddController = {
 
     // Si le tableau de résultat est vide, on renvoie une erreur
     if (!bookInfos) {
-      return res.status(401).json({
-        message: "Erreur 401 : aucun livre trouvé",
+      return res.status(400).json({
+        message: "Erreur 400 : aucun livre trouvé",
       });
     }
 
