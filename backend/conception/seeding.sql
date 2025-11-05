@@ -4,10 +4,10 @@ BEGIN;
 SET CLIENT_ENCODING TO 'UTF-8';
 
 -- Vider les tables (TRUNCATE remet les ID à zéro aussi)
-TRUNCATE TABLE utilisateur_interagit_livre, livre, utilisateur RESTART IDENTITY CASCADE;
+TRUNCATE TABLE reader_has_book, book, reader RESTART IDENTITY CASCADE;
 
 -- Insertion livres
-INSERT INTO livre (ISBN, titre, auteur, date_publication, nombre_page, summary) VALUES
+INSERT INTO book (ISBN, title, author, publish_date, page_number, summary) VALUES
 ('9782070584628', 'Harry Potter à l''école des sorciers', 'J. K. Rowling', 'Nov 15, 2017', 300, 'Mr et Mrs Dursley, qui habitaient au 4, Privet Drive, avaient toujours affirmé avec la plus grande fierté qu’ils étaient parfaitement normaux, merci pour eux. Jamais quiconque n’aurait imaginé qu’ils puissent se trouver impliqués dans quoi que ce soit d’étrange ou de mystérieux. Ils n’avaient pas de temps à perdre avec des sornettes.'),
 ('9782747014403', 'Eragon', 'Christopher Paolini', 'Oct 01, 2004', 450, 'Un résumé captivant.'),
 ('9782090318845', 'Le Comte De Monte-Cristo', 'Alexandre Dumas', '1909', 450, 'LE 24 FEVRIER 1815, la vigie de Notre-Dame-de-la-Garde signale l''arrivee du trois-mats le Pharaon, venant de Smyrne, Trieste et Naples.'),
@@ -15,7 +15,7 @@ INSERT INTO livre (ISBN, titre, auteur, date_publication, nombre_page, summary) 
 ('9782843440984', 'La maison qui glissait', 'Jean-Pierre Andrevon', '25-05-2010', 528, 'Un immense fracas le réveille. Le tonnerre ? Peut-être… Le jour pointe, la chaleur est déjà étouffante dans l’appartement minuscule occupé par Pierre au 13e étage de sa tour de banlieue. Ensommeillé, il entrouvre le rideau de la fenêtre depuis son lit… et demeure pétrifié par le panorama qui se révèle à lui. Un brouillard poisseux bouche l’horizon, c’est à peine s’il distingue la silhouette de la tour des Tilleuls à quelques dizaines de mètres de là. Le brouillard, avec une telle canicule ?... Ainsi débute le cauchemar'),
 ('9782266320481', 'Dune', 'Franck Herbert', '01-01-2003', 928, 'Situé sur la planète désertique Arrakis, Dune raconte l''histoire du jeune Paul Atréides, héritier d''une famille noble chargée de gouverner un monde inhospitalier où la seule chose de valeur est le mélange « épice », une drogue capable de prolonger la vie et d''améliorer la conscience. Convoité dans tout l''univers connu, le mélange est un trésor qui vaut la peine de tuer…'),
 ('9782070408504', ' Le petit prince', 'Antoine de Saint-Exupéry', '25-05-2017', 106, 'Le Petit Prince est l''œuvre la plus connue d''Antoine de Saint-Exupéry. Publiée en 1943 à New York simultanément à sa traduction anglaise, c''est une œuvre poétique et philosophique sous l''apparence d''un conte pour enfants.'),
-('9782070345830', 'Notre Dame de Paris', 'Victor Hugo', '01-03-2009', 960, 'Histoire d''amour impossible entre la belle gitane Esméralda et plusieurs personnages, notamment le bossu Quasimodo, sonneur de cloches de Notre-Dame, et l''archidiacre Claude Frollo. Ce dernier, tiraillé par une passion destructrice pour Esméralda, la fera accuser à tort de meurtre et la mènera à sa perte.'),
+('9782070345830', 'Notre Dame de Paris', 'Victor Hugo', '01-03-2009', 960, 'Histoire d''amour impossible entre la belle gitane Esméralda et plusieurs personnages, notamment le bossu Quasimodo, sonneur de cloches de Notre-Dame, et l''archidiacre Claude Frollo. Ce dernier, tiraillé par une passion destructrice pour Esméralda, la fera accreader à tort de meurtre et la mènera à sa perte.'),
 ('9782298027259', 'Hunger Games', 'Suzanne Collins', '01-04-2012', 399, 'Roman dystopique, l''histoire est écrite du point de vue de Katniss Everdeen, 16 ans, qui vit dans la future nation post-apocalyptique de Panem, en Amérique du Nord. Le Capitole, une métropole ultra-moderne, exerce un contrôle politique sur le reste du pays. Hunger Games est un événement annuel au cours duquel un garçon et une fille âgés de 12 à 18 ans, originaires de chacun des douze districts entourant le Capitole, sont tirés au sort pour s''affronter dans une bataille royale télévisée.'),
 ('9782253115847', 'Ne tirez pas sur l''oiseau moqueur', 'Harper Lee', '23-8-2006', 320, 'Scout, une fille intelligente et courageuse, vit à Maycomb avec son père Atticus, son frère Jem et leur cuisinière Calpurnia. Sa foi en la bonté de la société est mise à l''épreuve lors du procès de Tom Robinson, et elle finit par développer une vision qui apprécie la bonté des gens sans ignorer leur méchanceté.'),
 ('9782352941989', 'La terre sauvage', 'Julia Verlanger', '26-06-2008', 496, 'Dans une France en proie au chaos d''une guerre bactériologique, Gérald tente de survivre en gagnant le sud quand il tombe sur Annie, une fille qui a pour idée fixe d''aller à Paris. Pour y arriver, il leur faudra remonter l''Autoroute sauvage. Entre les mares de bactéries, les poches de gaz hallucinogènes et les bandes de pillards, le voyage promet d''être chaud ! Et puis il y a la Mort en billes, ces globes gélatineux qui se collent aux squelettes pour les animer'),
@@ -24,7 +24,7 @@ INSERT INTO livre (ISBN, titre, auteur, date_publication, nombre_page, summary) 
 ('9782267011258', 'Le Seigneur des Anneaux', 'J. R. R. Tolkien', '05-06-2025', 544, 'Dans un paisible village du Comté, le jeune Frodo est sur le point de recevoir un cadeau qui changera sa vie à jamais : l''Anneau de Pouvoir. Forgé par Sauron au coeur de la Montagne du Feu, on le croyait perdu depuis qu''un homme le lui avait arraché avant de le chasser hors du monde. À présent, de noirs présages s''étendent à nouveau sur la Terre du Milieu, les créatures maléfiques se multiplient et, dans les Montagnes de Brume, les Orques traquent les Nains. L''ennemi veut récupérer son bien afin de dominer le monde ; l''OEil de Sauron est désormais pointé sur le Comté. Heureusement Gandalf les a devancés. S''ils font vite, Frodo et lui parviendront peut-être à détruire l''Anneau à temps.');
 
 -- Insertion utilisateurs
-INSERT INTO utilisateur (pseudonyme, email, mot_de_passe) VALUES
+INSERT INTO reader (pseudonyme, email, reader_password) VALUES
 ('nouhayla', 'nouhayla@example.com', '$2b$10$J2n895c998N5OtV0RDDCFuCKWNmhEgYeHUOTLc1gZ9V4fHV6s9TGW'),
 ('nicolas', 'nicolas@example.com', '$2b$10$9QO5fyDv9REAFSAGW48cneoyXjeslOseF88NIq3whXqs5WP9mTRd2'),
 ('admin', 'admin@example.com', '$2b$10$EzkYZKhVm2d7z6wsGyFkV.XA7e4NT.kwKaK0/ycKD/7lWj7VwWUkO'),
@@ -37,7 +37,7 @@ INSERT INTO utilisateur (pseudonyme, email, mot_de_passe) VALUES
 ('ToutLire', 'toutlire@example.com', '£12345');
 
 -- Insertion interaction
-INSERT INTO utilisateur_interagit_livre (id_utilisateur, id_livre, est_lu, est_partage, note, commentaire) VALUES 
+INSERT INTO reader_has_book (id_reader, id_book, is_read, is_shared, rate, commentary) VALUES 
 (3, 14, TRUE, FALSE, 5, 'Super livre !'),
 (3, 13, TRUE, TRUE, 3, 'Super livre !'),
 (3, 12, TRUE, FALSE, 4, 'Super livre !'),

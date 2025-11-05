@@ -17,19 +17,19 @@ const bddController = {
     let results;
     if (!Object.keys(search)[0]) { // S'il n'y a pas de query, on prend tout les livres
       results = await db.query(`
-      SELECT livre.*, AVG(utilisateur_interagit_livre.note) AS rate
-      FROM livre
-      JOIN utilisateur_interagit_livre
-      ON livre.id_livre = utilisateur_interagit_livre.id_livre
-      GROUP BY livre.id_livre`);
+      SELECT book.*, AVG(reader_has_book.rate) AS avg_rate
+      FROM book
+      JOIN reader_has_book
+      ON book.id_book = reader_has_book.id_book
+      GROUP BY book.id_book`);
     } else { // S'il y a une query, on prend les livres qui correspondent à la query
       results = await db.query(`
-      SELECT livre.*, AVG(utilisateur_interagit_livre.note) AS rate
-      FROM livre
-      JOIN utilisateur_interagit_livre 
-      ON livre.id_livre = utilisateur_interagit_livre.id_livre
+      SELECT book.*, AVG(reader_has_book.rate) AS avg_rate
+      FROM book
+      JOIN reader_has_book 
+      ON book.id_book = reader_has_book.id_book
       WHERE ${Object.keys(search)[0]} iLIKE $1
-      GROUP BY livre.id_livre`, [`%${search[Object.keys(search)[0]]}%`]);
+      GROUP BY book.id_book`, [`%${search[Object.keys(search)[0]]}%`]);
 
     }
     
@@ -51,12 +51,12 @@ const bddController = {
 
     // On récupère les infos du livre qui correspond à l'ISBN, ainsi que la moyenne de ses notes
     const resultInfos = await db.query(
-      `SELECT livre.*, AVG(utilisateur_interagit_livre.note) AS rate
-      FROM livre
-      JOIN utilisateur_interagit_livre
-      ON livre.id_livre = utilisateur_interagit_livre.id_livre
-      WHERE livre.ISBN = $1
-      GROUP BY livre.id_livre`, [ISBN]);
+      `SELECT book.*, AVG(reader_has_book.rate) AS avg_rate
+      FROM book
+      JOIN reader_has_book
+      ON book.id_book = reader_has_book.id_book
+      WHERE book.ISBN = $1
+      GROUP BY book.id_book`, [ISBN]);
 
     const bookInfos = resultInfos.rows[0]; // On met le tableau de résultat dans une constante
 
@@ -69,13 +69,13 @@ const bddController = {
 
     // On récupère tout les commentaires et leurs infos associés au livre trouvé
     const resultCommentaries = await db.query(`SELECT 
-      utilisateur.pseudonyme, 
-      utilisateur_interagit_livre.note, 
-      utilisateur_interagit_livre.commentaire, utilisateur_interagit_livre.date_creation_commentaire 
-      FROM utilisateur_interagit_livre
-      JOIN utilisateur ON utilisateur_interagit_livre.id_utilisateur = utilisateur.id_utilisateur
-      WHERE utilisateur_interagit_livre.id_livre = $1`,
-      [bookInfos.id_livre]);
+      reader.pseudonyme, 
+      reader_has_book.rate, 
+      reader_has_book.commentary, reader_has_book.commentary_creation_date 
+      FROM reader_has_book
+      JOIN reader ON reader_has_book.id_reader = reader.id_reader
+      WHERE reader_has_book.id_book = $1`,
+      [bookInfos.id_book]);
 
     const bookCommentaries = resultCommentaries.rows; // On met le nouveau tableau de résultat dans une autre constante
 
@@ -97,29 +97,29 @@ const bddController = {
     if (!Object.keys(search)[0]) { // S'il n'y a pas de query, on prend tout les livres de la bibliothèque utilisateur
       results =  await db.query(
       `SELECT 
-      livre.id_livre, 
-      livre.ISBN, 
-      livre.titre, 
-      livre.auteur 
-      FROM utilisateur 
-      JOIN utilisateur_interagit_livre 
-      ON utilisateur.id_utilisateur = utilisateur_interagit_livre.id_utilisateur 
-      JOIN livre 
-      ON utilisateur_interagit_livre.id_livre = livre.id_livre 
+      book.id_book, 
+      book.ISBN, 
+      book.title, 
+      book.author 
+      FROM reader 
+      JOIN reader_has_book 
+      ON reader.id_reader = reader_has_book.id_reader 
+      JOIN book 
+      ON reader_has_book.id_book = book.id_book 
       WHERE email = $1`,
       [userEmail], 
     );} else { // S'il y a une query, on prend les livres qui correspondent à la query dans la bibliothèque utilisateur
       results =  await db.query(
       `SELECT 
-      livre.id_livre, 
-      livre.ISBN, 
-      livre.titre, 
-      livre.auteur 
-      FROM utilisateur 
-      JOIN utilisateur_interagit_livre 
-      ON utilisateur.id_utilisateur = utilisateur_interagit_livre.id_utilisateur 
-      JOIN livre 
-      ON utilisateur_interagit_livre.id_livre = livre.id_livre 
+      book.id_book, 
+      book.ISBN, 
+      book.title, 
+      book.author 
+      FROM reader 
+      JOIN reader_has_book 
+      ON reader.id_reader = reader_has_book.id_reader 
+      JOIN book 
+      ON reader_has_book.id_book = book.id_book 
       WHERE (email = $1 AND ${Object.keys(search)[0]} iLIKE $2)`,
       [userEmail, `%${search[Object.keys(search)[0]]}%`], 
     );
@@ -146,15 +146,15 @@ const bddController = {
 
       // à partir du mail, on récupère l'identifiant de l'utilisateur dans la Base de données
       const result = await db.query(
-        `SELECT id_utilisateur FROM utilisateur WHERE email = $1`,
+        `SELECT id_reader FROM reader WHERE email = $1`,
         [userEmail]
       );
 
       const id_utilisateur = result.rows[0]?.id_utilisateur;
       // On vérifie si le livre existe déja dans la bibliothèque personnelle de l'utilisateur
       const existingBook = await db.query(
-        `SELECT 1 FROM utilisateur_interagit_livre
-        WHERE id_utilisateur = $1 AND id_livre = $2`,
+        `SELECT 1 FROM reader_has_book
+        WHERE id_reader = $1 AND id_book = $2`,
         [id_utilisateur, id_livre]
       );
 
@@ -164,7 +164,7 @@ const bddController = {
       }
       //Sinon on insere le livre dans la base de données
       await db.query(
-        `INSERT INTO utilisateur_interagit_livre (id_utilisateur, id_livre)
+        `INSERT INTO reader_has_book (id_reader, id_book)
          VALUES ($1, $2)`, 
         [id_utilisateur, id_livre]
       );
@@ -188,16 +188,16 @@ const bddController = {
 
         // à partir du mail, on récupère l'identifiant de l'utilisateur dans la Base de données
         const result = await db.query(
-        `SELECT id_utilisateur FROM utilisateur WHERE email = $1`,
+        `SELECT id_reader FROM reader WHERE email = $1`,
         [userEmail]
         );
 
         const id_utilisateur = result.rows[0]?.id_utilisateur;
 
-        // Supprimer a partir de la table utilisateur_interagit_livre
+        // Supprimer a partir de la table utilisateur_has_livre
         await db.query(
-        `DELETE FROM utilisateur_interagit_livre 
-        WHERE id_utilisateur = $1 AND id_livre = $2`,
+        `DELETE FROM reader_has_book 
+        WHERE id_reader = $1 AND id_book = $2`,
         [id_utilisateur, id_livre]
         );
 

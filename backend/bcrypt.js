@@ -11,6 +11,3 @@ const genererHash = async () => {
 };
 
 genererHash();
-
-// nicolas : abcdef
-//nouhayla : 123456
