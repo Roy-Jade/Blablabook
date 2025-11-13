@@ -58,7 +58,7 @@ export default function BookID() {
                     {bookInfos && <>
 
                         {/* Récupération de la couverture sur l'API cover */}
-                        <img className='bookInfo__data_primary__img' src={"https://covers.openlibrary.org/b/isbn/"+bookInfos.isbn+"-M.jpg"} alt={"Book's cover : "+bookInfos.titre} />
+                        <img className='bookInfo__data_primary__img' src={"https://covers.openlibrary.org/b/isbn/"+bookInfos.isbn+"-M.jpg"} alt={"Book's cover : "+bookInfos.title} />
 
                         <dl className='bookInfo__data_primary__desc'>
                             <div>
@@ -67,19 +67,19 @@ export default function BookID() {
                             </div>
                             <div>
                                 <dt className='text_semi-bold bookInfo__data_primary__nameplate'>Titre</dt>
-                                <dd>{bookInfos.titre}</dd>
+                                <dd>{bookInfos.title}</dd>
                             </div>
                             <div>
                                 <dt className='text_semi-bold bookInfo__data_primary__nameplate'>Auteur</dt>
-                                <dd>{bookInfos.auteur}</dd>
+                                <dd>{bookInfos.author}</dd>
                             </div>
                             <div>
                                 <dt className='bookInfo__data_primary__nameplate'>Publication</dt>
-                                <dd>{bookInfos.date_publication}</dd>
+                                <dd>{bookInfos.publish_date}</dd>
                             </div>
                             <div>
                                 <dt className='bookInfo__data_primary__nameplate'>Nombre de pages</dt>
-                                <dd>{bookInfos.nombre_page} pages</dd>
+                                <dd>{bookInfos.page_number} pages</dd>
                             </div>
                 
                         </dl>
@@ -92,7 +92,7 @@ export default function BookID() {
 
                 <section className='bookInfo__data_secondary'>
                     <p>Moyenne des notes&ensp;
-                        {bookInfos && <Rating rate={bookInfos.rate}/>}
+                        {bookInfos && <Rating rate={bookInfos.avg_rate}/>}
                     </p>
                     <button className='button button_small'>Ajouter à mes livres</button>
                 </section>
@@ -102,11 +102,11 @@ export default function BookID() {
                     {bookCommentaries && bookCommentaries.map((bookCommentary, index) => (
                         <div key={index} className='bookID__commentaires' >
                             <p className='text_semi-bold'>{bookCommentary.pseudonyme}</p>
-                            <p className='text_semi-bold'>{bookCommentary.date_creation_commentaire.slice(0, 10)}</p>
+                            <p className='text_semi-bold'>{bookCommentary.commentary_creation_date.slice(0, 10)}</p>
                             <p>
-                                <Rating rate={bookCommentary.note}/>
+                                <Rating rate={bookCommentary.rate}/>
                             </p>
-                            <p>{bookCommentary.commentaire}</p>
+                            <p>{bookCommentary.commentary}</p>
                         </div>
                     ))
                     }

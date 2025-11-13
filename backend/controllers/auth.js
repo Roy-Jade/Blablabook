@@ -44,9 +44,9 @@ const authController = {
 
       // On insère les informations du nouvel utilisateur dans la BDD
       const result = await db.query(
-        `INSERT INTO utilisateur (email, pseudonyme, mot_de_passe)
+        `INSERT INTO reader (email, pseudonyme, reader_password)
         VALUES ($1, $2, $3)
-        RETURNING id_utilisateur, email, pseudonyme`,
+        RETURNING id_reader, email, pseudonyme`,
         [email, pseudonyme, hashedPassword]
       );
 
@@ -55,12 +55,12 @@ const authController = {
 
       // On récupère l'id du nouvel utilisateur pour générer le token
       const newUserId = await db.query(
-        `SELECT id_utilisateur FROM utilisateur WHERE email = $1`,
+        `SELECT id_reader FROM reader WHERE email = $1`,
         [email]
       );
 
       // On créée un token JWT à partir des infos utilisateurs, d'un secret (qui n'est pas 123), et on lui met une validité en back
-      const token = jwt.sign({ email: result.rows[0].email, id: newUserId.rows[0].id_utilisateur }, process.env.JWT_SECRET, { expiresIn: '1h' });
+      const token = jwt.sign({ email: result.rows[0].email, id: newUserId.rows[0].id_reader }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
       // On renvoie le token et le tableau d'informations utilisateurs
       res.status(201).json({
@@ -87,7 +87,7 @@ const authController = {
 
     // On récupère les informations de l'utilisateur
     const userData = await db.query(
-      'SELECT * FROM utilisateur WHERE email = $1',
+      'SELECT * FROM reader WHERE email = $1',
       [email]);
 
     // Si l'utilisateur n'est pas trouvé, on renvoie une erreur
@@ -98,7 +98,7 @@ const authController = {
     }
 
     // On vérifie que le mot de passe correspond bien à celui enregistré en base de donnée
-    const isPasswordValid = await bcrypt.compare(password, userData.rows[0].mot_de_passe);
+    const isPasswordValid = await bcrypt.compare(password, userData.rows[0].reader_password);
 
     // Si ce n'est pas le cas, on renvoie une erreur
     if (!isPasswordValid) {
@@ -109,14 +109,14 @@ const authController = {
 
     // On récupère tout les livres de la bibliothèque perso de l'utilisateur (but : faciliter les affichages des livres possédés/lus/partagés en front)
     const userBooks = await db.query(
-      'SELECT id_livre, est_lu, est_partage, note FROM utilisateur_interagit_livre WHERE id_utilisateur = $1',
-      [userData.rows[0].id_utilisateur]);
+      'SELECT id_book, is_read, is_shared, rate FROM reader_has_book WHERE id_reader = $1',
+      [userData.rows[0].id_reader]);
 
     // On place le pseudo utilisateur et le tableau des livres possédés dans un tableau
     const user = [{pseudonyme:userData.rows[0].pseudonyme, email:userData.rows[0].email}, userBooks.rows];
 
     // On créée le token JWT à partir des infos utilisateurs, d'un secret (qui n'est pas 123), et on lui met une validité en back
-    const token = jwt.sign({ email: userData.rows[0].email, id: userData.rows[0].id_utilisateur }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ email: userData.rows[0].email, id: userData.rows[0].id_reader }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
     // On renvoie le token et le tableau d'informations utilisateurs
     res.status(200).json({
@@ -127,11 +127,9 @@ const authController = {
 
 deleteUser: async (req, res) => {
     try {
-      const token = req.headers.authorization?.split(" ")[1];
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      const userEmail = decoded.email;
+      let userEmail = res.locals.user // Récupération du mail de l'utilisateur décodé par le middleware d'authentification
 
-      await db.query(`DELETE FROM utilisateur WHERE email = $1`, [userEmail]);
+      await db.query(`DELETE FROM reader WHERE email = $1`, [userEmail]);
 
       res.status(200).json({ message: "Compte supprimé avec succès" });
     } catch (error) {

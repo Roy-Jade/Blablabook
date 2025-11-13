@@ -12,15 +12,14 @@ export default function BookMini({ book, onBookDeleted }) {
   
   // La constante added prend une valeur différente si l'utilisateur connecté a le livre ou non ; s'il n'y a pas d'utilisateur, elle vaut "false"
   const [added, setAdded] = useState(() => 
-      (currentUser && currentUser[1].find(element => element.id_livre === book.id_livre)) ? true : false
+      (currentUser && currentUser[1].find(element => element.id_book === book.id_book)) ? true : false
     );
   
   // Fonction d'ajout d'un livre à la bibliothèque personnelle d'un utilisateur
   const handleAddBook = async() => {
     
     try{
-      const response = await api.post('/personalLibrary', { id_livre: book.id_livre });
-      alert("Livre ajouté à votre bibliothèque !");
+      const response = await api.post('/personalLibrary', { id_book: book.id_book });
       setAdded(true)
       // TO DO : ajouter le livre à la constante currentUser (envoi des données du livre en back, et push dans la variable en front)
     } catch(error) {
@@ -31,7 +30,7 @@ export default function BookMini({ book, onBookDeleted }) {
   // Fonction pour supprimer le livre de la bibliothèque personnelle d'un utilisateur
   const  handleRemoveBook = async() => {
     try {
-      await api.delete(`/personalLibrary/${book.id_livre}`);
+      await api.delete(`/personalLibrary/${book.id_book}`);
       alert("Livre supprimé de votre bibliothèque !");
       setAdded(false);
 
@@ -40,16 +39,17 @@ export default function BookMini({ book, onBookDeleted }) {
       console.error("Erreur lors de la suppression :", error);
     }
   };
+  
   return(
     <article className={`bookmini`}>
       <img className='bookmini__img' src={"https://covers.openlibrary.org/b/isbn/"+book.isbn+"-M.jpg"} alt="Couverture" />
       <div>
         <div className='bookmini__infos'>
-          <cite className='bookmini__title'>{book.titre}</cite>
-          <address className='bookmini__author'>{book.auteur}</address>
+          <cite className='bookmini__title'>{book.title}</cite>
+          <address className='bookmini__author'>{book.author}</address>
         </div>
         <div className='bookmini__note'>
-          <Rating rate={book.rate} />
+          <Rating rate={book.avg_rate} />
         </div>
         <Link to={`/book/${book.isbn}`} book={book} className='button button_small'>Voir le détail</Link>
         {(currentUser && added === true) && 
