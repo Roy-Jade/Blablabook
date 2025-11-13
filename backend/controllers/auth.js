@@ -127,9 +127,7 @@ const authController = {
 
 deleteUser: async (req, res) => {
     try {
-      const token = req.headers.authorization?.split(" ")[1];
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      const userEmail = decoded.email;
+      let userEmail = res.locals.user // Récupération du mail de l'utilisateur décodé par le middleware d'authentification
 
       await db.query(`DELETE FROM reader WHERE email = $1`, [userEmail]);
 

@@ -20,7 +20,6 @@ export default function BookMini({ book, onBookDeleted }) {
     
     try{
       const response = await api.post('/personalLibrary', { id_book: book.id_book });
-      alert("Livre ajouté à votre bibliothèque !");
       setAdded(true)
       // TO DO : ajouter le livre à la constante currentUser (envoi des données du livre en back, et push dans la variable en front)
     } catch(error) {
@@ -40,6 +39,7 @@ export default function BookMini({ book, onBookDeleted }) {
       console.error("Erreur lors de la suppression :", error);
     }
   };
+  
   return(
     <article className={`bookmini`}>
       <img className='bookmini__img' src={"https://covers.openlibrary.org/b/isbn/"+book.isbn+"-M.jpg"} alt="Couverture" />

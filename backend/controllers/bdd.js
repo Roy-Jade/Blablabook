@@ -13,25 +13,17 @@ dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const bddController = {
   fetchBooks : async (req, res) => { // Récupère tout les livres de la BDD
-    let search = req.query; // S'il y a eu une recherche, il y a une partie query sur l'URL (la partie après le ?) ; on tente de la récupérer
-    let results;
-    if (!Object.keys(search)[0]) { // S'il n'y a pas de query, on prend tout les livres
-      results = await db.query(`
-      SELECT book.*, AVG(reader_has_book.rate) AS avg_rate
-      FROM book
-      JOIN reader_has_book
-      ON book.id_book = reader_has_book.id_book
-      GROUP BY book.id_book`);
-    } else { // S'il y a une query, on prend les livres qui correspondent à la query
-      results = await db.query(`
-      SELECT book.*, AVG(reader_has_book.rate) AS avg_rate
-      FROM book
-      JOIN reader_has_book 
-      ON book.id_book = reader_has_book.id_book
-      WHERE ${Object.keys(search)[0]} iLIKE $1
-      GROUP BY book.id_book`, [`%${search[Object.keys(search)[0]]}%`]);
+    // On récupère l'objet et la valeur de la recherche, avec des valeurs par défaut s'il n'y en a pas
+    let searchItem = Object.keys(req.query)[0] || "title";
+    let searchQuery = req.query[Object.keys(req.query)[0]] ||"";
 
-    }
+    let results = await db.query(`
+    SELECT book.*, AVG(reader_has_book.rate) AS avg_rate
+    FROM book
+    JOIN reader_has_book 
+    ON book.id_book = reader_has_book.id_book
+    WHERE ${searchItem} iLIKE $1
+    GROUP BY book.id_book`, [`%${searchQuery}%`]);
     
     const books = results.rows; // On met le tableau de résultat dans une constante
   
@@ -85,17 +77,28 @@ const bddController = {
 
   fetchPersonalLibrary : async (req, res) => { // Récupération de la librairie d'un utilisateur
 
-    // Ce bloc (identique à celui de la vérification du token JWT) permet de récupérer le mail de l'utilisateur
-    // Possible amélioration : enregistrer en variable globale le mail lors de la vérification du token pour le réutiliser directement ici
-    let authorization = req.headers.authorization.split(" ")[1], decoded;
-    decoded = jwt.verify(authorization, process.env.JWT_SECRET);
-    let userEmail = decoded.email;
+    let userEmail = res.locals.user // Récupération du mail de l'utilisateur décodé par le middleware d'authentification
 
-
-    let search = req.query; // S'il y a eu une recherche, il y a une partie query sur l'URL (la partie après le ?) ; on tente de la récupérer
-    let results
-    if (!Object.keys(search)[0]) { // S'il n'y a pas de query, on prend tout les livres de la bibliothèque utilisateur
-      results =  await db.query(
+    // On récupère l'objet et la valeur de la recherche, avec des valeurs par défaut s'il n'y en a pas
+    let searchItem = Object.keys(req.query)[0] || "title";
+    let searchQuery = req.query[Object.keys(req.query)[0]] ||"";
+    
+    // if (!Object.keys(search)[0]) { // S'il n'y a pas de query, on prend tout les livres de la bibliothèque utilisateur
+    //   results =  await db.query(
+    //   `SELECT 
+    //   book.id_book, 
+    //   book.ISBN, 
+    //   book.title, 
+    //   book.author 
+    //   FROM reader 
+    //   JOIN reader_has_book 
+    //   ON reader.id_reader = reader_has_book.id_reader 
+    //   JOIN book 
+    //   ON reader_has_book.id_book = book.id_book 
+    //   WHERE email = $1`,
+    //   [userEmail], 
+    // );} else { // S'il y a une query, on prend les livres qui correspondent à la query dans la bibliothèque utilisateur
+      let results =  await db.query(
       `SELECT 
       book.id_book, 
       book.ISBN, 
@@ -106,24 +109,10 @@ const bddController = {
       ON reader.id_reader = reader_has_book.id_reader 
       JOIN book 
       ON reader_has_book.id_book = book.id_book 
-      WHERE email = $1`,
-      [userEmail], 
-    );} else { // S'il y a une query, on prend les livres qui correspondent à la query dans la bibliothèque utilisateur
-      results =  await db.query(
-      `SELECT 
-      book.id_book, 
-      book.ISBN, 
-      book.title, 
-      book.author 
-      FROM reader 
-      JOIN reader_has_book 
-      ON reader.id_reader = reader_has_book.id_reader 
-      JOIN book 
-      ON reader_has_book.id_book = book.id_book 
-      WHERE (email = $1 AND ${Object.keys(search)[0]} iLIKE $2)`,
-      [userEmail, `%${search[Object.keys(search)[0]]}%`], 
+      WHERE (email = $1 AND ${searchItem} iLIKE $2)`,
+      [userEmail, `%${searchQuery}%`], 
     );
-  }
+  // }
     const books = results.rows; // On met le tableau de résultat dans une constante
 
     // On envoie en résultat le tableau de valeur 
@@ -133,16 +122,13 @@ const bddController = {
   addBookToPersonalLibrary : async(req, res) => { // fonction pour ajouter un livre à la bibliothèque utilisateur
     try{
       // On récupère l'iD du livre, envoyé en corps de requête
-      const { id_livre } = req.body;
-      if(!id_livre) {
+      const { id_book } = req.body;
+      if(!id_book) {
         // Si rien n'a été envoyé, on envoie une erreur
         return res.status(400).json({message: "ID du livre requis."})
       }
 
-      // Ce bloc (identique à celui de la vérification du token JWT) permet de récupérer le mail de l'utilisateur
-      let authorization = req.headers.authorization.split(" ")[1], decoded;
-      decoded = jwt.verify(authorization, process.env.JWT_SECRET);
-      let userEmail = decoded.email;
+      let userEmail = res.locals.user // Récupération du mail de l'utilisateur décodé par le middleware d'authentification
 
       // à partir du mail, on récupère l'identifiant de l'utilisateur dans la Base de données
       const result = await db.query(
@@ -150,12 +136,12 @@ const bddController = {
         [userEmail]
       );
 
-      const id_utilisateur = result.rows[0]?.id_utilisateur;
+      const id_reader = result.rows[0]?.id_reader;
       // On vérifie si le livre existe déja dans la bibliothèque personnelle de l'utilisateur
       const existingBook = await db.query(
         `SELECT 1 FROM reader_has_book
         WHERE id_reader = $1 AND id_book = $2`,
-        [id_utilisateur, id_livre]
+        [id_reader, id_book]
       );
 
       if (existingBook.rows.length > 0){
@@ -166,7 +152,7 @@ const bddController = {
       await db.query(
         `INSERT INTO reader_has_book (id_reader, id_book)
          VALUES ($1, $2)`, 
-        [id_utilisateur, id_livre]
+        [id_reader, id_book]
       );
   
       // On envoie un message de validation
@@ -180,11 +166,7 @@ const bddController = {
       try {
         const id_livre = req.params.id_livre;
 
-
-        // Ce bloc (identique à celui de la vérification du token JWT) permet de récupérer le mail de l'utilisateur
-        let authorization = req.headers.authorization.split(" ")[1], decoded;
-        decoded = jwt.verify(authorization, process.env.JWT_SECRET);
-        let userEmail = decoded.email;
+        let userEmail = res.locals.user // Récupération du mail de l'utilisateur décodé par le middleware d'authentification
 
         // à partir du mail, on récupère l'identifiant de l'utilisateur dans la Base de données
         const result = await db.query(
@@ -192,13 +174,13 @@ const bddController = {
         [userEmail]
         );
 
-        const id_utilisateur = result.rows[0]?.id_utilisateur;
+        const id_reader = result.rows[0]?.id_reader;
 
         // Supprimer a partir de la table utilisateur_has_livre
         await db.query(
         `DELETE FROM reader_has_book 
         WHERE id_reader = $1 AND id_book = $2`,
-        [id_utilisateur, id_livre]
+        [id_reader, id_livre]
         );
 
         res.status(200).json({ message: "Livre supprimé avec succès." });
@@ -208,10 +190,6 @@ const bddController = {
       }
         
       }
-
-
   }
-
-
 
 export default bddController;

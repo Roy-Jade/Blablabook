@@ -30,11 +30,12 @@ const checkJWT = async (req, res, next) => {
         let userEmail = decoded.email;
         // Puis on regarde s'il y a des informations utilisateurs qui correspondent au mail récupéré
         const userData =  db.query(
-            'SELECT * FROM utilisateur WHERE email = $1',
+            'SELECT * FROM reader WHERE email = $1',
             [userEmail]
         );
         // S'il y en a, on passe à l'instruction suivante de la route
         if(userData) {
+            res.locals.user = userEmail
             next();
         };
     }

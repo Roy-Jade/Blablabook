@@ -21,9 +21,10 @@ export default function Sort({search, setSearch, newResearch}) {
 
     // Fonction switchant l'affichage des filtres/recherches
     const toggleSortOptions = () => {
-        if (showSortOptions == true) {
-            setShowSortOptions(false)
-        } else {setShowSortOptions(true)}
+        // if (showSortOptions == true) {
+        //     setShowSortOptions(false)
+        // } else {setShowSortOptions(true)}
+        setShowSortOptions(!showSortOptions)
     }
 
     return(
@@ -34,11 +35,11 @@ export default function Sort({search, setSearch, newResearch}) {
                     <h2 className='search-sort__title'>Recherche :</h2>
                     <form onSubmit={newResearch}>
                         <fieldset>
-                            <label className='text_semi-bold' htmlFor="title">Titre : <input onChange={e => {setSearch([e.target.value, "titre"])}} type="text" id='title' name='title' /></label>
+                            <label className='text_semi-bold' htmlFor="title">Titre : <input onChange={e => {setSearch([e.target.value, "title"])}} type="text" id='title' name='title' /></label>
                         </fieldset>
                         <p>ou</p>
                         <fieldset>
-                            <label className='text_semi-bold' htmlFor="author">Auteur : <input onChange={e => setSearch([e.target.value, "auteur"])} type="text" id='author' name='author' /></label>
+                            <label className='text_semi-bold' htmlFor="author">Auteur : <input onChange={e => setSearch([e.target.value, "author"])} type="text" id='author' name='author' /></label>
                             
                         </fieldset>
                         <button className='button button_small'>Rechercher</button>
