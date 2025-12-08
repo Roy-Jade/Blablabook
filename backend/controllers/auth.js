@@ -12,132 +12,152 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
-const authController = {
 
-  register: async (req, res) => { // Inscription utilisateur
-    console.log("Tentative de création du compte...");
-    const { email, password, pseudonyme } = req.body; // Récupération des informations envoyées en corps de requête
+// Génération du token JWT
+export const tokenJWTCreation= async (req, res) => {
+  let userData = res.locals.userData
+  // On créée un token JWT à partir des infos utilisateurs, d'un secret (qui n'est pas 123), et on lui met une validité en back
+  const token = jwt.sign({ email: userData.email, id: userData.id_reader }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-    // Vérification de la longueur du pseudo (3 à 15 caractères)
-    if (pseudonyme.length < 3 || pseudonyme.length > 15) {
-      return res.status(401).json({
-        message: "Erreur 401 : le nom d'utilisateur doit comprendre de 3 à 15 caractères",
-      });
-    }
+  let user = userData.pseudonyme;
+  let codeHTTP = res.locals.codeHTTP
 
-    // Vérification que le mot de passe soit suffisamment sécurisé
-    if (!validator.isStrongPassword(password, {
-      minLength: 12,
-      minLowercase: 1,
-      minUppercase: 1,
-      minNumbers: 1,
-      minSymbols: 1
-    })) {
-      return res.status(400).json({
-        message: "Le mot de passe doit contenir au moins 12 caractères, dont une majuscule, une minuscule, un chiffre et un caractère spécial"
-      });
-    }
+  // On renvoie le token et le nom de l'utilisateur
+  res.status(codeHTTP).json({
+    token,
+    user,
+  });
+};
 
-    try {
-      // On hashe le mot de passe
-      const hashedPassword = await bcrypt.hash(password, 10);
 
-      // On insère les informations du nouvel utilisateur dans la BDD
-      const result = await db.query(
-        `INSERT INTO reader (email, pseudonyme, reader_password)
-        VALUES ($1, $2, $3)
-        RETURNING id_reader, email, pseudonyme`,
-        [email, pseudonyme, hashedPassword]
-      );
 
-      // On enregistre les infos de l'utilisateur dans un tableau. Le second élément est un tableau vide, correspondant aux livres possédés par le nouvel utilisateur
-      const user = [{pseudonyme:result.rows[0].pseudonyme, email:result.rows[0].email}, []];
 
-      // On récupère l'id du nouvel utilisateur pour générer le token
-      const newUserId = await db.query(
-        `SELECT id_reader FROM reader WHERE email = $1`,
-        [email]
-      );
+// Inscription utilisateur
+export const register= async (req, res) => {
+  const { email, password, pseudonyme } = req.body; // Récupération des informations envoyées en corps de requête
 
-      // On créée un token JWT à partir des infos utilisateurs, d'un secret (qui n'est pas 123), et on lui met une validité en back
-      const token = jwt.sign({ email: result.rows[0].email, id: newUserId.rows[0].id_reader }, process.env.JWT_SECRET, { expiresIn: '1h' });
+  // Vérification de la longueur du pseudo (3 à 15 caractères)
+  if (pseudonyme.length < 3 || pseudonyme.length > 15) {
+    return res.status(401).json({
+      message: "Erreur 401 : le nom d'utilisateur doit comprendre de 3 à 15 caractères",
+    });
+  }
 
-      // On renvoie le token et le tableau d'informations utilisateurs
-      res.status(201).json({
-        token,
-        user,
-      });
+  // Vérification que le mot de passe soit suffisamment sécurisé
+  if (!validator.isStrongPassword(password, {
+    minLength: 12,
+    minLowercase: 1,
+    minUppercase: 1,
+    minNumbers: 1,
+    minSymbols: 1
+  })) {
+    return res.status(400).json({
+      message: "Le mot de passe doit contenir au moins 12 caractères, dont une majuscule, une minuscule, un chiffre et un caractère spécial"
+    });
+  }
 
-    } catch (error) {
+  try {
+    // On hashe le mot de passe
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-      // Gestion du doublon pseudonyme ou email
-      if (error.code === '23505') {
-        return res.status(400).json({
-          message: "Email ou pseudonyme déjà utilisé. Veuillez en choisir un autre."
-        });
-      }
+    // On insère les informations du nouvel utilisateur dans la BDD
+    const result = await db.query(
+      `INSERT INTO reader (email, pseudonyme, reader_password)
+      VALUES ($1, $2, $3)
+      RETURNING id_reader, email, pseudonyme`,
+      [email, pseudonyme, hashedPassword]
+    );
 
-      // Autres erreurs serveur
-      res.status(500).json({ message: "Erreur serveur lors de l'inscription." });
-    }
-  },
+    // On enregistre les infos de l'utilisateur dans un tableau. Le second élément est un tableau vide, correspondant aux livres possédés par le nouvel utilisateur
+    const user = [{pseudonyme:result.rows[0].pseudonyme, email:result.rows[0].email}, []];
 
-  login: async (req, res) => {  // Connexion d'un utilisateur
-    const { email, password } = req.body; // Récupération des informations envoyées en corps de requête
+    // On récupère l'id du nouvel utilisateur pour générer le token
+    const newUserId = await db.query(
+      `SELECT id_reader FROM reader WHERE email = $1`,
+      [email]
+    );
 
-    // On récupère les informations de l'utilisateur
-    const userData = await db.query(
-      'SELECT * FROM reader WHERE email = $1',
-      [email]);
-
-    // Si l'utilisateur n'est pas trouvé, on renvoie une erreur
-    if (!userData.rows[0]) {
-      return res.status(401).json({
-        message: "Erreur 401 : l'utilisateur et le mot de passe ne correspondent pas",
-      });
-    }
-
-    // On vérifie que le mot de passe correspond bien à celui enregistré en base de donnée
-    const isPasswordValid = await bcrypt.compare(password, userData.rows[0].reader_password);
-
-    // Si ce n'est pas le cas, on renvoie une erreur
-    if (!isPasswordValid) {
-      return res.status(401).json({
-        message: "Erreur 401 : l'utilisateur et le mot de passe ne correspondent pas", // Le message est le même pour un problème d'utilisateur ou de MDP, pour ne pas laisser d'information à un hacker
-      });
-    }
-
-    // On récupère tout les livres de la bibliothèque perso de l'utilisateur (but : faciliter les affichages des livres possédés/lus/partagés en front)
-    const userBooks = await db.query(
-      'SELECT id_book, is_read, is_shared, rate FROM reader_has_book WHERE id_reader = $1',
-      [userData.rows[0].id_reader]);
-
-    // On place le pseudo utilisateur et le tableau des livres possédés dans un tableau
-    const user = [{pseudonyme:userData.rows[0].pseudonyme, email:userData.rows[0].email}, userBooks.rows];
-
-    // On créée le token JWT à partir des infos utilisateurs, d'un secret (qui n'est pas 123), et on lui met une validité en back
-    const token = jwt.sign({ email: userData.rows[0].email, id: userData.rows[0].id_reader }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    // On créée un token JWT à partir des infos utilisateurs, d'un secret (qui n'est pas 123), et on lui met une validité en back
+    const token = jwt.sign({ email: result.rows[0].email, id: newUserId.rows[0].id_reader }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
     // On renvoie le token et le tableau d'informations utilisateurs
-    res.status(200).json({
+    res.status(201).json({
       token,
       user,
     });
-  },
 
-deleteUser: async (req, res) => {
-    try {
-      let userEmail = res.locals.user // Récupération du mail de l'utilisateur décodé par le middleware d'authentification
+  } catch (error) {
 
-      await db.query(`DELETE FROM reader WHERE email = $1`, [userEmail]);
-
-      res.status(200).json({ message: "Compte supprimé avec succès" });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: "Erreur serveur lors de la suppression du compte" });
+    // Gestion du doublon pseudonyme ou email
+    if (error.code === '23505') {
+      return res.status(400).json({
+        message: "Email ou pseudonyme déjà utilisé. Veuillez en choisir un autre."
+      });
     }
+
+    // Autres erreurs serveur
+    res.status(500).json({ message: "Erreur serveur lors de l'inscription." });
+  }
+};
+
+
+
+// Connexion d'un utilisateur
+export const login= async (req, res) => {  
+  const { email, password } = req.body; // Récupération des informations envoyées en corps de requête
+
+  // On récupère les informations de l'utilisateur
+  const userData = await db.query(
+    'SELECT * FROM reader WHERE email = $1',
+    [email]);
+
+  // Si l'utilisateur n'est pas trouvé, on renvoie une erreur
+  if (!userData.rows[0]) {
+    return res.status(401).json({
+      message: "Erreur 401 : l'utilisateur et le mot de passe ne correspondent pas",
+    });
+  }
+
+  // On vérifie que le mot de passe correspond bien à celui enregistré en base de donnée
+  const isPasswordValid = await bcrypt.compare(password, userData.rows[0].reader_password);
+
+  // Si ce n'est pas le cas, on renvoie une erreur
+  if (!isPasswordValid) {
+    return res.status(401).json({
+      message: "Erreur 401 : l'utilisateur et le mot de passe ne correspondent pas", // Le message est le même pour un problème d'utilisateur ou de MDP, pour ne pas laisser d'information à un hacker
+    });
+  }
+
+  // On récupère tout les livres de la bibliothèque perso de l'utilisateur (but : faciliter les affichages des livres possédés/lus/partagés en front)
+  const userBooks = await db.query(
+    'SELECT id_book, is_read, is_shared, rate FROM reader_has_book WHERE id_reader = $1',
+    [userData.rows[0].id_reader]);
+
+  // On place le pseudo utilisateur et le tableau des livres possédés dans un tableau
+  const user = [{pseudonyme:userData.rows[0].pseudonyme, email:userData.rows[0].email}, userBooks.rows];
+
+  // On créée le token JWT à partir des infos utilisateurs, d'un secret (qui n'est pas 123), et on lui met une validité en back
+  const token = jwt.sign({ email: userData.rows[0].email, id: userData.rows[0].id_reader }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+  // On renvoie le token et le tableau d'informations utilisateurs
+  res.status(200).json({
+    token,
+    user,
+  });
+};
+
+
+
+// Suppression d'un compte utilisateur
+export const deleteUser= async (req, res) => {
+  try {
+    let userEmail = res.locals.user // Récupération du mail de l'utilisateur décodé par le middleware d'authentification
+
+    await db.query(`DELETE FROM reader WHERE email = $1`, [userEmail]);
+
+    res.status(200).json({ message: "Compte supprimé avec succès" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Erreur serveur lors de la suppression du compte" });
   }
 }
-
-
-export default authController;

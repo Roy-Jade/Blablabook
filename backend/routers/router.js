@@ -1,25 +1,36 @@
 import express from 'express';
-import authController from '../controllers/auth.js';
-import bddController from '../controllers/bdd.js';
 import checkJWT from '../middelware/checkJWT.js';
-
+import { register, login, deleteUser, tokenJWTCreation } from '../controllers/auth.js';
+import { fetchBooks, fetchBookID } from '../controllers/library.js';
+import { fetchPersonalLibrary, fetchBookOwnership, fetchBookUserData } from '../controllers/personalLibrary.js';
+import { addBookToPersonalLibrary, removeBookFromPersonalLibrary } from '../controllers/bookMovements.js';
+import { loginMiddleware, registerMiddleware } from '../middelware/authMiddleware.js';
 
 const router = express.Router()
 
-router.get('/books', bddController.fetchBooks); // Récupérer la liste des livres
-router.get('/book/:bookID', bddController.fetchBookID); // Récupérer les infos d'un seul livre
+// Récupérer la liste des livres
+router.get('/books', fetchBooks); 
+// Récupérer les infos d'un seul livre
+router.get('/book/:bookID', fetchBookID); 
 
-// auth est une convention d'URL 
-router.post('/auth/register', authController.register); // inscription
 
-router.post('/login', authController.login); // connexion
+// inscription
+router.post('/auth/register', registerMiddleware, tokenJWTCreation); 
+// connexion
+router.post('/auth/login', loginMiddleware, tokenJWTCreation); 
+// Suppression du compte
+router.delete('/auth/delete', checkJWT, deleteUser); 
 
-router.delete('/delete-account', checkJWT, authController.deleteUser); // Suppression du compte
+// Récupérer la bibliothèque d'un utilisateur
+router.get('/personalLibrary', checkJWT, fetchPersonalLibrary); 
+// Récupérer la possession d'un livre d'un utilisateur
+router.get('/personalLibrary/:id_book/ownership', checkJWT, fetchBookOwnership); 
+// Récupérer les paramètres d'un livre possédé d'un utilisateur
+router.get('/personalLibrary/:id_book/data', checkJWT, fetchBookUserData); 
 
-router.get('/personalLibrary', checkJWT, bddController.fetchPersonalLibrary); // Récupérer la bibliothèque d'un utilisateur
-
-router.post('/personalLibrary', checkJWT, bddController.addBookToPersonalLibrary); // Ajoute un livre à la bibliothèque de l'utilisateur connecté
-
-router.delete('/personalLibrary/:id_livre', checkJWT, bddController.removeBookFromPersonalLibrary); // Supprimer le livre de la bibliothèque de l'utilisateur connecté
+// Ajoute un livre à la bibliothèque de l'utilisateur connecté
+router.post('/personalLibrary/:id_book', checkJWT, addBookToPersonalLibrary); 
+// Supprimer le livre de la bibliothèque de l'utilisateur connecté
+router.delete('/personalLibrary/:id_book', checkJWT, removeBookFromPersonalLibrary); 
 
 export default router;

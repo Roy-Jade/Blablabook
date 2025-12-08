@@ -29,7 +29,7 @@ export default function Logout(){
 )}
 
       {!currentUser && <>
-      <p>Vous avez été déconnecté avec succès</p>
+      <p>Vous avez été déconnecté avec succès.</p>
       <Link className="text_link" to="/login" >Se reconnecter</Link>
       </>}
 

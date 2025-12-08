@@ -21,6 +21,7 @@ import Footer from './components/Footer/Footer'
 
 export default function App() {
     const [currentUser, setCurrentUser] = useState(null);
+    console.log(currentUser)
     
     useEffect(() => {
         const existingUser = localStorage.getItem('currentUser')

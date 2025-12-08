@@ -6,8 +6,8 @@ import { CurrentUserContext } from '../../Contexts';
 
 export default function Header() {
 
-    const currentUser = useContext(CurrentUserContext);
-
+    const currentUser = useContext(CurrentUserContext).currentUser;
+    
     // Cette fonction sert à réinitialiser l'affichage du menu quand on change de page, sans quoi le menu burger reste ouvert même en cliquant sur l'un de ses liens
     let hideBurgerOnPageChange = () => {
         if (window.innerWidth>=992) {
@@ -32,10 +32,10 @@ export default function Header() {
                 <Link onClick={hideBurgerOnPageChange} to="/questions">Foire aux questions</Link>
                 <Link onClick={hideBurgerOnPageChange} to="/library">Rechercher un livre</Link>
 
-                {!currentUser.currentUser && <Link onClick={hideBurgerOnPageChange} to="/login">Connexion</Link>}
+                {!currentUser && <Link onClick={hideBurgerOnPageChange} to="/login">Connexion</Link>}
 
-                {currentUser.currentUser && (<>
-                    <Link onClick={hideBurgerOnPageChange} to={`/library/${currentUser.currentUser.pseudonyme}`}>Ma bibliothèque</Link>
+                {currentUser && (<>
+                    <Link onClick={hideBurgerOnPageChange} to={`/library/${currentUser}`}>Ma bibliothèque</Link>
 
                     <button onClick={(e) => {toggleDisplayBurger(e,  ['header_navbar_account']);}} className='header__navigation__account-icon'><img src="/img/mon_compte_50px.png" alt="Dérouler les liens pour mon compte" /></button>
                     

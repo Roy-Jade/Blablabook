@@ -17,7 +17,7 @@ export default function Login() {
   const login = async () => {
     setError("")
     try {
-      const response = await api.post('/login', { email, password });
+      const response = await api.post('/auth/login', { email, password });
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('currentUser', JSON.stringify(response.data.user));
       setCurrentUser(response.data.user);
@@ -41,7 +41,7 @@ export default function Login() {
       <h1>Connexion</h1>
 
       {currentUser && (<>
-      <p>Vous êtes connecté en tant que {currentUser[0].pseudonyme}.</p>
+      <p>Vous êtes connecté en tant que {currentUser}.</p>
       <Link className="text_link" to="/logout">Se déconnecter</Link>
       </>)}
 

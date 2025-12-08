@@ -1,0 +1,23 @@
+.dashboard-info {
+    &_section {
+        font-weight: 600;
+        border: 1px solid;
+        max-width: 50%;
+        margin: 1%;
+    }
+
+    &_title {
+        padding: 1%;
+        border-bottom: 1px solid;
+    }
+
+    &_data {
+        padding: 1%;
+        position: relative;
+    }
+
+    &_button {
+        position: absolute;
+        // top: 5%;
+    }
+}

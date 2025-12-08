@@ -1,44 +1,10 @@
 import './BookMini.scss';
 import { Link } from 'react-router';
 import Rating from '../Rating/Rating';
-import { useContext, useState } from 'react';
-import { CurrentUserContext } from '../../Contexts';
-import api from "../../../api.js";
+import BookOwnership from '../BookOwnership/BookOwnership';
 
 // Composant contenant une miniature de livre, avec sa cover, son titre, son auteur et sa note. Des boutons y sont joints.
 export default function BookMini({ book, onBookDeleted }) {
-  
-  const currentUser = useContext(CurrentUserContext).currentUser;
-  
-  // La constante added prend une valeur différente si l'utilisateur connecté a le livre ou non ; s'il n'y a pas d'utilisateur, elle vaut "false"
-  const [added, setAdded] = useState(() => 
-      (currentUser && currentUser[1].find(element => element.id_book === book.id_book)) ? true : false
-    );
-  
-  // Fonction d'ajout d'un livre à la bibliothèque personnelle d'un utilisateur
-  const handleAddBook = async() => {
-    
-    try{
-      const response = await api.post('/personalLibrary', { id_book: book.id_book });
-      setAdded(true)
-      // TO DO : ajouter le livre à la constante currentUser (envoi des données du livre en back, et push dans la variable en front)
-    } catch(error) {
-        console.error("Erreur:", error);
-    }
-  }
-
-  // Fonction pour supprimer le livre de la bibliothèque personnelle d'un utilisateur
-  const  handleRemoveBook = async() => {
-    try {
-      await api.delete(`/personalLibrary/${book.id_book}`);
-      alert("Livre supprimé de votre bibliothèque !");
-      setAdded(false);
-
-      onBookDeleted && onBookDeleted();
-    } catch (error) {
-      console.error("Erreur lors de la suppression :", error);
-    }
-  };
   
   return(
     <article className={`bookmini`}>
@@ -52,22 +18,7 @@ export default function BookMini({ book, onBookDeleted }) {
           <Rating rate={book.avg_rate} />
         </div>
         <Link to={`/book/${book.isbn}`} book={book} className='button button_small'>Voir le détail</Link>
-        {(currentUser && added === true) && 
-        <div className='bookmini__booleans'>
-          <div>
-            <input type="checkbox" id='isRead' name='isRead'/>
-            <label htmlFor="isRead">Lu</label>
-          </div>
-          <div>
-            <input type="checkbox" id='isShared' name='isShared'/>
-            <label htmlFor="isShared">Partagé</label>
-          </div>
-        </div>}
-        {currentUser && (
-          added == false ?
-          <button className='button button_small' onClick={handleAddBook}>Ajouter</button> :
-          <button className='button button_small' onClick={handleRemoveBook}>Supprimer</button>
-          )}
+        <BookOwnership bookID={book.id_book}/>
       </div>
     </article>
   )

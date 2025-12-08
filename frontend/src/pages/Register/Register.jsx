@@ -61,7 +61,7 @@ export default function Register() {
       {error && <p className="text_error">{error}</p>}
 
       {currentUser && (<>
-      <p>Vous êtes connecté en tant que {currentUser[0].pseudonyme}.</p>
+      <p>Vous êtes connecté en tant que {currentUser}.</p>
       <Link className="text_link" to="/logout">Se déconnecter</Link>
       </>)}
 

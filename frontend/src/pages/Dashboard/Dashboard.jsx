@@ -6,16 +6,16 @@ import { useNavigate } from "react-router";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../Contexts";
 import api from "../../../api";
+import ChangeInfos from "./ChangeInfos/ChangeInfos";
 
 export default function Dashboard() {
 
 
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
-  const [email, setEmail] = useState(currentUser[0].email);
+  const [email, setEmail] = useState(null);
   const [showEmailSection, setShowEmailSection] = useState(false);
   const [showPasswordSection, setShowPasswordSection] = useState(false);
   const [showDeleteAccount, setShowDeleteAccount] = useState(false);
-  const [currentEmail, setCurrentEmail] = useState("");
   const [newEmail, setNewEmail] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
@@ -27,26 +27,22 @@ export default function Dashboard() {
   const navigate = useNavigate();
 
   const handleEmailChange = () => {
-    if (!currentEmail || !newEmail || !confirmEmail) {
+    if (!newEmail || !confirmEmail) {
       setMessage('Veuillez remplir tous les champs.');
       return;
+    }
 
-    }
-    if (currentEmail !== email) {
-      setMessage('L\'ancien email ne correspond pas.');
-      return;
-    }
     if (newEmail !== confirmEmail) {
       setMessage('Les emails ne correspondent pas.');
       return;
     }
+
     setEmail(newEmail);
     setMessage('L’email a été changé avec succès !');
-    setCurrentEmail("");
     setNewEmail("");
     setConfirmEmail("");
-
   }
+
   const handlePasswordChange = () => {
     if (!currentPassword || !newPassword || !confirmPassword) {
       setMessage('Veuillez remplir tous les champs.');
@@ -62,12 +58,12 @@ export default function Dashboard() {
     setNewPassword("");
     setConfirmPassword("");
   }
+
   const handleDeleteCompte = async () => {
     if (!showDeleteAccount) {
       const confirmation = window.confirm(
         "⚠️ Êtes-vous sûr(e) de vouloir supprimer définitivement votre compte BlablaBook ? Cette action est irréversible.\n\nToutes vos données personnelles seront supprimées immédiatement : pseudonyme, email, livres ajoutés, préférences de lecture, bibliothèques.\n\nConformément au RGPD, cette suppression est totale et aucun retour ne sera possible."
       );
-
 
       if (!confirmation) return; // ❌ L'utilisateur a annulé
 
@@ -88,7 +84,7 @@ export default function Dashboard() {
     }
 
     try {
-      const response = await api.delete("/delete-account");
+      const response = await api.delete("/auth/delete");
       console.log("Suppression du compte effectuée en back")
       setIsAccountDeleted(true);
       localStorage.clear();
@@ -119,51 +115,18 @@ export default function Dashboard() {
       )}
       <div className="Pseudo-user">
         <p>Pseudonyme utilisateur</p>
-        <p>{currentUser[0].pseudonyme}</p>
+        <p>{currentUser}</p>
       </div>
 
       <div className="Email-user">
         <p>Email utilisateur</p>
         <p>{email}</p>
       </div>
-      <button className="button button_medium" type="button" onClick={() => setShowEmailSection(!showEmailSection)}>Changer l'email</button>
 
-      {showEmailSection && (
-        <section className="email-section">
-          <div>
-            <input type="email" name="currentEmail" placeholder="Ancien mail" onChange={(e) => setCurrentEmail(e.target.value)} />
-          </div>
-          <div>
-            <input type="email" name="newEmail" placeholder="Nouveau mail" onChange={(e) => setNewEmail(e.target.value)} />
-          </div>
-          <div>
-            <input type="email" name="confirmEmail" placeholder="Confirmer le mail" onChange={(e) => setConfirmEmail(e.target.value)} />
-          </div>
-          <div>
-            <button className="button button_medium" type="submit" onClick={handleEmailChange}>Confirmer</button>
+      <ChangeInfos infoType="pseudonyme" info={currentUser} />
+      <ChangeInfos infoType="email" info={email} />
+      <ChangeInfos infoType="password" info="**********" />
 
-          </div>
-        </section>
-      )}
-
-      <div>
-        <button className="button button_medium" type="button" onClick={() => setShowPasswordSection(!showPasswordSection)}>Changer le mot de passe</button>
-        {showPasswordSection && (
-          <section className="Password-section">
-            <p>*Règles de rédaction de mot de passe</p>
-            <div>
-              <input type="password" name="currentPassword" placeholder="Ancien mot de passe" onChange={(e) => setCurrentPassword(e.target.value)} />
-            </div>
-            <div>
-              <input type="password" name="newPassword" placeholder="Nouveau mot de passe" onChange={(e) => setNewPassword(e.target.value)} />
-            </div>
-            <div>
-              <input type="password" name="confirmPassword" placeholder="Confirmer le mot de passe" onChange={(e) => setConfirmPassword(e.target.value)} />
-            </div>
-            <button className="button button_medium" type="submit" onClick={handlePasswordChange}>Confirmer</button>
-          </section>
-        )}
-      </div>
       <div>
         <Link to="/dashboard/options">Changer les paramètres de partage</Link>
       </div>
@@ -187,7 +150,6 @@ export default function Dashboard() {
           </button>
         )}
       </div>
-
     </>
   )
 }
