@@ -4,18 +4,17 @@ import db from "../config/db.js";
 
 // Ajout d'un livre
 export const addBookToPersonalLibrary = async(req, res) => {
-  try{
-    // // On récupère l'iD du livre, envoyé en corps de requête
-    // const { id_book } = req.body;
-    const id_book = req.params.id_book;
+  // On récupère l'iD du livre, envoyé en corps de requête
+  const id_book = req.params.id_book;
 
-    if(!id_book) {
-      // Si rien n'a été envoyé, on envoie une erreur
-      return res.status(400).json({message: "ID du livre requis."})
-    }
+  if(!id_book) {
+    // Si rien n'a été envoyé, on envoie une erreur
+    return res.status(400).json({message: "ID du livre requis."})
+  }
 
-    let userEmail = res.locals.user // Récupération du mail de l'utilisateur décodé par le middleware d'authentification
+  let userEmail = res.locals.user // Récupération du mail de l'utilisateur décodé par le middleware d'authentification
 
+  try {
     // On vérifie si le livre existe déja dans la bibliothèque personnelle de l'utilisateur
     const existingBook = await db.query(
       `SELECT EXISTS
@@ -43,28 +42,20 @@ export const addBookToPersonalLibrary = async(req, res) => {
     res.status(201).json({ message: "Livre ajouté avec succès." });
 
   } catch (error) {
-    console.error(error);
+    res.status(500).json({message:"Erreur lors de la récupération des données"})
   }
 };
 
 
 // Suppression d'un livre
 export const removeBookFromPersonalLibrary = async(req, res) => { 
+  const id_book = req.params.id_book;
+
+  let userEmail = res.locals.user // Récupération du mail de l'utilisateur décodé par le middleware d'authentification
+
   try {
-    const id_book = req.params.id_book;
-
-    let userEmail = res.locals.user // Récupération du mail de l'utilisateur décodé par le middleware d'authentification
-
-    // à partir du mail, on récupère l'identifiant de l'utilisateur dans la Base de données
-    const result = await db.query(
-    `SELECT id_reader FROM reader WHERE email = $1`,
-    [userEmail]
-    );
-
-    const id_reader = result.rows[0]?.id_reader;
-
     // Supprimer a partir de la table utilisateur_has_livre
-    await db.query(
+    const result = await db.query(
     `DELETE FROM reader_has_book 
     WHERE id_book = $1 AND id_reader = 
     (SELECT id_reader FROM reader
@@ -72,9 +63,13 @@ export const removeBookFromPersonalLibrary = async(req, res) => {
     [id_book, userEmail]
     );
 
+    if (result.rowCount === 0) {
+      return res.status(404).json({ message: "Ce livre n'existe pas dans votre bibliothèque." });
+    }
+
     res.status(200).json({ message: "Livre supprimé avec succès." });
 
-    } catch (error) {
-    console.error(error);
+  } catch (error) {
+    res.status(500).json({message:"Erreur lors de la récupération des données"})
   }
 }

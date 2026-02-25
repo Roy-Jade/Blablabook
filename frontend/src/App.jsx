@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { useEffect, useState  } from "react";
-import { CurrentUserContext } from './Contexts';
+import { CurrentUserContext } from '././contexts/CurrentUserContext.js';
 
 // Liste des imports de page
 import Home from './pages/Home/Home';

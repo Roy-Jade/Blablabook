@@ -3,7 +3,7 @@ import api from "../../../api";
 import "./Login.scss";
 import { Link } from "react-router";
 import { Helmet } from 'react-helmet';
-import { CurrentUserContext } from "../../Contexts";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
 
 export default function Login() {
 

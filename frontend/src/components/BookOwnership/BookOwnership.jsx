@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from 'react';
-import { CurrentUserContext } from '../../Contexts.js';
-import api from '../../../api.js';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
+import api from '../../api/api.js';
 
 export default function BookOwnership(bookID) {
 
@@ -13,7 +13,7 @@ export default function BookOwnership(bookID) {
 
   const getBookOwnership = async () => {
     try{
-      const response = await api.get(`/personalLibrary/${id_book}/ownership`)
+      const response = await api.get(`/personal-library/${id_book}/ownership`)
       setIsBookOwned(response.data.ownership.exists)
     } catch(error) {
       setError(error.response.data.message)
@@ -22,7 +22,7 @@ export default function BookOwnership(bookID) {
 
   const getBookData = async () => {
     try{
-      const response = await api.get(`/personalLibrary/${id_book}/data`);
+      const response = await api.get(`/personal-library/${id_book}/data`);
       setBookData(response.data.data);
     } catch(error) {
       setError(error.response.data.message)
@@ -36,7 +36,7 @@ export default function BookOwnership(bookID) {
 
   const handleAddBook = async () => {
     try {
-      const response = await api.post(`/personalLibrary/${id_book}`)
+      const response = await api.post(`/personal-library/${id_book}`)
       setIsBookOwned(true)
     } catch(error) {
       setError(error.response.data.message)
@@ -45,7 +45,7 @@ export default function BookOwnership(bookID) {
 
   const handleRemoveBook = async () => {
     try {
-      const response = await api.delete(`/personalLibrary/${id_book}`)
+      const response = await api.delete(`/personal-library/${id_book}`)
       setIsBookOwned(false)
     } catch(error) {
       setError(error.response.data.message)

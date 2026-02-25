@@ -1,10 +1,9 @@
 import express from 'express';
-import checkJWT from '../middelware/checkJWT.js';
-import { register, login, deleteUser, tokenJWTCreation } from '../controllers/auth.js';
+import checkJWT from '../middleware/checkJWT.js';
+import { register, login, deleteUser } from '../controllers/auth.js';
 import { fetchBooks, fetchBookID } from '../controllers/library.js';
 import { fetchPersonalLibrary, fetchBookOwnership, fetchBookUserData } from '../controllers/personalLibrary.js';
 import { addBookToPersonalLibrary, removeBookFromPersonalLibrary } from '../controllers/bookMovements.js';
-import { loginMiddleware, registerMiddleware } from '../middelware/authMiddleware.js';
 
 const router = express.Router()
 
@@ -13,24 +12,23 @@ router.get('/books', fetchBooks);
 // Récupérer les infos d'un seul livre
 router.get('/book/:bookID', fetchBookID); 
 
-
 // inscription
-router.post('/auth/register', registerMiddleware, tokenJWTCreation); 
+router.post('/auth/register', register); 
 // connexion
-router.post('/auth/login', loginMiddleware, tokenJWTCreation); 
+router.post('/auth/login', login); 
 // Suppression du compte
 router.delete('/auth/delete', checkJWT, deleteUser); 
 
 // Récupérer la bibliothèque d'un utilisateur
-router.get('/personalLibrary', checkJWT, fetchPersonalLibrary); 
+router.get('/personal-library', checkJWT, fetchPersonalLibrary); 
 // Récupérer la possession d'un livre d'un utilisateur
-router.get('/personalLibrary/:id_book/ownership', checkJWT, fetchBookOwnership); 
+router.get('/personal-library/:id_book/ownership', checkJWT, fetchBookOwnership); 
 // Récupérer les paramètres d'un livre possédé d'un utilisateur
-router.get('/personalLibrary/:id_book/data', checkJWT, fetchBookUserData); 
+router.get('/personal-library/:id_book/data', checkJWT, fetchBookUserData); 
 
 // Ajoute un livre à la bibliothèque de l'utilisateur connecté
-router.post('/personalLibrary/:id_book', checkJWT, addBookToPersonalLibrary); 
+router.post('/personal-library/:id_book', checkJWT, addBookToPersonalLibrary); 
 // Supprimer le livre de la bibliothèque de l'utilisateur connecté
-router.delete('/personalLibrary/:id_book', checkJWT, removeBookFromPersonalLibrary); 
+router.delete('/personal-library/:id_book', checkJWT, removeBookFromPersonalLibrary); 
 
 export default router;

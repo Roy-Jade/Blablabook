@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import './Dashboard.scss'
 import { useNavigate } from "react-router";
 import { useContext } from "react";
-import { CurrentUserContext } from "../../Contexts";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
 import api from "../../../api";
 import ChangeInfos from "./ChangeInfos/ChangeInfos";
 

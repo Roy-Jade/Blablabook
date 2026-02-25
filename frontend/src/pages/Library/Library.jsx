@@ -1,11 +1,11 @@
 import BookMini from '../../components/BookMini/BookMini.jsx';
 import Sort from '../../components/Sort/Sort';
 import './Library.scss';
-import api from "../../../api.js";
+import api from "../../api/api.js";
 import { Helmet } from 'react-helmet';
 import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router';
-import { CurrentUserContext } from '../../Contexts.js';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 import { Link } from 'react-router';
 
 // Note : ce composant est utilisé pour la librairie publique et les librairies privées

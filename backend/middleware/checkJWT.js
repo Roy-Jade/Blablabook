@@ -29,7 +29,7 @@ const checkJWT = async (req, res, next) => {
         // On récupère le mail dans le token décodé
         let userEmail = decoded.email;
         // Puis on regarde s'il y a des informations utilisateurs qui correspondent au mail récupéré
-        const userData =  db.query(
+        const userData = await db.query(
             'SELECT * FROM reader WHERE email = $1',
             [userEmail]
         );

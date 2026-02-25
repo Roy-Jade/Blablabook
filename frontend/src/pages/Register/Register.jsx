@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import api from "../../../api";
-import { CurrentUserContext } from "../../Contexts";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
 
 export default function Register() {
 

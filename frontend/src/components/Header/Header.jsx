@@ -2,7 +2,7 @@ import {Link} from 'react-router';
 import './Header.scss';
 import {toggleDisplayBurger} from './scriptHeader';
 import { useContext } from 'react';
-import { CurrentUserContext } from '../../Contexts';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 
 export default function Header() {
 

@@ -1,36 +1,16 @@
 // Toute les routes concernant l'authentification des utilisateurs passent par là
 import db from "../config/db.js";
-import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import path from 'path';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import validator from 'validator';
+import { generateToken } from "../utils/jwt.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
-
-
-// Génération du token JWT
-export const tokenJWTCreation= async (req, res) => {
-  let userData = res.locals.userData
-  // On créée un token JWT à partir des infos utilisateurs, d'un secret (qui n'est pas 123), et on lui met une validité en back
-  const token = jwt.sign({ email: userData.email, id: userData.id_reader }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
-  let user = userData.pseudonyme;
-  let codeHTTP = res.locals.codeHTTP
-
-  // On renvoie le token et le nom de l'utilisateur
-  res.status(codeHTTP).json({
-    token,
-    user,
-  });
-};
-
-
-
 
 // Inscription utilisateur
 export const register= async (req, res) => {
@@ -68,17 +48,11 @@ export const register= async (req, res) => {
       [email, pseudonyme, hashedPassword]
     );
 
-    // On enregistre les infos de l'utilisateur dans un tableau. Le second élément est un tableau vide, correspondant aux livres possédés par le nouvel utilisateur
-    const user = [{pseudonyme:result.rows[0].pseudonyme, email:result.rows[0].email}, []];
+    // On enregistre les infos de l'utilisateur dans un objet.
+    const user = {pseudonyme:result.rows[0].pseudonyme, email:result.rows[0].email};
 
-    // On récupère l'id du nouvel utilisateur pour générer le token
-    const newUserId = await db.query(
-      `SELECT id_reader FROM reader WHERE email = $1`,
-      [email]
-    );
-
-    // On créée un token JWT à partir des infos utilisateurs, d'un secret (qui n'est pas 123), et on lui met une validité en back
-    const token = jwt.sign({ email: result.rows[0].email, id: newUserId.rows[0].id_reader }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    // On génère le token
+    const token = generateToken(user.email, result.rows[0].id_reader)
 
     // On renvoie le token et le tableau d'informations utilisateurs
     res.status(201).json({
@@ -107,19 +81,19 @@ export const login= async (req, res) => {
   const { email, password } = req.body; // Récupération des informations envoyées en corps de requête
 
   // On récupère les informations de l'utilisateur
-  const userData = await db.query(
+  const result = await db.query(
     'SELECT * FROM reader WHERE email = $1',
     [email]);
 
   // Si l'utilisateur n'est pas trouvé, on renvoie une erreur
-  if (!userData.rows[0]) {
+  if (!result.rows[0]) {
     return res.status(401).json({
       message: "Erreur 401 : l'utilisateur et le mot de passe ne correspondent pas",
     });
   }
 
   // On vérifie que le mot de passe correspond bien à celui enregistré en base de donnée
-  const isPasswordValid = await bcrypt.compare(password, userData.rows[0].reader_password);
+  const isPasswordValid = await bcrypt.compare(password, result.rows[0].reader_password);
 
   // Si ce n'est pas le cas, on renvoie une erreur
   if (!isPasswordValid) {
@@ -128,16 +102,11 @@ export const login= async (req, res) => {
     });
   }
 
-  // On récupère tout les livres de la bibliothèque perso de l'utilisateur (but : faciliter les affichages des livres possédés/lus/partagés en front)
-  const userBooks = await db.query(
-    'SELECT id_book, is_read, is_shared, rate FROM reader_has_book WHERE id_reader = $1',
-    [userData.rows[0].id_reader]);
+  // On place le pseudo utilisateur dans un objet
+  const user = {pseudonyme:result.rows[0].pseudonyme, email:result.rows[0].email};
 
-  // On place le pseudo utilisateur et le tableau des livres possédés dans un tableau
-  const user = [{pseudonyme:userData.rows[0].pseudonyme, email:userData.rows[0].email}, userBooks.rows];
-
-  // On créée le token JWT à partir des infos utilisateurs, d'un secret (qui n'est pas 123), et on lui met une validité en back
-  const token = jwt.sign({ email: userData.rows[0].email, id: userData.rows[0].id_reader }, process.env.JWT_SECRET, { expiresIn: '1h' });
+  // On génère le token
+  const token = generateToken(user.email, result.rows[0].id_reader)
 
   // On renvoie le token et le tableau d'informations utilisateurs
   res.status(200).json({
