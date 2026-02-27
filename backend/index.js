@@ -15,7 +15,8 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use(router);
+app.use('/api', router);
+app.use('/api/auth', authRouter);
 
 app.listen(port, () => {
   console.log(`Serveur en ligne sur http://localhost:${port}`);

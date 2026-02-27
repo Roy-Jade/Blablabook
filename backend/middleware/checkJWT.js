@@ -22,22 +22,22 @@ const checkJWT = async (req, res, next) => {
         try {
             // On essaie de décoder le token pour voir s'il est valide
             decoded = jwt.verify(authorization, process.env.JWT_SECRET);
+            // On récupère le mail dans le token décodé
+            let userEmail = decoded.email;
+            // Puis on regarde s'il y a des informations utilisateurs qui correspondent au mail récupéré
+            const userData = await db.query(
+                'SELECT * FROM reader WHERE email = $1',
+                [userEmail]
+            );
+            // S'il y en a, on passe à l'instruction suivante de la route
+            if(userData) {
+                res.locals.user = userEmail
+                next();
+            };
         } catch (e) {
             // S'il est non valide, on renvoie une erreur
             return res.status(401).send("Erreur 401 : accès non autorisé");
         }
-        // On récupère le mail dans le token décodé
-        let userEmail = decoded.email;
-        // Puis on regarde s'il y a des informations utilisateurs qui correspondent au mail récupéré
-        const userData = await db.query(
-            'SELECT * FROM reader WHERE email = $1',
-            [userEmail]
-        );
-        // S'il y en a, on passe à l'instruction suivante de la route
-        if(userData) {
-            res.locals.user = userEmail
-            next();
-        };
     }
 }
 

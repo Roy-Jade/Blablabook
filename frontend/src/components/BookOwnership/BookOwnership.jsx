@@ -6,7 +6,7 @@ export default function BookOwnership(bookID) {
 
   const id_book = bookID.bookID;
   
-  const currentUser = useContext(CurrentUserContext).currentUser;
+  const currentUser = useContext(CurrentUserContext);
   const [error, setError] = useState(""); // Message d'erreur
   const [isBookOwned, setIsBookOwned] = useState(false);
   const [bookData, setBookData] = useState({is_read : false, is_shared : false})

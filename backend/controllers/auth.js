@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import validator from 'validator';
 import { generateToken } from "../utils/jwt.js";
+import { checkPassword } from "../utils/checkPassword.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -80,27 +81,8 @@ export const register= async (req, res) => {
 export const login= async (req, res) => {  
   const { email, password } = req.body; // Récupération des informations envoyées en corps de requête
 
-  // On récupère les informations de l'utilisateur
-  const result = await db.query(
-    'SELECT * FROM reader WHERE email = $1',
-    [email]);
-
-  // Si l'utilisateur n'est pas trouvé, on renvoie une erreur
-  if (!result.rows[0]) {
-    return res.status(401).json({
-      message: "Erreur 401 : l'utilisateur et le mot de passe ne correspondent pas",
-    });
-  }
-
-  // On vérifie que le mot de passe correspond bien à celui enregistré en base de donnée
-  const isPasswordValid = await bcrypt.compare(password, result.rows[0].reader_password);
-
-  // Si ce n'est pas le cas, on renvoie une erreur
-  if (!isPasswordValid) {
-    return res.status(401).json({
-      message: "Erreur 401 : l'utilisateur et le mot de passe ne correspondent pas", // Le message est le même pour un problème d'utilisateur ou de MDP, pour ne pas laisser d'information à un hacker
-    });
-  }
+  // On vérifie que le mot de passe correspond
+  checkPassword(email, password)
 
   // On place le pseudo utilisateur dans un objet
   const user = {pseudonyme:result.rows[0].pseudonyme, email:result.rows[0].email};
@@ -119,11 +101,14 @@ export const login= async (req, res) => {
 
 // Suppression d'un compte utilisateur
 export const deleteUser= async (req, res) => {
+  const email = res.locals.user // Récupération du mail de l'utilisateur décodé par le middleware d'authentification
+
+  // On vérifie que le mot de passe correspond
+  checkPassword(email, req.body.password)
+
+  // On supprime les informations du compte
   try {
-    let userEmail = res.locals.user // Récupération du mail de l'utilisateur décodé par le middleware d'authentification
-
-    await db.query(`DELETE FROM reader WHERE email = $1`, [userEmail]);
-
+    await db.query(`DELETE FROM reader WHERE email = $1`, [email]);
     res.status(200).json({ message: "Compte supprimé avec succès" });
   } catch (error) {
     console.error(error);

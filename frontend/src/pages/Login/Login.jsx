@@ -22,7 +22,7 @@ export default function Login() {
       localStorage.setItem('currentUser', JSON.stringify(response.data.user));
       setCurrentUser(response.data.user);
     } catch (error) {
-      setError(error.response.data.message)
+      setError(error?.response?.data?.message || "Une erreur est survenue")
     }
   };
 
@@ -41,7 +41,7 @@ export default function Login() {
       <h1>Connexion</h1>
 
       {currentUser && (<>
-      <p>Vous êtes connecté en tant que {currentUser}.</p>
+      <p>Vous êtes connecté en tant que {currentUser.pseudonyme}.</p>
       <Link className="text_link" to="/logout">Se déconnecter</Link>
       </>)}
 
@@ -49,7 +49,7 @@ export default function Login() {
 
       {!currentUser && (<>
 
-        <form className="login__form" method="post" onSubmit={(e) => handleSubmit(e)}>
+        <form className="login__form" method="post" onSubmit={handleSubmit}>
 
         <fieldset>
           <label className='text_bold' htmlFor="email">Adresse e-mail</label>
@@ -66,7 +66,7 @@ export default function Login() {
           href="#"
           onClick={(e) =>{
               e.preventDefault();
-              window.alert("Lien de réinitialisation du mot de passe envoyé à votre adresse e-mail.");
+              window.alert("Feature en construction !");
           }}
           >
           Mot de passe oublié ?

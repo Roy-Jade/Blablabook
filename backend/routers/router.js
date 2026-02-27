@@ -1,6 +1,5 @@
 import express from 'express';
 import checkJWT from '../middleware/checkJWT.js';
-import { register, login, deleteUser } from '../controllers/auth.js';
 import { fetchBooks, fetchBookID } from '../controllers/library.js';
 import { fetchPersonalLibrary, fetchBookOwnership, fetchBookUserData } from '../controllers/personalLibrary.js';
 import { addBookToPersonalLibrary, removeBookFromPersonalLibrary } from '../controllers/bookMovements.js';
@@ -11,13 +10,6 @@ const router = express.Router()
 router.get('/books', fetchBooks); 
 // Récupérer les infos d'un seul livre
 router.get('/book/:bookID', fetchBookID); 
-
-// inscription
-router.post('/auth/register', register); 
-// connexion
-router.post('/auth/login', login); 
-// Suppression du compte
-router.delete('/auth/delete', checkJWT, deleteUser); 
 
 // Récupérer la bibliothèque d'un utilisateur
 router.get('/personal-library', checkJWT, fetchPersonalLibrary); 

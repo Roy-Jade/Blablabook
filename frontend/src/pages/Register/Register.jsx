@@ -37,9 +37,7 @@ export default function Register() {
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('currentUser', JSON.stringify(response.data.user));  
       setCurrentUser(response.data.user);
-
-      console.log("✅ Utilisateur inscrit avec succès !");
-      navigate('/login');
+      navigate('/');
 
     } catch (error) {
     setError(error.response?.data?.message || "Une erreur est survenue. Veuillez réessayer.");
@@ -61,7 +59,7 @@ export default function Register() {
       {error && <p className="text_error">{error}</p>}
 
       {currentUser && (<>
-      <p>Vous êtes connecté en tant que {currentUser}.</p>
+      <p>Vous êtes connecté en tant que {currentUser.pseudonyme}.</p>
       <Link className="text_link" to="/logout">Se déconnecter</Link>
       </>)}
 

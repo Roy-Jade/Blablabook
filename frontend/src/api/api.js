@@ -5,7 +5,7 @@ import axios from 'axios';
 
 // La constante api contient l'URL du back
 const api = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api',
 });
 
 // A chaque requête API on ajoute le token dans le header de la requête

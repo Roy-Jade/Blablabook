@@ -11,7 +11,7 @@ import { Link } from 'react-router';
 // Note : ce composant est utilisé pour la librairie publique et les librairies privées
 export default function Library() {
 
-    const currentUser = useContext(CurrentUserContext).currentUser //Infos utilisateur
+    const currentUser = useContext(CurrentUserContext) //Infos utilisateur
 
     const [books, setBooks] = useState(""); // Liste des livres
     const [error, setError] = useState(""); // Message d'erreur
@@ -60,7 +60,7 @@ export default function Library() {
                 <title>Bibliothèque - BlablaBook</title>
                 <meta name='description' content='Découvrez tous les livres disponibles sur BlablaBook.'></meta>
             </Helmet>
-            {(currentUser && params !== undefined) ? <h1>Bibliothèque de {currentUser}</h1> : <h1>Rechercher un livre</h1>}
+            {(currentUser && params !== undefined) ? <h1>Bibliothèque de {currentUser.pseudonyme}</h1> : <h1>Rechercher un livre</h1>}
             <div className='library'>
                 <Sort search={search} setSearch={setSearch} newResearch={newResearch}/>
                 <div className='library__book-list'>
