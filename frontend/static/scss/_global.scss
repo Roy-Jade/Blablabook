@@ -1,0 +1,163 @@
+@use './mixin';
+@use './font';
+@use './vars';
+
+/* Je prépare le terrain
+
+Mobile
+
+32 px - Bold - Titre du site BlaBlaBook Header
+24 px - Bold - Titre H1
+20 px - Bold - Titre H2
+16px - Semi-Bold (600) - Navigation Footer
+15 px - Bold - Texte petit bouton
+20 px - Bold - Texte gros bouton
+
+Desktop
+
+40 px - Semi-Bold (600) - Titre du site BlaBlaBook
+32 px - Bold - Titre H1
+20 px - Semi-Bold (600) - Titre H2
+16px - Semi-Bold (600) - Navigation Header- navigation Footer
+15 px - Bold - Texte petit bouton
+24 px - Bold - Texte gros bouton
+*/
+
+/* Je met mes variables aux éléments que j'ai besoin pour faire ma mise en page de mon site */
+
+html, body {
+    font-size: 15px;
+    background-color: vars.$cream-color;
+
+    // Permet l'affichage du footer en bas de page si le contenu fais moins de la taille de la page ; une règle sur main et une sur .footer sont aussi nécessaires
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    // assure une taille des éléments correcte pour la lisibilité a11y, tout en centrant le contenu sur la page
+    width: 96%;
+    margin: auto;
+    max-width: 1200px;
+
+    line-height: 1.2;
+    color: vars.$red-color;
+    font-family: font.$font-text;
+
+    // Permet l'affichage du footer en bas de page si le contenu fais moins de la taille de la page
+    flex: 1 0 auto;
+}
+
+p {
+    margin: auto;
+}
+
+/* Logo du site */
+
+.logo {
+    background-color: vars.$cream-color;
+}
+
+/* je vais partir sur le main maintenant */
+
+h1 {
+    font-family: font.$font-title;
+    font-size: 24px;
+    font-weight: bold;
+    color: vars.$brown-color;
+    text-align: center;
+    margin: 2%;
+
+    @include mixin.desktop{
+        font-size: 32px;
+    }
+}
+
+h2 {
+    font-family: font.$font-title;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    color: vars.$brown-color;
+
+    @include mixin.desktop{
+        font-size: 24px;
+    }
+}
+
+.button {
+    display: inline-block;
+    margin: 2%;
+    text-align: center;
+    color: vars.$cream-color;
+    background-color: vars.$blue-color;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 5px 5px 20px -5px black;
+    &:hover {
+        text-shadow: 0px 0px 20px black;
+        box-shadow: 5px 5px 20px -5px black, 0px 0px 20px 0px black;
+    }
+
+    &_small {
+        width: 80%;
+        padding: 3%;
+        font-weight: bold;
+    }
+
+    &_big {
+        width: 90%;
+        padding: 1%;
+        margin: 5%;
+        font-size: 20px;
+        font-weight: bold;
+    
+        @include mixin.desktop{
+            font-size: 24px;
+        }
+    }
+}
+
+.text {
+    &_link {
+        text-decoration: underline;
+        &:hover {
+            color: vars.$blue-color;
+        }
+    }
+
+    &_bold {
+        font-weight: bold;
+        font-family: font.$font-title;
+        margin-bottom: 1%;
+    }
+
+    &_semi-bold {
+        font-weight: 600;
+    }
+
+    &_error {
+        color: red;
+    }
+}
+
+img {
+    max-width: 100%; // empêche les images de sortir de leur cadre
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.hidden {
+    display: none !important;
+}

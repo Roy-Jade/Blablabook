@@ -1,0 +1,39 @@
+@use '../../../static/scss/vars';
+@use '../../../static/scss/mixin';
+@use '../../../static/scss/global';
+
+
+.Pseudo-user, .Email-user{
+    margin: 1%;
+    p{
+        padding: 1%;
+        font-weight: 600;
+        border: 1px solid vars.$brown-color;
+        text-align: left;
+        width: 50%;
+        margin: 0;
+    }
+}
+
+.email-section,.Password-section {
+    margin: 1%;
+    input{
+        padding: 1%;
+        font-weight: 600;
+        border: 1px solid vars.$brown-color;
+        width: 30%;
+        text-align: center;
+    }
+}
+.button {
+    &_medium{
+        width: 15%;
+        padding: 1%;
+        font-weight: bold;
+        margin: 10px 50px 20px;
+        text-align: center;
+    }
+}
+
+
+

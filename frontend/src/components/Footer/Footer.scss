@@ -1,0 +1,28 @@
+@use '../../../static/scss/vars';
+@use '../../../static/scss/mixin';
+@use '../../../static/scss/font';
+
+.footer {
+    background-color: vars.$brown-color;
+    color: vars.$cream-color;
+    display: flex;
+    justify-content: space-around;
+    padding: 2%;
+    margin-top: 2%;
+    font-family: font.$font-title;
+    font-weight: 600;
+
+    // Permet l'affichage du footer en bas de page si le contenu fais moins de la taille de la page
+    flex-shrink: 0;
+
+    &__navigation {
+        width: 100%;
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 8%;
+            line-height: 1.8;
+        }
+    }
+}

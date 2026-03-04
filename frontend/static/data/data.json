@@ -1,0 +1,78 @@
+{
+    "mentionsLegalesSections": [
+      {
+        "title": "ÉDITION DU SITE",
+        "content": "BlaBlaBook"
+      },
+      {
+        "title": "HÉBERGEMENT",
+        "content": "Le site est hébergé par un prestataire tiers dont les coordonnées seront communiquées prochainement."
+      },
+      {
+        "title": "ACCÈS AU SITE",
+        "content": "Le site est accessible 24/24h sauf en cas de maintenance ou de force majeure."
+      },
+      {
+        "title": "PROPRIÉTÉ INTELLECTUELLE",
+        "content": "Tous les contenus présents sur le site BlaBlaBook (textes, images, graphismes, logo, etc.) sont protégés par les lois en vigueur sur la propriété intellectuelle. Toute reproduction non autorisée est interdite."
+      },
+      {
+        "title": "RESPONSABILITÉ",
+        "content": "L’éditeur ne peut être tenu responsable d’éventuelles erreurs, de problèmes techniques ou d’interruptions de service indépendants de sa volonté"
+      },
+      {
+        "title": "LIENS HYPERTEXTES",
+        "content": "Le site peut contenir des liens vers d’autres sites web. BlaBlaBook n’exerce aucun contrôle sur ces sites et ne peut être tenu responsable de leur contenu."
+      },
+      {
+        "title": "DROIT APPLICABLE ET JURIDICTION COMPÉTENTE",
+        "content": "Le présent site est soumis au droit français. En cas de litige, les tribunaux de France sont compétents."
+      }
+    ],
+    "cguTerms": [
+      {
+        "title": "INFORMATIONS LÉGALES",
+        "content": "Le site BlaBlaBook est édité par une équipe au sein de promo Béhemoth chez O'clock. Pour toute question, veuillez nous contacter via le formulaire de contact."
+      },
+      {
+        "title": "ACCÈS AU SITE",
+        "content": "Le site est accessible 24h/24 et 7j/7, sauf en cas de maintenance technique ou de force majeure. L’accès peut être interrompu temporairement pour des raisons de maintenance sans préavis."
+      },
+      {
+        "title": "COLLECTE DES DONNÉES",
+        "content": "BlaBlaBook collecte uniquement les données nécessaires au bon fonctionnement du service (inscription, gestion de bibliothèque, avis, etc.). Les données sont traitées de manière sécurisée."
+      },
+      {
+        "title": "PROPRIÉTÉ INTELLECTUELLE",
+        "content": "Tous les contenus du site BlaBlaBook (textes, images, logo, code source, etc.) sont protégés par le droit de la propriété intellectuelle. Toute reproduction sans autorisation est strictement interdite."
+      },
+      {
+        "title": "RESPONSABILITÉ",
+        "content": "BlaBlaBook ne peut être tenu responsable des erreurs ou indisponibilités temporaires du site. L’utilisation du site se fait sous la responsabilité de l’utilisateur."
+      },
+      {
+        "title": "LIENS HYPERTEXTES",
+        "content": "Le site peut contenir des liens vers des sites tiers. BlaBlaBook n’exerce aucun contrôle sur leur contenu et décline toute responsabilité quant à leur accessibilité ou leur sécurité."
+      },
+      {
+        "title": "DROIT APPLICABLE ET JURIDICTION COMPÉTENTE",
+        "content": "Les présentes conditions d’utilisation sont régies par le droit français. En cas de litige, les tribunaux français seront seuls compétents."
+      }
+    ],
+    "accessibiteSections": [
+        {
+            "title": "Présentation",
+            "content": "Cette page n’est pas une page d’aide. Elle vise à présenter la politique d’accessibilité du site blablabook.fr et à définir le niveau d’accessibilité général constaté sur le site conformément aux référentiels et à la réglementation."
+          },
+          {
+            "title": "Qu’est-ce que l’accessibilité numérique ?",
+            "content": "Un site web accessible est un site qui permet à tous les internautes d’accéder à ses contenus sans difficulté, y compris aux personnes qui présentent un handicap et utilisent des logiciels ou matériels spécialisés.\n\nUn site accessible permet par exemple de naviguer avec des synthèses vocales ou des plages braille (notamment utilisées par les internautes aveugles ou malvoyants)."
+          },
+          {
+            "footer": "Pour toute question relative aux présentes CGU, l’utilisateur peut nous contacter via la page"
+          }
+      ]
+      
+    
+  }
+  
