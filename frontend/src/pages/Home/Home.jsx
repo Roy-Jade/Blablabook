@@ -1,10 +1,14 @@
 import {Link} from 'react-router';
-import React from 'react';
+import { useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import Carousel from '../../components/Carousel/Carousel';
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import './Home.scss';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 export default function Home() {
+
+    const {currentUser} = useContext(CurrentUserContext)
 
     return(
         <>
@@ -20,7 +24,7 @@ export default function Home() {
 
             <Carousel />
 
-            <Link className='button button_big' to="/register">S'inscrire</Link>
+            {!currentUser && <Link className='button button_big' to="/register">Je me connecte !</Link>}
         </>
     )
 }

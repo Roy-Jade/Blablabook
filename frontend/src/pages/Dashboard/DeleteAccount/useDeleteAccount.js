@@ -14,7 +14,7 @@ export function useDeleteAccount() {
 
         try {
             await api.delete("/auth/delete", {data: {password:password}});
-            localStorage.clear();
+            localStorage.removeItem("currentUser");
             setCurrentUser(null);
             setIsDeleted(true)
             setMessage("Votre compte a été supprimé avec succès !")

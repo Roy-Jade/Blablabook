@@ -11,7 +11,7 @@ import { Link } from 'react-router';
 // Note : ce composant est utilisé pour la librairie publique et les librairies privées
 export default function Library() {
 
-    const currentUser = useContext(CurrentUserContext) //Infos utilisateur
+    const {currentUser} = useContext(CurrentUserContext) //Infos utilisateur
 
     const [books, setBooks] = useState(""); // Liste des livres
     const [error, setError] = useState(""); // Message d'erreur
@@ -22,7 +22,7 @@ export default function Library() {
     // Définit l'URL à cibler (target) pour la requête back
     let target = 'books'
     if (params) {
-        target = 'personalLibrary'
+        target = 'personal-library'
     }
 
     async function fetchBooks() {
@@ -31,7 +31,7 @@ export default function Library() {
             const response = await api.get(`/${target}`);
             setBooks(response.data.books);
         } catch (error) {
-            setError(error.response.data.message)
+            setError(error?.response?.data?.message)
         }
     }
 
@@ -50,7 +50,7 @@ export default function Library() {
             const response = await api.get(`/${target}?${search[1]}=${search[0]}`);
             setBooks(response.data.books);
         } catch (error) {
-            setError(error.response.data.message)
+            setError(error?.response?.data?.message)
         }
     }
 

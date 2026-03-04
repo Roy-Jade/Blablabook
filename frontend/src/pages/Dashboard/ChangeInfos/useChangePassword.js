@@ -10,7 +10,7 @@ export function useChangePassword() {
         setIsLoading(true);
 
         try {
-            const response = await api.patch('/auth/edit/password', { field:"password", newInfo, password });
+            const response = await api.patch('/auth/edit/user', { field:"password", newInfo, password });
             setMessage("Votre mot de passe a été modifié avec succès !")
 
         } catch (error) {

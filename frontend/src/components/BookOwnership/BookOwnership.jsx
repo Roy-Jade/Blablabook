@@ -6,7 +6,7 @@ export default function BookOwnership(bookID) {
 
   const id_book = bookID.bookID;
   
-  const currentUser = useContext(CurrentUserContext);
+  const {currentUser} = useContext(CurrentUserContext);
   const [error, setError] = useState(""); // Message d'erreur
   const [isBookOwned, setIsBookOwned] = useState(false);
   const [bookData, setBookData] = useState({is_read : false, is_shared : false})
@@ -16,7 +16,7 @@ export default function BookOwnership(bookID) {
       const response = await api.get(`/personal-library/${id_book}/ownership`)
       setIsBookOwned(response.data.ownership.exists)
     } catch(error) {
-      setError(error.response.data.message)
+      setError(error?.response?.data?.message)
     }
   }
 
@@ -25,21 +25,23 @@ export default function BookOwnership(bookID) {
       const response = await api.get(`/personal-library/${id_book}/data`);
       setBookData(response.data.data);
     } catch(error) {
-      setError(error.response.data.message)
+      setError(error?.response?.data?.message)
     }
   };
 
   useEffect(()=> {
-      getBookOwnership()
-      getBookData()
-  }, [id_book]);
+      if (currentUser != null) {
+        getBookOwnership()
+        getBookData()
+      }
+  }, [id_book, currentUser]);
 
   const handleAddBook = async () => {
     try {
       const response = await api.post(`/personal-library/${id_book}`)
       setIsBookOwned(true)
     } catch(error) {
-      setError(error.response.data.message)
+      setError(error?.response?.data?.message)
     }
   };
 
@@ -48,12 +50,11 @@ export default function BookOwnership(bookID) {
       const response = await api.delete(`/personal-library/${id_book}`)
       setIsBookOwned(false)
     } catch(error) {
-      setError(error.response.data.message)
+      setError(error?.response?.data?.message)
     }
   };
 
   return (<>
-    {error ?? <p>{error}</p>}
     {(currentUser && isBookOwned === true) && 
     <div className='bookmini__booleans'>
       <div>

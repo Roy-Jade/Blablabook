@@ -3,7 +3,7 @@ import "./Register.scss";
 import { Helmet } from 'react-helmet';
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
-import api from "../../../api";
+import api from "../../api/api.js";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
 
 export default function Register() {
@@ -34,13 +34,12 @@ export default function Register() {
         password: motDePasse,
       });
 
-      localStorage.setItem('token', response.data.token);
       localStorage.setItem('currentUser', JSON.stringify(response.data.user));  
       setCurrentUser(response.data.user);
       navigate('/');
 
     } catch (error) {
-    setError(error.response?.data?.message || "Une erreur est survenue. Veuillez réessayer.");
+    setError(error?.response?.data?.message || "Une erreur est survenue. Veuillez réessayer.");
   }
 };
 

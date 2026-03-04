@@ -13,7 +13,6 @@ export function useChangeInfo(info) {
 
         try {
             const response = await api.patch('/auth/edit/user', { field:info, newInfo, password });
-            localStorage.setItem('token', response.data.token);
             localStorage.setItem('currentUser', JSON.stringify(response.data.user));
             setCurrentUser(response.data.user);
             setMessage("Votre "+info+" a été modifié avec succès !")

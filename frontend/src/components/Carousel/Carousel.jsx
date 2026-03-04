@@ -1,5 +1,5 @@
 import BookMini from '../BookMini/BookMini';
-import api from '../../../api';
+import api from '../../api/api.js';
 import { useState, useEffect, useCallback } from 'react';
 import './Carousel.scss';
 import {shuffle} from './scriptCarousel';
@@ -38,8 +38,7 @@ export default function Carousel() {
                 setBooks(randomizedBooks);
             }
             catch (error) {
-                setError(error.response.data.message)
-                console.log(error)
+                setError(error?.response?.data?.message)
             }
         }
         if(!books) {

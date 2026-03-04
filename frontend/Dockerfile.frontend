@@ -13,11 +13,15 @@ RUN npm install
 # Copie du code dans le conteneur
 COPY . .
 
-# On lance la construction de l'application
-RUN npm run build
+# # On lance la construction de l'application
+# RUN npm run build
 
-# On expose le port 4173
-EXPOSE 4173
+# # On expose le port 4173
+# EXPOSE 4173
 
-# On lance l'application
-CMD [ "npm", "run", "start", "--", "--host", "0.0.0.0" ]
+# # On lance l'application
+# CMD [ "npm", "run", "start", "--", "--host", "0.0.0.0" ]
+
+EXPOSE 1234
+
+CMD [ "npx", "parcel", "src/index.html", "--host", "0.0.0.0" ]

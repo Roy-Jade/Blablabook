@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import api from "../../../api";
+import api from "../../api/api.js";
 import "./Login.scss";
 import { Link } from "react-router";
 import { Helmet } from 'react-helmet';
@@ -18,7 +18,6 @@ export default function Login() {
     setError("")
     try {
       const response = await api.post('/auth/login', { email, password });
-      localStorage.setItem('token', response.data.token);
       localStorage.setItem('currentUser', JSON.stringify(response.data.user));
       setCurrentUser(response.data.user);
     } catch (error) {

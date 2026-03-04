@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 // Import du carrousel 
 import Carousel from '../../components/Carousel/Carousel';
 import Rating from '../../components/Rating/Rating';
-import api from '../../../api';
+import api from '../../api/api.js';
 
 export default function BookID() {
 
@@ -30,7 +30,7 @@ export default function BookID() {
 				setBookCommentaries(response.data.bookCommentaries);
 			} catch (error) {
 				// En cas d'erreur, on enregistre le message d'erreur
-				setError(error.response.data.message)
+				setError(error?.response?.data?.message)
 			}
 		}
 

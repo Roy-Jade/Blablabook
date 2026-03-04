@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { useEffect, useState  } from "react";
 import { CurrentUserContext } from '././contexts/CurrentUserContext.js';
+import api from './api/api.js';
 
 // Liste des imports de page
 import Home from './pages/Home/Home';
@@ -18,17 +19,32 @@ import NotFound from './pages/NotFound/NotFound';
 
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.jsx';
 
 export default function App() {
     const [currentUser, setCurrentUser] = useState(null);
-    console.log(currentUser)
+    const [isCurrentUserLoading, setIsCurrentUserLoading] = useState(true)
+
+    console.log("currentUser : ", currentUser)
     
     useEffect(() => {
-        const existingUser = localStorage.getItem('currentUser')
-        if (existingUser) {
-            setCurrentUser(JSON.parse(existingUser))
+
+        // Récupération des informations de l'utilisateur connecté.
+        const fetchCurrentUser = async() => {
+            try {
+                const response = await api.get('/auth/user');
+                setCurrentUser(response.data.user);
+            } catch(error) {
+                // Si aucun utilisateur n'est connecté, currentUser vaut null
+                setCurrentUser(null)
+            } finally {
+                setIsCurrentUserLoading(false)
+            }
         }
+
+        fetchCurrentUser();
     }, [])
+
 
     return (
         // Transmet le contexte CurrentUserContext à toute les pages contenue dans les balises
@@ -44,8 +60,16 @@ export default function App() {
                     <Route path="/book/:bookID" element={<BookID />} />
                     <Route path="/about" element={<StaticPages />} />
                     <Route path="/questions" element={<Questions />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/dashboard/options" element={<Options />} />
+                    <Route path="/dashboard" element={
+                        <ProtectedRoute isCurrentUserLoading={isCurrentUserLoading}>
+                            <Dashboard />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/dashboard/options" element={
+                        <ProtectedRoute isCurrentUserLoading={isCurrentUserLoading}>
+                            <Options />
+                        </ProtectedRoute>
+                    } />
                     <Route path="/register" element={<Register />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/logout" element={<Logout />} />
