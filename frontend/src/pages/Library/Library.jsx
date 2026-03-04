@@ -54,6 +54,13 @@ export default function Library() {
         }
     }
 
+    // Fonction qui permet la suppression d'un livre de l'affichage de la bibliothèque
+    const removeBook = (id_book) =>{
+        if (params) {
+            setBooks(books.filter((book) => book.id_book !== id_book))
+        }
+    }
+
     return(
         <>  
             <Helmet>
@@ -68,7 +75,7 @@ export default function Library() {
                     (books == "" ? 
                         <p>Aucun livre ne correspond à votre recherche.</p>
                         :
-                        books.map((book) => <BookMini key={book.isbn} book={book} onBookDeleted={fetchBooks} />)
+                        books.map((book) => <BookMini key={book.isbn} book={book} removeBook={removeBook} />)
                     )
                     :
                     <p>Vous n'avez encore aucun livre dans votre bibliothèque. <Link to={"/library"} className='text_link'>Rechercher un livre à ajouter</Link></p>

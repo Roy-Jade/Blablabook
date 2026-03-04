@@ -2,9 +2,9 @@ import { useContext, useState, useEffect } from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 import api from '../../api/api.js';
 
-export default function BookOwnership(bookID) {
+export default function BookOwnership({bookID, removeBook}) {
 
-  const id_book = bookID.bookID;
+  const id_book = bookID;
   
   const {currentUser} = useContext(CurrentUserContext);
   const [error, setError] = useState(""); // Message d'erreur
@@ -49,6 +49,7 @@ export default function BookOwnership(bookID) {
     try {
       const response = await api.delete(`/personal-library/${id_book}`)
       setIsBookOwned(false)
+      removeBook(id_book)
     } catch(error) {
       setError(error?.response?.data?.message)
     }

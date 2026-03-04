@@ -4,7 +4,7 @@ import Rating from '../Rating/Rating';
 import BookOwnership from '../BookOwnership/BookOwnership';
 
 // Composant contenant une miniature de livre, avec sa cover, son titre, son auteur et sa note. Des boutons y sont joints.
-export default function BookMini({ book, onBookDeleted }) {
+export default function BookMini({ book, removeBook=()=>{} }) {
   
   return(
     <article className={`bookmini`}>
@@ -14,11 +14,9 @@ export default function BookMini({ book, onBookDeleted }) {
           <cite className='bookmini__title'>{book.title}</cite>
           <address className='bookmini__author'>{book.author}</address>
         </div>
-        <div className='bookmini__note'>
-          <Rating rate={book.avg_rate} />
-        </div>
+        <Rating rate={book.avg_rate} />
         <Link to={`/book/${book.isbn}`} book={book} className='button button_small'>Voir le détail</Link>
-        <BookOwnership bookID={book.id_book}/>
+        <BookOwnership bookID={book.id_book} removeBook={removeBook} />
       </div>
     </article>
   )

@@ -24,8 +24,6 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.jsx';
 export default function App() {
     const [currentUser, setCurrentUser] = useState(null);
     const [isCurrentUserLoading, setIsCurrentUserLoading] = useState(true)
-
-    console.log("currentUser : ", currentUser)
     
     useEffect(() => {
 
