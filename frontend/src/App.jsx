@@ -24,7 +24,7 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.jsx';
 export default function App() {
     const [currentUser, setCurrentUser] = useState(null);
     const [isCurrentUserLoading, setIsCurrentUserLoading] = useState(true)
-    
+
     useEffect(() => {
 
         // Récupération des informations de l'utilisateur connecté.

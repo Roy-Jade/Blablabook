@@ -1,0 +1,5 @@
+@use '../../../static/scss/vars';
+
+.star-hovered {
+    text-shadow: 0px 0px 15px vars.$red-color;
+}

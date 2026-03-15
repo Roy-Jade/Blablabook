@@ -6,7 +6,6 @@ export default function BookOwnership({bookID, removeBook, isBookOwned=false, se
 
   const id_book = bookID;
   
-  const {currentUser} = useContext(CurrentUserContext);
   const [error, setError] = useState(""); // Message d'erreur
   const [bookData, setBookData] = useState({is_read : false, is_shared : false})
 
@@ -55,27 +54,10 @@ export default function BookOwnership({bookID, removeBook, isBookOwned=false, se
   };
 
   return (<>
-    {(currentUser && isBookOwned === true) && 
-    <div className='bookmini__booleans'>
-      <div>
-        <input type="checkbox" id='isRead' name='isRead'/>
-        <label htmlFor="isRead">Lu</label>
-      </div>
-      <div>
-        <input type="checkbox" id='isShared' name='isShared'/>
-        <label htmlFor="isShared">Partagé</label>
-      </div>
-    </div>}
-    {currentUser && (
-      isBookOwned ?
-      <button className='button button_small' 
-        onClick={handleRemoveBook}
-      >Supprimer</button> 
-      :
-      <button className='button button_small' 
-      onClick={handleAddBook}
-      >Ajouter</button>
-    )}
+    <div>
+      <input type="checkbox" id='isRead' name='isRead'/>
+      <label htmlFor="isRead">Lu</label>
+    </div>
   </>)
 
 } 

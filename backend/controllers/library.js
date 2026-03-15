@@ -42,7 +42,7 @@ export const fetchBooks = async (req, res) => {
 
 // Récupère les informations d'un livre dans la BDD
 export const fetchBookID = async (req, res) => { 
-    const ISBN = req.params.bookID; // l'ISBN est envoyé en paramètre de l'URL (/:ISBN), on le récupère ici
+    const id_book = req.params.bookID; // l'id est envoyé en paramètre de l'URL (/:id_book), on le récupère ici
 
     try {
         // On récupère les infos du livre qui correspond à l'ISBN, ainsi que la moyenne de ses notes
@@ -51,9 +51,9 @@ export const fetchBookID = async (req, res) => {
             FROM book
             JOIN reader_has_book
             ON book.id_book = reader_has_book.id_book
-            WHERE book.ISBN = $1
+            WHERE book.id_book = $1
             GROUP BY book.id_book`, 
-            [ISBN]
+            [id_book]
         );
 
         const bookInfos = resultInfos.rows[0]; // On met le tableau de résultat dans une constante
@@ -73,7 +73,7 @@ export const fetchBookID = async (req, res) => {
             reader_has_book.commentary, reader_has_book.commentary_creation_date 
             FROM reader_has_book
             JOIN reader ON reader_has_book.id_reader = reader.id_reader
-            WHERE reader_has_book.id_book = $1`,
+            WHERE reader_has_book.id_book = $1 AND reader_has_book.commentary IS NOT NULL`,
             [bookInfos.id_book]
         );
 

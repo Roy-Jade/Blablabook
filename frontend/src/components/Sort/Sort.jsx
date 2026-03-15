@@ -21,9 +21,6 @@ export default function Sort({search, setSearch, newResearch}) {
 
     // Fonction switchant l'affichage des filtres/recherches
     const toggleSortOptions = () => {
-        // if (showSortOptions == true) {
-        //     setShowSortOptions(false)
-        // } else {setShowSortOptions(true)}
         setShowSortOptions(!showSortOptions)
     }
 

@@ -107,3 +107,102 @@ export const fetchBookUserData = async (req, res) => {
 
 
 
+// Récupère la note de l'utilisateur pour un livre 
+export const fetchBookUserNote = async (req, res) => {
+  const id_book = req.params.bookID; // l'id est envoyé en paramètre de l'URL (/:id_book), on le récupère ici
+
+  if(!id_book) {
+    // Si rien n'a été envoyé, on envoie une erreur
+    return res.status(400).json({message: "ID du livre requis."})
+  }
+
+  let userEmail = res.locals.user // Récupération du mail de l'utilisateur décodé par le middleware d'authentification
+
+  try {
+    const result = await db.query(
+      `SELECT rate FROM reader_has_book
+      JOIN reader
+      ON reader.id_reader = reader_has_book.id_reader
+      WHERE email = $1 AND id_book = $2`,
+      [userEmail, id_book]
+    )
+
+    const userRate = result.rows[0]?.rate ?? null;
+
+    if (userRate===undefined) {
+      return res.status(404).json({message:"Aucun livre correpondant"})
+    }
+
+    return res.status(200).json({message : `Note récupérée : ${userRate}`, userRate})
+
+  } catch(error) {
+    res.status(500).json({message:"Erreur lors de la récupération des données"})
+  }
+}
+
+
+
+// Modifie la note ou le commentaire de l'utilisateur pour un livre 
+export const updateBookUserData = async (req, res) => {
+  const id_book = req.params.bookID; // l'id est envoyé en paramètre de l'URL (/:id_book), on le récupère ici
+  const {field, newData} = req.body // le champ changé et sa valeur sont récupérés dans le body
+
+  if(!id_book) {
+    // Si rien n'a été envoyé, on envoie une erreur
+    return res.status(400).json({message: "ID du livre requis."})
+  }
+  
+  const allowedField = ["rate", "commentary", "reset_rate", "reset_commentary"]
+  if(!allowedField.includes(field)){
+    return res.status(401).json({message: "Erreur : champ invalide"})
+  }
+
+  let userEmail = res.locals.user // Récupération du mail de l'utilisateur décodé par le middleware d'authentification
+
+  try {
+    if (field ==="reset_rate") {
+      await db.query(
+        `UPDATE reader_has_book SET rate = NULL, commentary = NULL, commentary_creation_date = NULL
+        FROM reader
+        WHERE reader.id_reader = reader_has_book.id_reader AND email = $1 AND id_book = $2`,
+        [userEmail, id_book]
+      )
+
+      return res.status(200).json({message : `Votre note et votre commentaire ont été supprimés`})
+    }
+
+    if (field === "reset_commentary") {
+      await db.query(
+        `UPDATE reader_has_book SET commentary = NULL, commentary_creation_date = NULL
+        FROM reader
+        WHERE reader.id_reader = reader_has_book.id_reader AND email = $1 AND id_book = $2`,
+        [userEmail, id_book]
+      )
+
+      return res.status(200).json({message : `Votre commentaire a été supprimé`})
+    }
+
+    if (field === "commentary") {
+      await db.query(
+        `UPDATE reader_has_book SET commentary = $1, commentary_creation_date = NOW()
+        FROM reader
+        WHERE reader.id_reader = reader_has_book.id_reader AND email = $2 AND id_book = $3`,
+        [newData, userEmail, id_book]
+      )
+
+      return res.status(200).json({message : `Votre commentaire a été enregistré`})
+    }
+
+    await db.query(
+      `UPDATE reader_has_book SET ${field} = $1
+      FROM reader
+      WHERE reader.id_reader = reader_has_book.id_reader AND email = $2 AND id_book = $3`,
+      [newData, userEmail, id_book]
+    )
+
+    return res.status(200).json({message : `${field} mis à jour : ${newData}`})
+
+  } catch(error) {
+    res.status(500).json({message:"Erreur lors de la récupération des données"})
+  }
+}

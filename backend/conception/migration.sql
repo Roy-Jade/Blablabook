@@ -34,7 +34,7 @@ CREATE TABLE reader_has_book (
   is_shared BOOLEAN NOT NULL DEFAULT FALSE,
   rate SMALLINT,
   commentary VARCHAR(2000),
-  commentary_creation_date TIMESTAMP DEFAULT NOW(),
+  commentary_creation_date TIMESTAMP,
   CONSTRAINT is_rated CHECK (rate IS NOT NULL OR commentary IS NULL)
 );
 
