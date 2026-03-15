@@ -1,0 +1,12 @@
+.rating {
+    position: relative;
+    display: inline;
+    font-size: 150%;
+}
+
+.rating-full {
+    position: absolute;
+    left: 0;
+    width: var(--rate);
+    overflow: hidden;
+}

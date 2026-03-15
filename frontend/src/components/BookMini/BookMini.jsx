@@ -1,10 +1,13 @@
 import './BookMini.scss';
 import { Link } from 'react-router';
+import { useState } from 'react';
 import Rating from '../Rating/Rating';
 import BookOwnership from '../BookOwnership/BookOwnership';
 
 // Composant contenant une miniature de livre, avec sa cover, son titre, son auteur et sa note. Des boutons y sont joints.
 export default function BookMini({ book, removeBook=()=>{} }) {
+
+  const [isBookOwned, setIsBookOwned] = useState(false); // note si le livre est possédé, commun avec BookID
   
   return(
     <article className={`bookmini`}>
@@ -15,8 +18,8 @@ export default function BookMini({ book, removeBook=()=>{} }) {
           <address className='bookmini__author'>{book.author}</address>
         </div>
         <Rating rate={book.avg_rate} />
-        <Link to={`/book/${book.isbn}`} book={book} className='button button_small'>Voir le détail</Link>
-        <BookOwnership bookID={book.id_book} removeBook={removeBook} />
+        <Link to={`/book/${book.id_book}`} book={book} className='button button_small'>Voir le détail</Link>
+        <BookOwnership bookID={book.id_book} removeBook={removeBook} isBookOwned={isBookOwned} setIsBookOwned={setIsBookOwned} />
       </div>
     </article>
   )
