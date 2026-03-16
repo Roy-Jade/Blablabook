@@ -5,7 +5,7 @@ import path from 'path';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import validator from 'validator';
-import { generateToken } from "../utils/jwt.js";
+import { generateToken } from "../utils/generateToken.js";
 import { checkPassword } from "../utils/checkPassword.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -35,6 +35,10 @@ export const getUser = async (req, res) => {
 // Inscription utilisateur
 export const register= async (req, res) => {
   const { email, password, pseudonyme } = req.body; // Récupération des informations envoyées en corps de requête
+
+  if (!email || !password || !pseudonyme) {
+    return res.status(400).json({ message: "Tous les champs sont requis." });
+  }
 
   // Vérification de la longueur du pseudo (3 à 15 caractères)
   if (pseudonyme.length < 3 || pseudonyme.length > 15) {
@@ -106,6 +110,11 @@ export const register= async (req, res) => {
 // Connexion d'un utilisateur
 export const login= async (req, res) => {  
   const { email, password } = req.body; // Récupération des informations envoyées en corps de requête
+
+
+  if (!email || !password) {
+    return res.status(400).json({ message: "Tous les champs sont requis." });
+  }
 
   // On vérifie que le mot de passe correspond
   try {
