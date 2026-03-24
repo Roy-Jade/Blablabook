@@ -7,7 +7,7 @@ SET CLIENT_ENCODING TO 'UTF-8';
 TRUNCATE TABLE reader_has_book, book, reader RESTART IDENTITY CASCADE;
 
 -- Insertion livres
-INSERT INTO book (ISBN, title, author, publish_date, page_number, summary) VALUES
+INSERT INTO book (isbn, title, author, publish_date, page_number, summary) VALUES
 ('9782070584628', 'Harry Potter à l''école des sorciers', 'J. K. Rowling', 'Nov 15, 2017', 300, 'Mr et Mrs Dursley, qui habitaient au 4, Privet Drive, avaient toujours affirmé avec la plus grande fierté qu’ils étaient parfaitement normaux, merci pour eux. Jamais quiconque n’aurait imaginé qu’ils puissent se trouver impliqués dans quoi que ce soit d’étrange ou de mystérieux. Ils n’avaient pas de temps à perdre avec des sornettes.'),
 ('9782747014403', 'Eragon', 'Christopher Paolini', 'Oct 01, 2004', 450, 'Un résumé captivant.'),
 ('9782090318845', 'Le Comte De Monte-Cristo', 'Alexandre Dumas', '1909', 450, 'LE 24 FEVRIER 1815, la vigie de Notre-Dame-de-la-Garde signale l''arrivee du trois-mats le Pharaon, venant de Smyrne, Trieste et Naples.'),

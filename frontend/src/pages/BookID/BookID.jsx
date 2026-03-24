@@ -107,7 +107,7 @@ export default function BookID() {
 			<section className='bookInfo__data_secondary'>
 				<p>Moyenne des notes&ensp;</p>
 				<Rating rate={bookInfos.avg_rate}/>
-				<BookOwnership bookID={bookInfos.id_book} isBookOwned={isBookOwned} setIsBookOwned={setIsBookOwned} />
+				<BookOwnership isbn={bookInfos.isbn} isBookOwned={isBookOwned} setIsBookOwned={setIsBookOwned} />
 				{currentUser && isBookOwned && <RatingInput bookID={bookInfos.id_book} userRate={userRate} setUserRate={setUserRate} />}
 				{userRate && <Commentary bookID={bookInfos.id_book} userCommentary={userCommentary} setUserCommentary={setUserCommentary} handleCommentarySubmission={handleCommentarySubmission} />}
 			</section>
