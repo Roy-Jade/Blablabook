@@ -18,7 +18,7 @@ export const fetchPersonalLibrary = async (req, res) => {
     let results =  await db.query(
       `SELECT 
       book.id_book, 
-      book.ISBN, 
+      book.isbn, 
       book.title, 
       book.author 
       FROM reader 
@@ -35,7 +35,7 @@ export const fetchPersonalLibrary = async (req, res) => {
     res.status(200).json({books});
 
   } catch (error) {
-    res.status(500).json({message:"Erreur lors de la récupération des données"})
+    res.status(500).json({message:"Erreur lors de la récupération de la bibliothèque de l'utilisateur"})
   }
 };
 
@@ -44,8 +44,8 @@ export const fetchPersonalLibrary = async (req, res) => {
 // Récupère l'information de la possession d'un livre par un utilisateur
 export const fetchBookOwnership = async (req, res) => {
 
-  const id_book = req.params.id_book;
-  if(!id_book) {
+  const isbn = req.params.isbn;
+  if(!isbn) {
     // Si rien n'a été envoyé, on envoie une erreur
     return res.status(400).json({message: "ID du livre requis."})
   }
@@ -58,15 +58,17 @@ export const fetchBookOwnership = async (req, res) => {
       SELECT email FROM reader
       JOIN reader_has_book
       ON reader.id_reader = reader_has_book.id_reader 
-      WHERE email = $1 AND id_book = $2)`,
-      [userEmail, id_book]
+      JOIN book
+      ON reader_has_book.id_book = book.id_book
+      WHERE email = $1 AND isbn = $2)`,
+      [userEmail, isbn]
     );
 
     const ownership = result.rows[0];
     return res.status(200).json({ownership})
 
     } catch (error) {
-      res.status(500).json({message:"Erreur lors de la récupération des données"})
+      res.status(500).json({message:"Erreur lors de la vérification de la possession du livre par l'utilisateur"})
     }
 };
 
@@ -75,8 +77,8 @@ export const fetchBookOwnership = async (req, res) => {
 // Récupère l'information de partage et de lecture d'un livre par un utilisateur
 export const fetchBookUserData = async (req, res) => {
 
-  const id_book = req.params.id_book;
-  if(!id_book) {
+  const isbn = req.params.isbn;
+  if(!isbn) {
     // Si rien n'a été envoyé, on envoie une erreur
     return res.status(400).json({message: "ID du livre requis."})
   }
@@ -88,8 +90,8 @@ export const fetchBookUserData = async (req, res) => {
       `SELECT is_read, is_shared FROM reader_has_book
       JOIN reader
       ON reader.id_reader = reader_has_book.id_reader
-      WHERE email = $1 AND id_book = $2`,
-      [userEmail, id_book]
+      WHERE email = $1 AND isbn = $2`,
+      [userEmail, isbn]
     );
 
     const data = result.rows[0];
@@ -101,7 +103,7 @@ export const fetchBookUserData = async (req, res) => {
     return res.status(200).json({data})
 
   } catch (error) {
-    res.status(500).json({message:"Erreur lors de la récupération des données"})
+    res.status(500).json({message:"Erreur lors de la récupération des informations de lecture et de partage"})
   }
 };
 
@@ -136,7 +138,7 @@ export const fetchBookUserNote = async (req, res) => {
     return res.status(200).json({message : `Note récupérée : ${userRate}`, userRate})
 
   } catch(error) {
-    res.status(500).json({message:"Erreur lors de la récupération des données"})
+    res.status(500).json({message:"Erreur lors de la récupération de la note de l'utilisateur"})
   }
 }
 
@@ -203,6 +205,6 @@ export const updateBookUserData = async (req, res) => {
     return res.status(200).json({message : `${field} mis à jour : ${newData}`})
 
   } catch(error) {
-    res.status(500).json({message:"Erreur lors de la récupération des données"})
+    res.status(500).json({message:"Erreur lors de la modification des données"})
   }
 }

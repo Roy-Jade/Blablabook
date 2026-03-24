@@ -2,9 +2,7 @@ import { useContext, useState, useEffect } from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 import api from '../../api/api.js';
 
-export default function BookOwnership({bookID, removeBook, isBookOwned=false, setIsBookOwned}) {
-
-  const id_book = bookID;
+export default function BookOwnership({isbn, removeBook, isBookOwned=false, setIsBookOwned}) {
   
   const {currentUser} = useContext(CurrentUserContext);
   const [error, setError] = useState(""); // Message d'erreur
@@ -12,7 +10,7 @@ export default function BookOwnership({bookID, removeBook, isBookOwned=false, se
 
   const getBookOwnership = async () => {
     try{
-      const response = await api.get(`/personal-library/${id_book}/ownership`)
+      const response = await api.get(`/personal-library/${isbn}/ownership`)
       setIsBookOwned(response.data.ownership.exists)
     } catch(error) {
       setError(error?.response?.data?.message)
@@ -21,7 +19,7 @@ export default function BookOwnership({bookID, removeBook, isBookOwned=false, se
 
   const getBookData = async () => {
     try{
-      const response = await api.get(`/personal-library/${id_book}/data`);
+      const response = await api.get(`/personal-library/${isbn}/data`);
       setBookData(response.data.data);
     } catch(error) {
       setError(error?.response?.data?.message)
@@ -31,13 +29,13 @@ export default function BookOwnership({bookID, removeBook, isBookOwned=false, se
   useEffect(()=> {
       if (currentUser != null) {
         getBookOwnership()
-        getBookData()
+        // getBookData()
       }
-  }, [id_book, currentUser]);
+  }, [isbn, currentUser]);
 
   const handleAddBook = async () => {
     try {
-      const response = await api.post(`/personal-library/${id_book}`)
+      const response = await api.post(`/personal-library/${isbn}`)
       setIsBookOwned(true)
     } catch(error) {
       setError(error?.response?.data?.message)
@@ -46,16 +44,16 @@ export default function BookOwnership({bookID, removeBook, isBookOwned=false, se
 
   const handleRemoveBook = async () => {
     try {
-      const response = await api.delete(`/personal-library/${id_book}`)
+      const response = await api.delete(`/personal-library/${isbn}`)
       setIsBookOwned(false)
-      removeBook(id_book)
+      removeBook(isbn)
     } catch(error) {
       setError(error?.response?.data?.message)
     }
   };
 
   return (<>
-    {(currentUser && isBookOwned === true) && 
+    {/* {(currentUser && isBookOwned === true) && 
     <div className='bookmini__booleans'>
       <div>
         <input type="checkbox" id='isRead' name='isRead'/>
@@ -65,7 +63,7 @@ export default function BookOwnership({bookID, removeBook, isBookOwned=false, se
         <input type="checkbox" id='isShared' name='isShared'/>
         <label htmlFor="isShared">Partagé</label>
       </div>
-    </div>}
+    </div>} */}
     {currentUser && (
       isBookOwned ?
       <button className='button button_small' 

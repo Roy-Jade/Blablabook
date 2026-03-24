@@ -19,7 +19,7 @@ export default function BookMini({ book, removeBook=()=>{} }) {
         </div>
         <Rating rate={book.avg_rate} />
         <Link to={`/book/${book.id_book}`} book={book} className='button button_small'>Voir le détail</Link>
-        <BookOwnership bookID={book.id_book} removeBook={removeBook} isBookOwned={isBookOwned} setIsBookOwned={setIsBookOwned} />
+        <BookOwnership isbn={book.isbn} removeBook={removeBook} isBookOwned={isBookOwned} setIsBookOwned={setIsBookOwned} />
       </div>
     </article>
   )

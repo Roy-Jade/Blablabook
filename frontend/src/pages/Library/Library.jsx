@@ -47,7 +47,9 @@ export default function Library() {
         setError(null);
         event.preventDefault();
         try {
-            const response = await api.get(`/${target}?${search[1]}=${search[0]}`);
+            const response = search[0] && target === "books" ? 
+                await api.get(`/${target}/search?${search[1]}=${search[0]}`) :
+                await api.get(`/${target}?${search[1]}=${search[0]}`);
             setBooks(response.data.books);
         } catch (error) {
             setError(error?.response?.data?.message)
@@ -55,9 +57,9 @@ export default function Library() {
     }
 
     // Fonction qui permet la suppression d'un livre de l'affichage de la bibliothèque
-    const removeBook = (id_book) =>{
+    const removeBook = (isbn) =>{
         if (params) {
-            setBooks(books.filter((book) => book.id_book !== id_book))
+            setBooks(books.filter((book) => book.isbn !== isbn))
         }
     }
 

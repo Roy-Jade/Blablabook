@@ -34,7 +34,7 @@ export const fetchBooks = async (req, res) => {
         res.status(200).json({books});
 
     } catch (error) {
-    res.status(500).json({message:"Erreur lors de la récupération des données"})
+    res.status(500).json({message:"Erreur lors de la récupération des livres"})
   }
 };
 
@@ -83,6 +83,6 @@ export const fetchBookID = async (req, res) => {
         res.status(200).json({bookInfos, bookCommentaries});
 
     } catch (error) {
-        res.status(500).json({message:"Erreur lors de la récupération des données"})
+        res.status(500).json({message:"Erreur lors de la récupération des données du livre"})
     }
 }
