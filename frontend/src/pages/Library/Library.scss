@@ -13,14 +13,6 @@
         flex-wrap: wrap;
         justify-content: space-around;
         width: 100%;
-
-        &>* {
-            margin: 2%;
-            width: auto;
-
-            @include mixin.desktop {
-                width: 25%;
-            }
-        }
+        gap: 20px;
     }
 }

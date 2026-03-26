@@ -1,0 +1,17 @@
+.commentary {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  align-items: center;
+  
+  textarea {
+    width: 100%;
+    min-height: 100px;
+    resize: vertical;
+  }
+
+  button {
+    width: 20%;
+  }
+}
