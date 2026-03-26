@@ -36,11 +36,11 @@ export default function Commentary({bookID, userCommentary, setUserCommentary, h
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form className="commentary" onSubmit={handleSubmit}>
                 { message && <p>{message}</p> }
                 <label htmlFor="commentary">Dites-nous pourquoi : qu'est-ce que ce livre vous a inspiré ?</label>
                 <textarea id="commentary" name="commentary" onChange={(e) => setUserCommentary(e.target.value)} value={userCommentary} ></textarea>
-                <button type="submit">Soumettre votre avis</button>
+                <button className="button button-small" type="submit">Soumettre votre avis</button>
             </form>
             <button onClick={handleReset} >Efface ton commentaire</button>
         </>

@@ -110,7 +110,7 @@ export default function BookID() {
 				<BookOwnership isbn={bookInfos.isbn} isBookOwned={isBookOwned} setIsBookOwned={setIsBookOwned} />
 				{currentUser && isBookOwned && <RatingInput bookID={bookInfos.id_book} userRate={userRate} setUserRate={setUserRate} />}
 				{userRate && <Commentary bookID={bookInfos.id_book} userCommentary={userCommentary} setUserCommentary={setUserCommentary} handleCommentarySubmission={handleCommentarySubmission} />}
-			</section>
+				</section>
 
 			<article className='bookInfo__commentaries'>
 				<h2>Commentaires</h2>

@@ -46,7 +46,7 @@ export default function RatingInput({bookID, userRate, setUserRate}) {
 
     return (
         <>
-            <fieldset onMouseLeave={() => setHoverRate(null)}>
+            <fieldset className='rating-input' onMouseLeave={() => setHoverRate(null)}>
                 <legend >À quel point recommanderiez-vous ce livre ?</legend>
                 {[1,2,3,4,5].map(value => (
                     <Fragment key={value}>

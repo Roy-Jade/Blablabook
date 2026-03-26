@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 import api from '../../api/api.js';
+import './BookOwnership.scss';
 
 export default function BookOwnership({isbn, removeBook, isBookOwned=false, setIsBookOwned}) {
   

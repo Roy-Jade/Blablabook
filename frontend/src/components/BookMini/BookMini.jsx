@@ -1,6 +1,6 @@
 import './BookMini.scss';
 import { Link } from 'react-router';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Rating from '../Rating/Rating';
 import BookOwnership from '../BookOwnership/BookOwnership';
 
@@ -11,7 +11,10 @@ export default function BookMini({ book, removeBook=()=>{} }) {
   
   return(
     <article className={`bookmini`}>
-      <img className='bookmini__img' src={"https://covers.openlibrary.org/b/isbn/"+book.isbn+"-M.jpg"} alt="Couverture" />
+      <img className='bookmini__img' 
+        src={"https://covers.openlibrary.org/b/isbn/"+book.isbn+"-M.jpg"} 
+        alt={`Couverture du livre ${book.title}`}
+        onError={(e) => e.target.src = '/img/logo_blablabook_clair.png'}/>
       <div>
         <div className='bookmini__infos'>
           <cite className='bookmini__title'>{book.title}</cite>

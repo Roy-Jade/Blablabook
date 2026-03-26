@@ -31,7 +31,7 @@ return (
   <button className="dashboard-info_button button " onClick={toggleShowChangeInfos}>Changer votre {infoType}</button>
 
   {showChangeInfos && 
-    <form>
+    <form className='dashboard-info_form'>
       <fieldset>
         <label htmlFor={infoType}>
           Entrez votre nouveau {infoType}

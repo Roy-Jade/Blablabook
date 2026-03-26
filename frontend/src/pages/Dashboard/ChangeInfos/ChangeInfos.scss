@@ -1,14 +1,13 @@
 @use '../../../../static/scss/vars';
+@use '../../../../static/scss/mixin';
 
 .dashboard-info {
-    &_section {
-        font-weight: 600;
-        border: 1px solid;
-        max-width: 50%;
-        margin: 1%;
-        position: relative;
-        text-align: center;
-    }
+    font-weight: 600;
+    border: 1px solid;
+    max-width: 50%;
+    margin: 1%;
+    position: relative;
+    text-align: center;
 
     &_title {
         padding: 2%;
@@ -23,9 +22,22 @@
     }
 
     &_button {
-        position: absolute;
+        @include mixin.desktop {
+            position: absolute;
+        }
         padding: 1%;
         right: 0%;
-        bottom: -5%;
+        top: 0%;
+    }
+
+    &_form, &_form>fieldset {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding-top: 10px;
+        align-items: center;
+        &>* {
+            min-width: 60%;
+        }
     }
 }
